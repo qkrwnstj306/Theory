@@ -84,7 +84,6 @@ Theory for ML.
 ### Basic 
 - <a href='./이론 pdf 파일/딥러닝 논문/Alexnet_230626_174634.pdf'>AlexNet</a>
 	* <a href='./PPT/AlexNet.pptx'>AlexNet PPT</a>
-	+ <a href='https://www.notion.so/0057cc0c9eaf4ade943b87ead8fea534?pvs=4#e3573a33a2cd4dd692d94c986c38cae4'>AlexNet Notion</a>
 - <a href='./이론 pdf 파일/딥러닝 논문/CLIP(contrasting language image pre training)_230527_225717.pdf'>CLIP(Contrasting Language Image)</a>
 	* <a href='./PPT/contrastive learning.pptx'>Constrastive Learning PPT</a>
 - <a href='./이론 pdf 파일/딥러닝 논문/FF Algorithm_230227_175359.pdf'>Forward-Forward Algorithm</a>
