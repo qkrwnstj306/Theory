@@ -74,7 +74,7 @@ Theory for ML.
 - <a href='./이론 pdf 파일/Diffusion/3주차_diffusion_230509_124725.pdf'>Lecture 3. Diffusion is all you need</a>
 - <a href='./이론 pdf 파일/Diffusion/4주차_diffusion papers_230509_124725.pdf'>Lecture 4. A Unified framework for diffusion models</a>
 - <a href='./이론 pdf 파일/Diffusion/5주차_diffusion papers(수정)_230509_124726.pdf'>Lecture 5. Diffusion Models for Conditional Generation</a>
-- <strong>UPDATE...! 완벽한 수식 분해는 해당 링크에 존재한다. [<a href='./이론 pdf 파일/딥러닝 논문/DDPM_231106_165245.pdf'>DDPM paper</a>]</strong>
+- <strong>UPDATE...! 완벽한 수식 분해는 해당 링크에 존재한다. [<a href='./이론 pdf 파일/딥러닝 논문/DDPM_231110_214532.pdf'>DDPM paper</a>]</strong>
 	- <a href='./이론 pdf 파일/Diffusion/Denoising Diffusion probabilistic model(DDPM)_230505_193343.pdf'>Denoising Process 분석 </a>
 	- <a href='./이론 pdf 파일/Diffusion/Forward에서의 분산_230503_004753.pdf'>Denoising Process 분석2. Forward에서의 분산 </a>
 	- <a href='./이론 pdf 파일/Diffusion/Lt-1 proof_221229_144243.pdf'>Denoising Process 분석3. Loss 일부 분석 </a>
@@ -102,7 +102,7 @@ Theory for ML.
 - <a href='https://www.notion.so/Stable-diffusion-7d853e6b43f14e2ca204f61f475a7653?pvs=4'>Stable Diffusion with Fine Tuning Method like DreamBooth, LoRA, Textual Inversion including code in Notion</a>
 
 ### Generative AI about Image 
-- <a href='./이론 pdf 파일/딥러닝 논문/DDPM_231106_165245.pdf'>DDPM: Denoising Diffusion Probabilistic Models</a>
+- <a href='./이론 pdf 파일/딥러닝 논문/DDPM_231110_214532.pdf'>DDPM: Denoising Diffusion Probabilistic Models</a>
 	* <strong>Loss에 대한 수식 분해 in pdf file</strong>
 	* <a href='https://github.com/qkrwnstj306/Diffusion'>DDPM code practice</a>
 - <a href='./이론 pdf 파일/딥러닝 논문/DreamStyler_231001_142049.pdf'>DreamStyler: Paint by Style Inversion with Text-to-Image Diffusion Models</a>
