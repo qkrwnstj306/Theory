@@ -3,7 +3,7 @@
 
 ## RePaint: Inpainting using Denoising Diffusion Probabilistic Models
 
-- <strong><mark>Core Idea</mark></strong>
+<mark>Core Idea</mark>
 <div align=center>
 test1</br>
 </div>
