@@ -11,11 +11,9 @@
 
 ![result](./img1.png)
 
-![result2](./이론 pdf 파일/딥러닝 논문/Repaint/img1.png)
-
 > Core Idea
 <div align=center>
-Image Inpainting using DDPM</br>
+"Image Inpainting using DDPM"</br>
 without Condition such as Text
 </div>
 
@@ -51,7 +49,7 @@ test1</br>
 
 ### <strong>Conclusion</strong>
 <p>
-test1</br>
+Iterative 하게 Random Gaussian noise 를 sampling 했기 때문에 다양한 output image 를 생성할 수 있다. </br>
 </p>
 
 ***
