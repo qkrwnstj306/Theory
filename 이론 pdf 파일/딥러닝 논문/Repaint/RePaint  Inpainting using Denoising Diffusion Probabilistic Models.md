@@ -61,12 +61,16 @@ without Condition such as Text
 3. Process 
 - $x^{known}_{t-1}$ 는 clean data $x_0$ 에서 forward process 를 통해 구한다.
 - $x^{unknown}_{t-1}$ 는 $x_T \sim N(0,I)$ 를 sampling 하고 model 에 input 으로 제공하여, noise 를 예측한 값을 통해서 iterative 하게 denoising 하여 구한다.
-- $new\ sample\ x_{t-1}$ = $m$ $\odot x^{known}_{t-1}$ a $+(1-m) \odot x^{unknown}_{t-1}$
+- $new\ sample\ x_{t-1}$ = 
+$m$ 
+$\odot x^{known}_{t-1}$ 
+$+(1-m) \odot$ 
+$x^{unknown}_{t-1}$
 - forward process 로 구한 $x^{known}_{t-1}$ 은 원본을 유지하고 있다.
 - reverse process(model) 로 구한 $x^{unknown}_{t-1}$ 은 새로 생성하는 이미지이다. 
   - 따라서 원본의 정보를 함유하고 있지 않다. 추후에 이 문제로 인해 resample 이 등장
 
-4. Resample
+1. Resample
 - *3. Process* 를 적용하여 inpainting 을 진행해보면, generated image 가 content/texture 면에서만 일치하고 의미적으로 일치하지 않는 것을 확인할 수 있다.
 
 ![img4](./img4.png)
