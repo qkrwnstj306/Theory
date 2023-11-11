@@ -3,8 +3,7 @@
 
 ## RePaint: Inpainting using Denoising Diffusion Probabilistic Models
 
-- <span style="background-color: #ffdce0">Core idea</span>
-<span style="background-color: #ffdce0">Core idea</span>
+- <span style="background-color:#ffdce0">Core idea</span>
 <div align=center>
 test1</br>
 </div>
