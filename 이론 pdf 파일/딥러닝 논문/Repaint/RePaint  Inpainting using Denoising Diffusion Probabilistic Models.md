@@ -9,16 +9,21 @@
 [Experiment](#experiment)</br>
 [Conclusion](#conclusion)</br>
 
-> <strong>Core Idea</strong>
+![result](./img1.png)
+
+![result2](./이론 pdf 파일/딥러닝 논문/Repaint/img1.png)
+
+> Core Idea
 <div align=center>
-test1</br>
+Image Inpainting using DDPM</br>
+without Condition such as Text
 </div>
 
 ***
 
 ### <strong>Intro</strong>
 <p>
-test1</br>
+</br>
 </p>
 
 ***
@@ -49,6 +54,12 @@ test1</br>
 test1</br>
 </p>
 
+***
+
+### <strong>Question</strong>
+<p>
+test1</br>
+</p>
 
 ![](img_path)
 <a href="">link</a>

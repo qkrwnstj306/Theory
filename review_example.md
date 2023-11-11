@@ -1,30 +1,57 @@
 ![header](https://capsule-render.vercel.app/api?type=waving&color=auto&height=80&section=header&text=Welcome%20Paper%20Review&fontSize=50)
 
 
-## RePaint: Inpainting using Denoising Diffusion Probabilistic Models
+## [paper]
 
-- <span style="background-color:#ffdce0">Core idea</span>
+[Intro](#intro)</br>
+[Related Work](#related-work)</br>
+[Method](#method)</br>
+[Experiment](#experiment)</br>
+[Conclusion](#conclusion)</br>
+
+> Core Idea
 <div align=center>
 test1</br>
 </div>
 
-- <strong>Intro</strong>
+***
+
+### <strong>Intro</strong>
 <p>
 test1</br>
 </p>
-- <strong>Related Work</strong>
+
+***
+
+### <strong>Related Work</strong>
 <p>
 test1</br>
 </p>
-- <strong>Method</strong>
+
+***
+
+### <strong>Method</strong>
 <p>
 test1</br>
 </p>
-- <strong>Experiment</strong>
+
+***
+
+### <strong>Experiment</strong>
 <p>
 test1</br>
 </p>
-- <strong>Conclusion & Limitation</strong>
+
+***
+
+### <strong>Conclusion</strong>
+<p>
+test1</br>
+</p>
+
+***
+
+### <strong>Question</strong>
 <p>
 test1</br>
 </p>
@@ -33,3 +60,5 @@ test1</br>
 ![](img_path)
 <a href="">link</a>
 
+
+> 인용구
