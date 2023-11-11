@@ -66,15 +66,15 @@ without Condition such as Text
 - reverse process(model) 로 구한 $x^{unknown}_{t-1}$ 은 새로 생성하는 이미지이다. 
   - 따라서 원본의 정보를 함유하고 있지 않다. 추후에 이 문제로 인해 resample 이 등장
 
-1. Resample
+4. Resample
 - *3. Process* 를 적용하여 inpainting 을 진행해보면, generated image 가 content/texture 면에서만 일치하고 의미적으로 일치하지 않는 것을 확인할 수 있다.
 
 ![img4](./img4.png)
 - $n =1$ 인 경우가 *3. Process* 를 그대로 적용한 결과이다. masking 한 부분에 대해서 생성하는 과정인 $(1-m) \odot x^{unknown}_{t-1}$ 에서 뒷 부분인 $x^{unknown}_{t-1}$ 가 어떻게 생성됐는지를 보면, $x_{T} \sim N(0,I)$ 에서 sampling 한 뒤에, model 을 통해 iterative 하게 구한 값이다. 다시 말해, time step $T$ 에선 원본의 정보를 고려하지 않은 채 $x_{T-1}$ 을 generation 하기 때문에 문제가 발생한다. 
-- $x_{T-1}$ 이후에는  $new\ sample  \; x_{t-1} = $   $m \odot x^{known}_{t-1} + (1-m) \odot x^{unknown}_{t-1}$ 로 인해 new sample $x_{t-1}$ 에 원본의 정보가 들어온 상태에서, model($x_t$, $t$) 에 입력으로 들어오고 self-attention 으로 인해서 원본의 정보를 고려해서 $\epsilon$ 을 output 으로 내뱉긴 하지만 완전한 조화를 이루기에는 어려움이 존재한다. 
+- $x_{T-1}$ 이후에는  $new\ sample  \; x_{t-1} = m \odot x^{known}_{t-1} + (1-m) \odot x^{unknown}_{t-1}$ 로 인해 new sample $x_{t-1}$ 에 원본의 정보가 들어온 상태에서, model($x_t$, $t$) 에 입력으로 들어오고 self-attention 으로 인해서 원본의 정보를 고려해서 $\epsilon$ 을 output 으로 내뱉긴 하지만 완전한 조화를 이루기에는 어려움이 존재한다. 
 - '그럼 조화를 이루기 위해, 어떤 조건이 필요할까' 라고 고민해보면 $\epsilon$ 으로 $x^{unknown}_{t-1}$ 를 만들기 때문에, 결국 model 이 원본의 정보를 충분히 받아들여서 $\epsilon$ 을 생성할 수 있어야 한다. 
 - 해당 조건을 해결해주는게 본 논문에서 제안하는 *resample* 이다. 
-- 원본의 정보를 가지고 $\epsilon$ 을 잘 prediction 할 수 있도록 원본의 정보가 담긴 $new\ sample\ x_{t-1}$ 에서 $x_t$ 를 다시 sampling 한 뒤, 원본의 정보가 담긴 $x_t$ 를 다시 model 에게 전달해서 원본을 고려해 $x^{unknown}_{t-1} 을 재생성할 수 있게 setting 했다.
+- 원본의 정보를 가지고 $\epsilon$ 을 잘 prediction 할 수 있도록 원본의 정보가 담긴 $new\ sample\ x_{t-1}$ 에서 $x_t$ 를 다시 sampling 한 뒤, 원본의 정보가 담긴 $x_t$ 를 다시 model 에게 전달해서 원본을 고려해 $x^{unknown}_{t-1}$ 을 재생성할 수 있게 setting 했다.
   
 ![algorithm](./algorithm.png)
 * 10번째 줄에, $x_t$ 를 re-sampling 하는 과정은 오류로 보인다. 논문에서는 글로 다음과 같이 설명하고 있다. 
