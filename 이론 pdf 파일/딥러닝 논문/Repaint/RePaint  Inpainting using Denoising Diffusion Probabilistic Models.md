@@ -9,12 +9,11 @@
 [Experiment](#experiment)</br>
 [Conclusion](#conclusion)</br>
 
-<mark style='background-color: #f6f8fa'> 연한 회색 </mark>
-
-<mark style='background-color: #d73a48'> 빨강 </mark>
-
+### <strong>Core Idea</strong>
+> Core Idea
 <div align=center>
 test1</br>
+> test1
 </div>
 
 ***
