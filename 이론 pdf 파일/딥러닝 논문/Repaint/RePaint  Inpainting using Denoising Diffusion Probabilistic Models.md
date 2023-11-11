@@ -7,12 +7,13 @@
 [Related Work](#related-work)</br>
 [Method](#method)</br>
 [Experiment](#experiment)</br>
-[Conclusion&Limitation](#conclusion-&-limitation)</br>
+[Conclusion](#conclusion)</br>
 
-<mark>core idea</mark>
-'''http
-<span style="color:red">red</span>'''
-==Core Idea==
+<span style="background-color:yellow">이 부분이 형광색입니다</span>
+
+```html
+<span style="background-color:yellow">이 부분이 형광색입니다</span>
+```
 
 <div align=center>
 test1</br>
@@ -48,7 +49,7 @@ test1</br>
 
 ***
 
-### <strong>Conclusion & Limitation</strong>
+### <strong>Conclusion</strong>
 <p>
 test1</br>
 </p>
