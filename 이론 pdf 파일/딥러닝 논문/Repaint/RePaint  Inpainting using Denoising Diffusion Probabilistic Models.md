@@ -61,7 +61,7 @@ without Condition such as Text
 3. Process 
 - $x^{known}_{t-1}$ 는 clean data $x_0$ 에서 forward process 를 통해 구한다.
 - $x^{unknown}_{t-1}$ 는 $x_T \sim N(0,I)$ 를 sampling 하고 model 에 input 으로 제공하여, noise 를 예측한 값을 통해서 iterative 하게 denoising 하여 구한다.
-- $new\ sample  \; x_{t-1} = $   $m \odot x^{known}_{t-1} + (1-m) \odot x^{unknown}_{t-1}$ 
+- $new sample x_{t-1} = $   $m \odot x^{known}_{t-1} + (1-m) \odot x^{unknown}_{t-1}$ 
  - forward process 로 구한 $x^{known}_{t-1}$ 은 원본을 유지하고 있다.
  - reverse process(model) 로 구한 $x^{unknown}_{t-1}$ 은 새로 생성하는 이미지이다. 
    - 따라서 원본의 정보를 함유하고 있지 않다. 추후에 이 문제로 인해 resample 이 등장
@@ -74,9 +74,11 @@ without Condition such as Text
 - $x_{T-1}$ 이후에는  $new\ sample  \; x_{t-1} = $   $m \odot x^{known}_{t-1} + (1-m) \odot x^{unknown}_{t-1}$ 로 인해 new sample $x_{t-1}$ 에 원본의 정보가 들어온 상태에서, model($x_t$, $t$) 에 입력으로 들어오고 self-attention 으로 인해서 원본의 정보를 고려해서 $\epsilon$ 을 output 으로 내뱉긴 하지만 완전한 조화를 이루기에는 어려움이 존재한다. 
 - '그럼 조화를 이루기 위해, 어떤 조건이 필요할까' 라고 고민해보면 $\epsilon$ 으로 $x^{unknown}_{t-1}$ 를 만들기 때문에, 결국 model 이 원본의 정보를 충분히 받아들여서 $\epsilon$ 을 생성할 수 있어야 한다. 
 - 해당 조건을 해결해주는게 본 논문에서 제안하는 *resample* 이다. 
-- 원본의 정보를 가지고 $\epsilon$ 을 잘 prediction 할 수 있도록 원본의 정보가 담긴 $new\ sample  \; x_{t-1}$ 에서 $x_t$ 를 다시 sampling 한 뒤, 원본의 정보가 담긴 $x_t$ 를 다시 model 에게 전달해서 원본을 고려해 $x^{unknown}_{t-1} 을 재생성할 수 있게 setting 했다.
+- 원본의 정보를 가지고 $\epsilon$ 을 잘 prediction 할 수 있도록 원본의 정보가 담긴 $new\ sample\; x_{t-1}$ 에서 $x_t$ 를 다시 sampling 한 뒤, 원본의 정보가 담긴 $x_t$ 를 다시 model 에게 전달해서 원본을 고려해 $x^{unknown}_{t-1} 을 재생성할 수 있게 setting 했다.
+  
 ![algorithm](./algorithm.png)
 * 10번째 줄에, $x_t$ 를 re-sampling 하는 과정은 오류로 보인다. 논문에서는 글로 다음과 같이 설명하고 있다. 
+  
 ![edit](./img6.png)
 
 ***
@@ -88,6 +90,7 @@ Setting
 - T = 250, r = 10, j = 10
 - r : Re-sampling 을 해당 time-step 에서 몇 번할지
 - j : Re-sampling 을 안 하는 구간의 길이 
+  
 ![](./img11.png)
 
 Evalution 
@@ -102,6 +105,7 @@ Result
 
 Ablation study
 - 대체로 r, j 모두 늘리는 방향이 점수가 높다
+
 ![](./ablation.png)
 ***
 

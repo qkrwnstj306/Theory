@@ -104,6 +104,8 @@ Theory for ML.
 - <a href='./이론 pdf 파일/딥러닝 논문/DDPM_231110_214532.pdf'>DDPM: Denoising Diffusion Probabilistic Models</a>
 	* <strong>Loss에 대한 수식 분해 in pdf file</strong>
 	* <a href='https://github.com/qkrwnstj306/Diffusion'>DDPM code practice</a>
+- <a href='./이론 pdf 파일/딥러닝 논문/RePaint/RePaint Inpainting using Denoising Diffusion Probabilistic Models.pdf>RePaint: Inpainting using Denoising Diffusion Probabilistic Models.pdf</a>
+	* <a href='./이론 pdf 파일/딥러닝 논문/RePaint/RePaint Inpainting using Denoising Diffusion Probabilistic Models.md'>Paper Review</a>
 - <a href='./이론 pdf 파일/딥러닝 논문/DreamStyler_231001_142049.pdf'>DreamStyler: Paint by Style Inversion with Text-to-Image Diffusion Models</a>
 	* <a href='PPT/DreamStyler.pptx'>DreamStyler PPT</a>
 - <a href='./이론 pdf 파일/딥러닝 논문/Generative Adversarial Nets_230512_221610.pdf'>GAN : Generative Adversarial Nets</a>
