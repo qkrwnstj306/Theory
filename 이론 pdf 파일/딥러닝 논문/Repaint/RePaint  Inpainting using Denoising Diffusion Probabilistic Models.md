@@ -9,11 +9,9 @@
 [Experiment](#experiment)</br>
 [Conclusion](#conclusion)</br>
 
-### <strong>Core Idea</strong>
-> Core Idea
+> <strong>Core Idea</strong>
 <div align=center>
 test1</br>
-> test1
 </div>
 
 ***
