@@ -2,6 +2,7 @@
 
 
 ## [paper]
+*CVPR(2022), 441 citation*
 
 [Intro](#intro)</br>
 [Related Work](#related-work)</br>
@@ -13,7 +14,7 @@
 
 > Core Idea
 <div align=center>
-"test1"</br>
+<strong>"test1"</strong></br>
 </div>
 
 ***
