@@ -9,11 +9,9 @@
 [Experiment](#experiment)</br>
 [Conclusion](#conclusion)</br>
 
-<span style="background-color:yellow">이 부분이 형광색입니다</span>
+<mark style='background-color: #f6f8fa'> 연한 회색 </mark>
 
-```html
-<span style="background-color:yellow">이 부분이 형광색입니다</span>
-```
+<mark style='background-color: #d73a48'> 빨강 </mark>
 
 <div align=center>
 test1</br>
