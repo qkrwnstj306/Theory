@@ -20,44 +20,32 @@
 ***
 
 ### <strong>Intro</strong>
-<p>
-test1</br>
-</p>
+
 
 ***
 
 ### <strong>Related Work</strong>
-<p>
-test1</br>
-</p>
+
 
 ***
 
 ### <strong>Method</strong>
-<p>
-test1</br>
-</p>
+
 
 ***
 
 ### <strong>Experiment</strong>
-<p>
-test1</br>
-</p>
+
 
 ***
 
 ### <strong>Conclusion</strong>
-<p>
-test1</br>
-</p>
+
 
 ***
 
 ### <strong>Question</strong>
-<p>
-test1</br>
-</p>
+
 
 
 ![](img_path)
