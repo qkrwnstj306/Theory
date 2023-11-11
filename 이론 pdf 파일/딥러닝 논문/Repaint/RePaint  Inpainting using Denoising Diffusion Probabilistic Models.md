@@ -63,7 +63,7 @@ without Condition such as Text
 - $x^{unknown}_{t-1}$ 는 $x_T \sim N(0,I)$ 를 sampling 하고 model 에 input 으로 제공하여, noise 를 예측한 값을 통해서 iterative 하게 denoising 하여 구한다.
 - $new\ sample\ x_{t-1} = m \odot x^{known}_{t-1} + (1-m) \odot x^{unknown}_{t-1}$
 - $new\ sample\ x_{t-1} m \odot x^{known}_{t-1} + (1-m) \odot x^{unknown}_{t-1}$
-- $new\ sample\ x_{t-1}=m \odot$
+- $new\ sample\ x_{t-1}=m \odot x^{known}_{t-1}+(1-m) \odot x^{unknown}_{t-1}$
 - $new\ sample\ x_{t-1} = m \odot x^{known}_{t-1} + (1-m) \odot x^{unknown}_{t-1}$
 - forward process 로 구한 $x^{known}_{t-1}$ 은 원본을 유지하고 있다.
 - reverse process(model) 로 구한 $x^{unknown}_{t-1}$ 은 새로 생성하는 이미지이다. 
