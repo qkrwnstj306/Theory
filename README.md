@@ -134,7 +134,7 @@ Theory for ML.
 - <a href='./이론 pdf 파일/딥러닝 논문/ControlNet_231018_163832.pdf'>ControlNet : Adding Conditional Control to Text-to-Image Diffusion models</a>
 - <a href='./이론 pdf 파일/딥러닝 논문/Repaint/RePaint  Inpainting using Denoising Diffusion Probabilistic Models.pdf'>RePaint: Inpainting using Denoising Diffusion Probabilistic Models</a>
 	* <a href='./이론 pdf 파일/딥러닝 논문/Repaint/RePaint  Inpainting using Denoising Diffusion Probabilistic Models.md'>Paper Review</a>
-	* <a href='./PPT/RePaint.pptx>RePaint ppt</a>
+	* <a href='./PPT/RePaint.pptx'>RePaint ppt</a>
 
 ### Natural Language
 - <a href='./이론 pdf 파일/딥러닝 이론/LSTM.pdf'>LSTM : Long Short-Term Memory</a>
