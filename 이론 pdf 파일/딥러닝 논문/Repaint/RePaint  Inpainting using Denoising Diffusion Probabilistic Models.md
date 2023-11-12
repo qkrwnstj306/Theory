@@ -76,7 +76,7 @@ without Condition such as Text
 - 해당 조건을 해결해주는게 본 논문에서 제안하는 *resample* 이다. 
 - 원본의 정보를 가지고 $\epsilon$ 을 잘 prediction 할 수 있도록, 원본의 정보가 담긴 $new\ sample\ x_{t-1}$ 에서 $x_t$ 를 다시 sampling(=add noise) 한 뒤, 원본의 정보가 담긴 $x_t$ 를 다시 model 에게 전달해서 원본을 고려해 $x_{t-1}^{unknown}$ 을 재생성할 수 있게 setting 했다.
 > Resample의 core idea
->> Data $x_0$ 가 주어지므로 $x_{t-1}^{known}$은 고정이라고 볼 수 있다. 의미론적으로 원본과 어우러지기 위해선, 결국 model 이 원본 정보를 잘 보고 $\epsilon$ 을 prediction 하는 문제로 볼 수 있다. 이 문제를 해결하기 위해선 model 이 원본 정보를 어떤 방식으로든 입력으로 받으면 된다. (model 내부에는 self-attention 이 있기 때문에 각 pixel의 정보가 알아서 섞임) 따라서, model input 인 $x_t, t$ 에 원본의 정보를 넣어주기 위해 $new\ sample\ x_{t-1}$ 을 resampling 하는 것이다.
+>> Data $x_0$ 가 주어지므로 $x_{t-1}^{known}$은 고정이라고 볼 수 있다. 의미론적으로 원본과 어우러지기 위해선, 결국 model 이 원본 정보를 잘 보고 $\epsilon$ 을 prediction 하는 문제로 볼 수 있다. 이 문제를 해결하기 위해선 model 이 충분한 양의 원본 정보를 어떤 방식으로든 입력으로 받으면 된다. (model 내부에는 self-attention 이 있기 때문에 각 pixel의 정보가 알아서 섞임) 따라서, model input 인 $x_t, t$ 에 원본의 정보를 넣어주기 위해 $new\ sample\ x_{t-1}$ 을 resampling 하는 것이다.
   
 ![algorithm](./algorithm.png)
 * 10번째 줄에, $x_t$ 를 re-sampling 하는 과정은 오류로 보인다. 논문에서는 글로 다음과 같이 설명하고 있다. 
