@@ -101,11 +101,9 @@ Theory for ML.
 - <a href='https://www.notion.so/Stable-diffusion-7d853e6b43f14e2ca204f61f475a7653?pvs=4'>Stable Diffusion with Fine Tuning Method like DreamBooth, LoRA, Textual Inversion including code in Notion</a>
 
 ### Generative AI about Image 
-- <a href='./이론 pdf 파일/딥러닝 논문/DDPM_231110_214532.pdf'>DDPM: Denoising Diffusion Probabilistic Models</a>
+- <a href='./이론 pdf 파일/딥러닝 논문/DDPM_231112_174348.pdf'>DDPM: Denoising Diffusion Probabilistic Models</a>
 	* <strong>Loss에 대한 수식 분해 in pdf file</strong>
 	* <a href='https://github.com/qkrwnstj306/Diffusion'>DDPM code practice</a>
-- <a href='./이론 pdf 파일/딥러닝 논문/Repaint/RePaint  Inpainting using Denoising Diffusion Probabilistic Models.pdf'>RePaint: Inpainting using Denoising Diffusion Probabilistic Models</a>
-	* <a href='./이론 pdf 파일/딥러닝 논문/Repaint/RePaint  Inpainting using Denoising Diffusion Probabilistic Models.md'>Paper Review</a>
 - <a href='./이론 pdf 파일/딥러닝 논문/DreamStyler_231001_142049.pdf'>DreamStyler: Paint by Style Inversion with Text-to-Image Diffusion Models</a>
 	* <a href='PPT/DreamStyler.pptx'>DreamStyler PPT</a>
 - <a href='./이론 pdf 파일/딥러닝 논문/Generative Adversarial Nets_230512_221610.pdf'>GAN : Generative Adversarial Nets</a>
@@ -134,6 +132,10 @@ Theory for ML.
 	+ <a href='https://github.com/qkrwnstj306/Prompt-to-Prompt'>Code Practice</a>
 - <a href='./이론 pdf 파일/딥러닝 논문/InstructPix2Pix_231014_141433.pdf'>InstructPix2Pix: Learning to Follow Image Editing Instructions</a>
 - <a href='./이론 pdf 파일/딥러닝 논문/ControlNet_231018_163832.pdf'>ControlNet : Adding Conditional Control to Text-to-Image Diffusion models</a>
+- <a href='./이론 pdf 파일/딥러닝 논문/Repaint/RePaint  Inpainting using Denoising Diffusion Probabilistic Models.pdf'>RePaint: Inpainting using Denoising Diffusion Probabilistic Models</a>
+	* <a href='./이론 pdf 파일/딥러닝 논문/Repaint/RePaint  Inpainting using Denoising Diffusion Probabilistic Models.md'>Paper Review</a>
+	* <a href='./PPT/RePaint.pptx>RePaint ppt</a>
+
 ### Natural Language
 - <a href='./이론 pdf 파일/딥러닝 이론/LSTM.pdf'>LSTM : Long Short-Term Memory</a>
 - <a href='./이론 pdf 파일/딥러닝 이론/Seq2Seq.pdf'>Sequence-to-Sequence</a>
