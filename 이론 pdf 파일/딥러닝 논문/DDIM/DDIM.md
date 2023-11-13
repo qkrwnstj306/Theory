@@ -32,7 +32,7 @@
 
 ### <strong>Method</strong>
 #### 수식
-- Forward process</br>
+- Forward process: $X_0$ 가 주어졌을 때 $X_T$ 까지 noise 를 더하는 process </br>
     $$q(X_{1:T}|X_0) = \frac{q(X_1)}{q(X_0)} \frac{q(X_2, X_1, X_0)}{q(X_1, X_0)} \frac{q(X_3, X_2, X_1, X_0)}{q(X_2, X_1, X_0)} \cdots \frac{q(X_T \cdots X_0)}{q(X_{T-1} \cdots X_0)}$$
   - In DDPM, using Marcov Chain: $t$ 시점은 $t-1$ 에만 의존한다.</br>
     $$q(X_{1:T}|X_0) = \frac{q(X_1)}{q(X_0)} \frac{q(X_2, X_1)}{q(X_1)} \frac{q(X_3, X_2)}{q(X_2)} \cdots \frac{q(X_T, X_{T-1})}{q(X_{T-1})} = \prod_{t=1}^{T}q(X_t|X_{t-1})$$
@@ -56,9 +56,9 @@
       - 해당 수식은 Marcov-chain 에 의해서 결정되는 수식이 아닌, $\beta$ 를 통해 $X_T$ 가 표준 정규 분포를 따르게 하려고 설정한 것이다.
     
     - $q(X_t|X_{t-1}) := N(X_t;\sqrt{1-\beta_t}X_{t-1}, \beta_tI)$ 를 여전히 만족한다는 얘기는 다음의 수식도 만족한다고 얘기할 수 있다. *(자세한 수식은 DDPM pdf 에 있다)*
-  $$ X_t = \sqrt{\overline{\alpha}_t}X_0 + \sqrt{1-\overline{\alpha}_t}\epsilon$$
+  $$ X_t = \sqrt{\overline{\alpha_t}}X_0 + \sqrt{1-\overline{\alpha_t}}\epsilon $$
 
-- Reverse process</br>
+- Reverse process: forward process 를 반대로 보고 학습을 진행한다</br>
   Reverse process 는 forward process 를 이용하여 다음과 같은 수식으로 정의할 수 있다.
 $$ X_{t-1} = \sqrt{\overline{\alpha}_{t-1}}X_0 + \sqrt{1-\overline{\alpha}_{t-1}}\epsilon_{t-1},\ [forward\; process] $$ 
 
