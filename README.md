@@ -74,7 +74,7 @@ Theory for ML.
 - <a href='./이론 pdf 파일/Diffusion/3주차_diffusion_230509_124725.pdf'>Lecture 3. Diffusion is all you need</a>
 - <a href='./이론 pdf 파일/Diffusion/4주차_diffusion papers_230509_124725.pdf'>Lecture 4. A Unified framework for diffusion models</a>
 - <a href='./이론 pdf 파일/Diffusion/5주차_diffusion papers(수정)_230509_124726.pdf'>Lecture 5. Diffusion Models for Conditional Generation</a>
-- <strong>UPDATE...! 완벽한 수식 분해는 해당 링크에 존재한다. [<a href='./이론 pdf 파일/딥러닝 논문/DDPM_231110_214532.pdf'>DDPM paper</a>]</strong>
+- <strong>UPDATE...! 완벽한 수식 분해는 해당 링크에 존재한다. [<a href='./이론 pdf 파일/딥러닝 논문/DDPM_231112_174348.pdf'>DDPM paper</a>]</strong>
 	- <a href='./이론 pdf 파일/Diffusion/Denoising Diffusion probabilistic model(DDPM)_230505_193343.pdf'>Denoising Process 분석 </a>
 	- <a href='./이론 pdf 파일/Diffusion/Forward에서의 분산_230503_004753.pdf'>Denoising Process 분석2. Forward에서의 분산 </a>
 	- <a href='./이론 pdf 파일/Diffusion/Lt-1 proof_221229_144243.pdf'>Denoising Process 분석3. Loss 일부 분석 </a>
