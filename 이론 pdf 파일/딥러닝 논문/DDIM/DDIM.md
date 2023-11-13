@@ -60,6 +60,11 @@
 $$ X_t = \sqrt{\bar{\alpha_t}} $$
 $$ X_t = \bar{\alpha_t} $$
 
+$$ \bar{a} $$
+$$ \bar{a_t} $$
+$$ \bar{\alpha} $$
+$$ \bar{\alpha_{t}} $$
+
 - Reverse process: forward process 를 반대로 보고 학습을 진행한다</br>
   Reverse process 는 forward process 를 이용하여 다음과 같은 수식으로 정의할 수 있다.
 $$ X_{t-1} = \sqrt{\overline{\alpha}_{t-1}}X_0 + \sqrt{1-\overline{\alpha}_{t-1}}\epsilon_{t-1},\ [forward\; process] $$ 
