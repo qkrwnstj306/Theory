@@ -57,23 +57,18 @@
     
     - $q(X_t|X_{t-1}) := N(X_t;\sqrt{1-\beta_t}X_{t-1}, \beta_tI)$ 를 여전히 만족한다는 얘기는 다음의 수식도 만족한다고 얘기할 수 있다. *(자세한 수식은 DDPM pdf 에 있다)*
     - 
-  $$ X_t = \sqrt{\bar{\alpha_t}}X_0 + \sqrt{1-\bar{\alpha_t}}\epsilon $$
+  $$ X_t = \sqrt{\bar{\alpha_t}}X_0 + \sqrt{1 - \bar{\alpha_t}}\epsilon $$
+
+$$ X_t = \sqrt{\bar{\alpha_t}}X_0 + \sqrt{1 - \bar{\alpha_t}}\epsilon $$
 
 $$ X_t = \sqrt{\bar{\alpha_t}} $$
 
+
 $$ X_t = \bar{\alpha_t} $$
 
-$$ \bar{a} $$
-
-$$ \bar{a_t} $$
-
-$$ \bar{\alpha} $$
 
 $$ \bar{\alpha}_t $$
 
-$$ \bar{a}_t $$
-
-$$ \bar{\alpha_{t}} $$
 
 
 - Reverse process: forward process 를 반대로 보고 학습을 진행한다</br>
