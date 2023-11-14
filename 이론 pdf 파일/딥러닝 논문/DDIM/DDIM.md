@@ -74,7 +74,9 @@ $$ X_{t-1} = \sqrt{\bar{\alpha}_{t-1}}X_0$$
 
 $$ \sqrt{1 - \bar{\alpha}_{t-1}} \epsilon_{t-1} $$
 
-$$ \sqrt{1 - \bar{\alpha}_{t-1}} $$
+$$ \sqrt{1-\bar{\alpha}_{t-1}}\epsilon_{t-1} $$
+
+$$ \sqrt{1-\bar{\alpha}_{t-1}}, \epsilon_{t-1} $$
 
 $$ \epsilon_{t-1} $$
 
