@@ -76,7 +76,7 @@ $$ \sqrt{1 - \bar{\alpha}_{t-1}} \epsilon_{t-1} $$
 
 $$ \sqrt{1 - \bar{\alpha}_{t-1}} $$
 
-
+$$ \epsilon_{t-1} $$
 
 X_t, X_0 를 given 으로 주는 non-marcovian 으로 바꾸면 loss에서 바로 구할 수 있다.
 
