@@ -230,6 +230,7 @@ Theory for ML.
 - <a href='https://github.com/boost-devs/ai-tech-interview/tree/main'>AI 면접</a>
 - <a href='https://careerly.co.kr/comments/67573'>인성 면접</a>
 - <a href='https://vsehwag.github.io/blog/2023/2/all_papers_on_diffusion.html'>All papers on Diffusion</a> 
+- <a href='https://norman3.github.io/prml'>확률 분포를 공부할 때 참고한 책. [PRML(Pattern Recognition & Machine Learning, Bishop)]</a>
 
 ## Failed Project
 - <a href='https://github.com/qkrwnstj306/Style-Similarity'>Style Similarity</a>
