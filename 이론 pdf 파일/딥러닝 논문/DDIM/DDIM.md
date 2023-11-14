@@ -59,7 +59,8 @@
 $$ X_t = \sqrt{\bar{\alpha_t}}X_0 + \sqrt{1 - \bar{\alpha_t}}\epsilon $$
 
 - Reverse process: DDPM 과 똑같이 marcov-chain 을 따른다.
-  $$ p_\theta(X_{0:T})= p_\theta(X_T)\prod_{t=1}^{T}p_\theta(X_{t-1}|X_t) $$
+
+$$ p_\theta(X_{0:T})= p_\theta(X_T)\prod_{t=1}^{T}p_\theta(X_{t-1}|X_t) $$
 
 - Loss 
   - 우리가 찾고 싶은 확률 분포는 다음과 같다.
