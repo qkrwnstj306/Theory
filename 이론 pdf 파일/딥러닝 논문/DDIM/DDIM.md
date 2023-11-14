@@ -68,6 +68,10 @@ $$ X_t = \sqrt{\bar{\alpha_t}}X_0 + \sqrt{1 - \bar{\alpha_t}}\epsilon $$
 
 $$ X_{t-1} = \sqrt{\bar{\alpha_{t-1}}}X_0 + \sqrt{1-\bar{\alpha_{t-1}}} \epsilon_{t-1},\ [forward\ process] $$
 
+$$ X_{t-1} = \sqrt{\overline{\alpha}_{t-1}}X_0 + \sqrt{1-\overline{\alpha}_{t-1}} \epsilon_{t-1},\ [forward\ process] $$
+
+$$ X_{t-1} = \sqrt{\bar\alpha_{t-1}}X_0 + \sqrt{1-\bar\alpha_{t-1}} \epsilon_{t-1},\ [forward\ process] $$
+
 $$ \overline{\alpha}_{t-1} $$
 
 $$ \bar\alpha_{t-1} $$
