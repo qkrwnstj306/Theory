@@ -59,7 +59,7 @@
 $$ X_t = \sqrt{\bar{\alpha_t}}X_0 + \sqrt{1 - \bar{\alpha_t}}\epsilon $$
 
 - Reverse process: DDPM 과 똑같이 marcov-chain 을 따른다.
-  $$ p_\theta(X_{0:T})=p_\theta(X_T)\prod_{t=1}^{T}p_\theta(X_{t-1}|X_t) $$
+  $$ p_\theta(X_{0:T})= p_\theta(X_T)\prod_{t=1}^{T}p_\theta(X_{t-1}|X_t) $$
 
 - Loss 
   - 우리가 찾고 싶은 확률 분포는 다음과 같다.
@@ -108,9 +108,3 @@ DDIM 에서는 $L_{t-1}$ term 을 바로 정의
 ### <strong>Question</strong>
 - Forward process 는 non-Marcov 로 전개했는데, reverse process 는 왜 Marcov 로 전개했는가.
     - Loss form 에 맞추기 위해 reverse process 는 그대로 둔 거 같다.
-
-![](img_path)
-<a href="">link</a>
-
-
-> 인용구
