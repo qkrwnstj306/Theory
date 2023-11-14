@@ -72,9 +72,12 @@ $$ X_{t-1} = \sqrt{\bar{\alpha_t}}X_0 + \sqrt{1-\bar{\alpha_t}} $$
 
 $$ X_{t-1} = \sqrt{\bar{\alpha}_{t-1}}X_0 + \sqrt{1-\bar{\alpha}_{t-1}} $$
 
-$$ X_{t-1} = \sqrt{\bar{\alpha_{t-1}}}X_0 + \sqrt{1-\bar{\alpha_{t-1}}} $$
+$$ X_{t-1} = \sqrt{\bar{\alpha_{t-1}}}X_0 + \sqrt{1-\bar{\alpha_{t-1}}} \epsilon_{t-1},\ [forward\ process] $$
 
-$$ \epsilon_{t-1},\ [forward\ process] $$
+<div align="center" class="math">
+  $$ X_{t-1} = \sqrt{\bar{\alpha}_{t-1}}X_0 + \sqrt{1-\bar{\alpha}_{t-1}}\epsilon_{t-1} $$
+</div>
+
 
 X_t, X_0 를 given 으로 주는 non-marcovian 으로 바꾸면 loss에서 바로 구할 수 있다.
 
