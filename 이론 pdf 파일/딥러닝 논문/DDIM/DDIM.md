@@ -13,7 +13,11 @@
 
 > Core Idea
 <div align=center>
-<strong>"asd"</strong></br>
+<strong>"Non-Marcovian 으로 접근해, Loss 를 다른 방식으로 전개. Sampling 속도가 빠른 DDPM"</strong>
+</br>
+1. Marvov property 에 의해 sampling speed 가 느리다.</br>
+2. 성능 저하의 원인인 Marcov 를 깬다.</br>
+3. Loss 를 non-Marcov 로 전개.</br>
 </div>
 
 ***
@@ -22,12 +26,7 @@
 - DDPM 은 adversarial training 없이, high quality image generation 을 할 수 있지만, sampling 을 하기 위해 많은 time step 의 Marcov chain 을 필요로 한다.
 - 본 논문에서는, non-Markovain diffusion process 를 통해 DDPM 을 일반화한다. 따라서 좀 더 deterministic 한 generative process 를 학습시킬 수 있다.
 - 실험적으로 DDIM 은 DDPM 에 비해 10배에서 50배 빠르게 sampling 을 할 수 있다.
-
-***
-
-### <strong>Related Work</strong>
-
-
+- DDPM 이 Marcov-chain 을 사용하는 곳은 ELBO 로 전개한 Loss 를 쉽게 풀어쓰는 과정에서 사용한다. DDIM 도 마찬가지로 Loss 를 자기들만의 방식으로 풀어쓰기 위해서 non-Marcovian 으로 가정하고 풀어쓴 것과 동일하다. 이때, Loss 에 맞춰서 전개하기 때문에 reverse 는 그대로 Marcov-chain 으로 가정하는 거 같다. 
 ***
 
 ### <strong>Method</strong>
@@ -59,24 +58,33 @@
   
 $$ X_t = \sqrt{\bar{\alpha_t}}X_0 + \sqrt{1 - \bar{\alpha_t}}\epsilon $$
 
+- Reverse process: DDPM 과 똑같이 marcov-chain 을 따른다.
+  $$ p_\theta(X_{0:T})=p_\theta(X_T)\prod_{t=1}^{T}p_\theta(X_{t-1}|X_t) $$
 
+- Loss 
+  - 우리가 찾고 싶은 확률 분포는 다음과 같다.
+    $$ p(X_0) $$ 
+  - 하지만, 해당 분포를 알 수 없으니 베이지안 룰을 사용해 알 수 있는 값들로 표현한다.
+    $$ p(X_0) = \frac{p(X_0|X_T)p(X_T)}{p(X_T|X_0)} $$
+  - VAE 에서 사용했던 ELBO 를 그대로 적용해 보면 아래의 term 이 나오고, 이 term 을 minimize 하면 된다.
+    $$ -\log{\frac{p_\theta(X_{0:T})}{q(X_{1:T}|X_0)}} $$
+  - 분자는 reverse process 이고, 분모는 forward process 이다. 
+    $$ forward: \ q(X_T|X_0)\prod_{t=2}^{T}q_\theta(X_{t-1}|X_t, X_0) \\ reverse: \ p_\theta(X_T)\prod_{t=1}^{T}p_\theta(X_{t-1}|X_t)$$
+  - 그대로 풀어써보면, 우리는 이미 표준 정규 분포를 가정했고 수식도 그렇게 만들었기에 삭제되는 텀이 있고, 영향력이 적은 텀도 삭제한다.
+    $$ \log{q(X_T|X_0)} + \Sigma_{t=2}^{T}\log{q(X_{t-1}|X_t,X_0)} - \Sigma_{t=1}^{T}\log{p_\theta(X_{t-1}|X_t)} - \log{p_\theta(X_T)} \\ = \cancel{\log(q(X_T|X_0))} + \Sigma_{t=2}^{T}\log{q(X_{t-1}|X_t,X_0)} - \Sigma_{t=1}^{T}\log{p_\theta(X_{t-1}|X_t)} - \cancel{\log{p_\theta(X_T)}} \\ = [\Sigma_{t=2}^{T}D_{KL}(q(X_{t-1}|X_t,X_0) || p_\theta(X_{t-1}|X_t)) - \log{p_\theta(X_0|X_1)}] \\ = \Sigma_{t=2}^{T}D_{KL}(q(X_{t-1}|X_t,X_0) || p_\theta(X_{t-1}|X_t))$$
+  - 결국, $q(X_{t-1}|X_t,X_0)$ 의 분포(평균과 분산)를 알면 된다. 
+  - **원래는 Bishop 의 pattern recoginition 책의 2절 115번 공식을 토대로(가우시안 분포, 조건부 확률에서 특정 변수에 대한 marginal 을 구하는 방법) $q(X_{t-1}|X_t,X_0)$ 의 분포(평균과 분산)를 먼저 계산하고 special case in forward process 로 가야됨.**
+    - 하지만 그 공식이 이해가 안되니, special case in forward process 를 토대로 역으로 가보면, reparameterization trick 을 사용해 2번째 term 처럼 표현한다. 그리고 $\epsilon$ 을 $X_T, X_0$ 에 대한 식으로 바꿔주면, $q(X_{t-1}|X_t,X_0)$ 를 표현할 수 있다.
+    $$ X_{t-1} = \sqrt{\bar\alpha_{t-1}}X_0 + \sqrt{1-\bar\alpha_{t-1}} \epsilon_{t-1},\ [forward\ process] \\ \epsilon_t = \frac{X_t - \sqrt{\bar\alpha_t}X_0}{\sqrt(1-\bar\alpha_t)}, \ using\ forward\ process$$
+    ![](./img10.png)
 
-
-
-- Reverse process: forward process 를 반대로 보고 학습을 진행한다</br>
-  Reverse process 는 forward process 를 이용하여 다음과 같은 수식으로 정의할 수 있다.
-
-$$ X_{t-1} = \sqrt{\bar{\alpha_{t-1}}}X_0 + \sqrt{1-\bar{\alpha_{t-1}}} \epsilon_{t-1},\ [forward\ process] $$
-
-$$ X_{t-1} = \sqrt{\overline{\alpha}_{t-1}}X_0 + \sqrt{1-\overline{\alpha}_{t-1}} \epsilon_{t-1},\ [forward\ process] $$
-
-$$ X_{t-1} = \sqrt{\bar\alpha_{t-1}}X_0 + \sqrt{1-\bar\alpha_{t-1}} \epsilon_{t-1},\ [forward\ process] $$
-
-$$ \overline{\alpha}_{t-1} $$
-
-$$ \bar\alpha_{t-1} $$
-
-X_t, X_0 를 given 으로 주는 non-marcovian 으로 바꾸면 loss에서 바로 구할 수 있다.
+    - 여기서 q(X_{t-1}|X_t,X_0)$ 의 분포를 한 번에 유추할 수 있다는 걸 알 수 있다.  
+      - 이때, inference 과정에서는 $X_0$ 를 알 수 없기 때문에 2번째 term 을 사용할 것 이다. 
+      - 2번째 term 에도 $X_0$ 가 있어서, 이 $X_0$ 는 forward process 의 수식을 이용해 $X_t$ 로 대체한다.
+        $$ where,\ X_0 = \frac{X_t - \sqrt{1-\bar\alpha_t}\epsilon_\theta X_t}{\sqrt{\bar\alpha_t}} \\ X_{t-1} = \sqrt{\bar\alpha_{t-1}}(\frac{X_t - \sqrt{1-\bar\alpha_t}\epsilon_\theta X_t}{\sqrt{\bar\alpha_t}}) + \sqrt{1-\bar\alpha_{t-1} - \sigma_t^2}\epsilon_\theta X_t + \sigma_t\epsilon_t $$
+      - 여기서 $\sigma$ 는 아래의 식과 같고(DDPM 과 동일), 이 값에 $\eta$ 를 곱해 조절한다.
+        $$ \sigma^2 = \tilde{\beta_t} = \frac{1-\bar\alpha_{t-1}}{1-\bar\alpha_t}\beta_t $$
+        - $\eta$ 가 1 이면 DDPM, 0 이면 DDIM 이다. 
 
 DDPM 에서는 $L_{t-1}$ term 을 gaussian distribution 으로 분해해서 평균과 분산을 구했다
 
@@ -84,18 +92,22 @@ DDIM 에서는 $L_{t-1}$ term 을 바로 정의
 ***
 
 ### <strong>Experiment</strong>
-
+- DDIM 이 전체적으로 FID score 가 낮으며, sampling 수가 적을수록 극대화된다. 
+  - S : number of sampling 
+![](./result.png)
 
 ***
 
 ### <strong>Conclusion</strong>
-
+- DDIM 은 consistency property 가 DDPM 보다 우수하다. 따라서 같은 initial latent variable 에서 생성을 시작했다면, generated sample 들은 비슷한 high-level feature 를 갖게 된다. 이러한 특징으로 인해 semantically meaningful image interpolation 이 가능하다.
+- 요즘 트렌드는 DDPM 으로 학습시킨 모델을 DDIM 의 sampling 방식으로 이미지를 생성한다. 
+- DDPM 에서 단순하게 sampling 수를 줄이는 건 Marcov-Chain 에 의해 정의를 했기 때문에 성능이 떨어지지만, DDIM 은 non-Marcovian 이여서 건너뛰어도 된다. 
 
 ***
 
 ### <strong>Question</strong>
-
-
+- Forward process 는 non-Marcov 로 전개했는데, reverse process 는 왜 Marcov 로 전개했는가.
+    - Loss form 에 맞추기 위해 reverse process 는 그대로 둔 거 같다.
 
 ![](img_path)
 <a href="">link</a>
