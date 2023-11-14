@@ -118,6 +118,7 @@ DDIM 에서는 $L_{t-1}$ term 을 바로 정의
 ### <strong>Experiment</strong>
 - DDIM 이 전체적으로 FID score 가 낮으며, sampling 수가 적을수록 극대화된다. 
   - $S$ : number of sampling 
+
 ![](./result.png)
 
 ***
@@ -126,6 +127,10 @@ DDIM 에서는 $L_{t-1}$ term 을 바로 정의
 - DDIM 은 consistency property 가 DDPM 보다 우수하다. 따라서 같은 initial latent variable 에서 생성을 시작했다면, generated sample 들은 비슷한 high-level feature 를 갖게 된다. 이러한 특징으로 인해 semantically meaningful image interpolation 이 가능하다.
 - 요즘 트렌드는 DDPM 으로 학습시킨 모델을 DDIM 의 sampling 방식으로 이미지를 생성한다. 
 - DDPM 에서 단순하게 sampling 수를 줄이는 건 Marcov-Chain 에 의해 정의를 했기 때문에 성능이 떨어지지만, DDIM 은 non-Marcovian 이여서 건너뛰어도 된다. 
+
+- 학습 과정 등 모두 똑같이 setting 하고, 아래 식에서 $\sigma = 0$ 으로 하고 sampling 을 하면 된다.
+
+$$ X_{t-1} = \sqrt{\bar\alpha_{t-1}}(\frac{X_t - \sqrt{1-\bar\alpha_t}\epsilon_\theta X_t}{\sqrt{\bar\alpha_t}}) + \sqrt{1-\bar\alpha_{t-1} - \sigma_t^2}\epsilon_\theta X_t + \sigma_t\epsilon_t $$ 
 
 ***
 
