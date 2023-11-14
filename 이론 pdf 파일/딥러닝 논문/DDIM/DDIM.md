@@ -82,19 +82,21 @@ $$ \log{q(X_T|X_0)} + \Sigma_{t=2}^{T}\log{q(X_{t-1}|X_t,X_0)} - \Sigma_{t=1}^{T
   - **원래는 Bishop 의 pattern recoginition 책의 2절 115번 공식을 토대로(가우시안 분포, 조건부 확률에서 특정 변수에 대한 marginal 을 구하는 방법) $q(X_{t-1}|X_t,X_0)$ 의 분포(평균과 분산)를 먼저 계산하고 special case in forward process 로 가야됨.**
     - 하지만 그 공식이 이해가 안되니, special case in forward process 를 토대로 역으로 가보면, reparameterization trick 을 사용해 2번째 term 처럼 표현한다. 그리고 $\epsilon$ 을 $X_T, X_0$ 에 대한 식으로 바꿔주면, $q(X_{t-1}|X_t,X_0)$ 를 표현할 수 있다.
 
-$$ X_{t-1} = \sqrt{\bar\alpha_{t-1}}X_0 + \sqrt{1-\bar\alpha_{t-1}} \epsilon_{t-1},\ [forward\ process] \\ \epsilon_t = \frac{X_t - \sqrt{\bar\alpha_t}X_0}{\sqrt(1-\bar\alpha_t)}, \ using\ forward\ process$$
+$$ X_{t-1} = \sqrt{\bar\alpha_{t-1}}X_0 + \sqrt{1-\bar\alpha_{t-1}} \epsilon_{t-1},\ [forward\ process] \\ \epsilon_t = \frac{X_t - \sqrt{\bar\alpha_t}X_0}{\sqrt(1-\bar\alpha_t)}, \ using\ forward\ process $$
 
-<div align=center>![](./img10.png)</div>
+<div align=center>
+![](./img10.png)
+</div>
 
-- 여기서 q(X_{t-1}|X_t,X_0)$ 의 분포를 한 번에 유추할 수 있다는 걸 알 수 있다.  
+- 여기서 $q(X_{t-1}|X_t,X_0)$ 의 분포를 한 번에 유추할 수 있다는 걸 알 수 있다.  
     - 이때, inference 과정에서는 $X_0$ 를 알 수 없기 때문에 2번째 term 을 사용할 것 이다. 
     - 2번째 term 에도 $X_0$ 가 있어서, 이 $X_0$ 는 forward process 의 수식을 이용해 $X_t$ 로 대체한다.
 
 $$ where,\ X_0 = \frac{X_t - \sqrt{1-\bar\alpha_t}\epsilon_\theta X_t}{\sqrt{\bar\alpha_t}} \\ X_{t-1} = \sqrt{\bar\alpha_{t-1}}(\frac{X_t - \sqrt{1-\bar\alpha_t}\epsilon_\theta X_t}{\sqrt{\bar\alpha_t}}) + \sqrt{1-\bar\alpha_{t-1} - \sigma_t^2}\epsilon_\theta X_t + \sigma_t\epsilon_t $$
-      - 여기서 $\sigma$ 는 아래의 식과 같고(DDPM 과 동일), 이 값에 $\eta$ 를 곱해 조절한다.
+- 여기서 $\sigma$ 는 아래의 식과 같고(DDPM 과 동일), 이 값에 $\eta$ 를 곱해 조절한다.
 
 $$ \sigma^2 = \tilde{\beta_t} = \frac{1-\bar\alpha_{t-1}}{1-\bar\alpha_t}\beta_t $$
-        - $\eta$ 가 1 이면 DDPM, 0 이면 DDIM 이다. 
+- $\eta$ 가 1 이면 DDPM, 0 이면 DDIM 이다. 
 
 DDPM 에서는 $L_{t-1}$ term 을 gaussian distribution 으로 분해해서 평균과 분산을 구했다
 
