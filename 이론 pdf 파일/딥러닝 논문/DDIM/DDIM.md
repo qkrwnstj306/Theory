@@ -49,7 +49,7 @@
       3.  Noise $\epsilon$ 은 $N(0,I)$ 의 분포를 따른다.
       4.  Image 의 normalization [-1,1] 은 $X_T$ 의 평균이 0으로, 분산이 1로 가기 위한 수렴성 보장 용도이다.
       5.  Image 는 다변량 가우시안 분포이다. 즉, 각 pixel 이 가우시안 분포를 따르고 각 pixel 은 독립이다.
-      6.  Non-Marcovian 의 성질을 가진다. $X_t$ 는 $X_{t-1}, X_0$ 에 의해서 결정된다.
+      6.  Forward process 는 non-Marcovian 의 성질을 가진다. 즉, $X_t$ 는 $X_{t-1}, X_0$ 에 의해서 결정된다.
     
     - 따라서, $q(X_t|X_{t-1}) := N(X_t;\sqrt{1-\beta_t}X_{t-1}, \beta_tI)$ 를 여전히 만족한다. 
       - 해당 수식은 Marcov-chain 에 의해서 결정되는 수식이 아닌, $\beta$ 를 통해 $X_T$ 가 표준 정규 분포를 따르게 하려고 설정한 것이다.
@@ -83,11 +83,10 @@ $$ \log{q(X_T|X_0)} + \Sigma_{t=2}^{T}\log{q(X_{t-1}|X_t,X_0)} - \Sigma_{t=1}^{T
     - 하지만 그 공식이 이해가 안되니, special case in forward process 를 토대로 역으로 가보면, reparameterization trick 을 사용해 2번째 term 처럼 표현한다. 그리고 $\epsilon$ 을 $X_T, X_0$ 에 대한 식으로 바꿔주면, $q(X_{t-1}|X_t,X_0)$ 를 표현할 수 있다.
 
 $$ X_{t-1} = \sqrt{\bar\alpha_{t-1}}X_0 + \sqrt{1-\bar\alpha_{t-1}} \epsilon_{t-1},\ [forward\ process] $$
+
 $$ \epsilon_t = \frac{X_t - \sqrt{\bar\alpha_t}X_0}{\sqrt(1-\bar\alpha_t)}, \ using\ forward\ process $$
 
-<div style="text-align:center">
 ![](./img10.png)
-</div>
 
 - 여기서 $q(X_{t-1}|X_t,X_0)$ 의 분포를 한 번에 유추할 수 있다는 걸 알 수 있다.  
     - 이때, inference 과정에서는 $X_0$ 를 알 수 없기 때문에 2번째 term 을 사용할 것 이다. 
