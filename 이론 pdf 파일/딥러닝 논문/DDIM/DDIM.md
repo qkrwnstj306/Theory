@@ -102,9 +102,9 @@ $$ \epsilon_t = \frac{X_t - \sqrt{\bar\alpha_t}X_0}{\sqrt(1-\bar\alpha_t)}, \ us
     - 이때, inference 과정에서는 $X_0$ 를 알 수 없기 때문에 2번째 term 을 사용할 것 이다. 
     - 2번째 term 에도 $X_0$ 가 있어서, 이 $X_0$ 는 forward process 의 수식을 이용해 $X_t$ 로 대체한다.
 
-$$ where,\ X_0 = \frac{X_t - \sqrt{1-\bar\alpha_t}\epsilon_\theta X_t}{\sqrt{\bar\alpha_t}} $$
+$$ where,\ X_0 = \frac{X_t - \sqrt{1-\bar\alpha_t}\epsilon_\theta(X_t)}{\sqrt{\bar\alpha_t}} $$
 
-$$ X_{t-1} = \sqrt{\bar\alpha_{t-1}}(\frac{X_t - \sqrt{1-\bar\alpha_t}\epsilon_\theta X_t}{\sqrt{\bar\alpha_t}}) + \sqrt{1-\bar\alpha_{t-1} - \sigma_t^2}\epsilon_\theta X_t + \sigma_t\epsilon_t $$
+$$ X_{t-1} = \sqrt{\bar\alpha_{t-1}}(\frac{X_t - \sqrt{1-\bar\alpha_t}\epsilon_\theta (X_t)}{\sqrt{\bar\alpha_t}}) + \sqrt{1-\bar\alpha_{t-1} - \sigma_t^2}\epsilon_\theta (X_t) + \sigma_t\epsilon_t $$
 - 여기서 $\sigma$ 는 아래의 식과 같고(DDPM 과 동일), 이 값에 $\eta$ 를 곱해 조절한다.
 
 $$ \sigma^2 = \tilde{\beta_t} = \frac{1-\bar\alpha_{t-1}}{1-\bar\alpha_t}\beta_t $$
@@ -130,7 +130,11 @@ DDIM 에서는 $L_{t-1}$ term 을 바로 정의
 
 - 학습 과정 등 모두 똑같이 setting 하고, 아래 식에서 $\sigma = 0$ 으로 하고 sampling 을 하면 된다.
 
-$$ X_{t-1} = \sqrt{\bar\alpha_{t-1}}(\frac{X_t - \sqrt{1-\bar\alpha_t}\epsilon_\theta X_t}{\sqrt{\bar\alpha_t}}) + \sqrt{1-\bar\alpha_{t-1} - \sigma_t^2}\epsilon_\theta X_t + \sigma_t\epsilon_t $$ 
+$$ X_{t-1} = \sqrt{\bar\alpha_{t-1}}(\frac{X_t - \sqrt{1-\bar\alpha_t}\epsilon_\theta (X_t)}{\sqrt{\bar\alpha_t}}) + \sqrt{1-\bar\alpha_{t-1} - \sigma_t^2}\epsilon_\theta (X_t) + \sigma_t\epsilon_t $$ 
+
+<p align="center">
+<img src='./img2.png'>
+</p>
 
 ***
 
