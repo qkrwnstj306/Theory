@@ -6,6 +6,8 @@ Theory for ML.
 
 # <strong> 1. Reinforcement </strong>
 > <a href='https://github.com/qkrwnstj306/Reinforcement'> Code Practice</a>
+>> OpenAI GYM == 0.22.0 이나 그 근처로 하는 게 좋다. (return 되는 state form 이 version 마다 달라서,,)
+
 ## Lecture for David Silver
 - <a href='./이론 pdf 파일/강화학습/Lecture1 intro_RL_230113_153944.pdf'>Lecture 1. Intro RL</a>
 - <a href='./이론 pdf 파일/강화학습/Lecture2 MDP_230113_175440.pdf'>Lecture 2. MDP</a>
