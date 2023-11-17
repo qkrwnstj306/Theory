@@ -21,6 +21,8 @@ Theory for ML.
 ## Paper Review
 - <a href='./이론 pdf 파일/강화학습/Double DQN_230130_182942.pdf'>Double DQN</a>
 - <a href='./이론 pdf 파일/강화학습/Dueling DQN_230202_161508.pdf'>Dueling DQN</a>
+- <a href='https://arxiv.org/pdf/1602.01783.pdf'>Asynchronous Methods for Deep Reinforcement Learning
+	- <a href='./이론 pdf 파일/강화학습/A3C/A3C.md'>Paper Review</a>
 
 ## Theory 
 - <a href='./이론 pdf 파일/강화학습/이론 1~5강_231018_153141.pdf'>David Silver 1~5강</a>
