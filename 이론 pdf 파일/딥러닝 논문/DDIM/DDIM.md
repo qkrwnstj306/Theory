@@ -24,7 +24,8 @@
 
 ### <strong>Intro</strong>
 - DDPM 은 adversarial training 없이, high quality image generation 을 할 수 있지만, sampling 을 하기 위해 많은 time step 의 Marcov chain 을 필요로 한다.
-- 본 논문에서는, non-Markovain diffusion process 를 통해 DDPM 을 일반화한다. 따라서 좀 더 deterministic 한 generative process 를 학습시킬 수 있다.
+- 본 논문에서는, non-Markovain diffusion process 를 통해 DDPM 을 일반화한다. 따라서, deterministic 한 sampling 을 가능하게 하므로 time step t 에 대한 noisy image $X_t$ 가 $X_0$ 에서 온 것을 명시해줌으로써 이전 state 에만 의존했던 방법을 벗어날 수 있다.
+- $X_0$ 를 인지하고 있는 deterministic sampling 을 사용하기 때문에, 굳이 noisy sample 을 만들기 위해, forward process $T=1000$ 을 모두 거치지 않아도 된다. 즉, 부분 집합인 $T_{sub}$ 를 거쳐 sampling 해도 큰 손상 없이 이미지를 생성할 수 있다.
 - 실험적으로 DDIM 은 DDPM 에 비해 10배에서 50배 빠르게 sampling 을 할 수 있다.
 - DDPM 이 Marcov-chain 을 사용하는 곳은 ELBO 로 전개한 Loss 를 쉽게 풀어쓰는 과정에서 사용한다. DDIM 도 마찬가지로 Loss 를 자기들만의 방식으로 풀어쓰기 위해서 non-Marcovian 으로 가정하고 풀어쓴 것과 동일하다. 이때, Loss 에 맞춰서 전개하기 때문에 reverse 는 그대로 Marcov-chain 으로 가정하는 거 같다. 
 ***
@@ -87,7 +88,7 @@ $$ = [\Sigma_{t=2}^{T}D_{KL}(q(X_{t-1}|X_t,X_0) || p_\theta(X_{t-1}|X_t)) - \log
 
 $$ = \Sigma_{t=2}^{T}D_{KL}(q(X_{t-1}|X_t,X_0) || p_\theta(X_{t-1}|X_t))$$
   - 결국, $q(X_{t-1}|X_t,X_0)$ 의 분포(평균과 분산)를 알면 된다. 
-  - **원래는 Bishop 의 pattern recoginition 책의 2절 115번 공식을 토대로(가우시안 분포, 조건부 확률에서 특정 변수에 대한 marginal 을 구하는 방법) $q(X_{t-1}|X_t,X_0)$ 의 분포(평균과 분산)를 먼저 계산하고 special case in forward process 로 가야됨.**
+  - **원래는 Bishop 의 pattern recoginition 책의 2절 115번 공식을 토대로(가우시안 분포, 조건부 확률에서 특정 변수에 대한 marginal 을 구하는 방법) $q(X_{t-1}|X_t,X_0)$ 의 분포(평균과 분산)를 먼저 계산하고 special case in forward process 로 가야됨. [<a href='https://junia3.github.io/blog/ddim'>reference link</a>]**
     - 하지만 그 공식이 이해가 안되니, special case in forward process 를 토대로 역으로 가보면, reparameterization trick 을 사용해 2번째 term 처럼 표현한다. 그리고 $\epsilon$ 을 $X_T, X_0$ 에 대한 식으로 바꿔주면, $q(X_{t-1}|X_t,X_0)$ 를 표현할 수 있다.
 
 $$ X_{t-1} = \sqrt{\bar\alpha_{t-1}}X_0 + \sqrt{1-\bar\alpha_{t-1}} \epsilon_{t-1},\ [forward\ process] $$
@@ -134,8 +135,17 @@ $$ X_{t-1} = \sqrt{\bar\alpha_{t-1}}(\frac{X_t - \sqrt{1-\bar\alpha_t}\epsilon_\
 
 $$ \sigma(\eta) = \eta\sqrt{\tilde{\beta_t}} = \sqrt{\frac{1-\bar\alpha_{t-1}}{1-\bar\alpha_t}\beta_t} $$
 
+<p align="center">
+<img src='img11.png'>
+</p>
+
+- $t=1$ 일때 다음과 같은 식으로 sampling 해야 된다. ($\eta=0$ 이니까)
+
+$$ X_{t-1} = \frac{X_t - \sqrt{1-\bar\alpha_t}\epsilon_\theta (X_t)}{\sqrt{\bar\alpha_t}} $$ 
 ***
 
 ### <strong>Question</strong>
 - Forward process 는 non-Marcov 로 전개했는데, reverse process 는 왜 Marcov 로 전개했는가.
     - Loss form 에 맞추기 위해 reverse process 는 그대로 둔 거 같다.
+- DDIM 은 무슨 근거로 time step 을 건너뛸 수 있는가.
+  - $q(X_t|X_0)$ 이 고정되어 있는 한 denosing objectvive Loss 는 특별한 forward procedure 에 의존하지 않기 때문에 $T$ 보다 작은 step 에 대한 forward process 를 고려할 수 있다.

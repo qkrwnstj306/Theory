@@ -224,6 +224,11 @@ Theory for ML.
 - <a href='./University Lecture/Lee/Dinkelbach_230101_192839.pdf'>Dinkelbach : Fractional Programming for Communication Systems </a>
 - <a href='./University Lecture/Lee/이기송 논문 리뷰 실습 in colab, ainize_230101_192633.pdf'>UAV-Assisted Wireless-Powered Two-Way communications</a>
 
+## Simple paper review
+- <a href='https://arxiv.org/abs/2002.05709'>SimCLR: A Simple Framework for Contrastive Learning of Visual Representations</a>
+	* <a href='./이론 pdf 파일/딥러닝 논문/SimCLR/SimCLR.md'>Paper Review</a>
+- <a href='https://arxiv.org/pdf/1503.02531.pdf'>Distilling the knowledge in a Neural Network</a>
+	* <a href='./이론 pdf 파일/딥러닝 논문/Distilling/Distilling.md'>Paper Review</a>
 
 ## Helpful Blog
 - <a href='https://github.com/teddylee777/machine-learning#%ED%86%B5%EA%B3%84-statistics'>Machine Learning Study</a>

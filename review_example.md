@@ -10,7 +10,9 @@
 [Experiment](#experiment)</br>
 [Conclusion](#conclusion)</br>
 
-![result](./img1.png)
+<p align="center">
+<img src='./img1.png'>
+</p>
 
 > Core Idea
 <div align=center>
