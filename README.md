@@ -88,6 +88,7 @@ Theory for ML.
 ### Basic 
 - <a href='./이론 pdf 파일/딥러닝 논문/Alexnet_230626_174634.pdf'>AlexNet</a>
 	* <a href='./PPT/AlexNet.pptx'>AlexNet PPT</a>
+	* <a href='./이론 pdf 파일/딥러닝 논문/Alexnet/Alexnet.pdf'>Paper Review</a>
 - <a href='./이론 pdf 파일/딥러닝 논문/CLIP(contrasting language image pre training)_230527_225717.pdf'>CLIP(Contrasting Language Image)</a>
 	* <a href='./PPT/contrastive learning.pptx'>Constrastive Learning PPT</a>
 - <a href='./이론 pdf 파일/딥러닝 논문/FF Algorithm_230227_175359.pdf'>Forward-Forward Algorithm</a>
@@ -233,7 +234,9 @@ Theory for ML.
 	* <a href='./이론 pdf 파일/딥러닝 논문/SimCLR/SimCLR.md'>Paper Review</a>
 - <a href='https://arxiv.org/pdf/1503.02531.pdf'>Distilling the knowledge in a Neural Network</a>
 	* <a href='./이론 pdf 파일/딥러닝 논문/Distilling/Distilling.md'>Paper Review</a>
-
+- <a href='https://arxiv.org/pdf/1710.09412.pdf'>Mixup: Beyond Empirical Risk Minimization</a>
+	* <a href='./이론 pdf 파일/딥러닝 논문/Mixup/mixup.md'>Paper Review</a>
+  
 ## Helpful Blog
 - <a href='https://github.com/teddylee777/machine-learning#%ED%86%B5%EA%B3%84-statistics'>Machine Learning Study</a>
 - <a href='https://github.com/boost-devs/ai-tech-interview/tree/main'>AI 면접</a>
