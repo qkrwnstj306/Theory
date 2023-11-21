@@ -54,14 +54,30 @@
   1. 병렬 actor-learner 수에 비례해 선형인 훈련 시간 단축을 얻는다.
   2. Replay memory 에 의존하지 않으므로 Sarsa & actor-critic 과 같은 on-policy algorithm 에도 안정적으로 사용할 수 있다.
 
-- One-step Q-learning 에 병렬성을 추가한 pseudocode.
-  - $\theta$: local network
-  - $\theta^-$: global network
-  - $t \mod I_{AsyncUpdate} ==0$: local 에서 global 로 gradient 전달 후, global network update
-  - $T \mod I_{target} ==0$: global network 의 parameter 로 local network parameter 교체
-  - 실제 코딩에선, gradient 전달 후에 global network 를 update 하고 바로 global network parameter 를 가져온다.
+- Asynchronous one-step Q-learning pseudocode 
+  - 여기서 중요한 점은 local network 를 쓰지 않는 것(A3C 와는 다르게)과 DQN 의 target network 를 쓴다는 것이다.
+  - $\theta$: global network
+  - $\theta^-$: fixed target network
+  - $t \mod I_{AsyncUpdate} ==0$: 각 worker 가 global network 로 경험을 쌓은 걸 바탕으로 update
+  - $T \mod I_{target} ==0$: fixed target network parameter 를 global network parameter 로 교체
 <p align='center'>
 <img src='./img2.png'>
+</p>
+
+- Asynchronous advantage actor-critic pseudocode 
+    - $\theta, \ \theta_v$: global network
+    - $\theta^`, \ \theta_v^`$: local network
+    - td target 을 구할때, 1-step~5-step 까지의 reward 를 사용한다. 
+
+<p align='center'>
+<img src='./img7.png'>
+</p>
+
+- Asynchronous one-step Sarsa
+  - target 만 바꾸면 된다. 이때, q-learning 과 마찬가지로 fixed target network 를 사용
+  
+<p align='center'>
+<img src='./img8.png'>
 </p>
 
 ***
