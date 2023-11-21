@@ -133,7 +133,7 @@ DDIM 에서는 $L_{t-1}$ term 을 바로 정의
 
 $$ X_{t-1} = \sqrt{\bar\alpha_{t-1}}(\frac{X_t - \sqrt{1-\bar\alpha_t}\epsilon_\theta (X_t)}{\sqrt{\bar\alpha_t}}) + \sqrt{1-\bar\alpha_{t-1} - \sigma_t^2}\epsilon_\theta (X_t) + \sigma_t\epsilon_t $$ 
 
-$$ \sigma(\eta) = \eta\sqrt{\tilde{\beta_t}} = \sqrt{\frac{1-\bar\alpha_{t-1}}{1-\bar\alpha_t}\beta_t} $$
+$$ \sigma(\eta) = \eta\sqrt{\tilde{\beta_t}} = \eta\sqrt{\frac{1-\bar\alpha_{t-1}}{1-\bar\alpha_t}\beta_t} $$
 
 <p align="center">
 <img src='img11.png'>
