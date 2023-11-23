@@ -66,7 +66,7 @@
 
 - Asynchronous advantage actor-critic pseudocode 
     - $\theta, \ \theta_v$: global network
-    - $\theta^{`}, \ \theta_{v}^{`}$: local network
+    - $\theta^{\`}, \ \theta_{v}^{\`}$: local network
     - td target 을 구할때, 1-step~5-step 까지의 reward 를 사용한다. 
 
 <p align='center'>
