@@ -16,7 +16,7 @@
 
 > Core Idea
 <div align=center>
-<strong>"test1"</strong></br>
+<strong>"Asynchronous Algorithm Applicable to all Reinforcement Learning"</strong></br>
 </div>
 
 ***
@@ -109,6 +109,7 @@
 <p align='center'>
 <img src='./img6.png'>
 </p>
+
 ***
 
 ### <strong>Conclusion</strong>
@@ -123,3 +124,4 @@
 
 ### <strong>Question</strong>
 - GPU 대신 다중 CPU 를 사용했는데, GPU + 다중 CPU or 다중 GPU or 다중 CPU 라면 어떨까.
+- DQN 에 asynchronous parrarel 을 적용시키면 어떻게 될까.
