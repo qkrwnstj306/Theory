@@ -64,6 +64,7 @@
 - 따라서, stochastic iterative refinement process 로 source image $x$ 를 target image $y$ 로 mapping 시킬 것이다. 여기에 적합한 model 이 바로 DDPM 이고 condition 을 추가하여 conditional image generation system 을 구축한다. 
 
 $$ [forward \ process] \ q(y_t|y_{t-1}) $$
+
 $$ [reverse \ process] \ p_\theta(y_{t-1}|y_t, x) $$
 
 - 다시 말해, forward 는 $y$ 만 given 으로 주고 reverse process using model 은 $x$ 까지 condition 으로 줘서 denoising 을 하는 꼴이다. 어차피 model 은 이미지 자체를 예측하는 것이 아닌 noise 를 예측해서 다른 algorithm 으로 sampling 하니까 condition 으로 들어가는 게 문제가 되지 않는다. 오히려 정보를 추가적으로 제시하는 것이다.
