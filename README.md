@@ -111,6 +111,7 @@ Theory for ML.
 	* <a href='https://github.com/qkrwnstj306/Diffusion'>DDPM code practice</a>
 - <a href='./이론 pdf 파일/딥러닝 논문/DDIM/DDIM.pdf'>DDIM: Denoising Diffusion Implicit Models</a>
 	* <a href='./이론 pdf 파일/딥러닝 논문/DDIM/DDIM.md'>DDIM paper review</a>
+    * <a href='https://github.com/qkrwnstj306/Diffusion'>DDIM code practice</a>
 - <a href='./이론 pdf 파일/딥러닝 논문/DreamStyler_231001_142049.pdf'>DreamStyler: Paint by Style Inversion with Text-to-Image Diffusion Models</a>
 	* <a href='PPT/DreamStyler.pptx'>DreamStyler PPT</a>
 - <a href='./이론 pdf 파일/딥러닝 논문/Generative Adversarial Nets_230512_221610.pdf'>GAN : Generative Adversarial Nets</a>

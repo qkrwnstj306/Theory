@@ -129,6 +129,7 @@ DDIM 에서는 $L_{t-1}$ term 을 바로 정의
 - 요즘 트렌드는 DDPM 으로 학습시킨 모델을 DDIM 의 sampling 방식으로 이미지를 생성한다. 
 - DDPM 에서 단순하게 sampling 수를 줄이는 건 Marcov-Chain 에 의해 정의를 했기 때문에 성능이 떨어지지만, DDIM 은 non-Marcovian 이여서 건너뛰어도 된다. 
 
+- 건너뛸때의 가장 중요한 점은 이전 time step 도 같이 고려해야 된다는 것이다. 즉, 바로 전 step 이 아니라 건너 뛴 만큼의 time step 이 이전 time step 이 되는 꼴이다.
 - 학습 과정 등 모두 똑같이 setting 하고, 아래 식에서 $\sigma = 0$ 으로 하고 sampling 을 하면 된다.
 
 $$ X_{t-1} = \sqrt{\bar\alpha_{t-1}}(\frac{X_t - \sqrt{1-\bar\alpha_t}\epsilon_\theta (X_t)}{\sqrt{\bar\alpha_t}}) + \sqrt{1-\bar\alpha_{t-1} - \sigma_t^2}\epsilon_\theta (X_t) + \sigma_t\epsilon_t $$ 
