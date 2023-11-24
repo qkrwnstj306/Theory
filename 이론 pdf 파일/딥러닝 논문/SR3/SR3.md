@@ -59,7 +59,7 @@
   - $\beta$: $\beta$ in DDPM
   - $1- \beta$: $\alpha$ 
   - $\tilde{y}$: $y_t$ in DDPM, 즉 noisy 한 이미지
-- Dataset: input-output image pairs $D=\{x_i, y_i \}_{i=1}^{N}$
+- Dataset: input-output image pairs $D={x_i, y_i}_{i=1}^{N}$
 - Conditional distribution $p(y|x)$ 는 one-to-many mapping 이다. 즉, 많은 target image $y$ 는 여러 source image $x$ 와 일치할 수 있다.  
 - 따라서, stochastic iterative refinement process 로 source image $x$ 를 target image $y$ 로 mapping 시킬 것이다. 여기에 적합한 model 이 바로 DDPM 이고 condition 을 추가하여 conditional image generation system 을 구축한다. 
 
@@ -68,7 +68,7 @@ $$ [forward \ process] \ q(y_t|y_{t-1}) $$
 $$ [reverse \ process] \ p_\theta(y_{t-1}|y_t, x) $$
 
 - 다시 말해, forward 는 $y$ 만 given 으로 주고 reverse process using model 은 $x$ 까지 condition 으로 줘서 denoising 을 하는 꼴이다. 어차피 model 은 이미지 자체를 예측하는 것이 아닌 noise 를 예측해서 다른 algorithm 으로 sampling 하니까 condition 으로 들어가는 게 문제가 되지 않는다. 오히려 정보를 추가적으로 제시하는 것이다.
-- 원칙적으로는, x 도 condition 으로 들어가는 게 맞지만, simple diffusion process 는 x 에 의존하지 않는다고 논문에서 언급하고 있다.
+- 원칙적으로는, $x$ 도 condition 으로 들어가는 게 맞지만, simple diffusion process 는 $x$ 에 의존하지 않는다고 논문에서 언급하고 있다.
   
 <p align="center">
 <img src='./img3.png'>
@@ -83,7 +83,7 @@ $$ [reverse \ process] \ p_\theta(y_{t-1}|y_t, x) $$
 </p>
 
 - **Inference**
-  - Reparameterization trick 에서 variance 를 $\tilde{\beta_t}$ 로 하지 않고 $\beta$ 로 뒀다.
+  - Reparameterization trick 에서 variance 를 $\tilde{\beta_t}$ 로 하지 않고 $\beta_t$ 로 뒀다.
    
 <p align="center">
 <img src='./img5.png'>
@@ -114,10 +114,10 @@ $$ [reverse \ process] \ p_\theta(y_{t-1}|y_t, x) $$
 </p>
 
 - **Details**
-  - 1 M training steps with a batch size of 256
-  - Adam optimizer with a linear warmup schedule over 10 K training steps
-  - 1e-5 lr 
-  - dropout rate of 0.2 for 16x16 -> 128x128. O.W do not use dropout
+  - $1$ M training steps with a batch size of $256$
+  - Adam optimizer with a linear warmup schedule over $10$ K training steps
+  - $1e-5$ lr 
+  - dropout rate of $0.2$ for 16x16 -> 128x128. O.W do not use dropout
 
 - Regression loss 와 비교했을 때의 SR3
 
