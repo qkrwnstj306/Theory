@@ -59,9 +59,10 @@
   - $\beta$: $\beta$ in DDPM
   - $1- \beta$: $\alpha$ 
   - $\tilde{y}$: $y_t$ in DDPM, 즉 noisy 한 이미지
-- Dataset: input-output image pairs $D=\{x_i,y_i\}_{i=1}^{N}$
+- Dataset: input-output image pairs $D=\{x_i, y_i \}_{i=1}^{N}$
 - Conditional distribution $p(y|x)$ 는 one-to-many mapping 이다. 즉, 많은 target image $y$ 는 여러 source image $x$ 와 일치할 수 있다.  
 - 따라서, stochastic iterative refinement process 로 source image $x$ 를 target image $y$ 로 mapping 시킬 것이다. 여기에 적합한 model 이 바로 DDPM 이고 condition 을 추가하여 conditional image generation system 을 구축한다. 
+
 $$ [forward \ process] \ q(y_t|y_{t-1}) $$
 $$ [reverse \ process] \ p_\theta(y_{t-1}|y_t, x) $$
 
