@@ -10,12 +10,8 @@
 [Experiment](#experiment)</br>
 [Conclusion](#conclusion)</br>
 
-<p align="center">
-<img src='./img1.png'>
-</p>
-
 > Core Idea
-$$ utilize \ \nabla_x \log{p(x) } $$
+$$ utilize \ \nabla_x \log{p(x)} $$
 
 ***
 
