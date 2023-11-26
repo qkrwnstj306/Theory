@@ -151,7 +151,7 @@ Langevin dynamics
 </p>
 
 - 각 noise-perturbed distribution $\nabla_x \log{p_{\sigma_i}(x)}$ 를 예측하면 된다. 
-- 이때의, model 은 *Noise Conditional Score-Based Model $s_\theta(x,i)$* 로써, NCSN 이라고 부른다. 
+- 이때의, model 은 *Noise Conditional Score-Based Model* $s_\theta(x,i)$ 로써, NCSN 이라고 부른다. 
 
 $$ s_\theta(x,i) \approx \nabla_x \log{p_{\sigma_i}(x)} , \ for \ all \ i=1,2, \cdots , L$$
 
