@@ -51,13 +51,15 @@ $$ p(x) = \frac{p(x|y)p(y)}{p(y|x)} $$
 > Mode collapse: generator 가 다양한 이미지를 만들어내지 못하고, 비슷한 이미지를 생성하는 경우를 말한다. 
 >> MNIST 를 예를 들면, mode 는 총 0-9까지 10개이고, generator 는 random noise 를 입력으로 받아서 생성한 이미지가 discriminator 를 속이기를 원한다. 이때, 0-9 의 다양한 mode 를 이용하지 않고 하나의 mode 만 생성하는 것.
 
+> MCMC: Markov chain Monte Carlo
+
 - 본 review 에선, 이런 제한을 우회하면서 확률 분포를 표현하는 다른 방법을 소개한다.
     - Normalizing constant 가 tractable 하지 않아도 된다.
     - Score matching 을 통해, 확률 분포를 직접 배운다. 
 
 $$ \nabla_x \log{p(x)} = Score \ function $$
 
-> score fucntion 은 분포가 밀집되어 있는 방향을 가리킨다. 
+> score fucntion 은 분포가 밀집되어 있는 방향을 가리킨다. 다시 말해, score function 이 증가하는 방향으로 sampling 을 하면 된다! 
 
 <p align="center">
 <img src='./img2.png'>
@@ -195,6 +197,13 @@ Langevin dynamics
 - 이때의, model 은 *Noise Conditional Score-Based Model* $s_\theta(x,i)$ 로써, NCSN 이라고 부른다. 
 
 $$ s_\theta(x,i) \approx \nabla_x \log{p_{\sigma_i}(x)} , \ for \ all \ i=1,2, \cdots , L$$
+
+<p align="center">
+<img src='./img28.png'>
+</p>
+<p align="center">
+<img src='./img29.png'>
+</p>
 
 #### Sampling: Langevin dynamics
 
