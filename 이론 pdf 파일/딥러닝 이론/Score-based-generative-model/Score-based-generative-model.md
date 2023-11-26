@@ -53,7 +53,8 @@ $$ p(x) = \frac{p(x|y)p(y)}{p(y|x)} $$
       - E.g., variational inference in VAEs, MCMC sampling used in contrastive divergence
     - Maximum likelihood 를 근사하는 objective 로 설정. 정확한 계산이 아니다.
       - E.g., ELBO of VAE
-  - Implicit generative models: Adversarial training -> Unstable, mode collapse
+  - Implicit generative models
+    - Adversarial training: Unstable, mode collapse
 
 - 본 post 에선, 이런 제한을 우회하면서 확률 분포를 표현하는 다른 방법을 소개한다.
     - Normalizing constant 가 tractable 하지 않아도 된다.
