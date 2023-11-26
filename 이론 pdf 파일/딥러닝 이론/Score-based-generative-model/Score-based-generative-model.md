@@ -147,7 +147,40 @@ Langevin dynamics
 </p>
 
 
-#### Advanced method
+#### Denoising Score Matching with Langevin Dynamics (SMLD)
+- Model score 가 data score 에 잘 matching 되기를 원한다.
+- 'Score matching 이 정확한 score 를 계산하는 식이지만 scalable 하지는 않다' 라는 점에서 출발했다.
+- 여기선, noisy 한 data 간의 score matching 
+- Noisy 하기 때문에 clean data 의 score matching 과 정확하지는 않다.
+
+<p align="center">
+<img src='./img20.png'>
+</p>
+
+<p align="center">
+<img src='./img21.png'>
+</p>
+
+<p align="center">
+<img src='./img30.png'>
+</p>
+
+<p align="center">
+<img src='./img31.png'>
+</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
 - 지금까지는 score matching 을 사용하여, score-based model 을 훈련하고 Langevin dynamics 를 통해 sampling 을 하는 방법을 살펴봤다. 그러나 이러한 단순한 접근 방식은 실제로는 제한된 성공을 거뒀다. 
 - 이제는 score matching 의 몇 가지 문제들에 대해 얘기를 해본다.
 
@@ -178,20 +211,6 @@ Langevin dynamics
 </p>
 
 - 각 noise-perturbed distribution $\nabla_x \log{p_{\sigma_i}(x)}$ 를 예측하면 된다. 
-
-#### Denoising Score Matching with Langevin Dynamics (SMLD)
-- Model score 가 data score 에 잘 matching 되기를 원한다.
-- 'Score matching 이 정확한 score 를 계산하는 식이지만 scalable 하지는 않다' 라는 점에서 출발했다.
-- 여기선, noisy 한 data 간의 score matching 
-- Noisy 하기 때문에 clean data 의 score matching 과 정확하지는 않다.
-
-<p align="center">
-<img src='./img20.png'>
-</p>
-
-<p align="center">
-<img src='./img21.png'>
-</p>
 
 
 - 이때의, model 은 *Noise Conditional Score-Based Model* $s_\theta(x,i)$ 로써, NCSN 이라고 부른다. 
