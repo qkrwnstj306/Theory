@@ -266,9 +266,9 @@ Theory for ML.
 - [ ] practice
 
 ## 외부 강의 자료
-<a href='./이론 pdf 파일/외부강의/2023.11.23 Transformer & Llama 톺아보기 .pdf'>Transformer & Llama 톺아보기</a>
-<a href='./이론 pdf 파일/외부강의/231122_THEAIKOREA_LLM실전구축_배포.pdf'>LLM실전구축 & 배포</a>
-<a href='./이론 pdf 파일/외부강의/[김승룡 교수] Text-to-3D Generation Using 2D Diffusion Model.pdf'>Text-to-3D Generation Using 2D Diffusion Model</a>
-<a href='./이론 pdf 파일/외부강의/[주재걸 교수] 3D Generative Models.pdf'>3D Generative Models</a>
-<a href='./이론 pdf 파일/외부강의/알기쉬운 AI 튜토리얼_유영재교수_multimodal.pdf'>multimodal</a>
+- <a href='./이론 pdf 파일/외부강의/2023.11.23 Transformer & Llama 톺아보기 .pdf'>Transformer & Llama 톺아보기</a>
+- <a href='./이론 pdf 파일/외부강의/231122_THEAIKOREA_LLM실전구축_배포.pdf'>LLM실전구축 & 배포</a>
+- <a href='./이론 pdf 파일/외부강의/[김승룡 교수] Text-to-3D Generation Using 2D Diffusion Model.pdf'>Text-to-3D Generation Using 2D Diffusion Model</a>
+- <a href='./이론 pdf 파일/외부강의/[주재걸 교수] 3D Generative Models.pdf'>3D Generative Models</a>
+- <a href='./이론 pdf 파일/외부강의/알기쉬운 AI 튜토리얼_유영재교수_multimodal.pdf'>multimodal</a>
 
