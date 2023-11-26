@@ -56,6 +56,8 @@ $$ p(x) = \frac{p(x|y)p(y)}{p(y|x)} $$
   - Implicit generative models: Adversarial training -> Unstable, mode collapse
 
 - 본 post 에선, 이런 제한을 우회하면서 확률 분포를 표현하는 다른 방법을 소개한다.
+    - Normalizing constant 가 tractable 하지 않아도 된다.
+    - Score matching 을 통해, 확률 분포를 직접 배운다. 
 
 $$ \nabla_x \log{p(x)} = Score \ function $$
 
@@ -63,15 +65,14 @@ $$ \nabla_x \log{p(x)} = Score \ function $$
 <img src='./img2.png'>
 </p>
 
-- Normalizing constant 가 tractable 하지 않아도 된다.
-- Score matching 을 통해, 확률 분포를 직접 배운다. 
-
 > Normalizing constant
 >> 정규화 상수의 개념은 확률 이론 및 기타 영역에서 다양하게 발생한다. 정규화 상수는 확률 함수를 전체 확률이 $1$인 확률 밀도 함수로 변환하는 데 사용된다. 
 
 ***
 
 ### <strong>Method</strong>
+#### Score fucntion
+  
 - Dataset $\{x_1,x_2, \cdots, x_N\}$ 이 주어졌을 때, model 이 $p(x)$ 를 알기를 원한다. 
   - $p(x)$ 를 먼저 표현할 줄 알아야 model 을 통해 근사시킬 수 있다.
 
@@ -84,10 +85,34 @@ $$ Z_\theta > 0, \ is \ a \ normalizing \ constant \ dependent \ on \ \theta, \ 
 
 $$ max_\theta \Sigma_{i=1}^{N}{\log{p_\theta(x_i)}} $$
 
+- 하지만, log-likelihood 를 maximize 하기 위해선 $p_\theta(x)$ 가 정규화된 PDF(*normalized probability density function*)여야 한다. 이건 계산상의 어려움을 일으키는데, 우리는 일반적인 $\theta$ 에 대해 일반적으로 복잡한 양인 정규화 상수 $Z_\theta$ 를 계산해야 하기 때문이다.
+- 따라서, maximum likelihood 를 가능하게 하려면 likelihood-based model 은 모델 구조를 제한하거나 정규화 상수를 다루기 쉽게 만들기 위해 정규화 상수를 근사해야 했다. 
+- Density function 대신 Score function 을 modeling 함으로써, 우리는 intractable normalizing constant 의 어려움을 피할 수 있다. 
 
-- Score fucntion
-- Score-based models
-- Score matching
+> Score function 에 대한 model 을 **Score-based model** 이라고 부른다.
+
+- Score-based model $s_\theta(x)$ 는 Score fucntion 을 학습한다. 
+    - $s_\theta(x)$ 가 normalizing constant $Z_\theta$ 에 독립적이라는 것에 주목해야 한다.
+    - Normalizing constant tractable 을 보장하기 위해 특별한 모델 구조를 설계할 필요가 없다.
+<p align="center">
+<img src='./img3.png'>
+</p>
+
+- 즉 loss 는 다음과 같이 정의된다. using Fisher divergence.
+
+<p align="center">
+<img src='./img4.png'>
+</p>
+
+- 직접적으로 divergence 를 계산하려고 했지만, $\nabla_x \log{p(x)}$ 를 알지 못한다.
+  - 다행히, score matching method 를 통해 ground-truth data score 를 몰라도 Fisher divergence 를 minimize 할 수 있다.
+
+#### Score matching
+
+
+
+
+#### Score-based models
 
 ***
 
