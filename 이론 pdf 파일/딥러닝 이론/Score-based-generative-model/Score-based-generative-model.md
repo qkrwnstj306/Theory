@@ -5,9 +5,7 @@
 *A representative reference: <a href='https://yang-song.net/blog/2021/score/'>Yang Song blog</a>*
 
 [Intro](#intro)</br>
-[Related Work](#related-work)</br>
 [Method](#method)</br>
-[Experiment](#experiment)</br>
 [Conclusion](#conclusion)</br>
 
 > Core Idea
@@ -17,12 +15,6 @@ $$ utilize \ \nabla_x \log{p(x)} $$
 ***
 
 ### <strong>Intro</strong>
-
-
-
-***
-
-### <strong>Related Work</strong>
 
 $$ p(x) = \frac{p(x|y)p(y)}{p(y|x)} $$
 
@@ -185,7 +177,7 @@ Langevin dynamics
 
 - 각 noise-perturbed distribution $\nabla_x \log{p_{\sigma_i}(x)}$ 를 예측하면 된다. 
 
-#### Denoising Score Matching 
+#### Denoising Score Matching with Langevin Dynamics (SMLD)
 - Model score 가 data score 에 잘 matching 되기를 원한다.
 - 'Score matching 이 정확한 score 를 계산하는 식이지만 scalable 하지는 않다' 라는 점에서 출발했다.
 - 여기선, noisy 한 data 간의 score matching 
@@ -241,12 +233,40 @@ $$ s_\theta(x,i) \approx \nabla_x \log{p_{\sigma_i}(x)} , \ for \ all \ i=1,2, \
 
 
 
-#### Score-based models
+#### DDPM 과의 연관성
+- SMLD 와 같은 방법론은 noise 를 점점 증가시켜 가면서 학습 데이터를 특정한 noise distribution 으로 변환한 후, 다시 이러한 noise distribution 으로부터 학습 데이터를 복원하는 방법이라고 설명할 수 있다.
+- DDPM 또한, 원본 데이터 분포를 noise 분포로 변환한 후, 다시 이 noise 분포를 원본 데이터 분포로 변환한다는 점에서는 유사하지만, 전체 변환 과정을 명시적인 확률 모델로 이루어진 discrete markov chain 으로 표현한다는 점에서 차이가 있다. 
 
-***
+<p align="center">
+<img src='./img25.png'>
+</p>
 
-### <strong>Experiment</strong>
+- Diffusion process 는 다음과 같은 SDE 의 해로 모델링 할 수 있다.
 
+$$ dx=f(x,t)dt + g(t)dw $$
+
+- 여기서 w는 브라운 운동과 같은 standard Wiener process이다. f는 drift coefficient라 불리는 벡터 함수이고 g는 diffusion coefficient라 불리는 스칼라 함수이다.
+- SDE는 coefficient가 상태와 시간 모두에서 전역적으로 Lipschitz인 경우 고유하고 강력한 해를 갖는다.
+
+> Lipschitz 함수: 두 점 사이의 거리를 일정 비 이상으로 증가시키지 않는 함수
+
+여기서부터 x(t)의 확률 밀도를 pt(x)로 표시하고 pst(x(t)|x(s))는 x(s)에서 x(t)로의 transition kernel을 나타낸다. (0≤s<t≤T
+
+)
+
+- 일반적으로 $p_T$ 는 $p_0$ 의 정보를 가지고 있지 않은 unstructured prior distribution이다. (ex. 고정된 평균과 분산을 가지는 가우시안 분포.) 다양한 방법으로 데이터 분포가 고정된 사전 확률 분포로 확산하도록 위 식을 이용하여 SDE를 설계할 수 있다.
+
+- $x(T) \sim p_T$에서 시작하여 process를 reverse하여 샘플 $x(0) \sim p_0$를 얻을 수 있다. Diffusion process의 reverse도 diffusion process이며 시간의 반대 방향으로 진행되는 reverse-time SDE는 다음과 같다.
+
+<p align="center">
+<img src='./img26.png'>
+</p>
+
+- $\bar w$는 standard Wiener process이고, 시간이 $T$에서 $0$으로 뒤로 흐른다. $dt$는 $0$에 가까운 음의 무한소 timestep이다. 주변 확률 분포의 score $\nabla_x \log{p_t(x)}$를 모든 $t$에 대해 알고 있다면 위의 식으로부터 reverse diffusion process을 유도할 수 있으며, $p_0$에서 샘플링하도록 시뮬레이션할 수 있다.
+
+<p align="center">
+<img src='./img27.png'>
+</p>
 
 ***
 
@@ -258,7 +278,7 @@ $$ s_\theta(x,i) \approx \nabla_x \log{p_{\sigma_i}(x)} , \ for \ all \ i=1,2, \
   - Inverse problem solving without re-training models.
 - Process
     1. Large number of noise-perturbed data distributions
-    2. Learn score function <score-matching>
+    2. Learn score function using score matching
     3. Samples with Langevin-type sampling 
 
 ***
