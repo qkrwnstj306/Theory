@@ -42,7 +42,7 @@ $$ \nabla_x \log{p(x_t|y)} = \nabla_x \log{\frac{p(x_t)p(y|x_t)}{p(y)}}  $$
 
 $$ = \nabla_x \log{p(x_t)} + \nabla_x \log{p(y|x_t)} - \nabla_x \log{p(y)} $$
 
-- $x$ 에 관한 함수가 아닌, $\nabla_x \log{p(y)}$ 는 소거된다. ($\gamma$ 로 조정)
+- $x$ 에 관한 함수가 아닌, $\nabla_x \log{p(y)}$ 는 소거된다.
 
 $$ \nabla_x \log{p(x_t|y)} = \nabla_x \log{p(x_t)} + \nabla_x \log{p(y|x_t)} $$
 
@@ -61,7 +61,7 @@ $$ =  \gamma\nabla_x \log{p(x_t|y)} + (1-\gamma)\nabla_x \log{p(x_t)} $$
 
 - ????
 
-$$ \tilde{\epsilon}_\theta(x_t, c) = (1+\gamma)\epsilon_\theta(x_t, c) - \gamma\epsilon_\theta(x_t) $$
+$$ \tilde{\epsilon_\theta}(x_t, c) = (1+\gamma)\epsilon_\theta(x_t, c) - \gamma\epsilon_\theta(x_t) $$
 
 - $w$ 는 조절 가능한 가중치이다. 논문에서는 $w=0.1$ or $0.3$ 일때 best FID result 를 얻었다고 한다. 
 - IS 의 경우, $w >= 4$, 즉 trade-off 관계이다. 
