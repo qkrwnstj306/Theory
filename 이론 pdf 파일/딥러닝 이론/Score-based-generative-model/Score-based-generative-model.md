@@ -59,7 +59,7 @@ $$ p(x) = \frac{p(x|y)p(y)}{p(y|x)} $$
 > Mode collapse: generator 가 다양한 이미지를 만들어내지 못하고, 비슷한 이미지를 생성하는 경우를 말한다. 
 >> MNIST 를 예를 들면, mode 는 총 0-9까지 10개이고, generator 는 random noise 를 입력으로 받아서 생성한 이미지가 discriminator 를 속이기를 원한다. 이때, 0-9 의 다양한 mode 를 이용하지 않고 하나의 mode 만 생성하는 것.
 
-- 본 post 에선, 이런 제한을 우회하면서 확률 분포를 표현하는 다른 방법을 소개한다.
+- 본 review 에선, 이런 제한을 우회하면서 확률 분포를 표현하는 다른 방법을 소개한다.
     - Normalizing constant 가 tractable 하지 않아도 된다.
     - Score matching 을 통해, 확률 분포를 직접 배운다. 
 
@@ -77,9 +77,11 @@ $$ \nabla_x \log{p(x)} = Score \ function $$
 ***
 
 ### <strong>Method</strong>
+Process: learn score matching -> Langevin dynamics sampling
+
 #### Score fucntion
   
-- Dataset $\{x_1,x_2, \cdots, x_N\}$ 이 주어졌을 때, model 이 $p(x)$ 를 알기를 원한다. 
+- Dataset $\{x_1,x_2, \cdots, x_N\}$ 이 주어졌을 때, model 이 $p(x)$ 를 배우기를 원한다. 
   - $p(x)$ 를 먼저 표현할 줄 알아야 model 을 통해 근사시킬 수 있다.
 
 $$ p_\theta(x) = \frac{e^{-f_\theta(x)}}{Z_\theta} , \ Let \ f_\theta(x) \ is \ scalar, \ learnable\ parameter\  \theta $$
@@ -141,7 +143,7 @@ $$ max_\theta \Sigma_{i=1}^{N}{\log{p_\theta(x_i)}} $$
 2. Denoising Score Matching
 - Model score 가 data score 에 잘 matching 되기를 원한다.
 - 'Score matching 이 정확한 score 를 계산하는 식이지만 scalable 하지는 않다' 라는 점에서 출발했다.
-- 여기선, noisy 한 data 간의 score matching 과 비교 
+- 여기선, noisy 한 data 간의 score matching 
 - Noisy 하기 때문에 clean data 의 score matching 과 정확하지는 않다.
 
 3. Sliced Score Matching
@@ -166,7 +168,7 @@ Langevin dynamics
 </p>
 
 
-#### asd
+#### Advanced Langevin dynamics
 - 지금까지는 score matching 을 사용하여, score-based model 을 훈련하고 Langevin dynamics 를 통해 sampling 을 하는 방법을 살펴봤다. 그러나 이러한 단순한 접근 방식은 실제로는 제한된 성공을 거뒀다. 
 - 이제는 score matching 의 몇 가지 문제들에 대해 얘기를 해본다.
 
@@ -174,16 +176,17 @@ Langevin dynamics
 <img src='./img6.png'>
 </p>
 
-- 주요 문제는 적은 데이터 포인트가 존재하는 낮은 밀도 영역에서 추정된 score function 이 부정확하다는 사실이다. 이는 score matching 이 Fisher divergence 를 최소화하도록 설계되었기 때문에 예상된 결과라고 볼 수 있다.  
+- 주요 문제는 적은 데이터 포인트가 존재하는 낮은 밀도 영역에서의 학습은 불완전하기 때문에 추정된 score function 이 부정확하다는 사실이다. 이는 score matching 이 Fisher divergence 를 최소화하도록 설계되었기 때문에 예상된 결과라고 볼 수 있다.  
   - Langevin dynamics 로 sampling process 를 시작할 때, 초기 sample 은 높은 확률로 low density region 에 위치한다. 따라서 부정확한 score-based model 로 인해, sampling 이 올바른 방향으로 진행되지 않는다. 
 
 <p align="center">
 <img src='./img7.png'>
 </p>
 
-- 낮은 데이터 밀도 지역에서 정확한 score matching  의 어려움을 우회하는 해결책으로 데이터 포인트에 noise 를 적용하고 noise 가 추가된 데이터 포인트에서 score-based model 을 훈력하는 것을 제시한다. 
+- 낮은 데이터 밀도 지역에서 정확한 score matching  의 어려움을 우회하는 해결책으로 데이터 포인트에 noise 를 적용하고 noise 가 추가된 데이터 포인트에서 score-based model 을 훈련하는 것을 제시한다. 
 - Noise 의 크기가 충분히 큰 경우, 낮은 데이터 밀도 지역에 데이터를 채워 넣어 estimated score 의 정확도를 향상시킬 수 있다. 
-- 그럼 우리가 생각해야 될 것은, 적절한 noise 크기를 어떻게 선택할 것인가이다. 큰 노이즈는 분명히 더 많은 낮은 밀도 영역을 포함하여 더 나은 score 를 추정할 수 있지만, 데이터를 지나치게 손상시키고 원래 분포에서 상당히 벗어날 수 있다. 반면 작은 노이즈는 원래 데이터 분포를 적게 손상시키지만 우리가 원하는 만큼 낮은 밀도 영역을 충분히 커버하지 못할 수 있다.  
+  - noise 를 추가하면, 데이터 분포는 smooth 해지기 때문에 어느 정도의 방향성을 제시할 수 있다.
+- 그럼 우리가 생각해야 될 것은, '적절한 noise 크기를 어떻게 선택할 것인가' 이다. 큰 노이즈는 분명히 더 많은 낮은 밀도 영역을 포함하여 더 나은 score 를 추정할 수 있지만, 데이터를 지나치게 손상시키고 원래 분포에서 상당히 벗어날 수 있다. 반면 작은 노이즈는 원래 데이터 분포를 적게 손상시키지만 우리가 원하는 만큼 낮은 밀도 영역을 충분히 커버하지 못할 수 있다.  
 
 <p align="center">
 <img src='./img8.png'>
