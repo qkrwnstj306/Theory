@@ -277,7 +277,6 @@ Langevin dynamics
 <img src='./img37.png'>
 </p>
 
-
 ***
 
 ### <strong>Conclusion</strong>
