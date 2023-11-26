@@ -121,7 +121,6 @@ $$ max_\theta \Sigma_{i=1}^{N}{\log{p_\theta(x_i)}} $$
 <img src='./img14.png'>
 </p>
 
-1. Score Matching 
 - Score matching 을 이용하여 loss 를 바꿔주면, real log distribution 을 몰라도 된다. 하지만 여러 번의 backpropagation 을 해야해서 계산량이 많다. 
 - 따라서 scalable 하지 않다. 
 
@@ -137,27 +136,13 @@ $$ max_\theta \Sigma_{i=1}^{N}{\log{p_\theta(x_i)}} $$
 <img src='./img17.png'>
 </p>
 
+<p align="center">
+<img src='./img23.png'>
+</p>
 
 > Trace: 주대각선 성분들의 합
 
-2. Denoising Score Matching
-- Model score 가 data score 에 잘 matching 되기를 원한다.
-- 'Score matching 이 정확한 score 를 계산하는 식이지만 scalable 하지는 않다' 라는 점에서 출발했다.
-- 여기선, noisy 한 data 간의 score matching 
-- Noisy 하기 때문에 clean data 의 score matching 과 정확하지는 않다.
-
-3. Sliced Score Matching
-
-<p align="center">
-<img src='./img18.png'>
-</p>
-
-<p align="center">
-<img src='./img19.png'>
-</p>
-
-
-#### Sampling
+#### Sampling: Langevin dynamics
 Langevin dynamics 
 - Score-based model $s_\theta(x) \approx \nabla_x \log{p(x)}$ 을 학습했으면, Langevin dynamics 라고 불리는 iterative procedure 을 통해 sampling 을 하면 된다. 
 - Langevin dynamics 는 오직 score function $\nabla_x \log{p(x)}$ 만을 사용해, $p(x)$ 로부터 MCMC procedure 를 제공한다.  
@@ -168,7 +153,7 @@ Langevin dynamics
 </p>
 
 
-#### Advanced Langevin dynamics
+#### Advanced method
 - 지금까지는 score matching 을 사용하여, score-based model 을 훈련하고 Langevin dynamics 를 통해 sampling 을 하는 방법을 살펴봤다. 그러나 이러한 단순한 접근 방식은 실제로는 제한된 성공을 거뒀다. 
 - 이제는 score matching 의 몇 가지 문제들에 대해 얘기를 해본다.
 
@@ -199,9 +184,32 @@ Langevin dynamics
 </p>
 
 - 각 noise-perturbed distribution $\nabla_x \log{p_{\sigma_i}(x)}$ 를 예측하면 된다. 
+
+#### Denoising Score Matching 
+- Model score 가 data score 에 잘 matching 되기를 원한다.
+- 'Score matching 이 정확한 score 를 계산하는 식이지만 scalable 하지는 않다' 라는 점에서 출발했다.
+- 여기선, noisy 한 data 간의 score matching 
+- Noisy 하기 때문에 clean data 의 score matching 과 정확하지는 않다.
+
+<p align="center">
+<img src='./img20.png'>
+</p>
+
+<p align="center">
+<img src='./img21.png'>
+</p>
+
+
 - 이때의, model 은 *Noise Conditional Score-Based Model* $s_\theta(x,i)$ 로써, NCSN 이라고 부른다. 
 
 $$ s_\theta(x,i) \approx \nabla_x \log{p_{\sigma_i}(x)} , \ for \ all \ i=1,2, \cdots , L$$
+
+#### Sampling: Langevin dynamics
+
+<p align="center">
+<img src='./img22.png'>
+</p>
+
 
 <p align="center">
 <img src='./img10.png'>
@@ -218,6 +226,20 @@ $$ s_\theta(x,i) \approx \nabla_x \log{p_{\sigma_i}(x)} , \ for \ all \ i=1,2, \
 <p align="center">
 <img src='./img13.png'>
 </p>
+
+
+#### Additional Score Matching: Sliced Score Matching
+
+<p align="center">
+<img src='./img18.png'>
+</p>
+
+<p align="center">
+<img src='./img19.png'>
+</p>
+
+
+
 
 #### Score-based models
 
