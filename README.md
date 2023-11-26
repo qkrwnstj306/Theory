@@ -83,6 +83,7 @@ Theory for ML.
 	- <a href='./이론 pdf 파일/Diffusion/Forward에서의 분산_230503_004753.pdf'>Denoising Process 분석2. Forward에서의 분산 </a>
 	- <a href='./이론 pdf 파일/Diffusion/Lt-1 proof_221229_144243.pdf'>Denoising Process 분석3. Loss 일부 분석 </a>
 	- <a href='./이론 pdf 파일/Diffusion/Latent diffusion model(Stable diffusion)_231003_105800.pdf'>Latent Diffusion model Overview </a>
+- <a href='./이론 pdf 파일/딥러닝 이론/Score-based-generative-model/Score-based-generative-model.md'>Score-based Generative Model Review</a>
 
 ## Paper Review
 ### Basic 
