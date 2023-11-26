@@ -46,7 +46,13 @@ $$ p(x) = \frac{p(x|y)p(y)}{p(y|x)} $$
 </p>
 
 - 하지만, 이 두 가지 방법론은 significant limitation 이 존재한다. 
-  - Likelihood-based models: tractable normalizing constant 를 보장해야 해서 model 구조의 강력한 제한이 있거나 / maximum likelihood 를 근사하는 objective 로 설정 (ELBO of VAE)
+  - Likelihood-based models
+    - Tractable normalizing constant 를 보장해야 해서 model 구조의 강력한 제한이 있거나
+      - E.g., causal convolutions in autoregressive models, invertible networks in normalizing flow models
+    - Approximate the normalizing constant -> 계산 비용이 많이 든다.
+      - E.g., variational inference in VAEs, MCMC sampling used in contrastive divergence
+    - Maximum likelihood 를 근사하는 objective 로 설정. 정확한 계산이 아니다.
+      - E.g., ELBO of VAE
   - Implicit generative models: Adversarial training -> Unstable, mode collapse
 
 - 본 post 에선, 이런 제한을 우회하면서 확률 분포를 표현하는 다른 방법을 소개한다.
@@ -73,7 +79,11 @@ $$ p_\theta(x) = \frac{e^{-f_\theta(x)}}{Z_\theta} , \ Let \ f_\theta(x) \ is \ 
 
 $$ Z_\theta > 0, \ is \ a \ normalizing \ constant \ dependent \ on \ \theta, \ such \ that \int{p_\theta(x)dx = 1} $$
 
-- $f_\theta(x)$ 는 unnormalized probabilistic model or energy-based model 이라고 부른다. 
+> $f_\theta(x)$ 는 unnormalized probabilistic model or energy-based model 이라고 부른다. 
+- 따라서, maximizing log-likelihood of the data 를 통해 $p_\theta(x)$ 를 학습할 수 있다.
+
+$$ max_\theta \Sigma_{i=1}^{N}{\log{p_\theta(x_i)}} $$
+
 
 - Score fucntion
 - Score-based models
