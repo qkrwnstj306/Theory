@@ -11,6 +11,7 @@
 [Conclusion](#conclusion)</br>
 
 > Core Idea
+
 $$ utilize \ \nabla_x \log{p(x)} $$
 
 ***
