@@ -240,9 +240,9 @@ Theory for ML.
 - <a href='https://arxiv.org/pdf/1710.09412.pdf'>Mixup: Beyond Empirical Risk Minimization</a>
 	* <a href='./이론 pdf 파일/딥러닝 논문/Mixup/mixup.md'>Paper Review</a>
 - <a href='https://arxiv.org/pdf/2105.05233.pdf'>Diffusion Models Beat GANs on Image Synthesis</a>
-  - <a href='./이론 pdf 파일/딥러닝 논문/Classifier_guidance/Classifier_guidance.md'>Paper Review>
+  - <a href='./이론 pdf 파일/딥러닝 논문/Classifier_guidance/Classifier_guidance.md'>Paper Review</a>
 - <a href='https://arxiv.org/pdf/2207.12598.pdf'>Classifier-Free Diffusion Guidance</a>
-  - <a href='./이론 pdf 파일/딥러닝 논문/Classifier_free/Classifier_free.md'>Paper Review>
+  - <a href='./이론 pdf 파일/딥러닝 논문/Classifier_free/Classifier_free.md'>Paper Review</a>
 
 ## Helpful Blog
 - <a href='https://github.com/teddylee777/machine-learning#%ED%86%B5%EA%B3%84-statistics'>Machine Learning Study</a>
