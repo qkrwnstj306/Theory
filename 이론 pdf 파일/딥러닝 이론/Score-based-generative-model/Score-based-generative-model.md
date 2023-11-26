@@ -190,17 +190,6 @@ Langevin dynamics
 - 따라서, multiple scaled of noise perturbations 를 제안한다.
 
 <p align="center">
-<img src='./img9.png'>
-</p>
-
-- 각 noise-perturbed distribution $\nabla_x \log{p_{\sigma_i}(x)}$ 를 예측하면 된다. 
-
-
-- 이때의, model 은 *Noise Conditional Score-Based Model* $s_\theta(x,i)$ 로써, NCSN 이라고 부른다. 
-
-$$ s_\theta(x,i) \approx \nabla_x \log{p_{\sigma_i}(x)} , \ for \ all \ i=1,2, \cdots , L$$
-
-<p align="center">
 <img src='./img28.png'>
 </p>
 <p align="center">
@@ -215,6 +204,11 @@ $$ s_\theta(x,i) \approx \nabla_x \log{p_{\sigma_i}(x)} , \ for \ all \ i=1,2, \
 <img src='./img21.png'>
 </p>
 
+- 이때의, model 은 *Noise Conditional Score-Based Model* $s_\theta(x,\sigma)$ 로써, NCSN 이라고 부른다. 
+
+<p align="center">
+<img src='./img32.png'>
+</p>
 
 #### Sampling: Langevin dynamics
 
