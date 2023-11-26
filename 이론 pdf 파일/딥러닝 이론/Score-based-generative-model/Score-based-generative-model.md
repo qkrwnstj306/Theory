@@ -148,18 +148,10 @@ Langevin dynamics
 
 
 #### Denoising Score Matching with Langevin Dynamics (SMLD)
-- Model score 가 data score 에 잘 matching 되기를 원한다.
-- 'Score matching 이 정확한 score 를 계산하는 식이지만 scalable 하지는 않다' 라는 점에서 출발했다.
-- 여기선, noisy 한 data 간의 score matching 
-- Noisy 하기 때문에 clean data 의 score matching 과 정확하지는 않다.
-
-<p align="center">
-<img src='./img20.png'>
-</p>
-
-<p align="center">
-<img src='./img21.png'>
-</p>
+- 'Score matching 이 정확한 score 를 계산하는 식이지만 scalable 하지는 않다' 라는 점에서 출발했다. 즉, advanced score matching 을 제안. 
+- Noisy 한 data 간의 score matching 을 학습한다. 
+- Noisy 하기 때문에 clean data 의 score matching 과 정확하지는 않지만, 그 noise 가 충분히 작으면 원래 데이터의 score 를 예측 가능하다는 점에서 효과적이다. 
+- Denoising score matching 을 통해 얻고자 한 점은, scalable 하면서도 computation cost 가 비싸지 않은 loss 를 구하고자 하는 것이다.
 
 <p align="center">
 <img src='./img30.png'>
@@ -169,18 +161,9 @@ Langevin dynamics
 <img src='./img31.png'>
 </p>
 
+- Sampling 은 마찬가지로 Langevin dynamics 를 사용한다.
 
-
-
-
-
-
-
-
-
-
-
-
+#### Problem in Low Density Regions (Inaccurate score estimation)
 - 지금까지는 score matching 을 사용하여, score-based model 을 훈련하고 Langevin dynamics 를 통해 sampling 을 하는 방법을 살펴봤다. 그러나 이러한 단순한 접근 방식은 실제로는 제한된 성공을 거뒀다. 
 - 이제는 score matching 의 몇 가지 문제들에 대해 얘기를 해본다.
 
@@ -223,6 +206,15 @@ $$ s_\theta(x,i) \approx \nabla_x \log{p_{\sigma_i}(x)} , \ for \ all \ i=1,2, \
 <p align="center">
 <img src='./img29.png'>
 </p>
+
+<p align="center">
+<img src='./img20.png'>
+</p>
+
+<p align="center">
+<img src='./img21.png'>
+</p>
+
 
 #### Sampling: Langevin dynamics
 
