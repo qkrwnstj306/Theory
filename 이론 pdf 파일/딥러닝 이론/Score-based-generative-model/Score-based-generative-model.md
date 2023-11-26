@@ -62,6 +62,8 @@ $$ p(x) = \frac{p(x|y)p(y)}{p(y|x)} $$
 
 $$ \nabla_x \log{p(x)} = Score \ function $$
 
+> score fucntion 은 분포가 밀집되어 있는 방향을 가리킨다. 
+
 <p align="center">
 <img src='./img2.png'>
 </p>
@@ -109,6 +111,46 @@ $$ max_\theta \Sigma_{i=1}^{N}{\log{p_\theta(x_i)}} $$
   - 다행히, score matching method 를 통해 ground-truth data score 를 몰라도 Fisher divergence 를 minimize 할 수 있다.
 
 #### Score matching
+
+<p align="center">
+<img src='./img14.png'>
+</p>
+
+1. Score Matching 
+- Score matching 을 이용하여 loss 를 바꿔주면, real log distribution 을 몰라도 된다. 하지만 여러 번의 backpropagation 을 해야해서 계산량이 많다. 
+- 따라서 scalable 하지 않다. 
+
+<p align="center">
+<img src='./img15.png'>
+</p>
+
+<p align="center">
+<img src='./img16.png'>
+</p>
+
+<p align="center">
+<img src='./img17.png'>
+</p>
+
+
+> Trace: 주대각선 성분들의 합
+
+2. Denoising Score Matching
+- Model score 가 data score 에 잘 matching 되기를 원한다.
+- 'Score matching 이 정확한 score 를 계산하는 식이지만 scalable 하지는 않다' 라는 점에서 출발했다.
+- 여기선, noisy 한 data 간의 score matching 과 비교 
+- Noisy 하기 때문에 clean data 의 score matching 과 정확하지는 않다.
+
+3. Sliced Score Matching
+
+<p align="center">
+<img src='./img18.png'>
+</p>
+
+<p align="center">
+<img src='./img19.png'>
+</p>
+
 
 #### Sampling
 Langevin dynamics 
