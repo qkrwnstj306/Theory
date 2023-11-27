@@ -128,6 +128,7 @@ Theory for ML.
 - <a href='./이론 pdf 파일/딥러닝 논문/VAE_230706_175059.pdf'>VAE : Auto-Encoding Variational Bayes</a>
 	+ <a href='https://github.com/qkrwnstj306/VAE'> VAE code practice</a>
 - <a href='./이론 pdf 파일/딥러닝 논문/ViT Vision Transformer_230705_150728.pdf'>ViT : AN IMAGE IS WORTH 16 X 16 WORDS : TRANSFORMERS FOR IMAGE RECOGNITION AT SCALE</a>
+  - <a href='./PPT/ViT.pptx'>ViT PPT</a>
 - <a href='./이론 pdf 파일/딥러닝 논문/WGAN_230521_004305.pdf'>WGAN : Wasserstein GAN</a>
 - <a href='./이론 pdf 파일/딥러닝 논문/WGAN-GP_230522_191114.pdf'>WGAN-GP : Improved Training of Wasserstein GANs</a>
 - <a href='./이론 pdf 파일/딥러닝 논문/gigagan_cvpr2023_original_230525_210606.pdf'>GigaGAN : Scaling up GANs for Text-to-Image Synthesis</a>
