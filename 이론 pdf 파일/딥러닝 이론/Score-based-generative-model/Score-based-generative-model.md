@@ -180,7 +180,7 @@ Langevin dynamics
 
 - 낮은 데이터 밀도 지역에서 정확한 score matching  의 어려움을 우회하는 해결책으로 데이터 포인트에 noise 를 적용하고 noise 가 추가된 데이터 포인트에서 score-based model 을 훈련하는 것을 제시한다. 
 - Noise 의 크기가 충분히 큰 경우, 낮은 데이터 밀도 지역에 데이터를 채워 넣어 estimated score 의 정확도를 향상시킬 수 있다. 
-  - noise 를 추가하면, 데이터 분포는 smooth 해지기 때문에 어느 정도의 방향성을 제시할 수 있다.
+  - noise 를 추가하면, 데이터 분포는 smooth 해지기 때문에 데이터 밀도가 낮은 지역을 어느 정도 학습 할 수 있게 된다. 즉, 실제 데이터 분포는 아니지만 밀도가 낮은 지역에서 어디로 가야 하는 지에 대한 방향성을 제시할 수 있다.
 - 그럼 우리가 생각해야 될 것은, '적절한 noise 크기를 어떻게 선택할 것인가' 이다. 큰 노이즈는 분명히 더 많은 낮은 밀도 영역을 포함하여 더 나은 score 를 추정할 수 있지만, 데이터를 지나치게 손상시키고 원래 분포에서 상당히 벗어날 수 있다. 반면 작은 노이즈는 원래 데이터 분포를 적게 손상시키지만 우리가 원하는 만큼 낮은 밀도 영역을 충분히 커버하지 못할 수 있다.  
 
 <p align="center">
@@ -283,7 +283,7 @@ $$ p(x_t|x_{t-1}) = \frac{1}{\sqrt{\alpha_t}}(x_t- \frac{1-\alpha_t}{\sqrt{1-\ba
 
 - Reverse SDE 끼리의 동일한 항들을 제거하다 보면, 결국 남는건 아래와 같다.
   - 해당 수식을 classifier guidance 및 classfier-free 에 사용한다.
-
+  - 이 수식이 말하고자 하는 것은, $\beta$ 및 $\alpha$ 가 상수 값이니 결국 $\epsilon$ 을 학습하는 게 SDE 관점에서 score function 을 학습하는 것과 같다라는 말이다!!
 $$ \nabla_x \log{p_{\sigma_i}(x)} \approx s_\theta(x_t,t\ or \ \sigma) = - \frac{1}{\sqrt{1-\bar\alpha_t}}\epsilon_\theta(x_t, t\ or \ \sigma) $$
 
 ***

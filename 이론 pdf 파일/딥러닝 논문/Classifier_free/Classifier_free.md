@@ -68,7 +68,7 @@ $$ = (1+\gamma)\epsilon_\theta(x_t, c) - \gamma\epsilon_\theta(x_t) $$
 
 $$ \therefore \tilde{\epsilon_\theta}(x_t, c) = (1+\gamma)\epsilon_\theta(x_t, c) - \gamma\epsilon_\theta(x_t) $$
 
-- 따라서, conditional score model 을 학습 시키되 $p_{uncond}$ 의 확률로 condition 에 null 값을 주면서 학습시키면 $\epsilon_\theta(x_t, c), \epsilon_\theta(x_t)$ 을 동시에 구할 수 있게 된다.
+- 따라서, conditional score model 을 학습 시키되 $p_{uncond}$ 의 확률로 condition 에 $null$ 값을 주면서 학습시키면 $\epsilon_\theta(x_t, c), \epsilon_\theta(x_t)$ 을 동시에 구할 수 있게 된다.
 - $w$ 는 조절 가능한 가중치이다. 논문에서는 $w=0.1$ or $0.3$ 일때 best FID result 를 얻었다고 한다. 
 - IS 의 경우, $w >= 4$, 즉 trade-off 관계이다. 
 
@@ -99,6 +99,16 @@ $$ \therefore \tilde{\epsilon_\theta}(x_t, c) = (1+\gamma)\epsilon_\theta(x_t, c
 <img src='./img10.png'>
 </p>
 
+- Sampling algorithm
+<p align="center">
+<img src='./img11.png'>
+</p>
+
+- Summarization 
+    - 중요하게 봐야 될 건, Conditional 과 Unconditional 을 조합할 때, 같은 noisy input 을 입력으로 받아서 $\epsilon$ 을 prediction 했다는 것이다.
+<p align="center">
+<img src='./Algorithm.jpg'>
+</p>
 
 ***
 
