@@ -283,7 +283,7 @@ $$ p(x_t|x_{t-1}) = \frac{1}{\sqrt{\alpha_t}}(x_t- \frac{1-\alpha_t}{\sqrt{1-\ba
 
 - Reverse SDE 끼리의 동일한 항들을 제거하다 보면, 결국 남는건 아래와 같다.
   - 해당 수식을 classifier guidance 및 classfier-free 에 사용한다.
-  - 이 수식이 말하고자 하는 것은, $\beta$ 및 $\alpha$ 가 상수 값이니 결국 $\epsilon$ 을 학습하는 게 SDE 관점에서 score function 을 학습하는 것과 같다라는 말이다!!\
+  - 이 수식이 말하고자 하는 것은, $\beta$ 및 $\alpha$ 가 상수 값이니 결국 $\epsilon$ 을 학습하는 게 SDE 관점에서 score function 을 학습하는 것과 같다라는 말이다!!
 
 $$ \nabla_x \log{p_{\sigma_i}(x)} \approx s_\theta(x_t,t\ or \ \sigma) = - \frac{1}{\sqrt{1-\bar\alpha_t}}\epsilon_\theta(x_t, t\ or \ \sigma) $$
 
