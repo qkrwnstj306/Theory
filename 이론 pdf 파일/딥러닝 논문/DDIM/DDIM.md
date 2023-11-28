@@ -150,7 +150,7 @@ $$ X_{t-1} = \frac{X_t - \sqrt{1-\bar\alpha_t}\epsilon_\theta (X_t)}{\sqrt{\bar\
     - Loss form 에 맞추기 위해 reverse process 는 그대로 둔 거 같다.
 - DDIM 은 무슨 근거로 time step 을 건너뛸 수 있는가.
   - $q(X_t|X_0)$ 이 고정되어 있는 한 denosing objectvive Loss 는 특별한 forward procedure 에 의존하지 않기 때문에 $T$ 보다 작은 step 에 대한 forward process 를 고려할 수 있다.
-- Q. 많은 블로그나 영상에서 모든 time step 에서의 $q$ 의 distribution 은 분산이 1이다. 그것을 보장해주기 위해서 image normalization 을 [-1,1] 로 해준다. 라고 하는데, 제 생각엔 image normalization 은 마지막 $X_T $ 의 평균이 0 분산이 1 로 가기 위한 수렴성 보장 용도이고 (즉, [-1,1] 로 하든 [0,1] 로 하든 상관없다), 마지막 time step에서의  $X_T $ 의 분산만 1이라고 생각이 듭니다. 혹시 그룹장님의 의견을 들어볼 수 있을까요? (김세훈 그룹장. 카카오브레인)
+- Q. 많은 블로그나 영상에서 모든 time step 에서의 $q$ 의 distribution 은 분산이 1이다. 그것을 보장해주기 위해서 image normalization 을 [-1,1] 로 해준다. 라고 하는데, 제 생각엔 image normalization 은 마지막 $X_T$ 의 평균이 0 분산이 1 로 가기 위한 수렴성 보장 용도이고 (즉, [-1,1] 로 하든 [0,1] 로 하든 상관없다), 마지막 time step에서의  $X_T$ 의 분산만 1이라고 생각이 듭니다. 혹시 그룹장님의 의견을 들어볼 수 있을까요? (김세훈 그룹장. 카카오브레인)
   - A. DDPM 이나 SDE 나 결국 noise 를 많이 줬을 때 표준 정규 분포를 따른다. [-1, 1] 이 더 좋긴 함. 그래서 latent 로 보냈을 때 범위가 [-무한대, 무한대] 니까 더 자유도가 크다. loss term 에 regularization term 이 존재해서 극단적인 거는 막아줌 
 - Q. 그럼 그룹장님 의견은 모든 time step 에서의 q의 distribution의 분산은 1이다라는 말씀이신가요?
   - A. 1은 아니다. 
