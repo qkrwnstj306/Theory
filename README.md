@@ -3,6 +3,22 @@ Theory for ML.
 - [ ] StyleBoost code practice
 - [ ] Pytorch/Python basic code practice
 
+[How to Write Paper](#0-how-to-write-paper)</br>
+[Reinforcement](#1-reinforcement)</br>
+[Deep Learning](#2-deep-learning)</br>
+[Machine Learning](#3-machine-learning)</br>
+[Math](#4-math)</br>
+[University Lecture](#5-university-lecture)</br>
+[Simple Paper Review](#6-simple-paper-review)</br>
+[Helpful Blog](#7-helpful-blog)</br>
+[Failed Project](#8-failed-project)</br>
+[Etc.](#9-etc)</br>
+[Coding Test](#10-coding-test)</br>
+[External Lecture Materials](#11-외부-강의-자료)</br>
+
+# <strong> 0. How to Write paper </strong>
+- <a href='./이론 pdf 파일/딥러닝 논문/paper-write/how-to-write.md'>How to Write Paper</a>
+- <a href='./이론 pdf 파일/딥러닝 논문/paper-write/Generative-AI.md'>Generative AI</a>
 
 # <strong> 1. Reinforcement </strong>
 > <a href='https://github.com/qkrwnstj306/Reinforcement'> Code Practice</a>
@@ -234,7 +250,7 @@ Theory for ML.
 - <a href='./University Lecture/Lee/Dinkelbach_230101_192839.pdf'>Dinkelbach : Fractional Programming for Communication Systems </a>
 - <a href='./University Lecture/Lee/이기송 논문 리뷰 실습 in colab, ainize_230101_192633.pdf'>UAV-Assisted Wireless-Powered Two-Way communications</a>
 
-## Simple paper review
+# 6. Simple paper review
 - <a href='https://arxiv.org/abs/2002.05709'>SimCLR: A Simple Framework for Contrastive Learning of Visual Representations</a>
 	* <a href='./이론 pdf 파일/딥러닝 논문/SimCLR/SimCLR.md'>Paper Review</a>
 - <a href='https://arxiv.org/pdf/1503.02531.pdf'>Distilling the knowledge in a Neural Network</a>
@@ -247,27 +263,27 @@ Theory for ML.
   - <a href='./이론 pdf 파일/딥러닝 논문/Classifier_free/Classifier_free.md'>Paper Review</a>
   - <a href='https://github.com/qkrwnstj306/Diffusion'>Code Practice</a>
 
-## Helpful Blog
+# 7. Helpful Blog
 - <a href='https://github.com/teddylee777/machine-learning#%ED%86%B5%EA%B3%84-statistics'>Machine Learning Study</a>
 - <a href='https://github.com/boost-devs/ai-tech-interview/tree/main'>AI 면접</a>
 - <a href='https://careerly.co.kr/comments/67573'>인성 면접</a>
 - <a href='https://vsehwag.github.io/blog/2023/2/all_papers_on_diffusion.html'>All papers on Diffusion</a> 
 - <a href='https://norman3.github.io/prml'>확률 분포를 공부할 때 참고한 책. [PRML(Pattern Recognition & Machine Learning, Bishop)]</a>
 
-## Failed Project
+# 8. Failed Project
 - <a href='https://github.com/qkrwnstj306/Style-Similarity'>Style Similarity</a>
 
-## Etc.
+# 9. Etc.
 - <a href='https://github.com/qkrwnstj306/sort_google_scholar'>Sort google scholar paper</a>
 - <a href='https://github.com/qkrwnstj306/html_study'>HTML study</a>
 - <a href='https://github.com/qkrwnstj306/capston_design'>SD 1.5 & DreamBooth in Capston Design, 웹 소설 삽화 생성 프로젝트</a>
 - <a href='https://github.com/qkrwnstj306/Shortest-Path'>Shortest-Path in Python</a>
 - <a href='https://github.com/qkrwnstj306/Image-Crawling'>Image-Crawling</a>
 
-## Coding Test
+# 10. Coding Test
 - [ ] practice
 
-## 외부 강의 자료
+# 11. 외부 강의 자료
 - <a href='./이론 pdf 파일/외부강의/2023.11.23 Transformer & Llama 톺아보기 .pdf'>Transformer & Llama 톺아보기</a>
 - <a href='./이론 pdf 파일/외부강의/231122_THEAIKOREA_LLM실전구축_배포.pdf'>LLM실전구축 & 배포</a>
 - <a href='./이론 pdf 파일/외부강의/[김승룡 교수] Text-to-3D Generation Using 2D Diffusion Model.pdf'>Text-to-3D Generation Using 2D Diffusion Model</a>

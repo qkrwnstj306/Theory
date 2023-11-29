@@ -279,7 +279,7 @@ Langevin dynamics
 
 - 이때 Reverse SDE in DDPM 을 보면, 다음과 같이 표현할 수 있다. (분산을 $\beta_t$ 로 봤을 때)
 
-$$ p(x_t|x_{t-1}) = \frac{1}{\sqrt{\alpha_t}}(x_t- \frac{1-\alpha_t}{\sqrt{1-\bar\alpha_t}}\epsilon_\theta(x_t,t)) + \sqrt{\beta_t}z_t $$
+$$ x_{t-1} = \frac{1}{\sqrt{\alpha_t}}(x_t- \frac{1-\alpha_t}{\sqrt{1-\bar\alpha_t}}\epsilon_\theta(x_t,t)) + \sqrt{\beta_t}z_t $$
 
 - Reverse SDE 끼리의 동일한 항들을 제거하다 보면, 결국 남는건 아래와 같다.
   - 해당 수식을 classifier guidance 및 classfier-free 에 사용한다.

@@ -143,6 +143,16 @@ $$ \sigma(\eta) = \eta\sqrt{\tilde{\beta_t}} = \eta\sqrt{\frac{1-\bar\alpha_{t-1
 - $t=1$ 일때 다음과 같은 식으로 sampling 해야 된다. ($\eta=0$ 이니까)
 
 $$ X_{t-1} = \frac{X_t - \sqrt{1-\bar\alpha_t}\epsilon_\theta (X_t)}{\sqrt{\bar\alpha_t}} $$ 
+
+- Inversion 수식
+  - $t$ 와 $t+1$ 이 굉장히 가까우면 위의 수식은 동일하다.
+  - 따라서, DDPM sampling 방식으로 $x_t$ 만 남기고 우항으로 보내고 계산하면 된다.
+  - $\Delta t$ 는 무시
+<p align="center">
+<img src='imgg.png'>
+</p>
+
+
 ***
 
 ### <strong>Question</strong>
