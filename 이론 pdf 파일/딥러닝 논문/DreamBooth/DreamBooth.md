@@ -51,14 +51,14 @@
 <img src='./img3.png'>
 </p>
 
-- $a \ [identifier] \ [class noun]$ 
+- $a \ [identifier] \ [class \ noun]$ 
     - Identifier 에 subject 가 연결된다. (e.g., 우리집 강아지)
     - Class noun 은 subject 에 대한 대략적인 클래스 설명자이다. (e.g., dog)
     - 잘못된 class noun 이나 class noun 을 사용하지 않는 것은 성능을 감소시킨다.
     - Rare-toekn identifier(e.g., zwx) 를 사용하지 않고 기존에 존재하던 단어에 binding 을 시키는 것은 최적이 아니다. 원래의 의미에서 벗어나 내가 제공한 specific subject 를 다시 학습해야 되기 때문이다. 
 
 - Class-specific Prior Preservation Loss
-  - $a \ [identifier] \ [class noun]$ 로 학습을 진행하게 되면, 기존에 class noun 이 가지고 있던 general 한 의미는 사라지게 된다. 학습 중에 class noun 이 few images 에 영향을 받기 때문이다. 
+  - $a \ [identifier] \ [class \ noun]$ 로 학습을 진행하게 되면, 기존에 class noun 이 가지고 있던 general 한 의미는 사라지게 된다. 학습 중에 class noun 이 few images 에 영향을 받기 때문이다. 
   - Class noun 이 기존에 가지고 있던 의미를 잃어버리는 문제를 본 논문에서는, *Language Drift* 라고 정의한다. 
   - 이 문제가 발생하면, diversity 를 잃어버리고 specific subject 만 생성할 수 있다. 
     - E.g., $a \ [zwx] \ [dog]$ (zwx: 우리 집 강아지) 로 학습을 하고 $a \ dog$ 을 생성해보면, 우리 집 강아지가 나온다. 즉 다양성을 잃어버림
