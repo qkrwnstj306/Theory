@@ -140,7 +140,6 @@ Theory for ML.
 - <a href='./이론 pdf 파일/딥러닝 논문/StyleDrop_230626_130819.pdf'>StyleDrop: Text-to-Image Generation in Any Style</a>
 - <a href='./이론 pdf 파일/딥러닝 논문/StyleGAN_230517_095353.pdf'>StyleGAN : A Style-Based Generator Architecture for Generative Adversarial Networks</a>
 - <a href='./이론 pdf 파일/딥러닝 논문/StyleGANv2_230620_160458.pdf'>StyleGAN2 : Analyzing and Improving the Image Quality of StyleGAN</a>
-- <a href='./이론 pdf 파일/딥러닝 논문/Textual Inversion_230315_210614.pdf'>Textual Inversion : An Image is Worth One Word: Personalizing Text-to-Image Generation using Textual Inversion</a>
 - <a href='./이론 pdf 파일/딥러닝 논문/VAE_230706_175059.pdf'>VAE : Auto-Encoding Variational Bayes</a>
 	+ <a href='https://github.com/qkrwnstj306/VAE'> VAE code practice</a>
 - <a href='./이론 pdf 파일/딥러닝 논문/ViT Vision Transformer_230705_150728.pdf'>ViT : AN IMAGE IS WORTH 16 X 16 WORDS : TRANSFORMERS FOR IMAGE RECOGNITION AT SCALE</a>
@@ -166,7 +165,8 @@ Theory for ML.
 - <a href='https://arxiv.org/pdf/2208.12242.pdf'>DreamBooth: Fine Tuning Text-to-Image Diffusion Models for Subject-Driven Generation</a>
   - <a href='./이론 pdf 파일/딥러닝 논문/DreamBooth/DreamBooth.md'>Paper Review</a>
 - <a href='https://arxiv.org/pdf/2208.01618.pdf'>An Image is Worth One Word: Personalizing Text-to-Image Generation using Textual Inversion</a>
-  - <a href='./이론 pdf 파일/딥러닝 논문/Textual_inversion/Textual_inversion.md'>Paper Review</a>
+  - <a href='./이론 pdf 파일/딥러닝 논문/Textual Inversion_230315_210614.pdf'>Paper Review</a>
+  - <a href='./이론 pdf 파일/딥러닝 논문/Textual_inversion/Textual_inversion.md'>Paper Review2</a>
 
 ### Natural Language
 - <a href='./이론 pdf 파일/딥러닝 이론/LSTM.pdf'>LSTM : Long Short-Term Memory</a>
@@ -266,6 +266,13 @@ Theory for ML.
 - <a href='https://arxiv.org/pdf/2207.12598.pdf'>Classifier-Free Diffusion Guidance</a>
   - <a href='./이론 pdf 파일/딥러닝 논문/Classifier_free/Classifier_free.md'>Paper Review</a>
   - <a href='https://github.com/qkrwnstj306/Diffusion'>Code Practice</a>
+- <a href='https://openaccess.thecvf.com/content/CVPR2023W/GCV/papers/Hamazaspyan_Diffusion-Enhanced_PatchMatch_A_Framework_for_Arbitrary_Style_Transfer_With_Diffusion_CVPRW_2023_paper.pdf'>Diffusion-Enhanced PatchMatch: A Framework for Arbitrary Style Transfer with Diffusion Models</a>
+  - <a href='./이론 pdf 파일/딥러닝 논문/PatchMatch/PatchMatch.md'>Paper Review</a>
+- <a href='https://openaccess.thecvf.com/content/ICCV2023/papers/Wang_StyleDiffusion_Controllable_Disentangled_Style_Transfer_via_Diffusion_Models_ICCV_2023_paper.pdf'>StyleDiffusion: Controllable Disentangled Style Transfer via Diffusion Models</a>
+  - <a href='./이론 pdf 파일/딥러닝 논문/StyleDiffusion/StyleDiffusion.md'>Paper Review</a>
+- <a href='https://openaccess.thecvf.com/content/CVPR2023/papers/Zhang_Inversion-Based_Style_Transfer_With_Diffusion_Models_CVPR_2023_paper.pdf'>Inversion-based Style Transfer with Diffusion Models</a>
+  - <a href='./이론 pdf 파일/딥러닝 논문/Inversion-based-style-transfer/Inversion-based-style-transfer.md'>Paper Review</a>
+
 
 # 7. Helpful Blog
 - <a href='https://github.com/teddylee777/machine-learning#%ED%86%B5%EA%B3%84-statistics'>Machine Learning Study</a>

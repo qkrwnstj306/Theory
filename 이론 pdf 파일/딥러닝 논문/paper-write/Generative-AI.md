@@ -16,6 +16,21 @@
 </div>
 
 ***
+### <strong>Trend<strong>
+*2023 keyword*
+- Diffusion
+- 3D
+- Human pose, face, body, movements, gesture, etc.
+- Image & Video generation
+- NeRF
+- Multimodal
+
+*2023 comment*
+- Image style transfer 분야는 흥미를 잃어간다.
+  - 특히 image style transfer using GAN 은 잘 안한다.
+- Video/3D style transfer 는 가능
+
+***
 ### <strong>Image Synthesis<strong>
 - DDPM
 - DDIM
@@ -27,21 +42,37 @@
 - Imagen
 - CogView2
 - Parti
+- Muse
 
-### <strong>Personalization/Finetuning Neural Networks</strong>
-- 확인 필요
-- DreamBooth
-- Textual Inversion
-- LoRA
-- Adapter-based/parameter-efficient/fine-tuning/etc.
-- ControlNet(에 다른 방법들이 자세히 나와있다. in related work)
+### <strong>Controlling Image Diffusion Models/Personalization</strong>
 
-### Adapting text-to-image models
-- 확인 필요
+<a href='https://arxiv.org/pdf/2307.06949.pdf'>reference paper</a>
+
+- <a href='/이론 pdf 파일/딥러닝 논문/DreamBooth/DreamBooth.md'>DreamBooth</a>
+  - Optimize entire T2I network weights
+- <a href='/이론 pdf 파일/딥러닝 논문/Textual_inversion/Textual_inversion.md'>Textual Inversion</a>
+  - Optimize text embedding
+- <a href='/이론 pdf 파일/딥러닝 논문/LoRA_231007_193848.pdf'>LoRA</a>
+  - Optimize low-rank approximations of weight residuals
 - Custom Diffusion
+  - Optimize cross-attention layers
+- SVDiff
+  - Optimize singular values of weights
+- <a href='/이론 pdf 파일/딥러닝 논문/StyleDrop_230626_130819.pdf'>StyleDrop</a>
+  - Use adapter tuning and finetunes a small set of adapter weights for style personalization
+  - Generation in any style with a single input image
+- DreamArtist
+  - One-shot personalization techniques by employing a positive-negative prompt tuning strategy
+- HyperNetwork
+  - Use an auxiliary neural network to predict network weights in order to change the functioning of a specific neural network
+- <a href='/이론 pdf 파일/딥러닝 논문/ControlNet_231018_163832.pdf'>ControlNet</a>
+  - Propose ways to incorporate new input conditioning such as depth
 - Specialist Diffusion
-- StyleDrop
-- DreamStyler
+
+- StyleBoost
+  - Style personalization with T2I diffusion models using DreamBooth
+  - *vs StyleDrop*
+
 
 ***
 
@@ -54,34 +85,41 @@
 - StyleGAN
 - Style-NaDa
 
+- 확인 완료
 - AdaIN
 - Neural Style Transfer
 
 #### Diffusion-based model
 - 확인 필요
-- Diffusion-Enhanced PatchMatch
-- StyleDiffusion
-- Inversion-based Style Transfer
-- Text-Guided Diffusion Image Style Transfer with Contrastive Loss (under review 2023)
-- DiffStyle
+- <a href='/이론 pdf 파일/딥러닝 논문/PatchMatch/PatchMatch.md'>Diffusion-Enhanced PatchMatch</a>
+  - Utilize Patch-based techniques with whitening and coloring transformations in latent space  
+- <a href='/이론 pdf 파일/딥러닝 논문/StyleDiffusion/StyleDiffusion.md'>StyleDiffusion</a>
+  - 해석가능하고 제어가능한 C-S disentanglement and style transfer 를 제안했다.
+  - CLIP image space 에서 C-S 를 해결하기 위해 CLIP-based style disentanglement loss 와 style reconstruction prior 를 도입했다. 
+- <a href='/이론 pdf 파일/딥러닝 논문/Inversion-based-style-transfer/Inversion-based-style-transfer.md'>Inversion-based Style Transfer</a>
+- <a href='../DreamStyler_231001_142049.pdf'>DreamStyler</a>
+  - Advanced Texutal Inversion
+  - Using BLIP-2, image encoder
+  - Text 에 style binding
 
 ***
 
 ### <strong>Super Resolution</strong>
 #### Diffusion-based model
-- SR3
+- <a href='../SR3/SR3.md'>SR3</a>
 
 
 ***
+
 ### <strong>Image-to-Image Translation</strong>
 - Pix2Pix
 - Cycle-GAN
 - Plug-and-Play
 
 ### <strong>Image Editing</strong>
-- Multimodal Garment Designer
-- Prompt-to-Prompt
-- InstructPix2Pix
+- <a href='../Multimodal Garment Designer_231015_171057.pdf'>Multimodal Garment Designer</a>
+- <a href='../Prompt to prompt image editing with attention_231004_124613.pdf'>Prompt-to-Prompt</a>
+- <a href='../InstructPix2Pix_231014_141433.pdf'>InstructPix2Pix</a>
 
 ### <strong>Data Augmentation</strong>
 
@@ -89,8 +127,9 @@
 ***
 
 ### <strong>Inpainting</strong>
+
 #### Diffusion-based model
-- RePaint
+- <a href='../Repaint/RePaint  Inpainting using Denoising Diffusion Probabilistic Models.md'>RePaint</a>
 
 ***
 
