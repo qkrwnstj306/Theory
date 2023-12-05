@@ -32,12 +32,12 @@
 
 ***
 ### <strong>Image Synthesis<strong>
-- DDPM
-- DDIM
-- LDM
+- <a href='../DDPM_231112_174348.pdf'>DDPM</a>
+- <a href='../DDIM/DDIM.md'>DDIM</a>
+- <a href='../Latent Diffusion Model_230315_164557.pdf'>LDM</a>
 - LCM
-- GAN
-- VAE
+- <a href='../Generative Adversarial Nets_230512_221610.pdf'>GAN</a>
+- <a href='../VAE_230706_175059.pdf'>VAE</a>
 - DALL-E2
 - Imagen
 - CogView2
