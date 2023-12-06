@@ -137,7 +137,6 @@ Theory for ML.
 	* <a href='./PPT/Conference_styleboost.pptx'>StyleBoost PPT</a>
 	* <a href='./PPT/script_styleboost.pptx'>StyleBoost presentation script</a>
 	- [ ] StyleBoost code practice
-- <a href='./이론 pdf 파일/딥러닝 논문/StyleDrop_230626_130819.pdf'>StyleDrop: Text-to-Image Generation in Any Style</a>
 - <a href='./이론 pdf 파일/딥러닝 논문/StyleGAN_230517_095353.pdf'>StyleGAN : A Style-Based Generator Architecture for Generative Adversarial Networks</a>
 - <a href='./이론 pdf 파일/딥러닝 논문/StyleGANv2_230620_160458.pdf'>StyleGAN2 : Analyzing and Improving the Image Quality of StyleGAN</a>
 - <a href='./이론 pdf 파일/딥러닝 논문/VAE_230706_175059.pdf'>VAE : Auto-Encoding Variational Bayes</a>
@@ -274,7 +273,7 @@ Theory for ML.
   - <a href='./이론 pdf 파일/딥러닝 논문/Inversion-based-style-transfer/Inversion-based-style-transfer.md'>Paper Review</a>
 - <a href='https://www.cv-foundation.org/openaccess/content_cvpr_2016/papers/Gatys_Image_Style_Transfer_CVPR_2016_paper.pdf'>Image Styler Transfer using Convolutional Neural Networks</a>
   - <a href='./이론 pdf 파일/딥러닝 논문/image-style-transfer/image-style-transfer.md'>Paper Review</a>
-- <a href='https://arxiv.org/pdf/2306.00983.pdf/'>StyleDrop: Text-to-Image Generation in Any Style</a>
+- <a href='./이론 pdf 파일/딥러닝 논문/StyleDrop_230626_130819.pdf'>StyleDrop: Text-to-Image Generation in Any Style</a>
   - <a href='./이론 pdf 파일/딥러닝 논문/StyleDrop/StyleDrop.md'>Paper Review</a>
 
 

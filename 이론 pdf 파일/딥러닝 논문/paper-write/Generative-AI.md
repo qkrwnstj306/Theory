@@ -46,7 +46,9 @@
 
 ### <strong>Controlling Image Diffusion Models/Personalization</strong>
 
-<a href='https://arxiv.org/pdf/2307.06949.pdf'>reference paper</a>
+<a href='https://arxiv.org/pdf/2307.06949.pdf'>reference paper-HyperDreamBooth</a>
+
+<a href='https://arxiv.org/pdf/2306.00983.pdf'>reference paper-StyleDrop</a>
 
 - <a href='/이론 pdf 파일/딥러닝 논문/DreamBooth/DreamBooth.md'>DreamBooth</a>
   - Optimize entire T2I network weights
