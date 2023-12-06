@@ -16,7 +16,7 @@
 </div>
 
 ***
-### <strong>Trend<strong>
+### <strong>CVPR & ICCV Trend<strong>
 *2023 keyword*
 - Diffusion
 - 3D
@@ -90,7 +90,6 @@
 - Neural Style Transfer
 
 #### Diffusion-based model
-- 확인 필요
 - <a href='/이론 pdf 파일/딥러닝 논문/PatchMatch/PatchMatch.md'>Diffusion-Enhanced PatchMatch</a>
   - Utilize Patch-based techniques with whitening and coloring transformations in latent space  
 - <a href='/이론 pdf 파일/딥러닝 논문/StyleDiffusion/StyleDiffusion.md'>StyleDiffusion</a>

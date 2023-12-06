@@ -58,7 +58,7 @@
   - 여기서 중요한 점은 local network 를 쓰지 않는 것(A3C 와는 다르게)과 DQN 의 target network 를 쓴다는 것이다.
   - $\theta$: global network
   - $\theta^-$: fixed target network
-  - $t \mod I_{AsyncUpdate} ==0$: 각 worker 가 global network 로 경험을 쌓은 걸 바탕으로 update
+  - $t \mod I_{AsyncUpdate} ==0$: 각 worker 가 global network 로 경험을 쌓고, 그 경험을 바탕으로 global network update
   - $T \mod I_{target} ==0$: fixed target network parameter 를 global network parameter 로 교체
 <p align='center'>
 <img src='./img2.png'>
