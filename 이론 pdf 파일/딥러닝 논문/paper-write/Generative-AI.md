@@ -98,6 +98,8 @@
   - 해석가능하고 제어가능한 C-S disentanglement and style transfer 를 제안했다.
   - CLIP image space 에서 C-S 를 해결하기 위해 CLIP-based style disentanglement loss 와 style reconstruction prior 를 도입했다. 
 - <a href='/이론 pdf 파일/딥러닝 논문/Inversion-based-style-transfer/Inversion-based-style-transfer.md'>Inversion-based Style Transfer</a>
+  - textual description $[C]$ 학습
+  - Inference 시에, $[C]$ 와 content image 의 inversion 을 통해 생성
 - <a href='../DreamStyler_231001_142049.pdf'>DreamStyler</a>
   - Advanced Texutal Inversion
   - Using BLIP-2, image encoder

@@ -63,6 +63,9 @@
 
 
 - Textual description $[C]$ 학습 
+- Inference 시에, $[C]$ 와 content image 의 inversion 을 통해 생성
+
+
 
 ***
 

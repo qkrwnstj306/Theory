@@ -43,7 +43,7 @@
     - DreamBooth 를 여러 주제에 대해 동시에 합성하도록 확장
   - StyleDrop
     - 다른 text-to-image diffusion model 과 달리 Generative vision transformer 를 기반으로 한다.
-    - 다른 방법들은 painting style 에 제한되어 있지만, StyleDrop 은 a single style reference image 만을 사용하여 3D rendering, design illustration, sculpture 등 다양한 시각적 스타일을 시여한다. 
+    - 다른 방법들은 painting style 에 제한되어 있지만, StyleDrop 은 a single style reference image 만을 사용하여 3D rendering, design illustration, sculpture 등 다양한 시각적 스타일을 시연한다. 
 
 - Neural Style Transfer (NST)
 

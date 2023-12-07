@@ -30,13 +30,19 @@
 - Personalization/Controlling Text-to-Image Models
     1. DreamBooth
         - Optimize entire T2I network weights
+        - 관심 주제를 설명하는 몇 장의 이미지에 대해 entire text-to-image model 을 fine-tuning 한다.
+        - 따라서 표현력이 풍부하며 세부적인 내용으로 주제를 캡쳐할 수 있다.
+        - Language drift & overfitting 을 완화하기 위해 class-specific prior preservation loss & class-specific prior image 를 도입했다.
     2. Textual Inversion
         - Optimize text embedding
+        - 적은 양의 이미지로 text-to-image model 의 parameter 변화 없이 text representation 을 찾는다. (e.g., token embedding)
     3. LoRA
         - Optimize low-rank approximations of weights residuals
+        - Parameter efficient fine-tuning (PEFT) methods
     4. StyleDrop
         - Use adapter tuning and finetunes a small set of adapter weights for style personalization
         - Generation in any style with a single input image
+        - Style 특화 personalization. 다른 방법들은 painting style 에 제한되어 있지만, StyleDrop 은 a single style reference image 만을 사용하여 3D rendering, design illustration, sculpture 등 다양한 시각적 스타일을 시연한다.
     5. ControlNet
         - Propose ways to incorporate new input conditioning such as depth
     6. HyperNetwork
@@ -45,7 +51,7 @@
         - One-shot personalization techniques by employing a positive-negative prompt tuning strategy
     8. Custom Diffusion
         - Optimize cross-attention layers
-    9. SVDiff
+    9.  SVDiff
         - Optimize singular values of weights
     10. Specialist Diffusion   
 
@@ -59,16 +65,31 @@
           - 해석가능하고 제어가능한 C-S disentanglement and style transfer 를 제안했다.
           - CLIP image space 에서 C-S 를 해결하기 위해 CLIP-based style disentanglement loss 와 style reconstruction prior 를 도입했다.
        3. Inversion-based Style Transfer
+          - textual description $[C]$ 학습
+          - Inference 시에, $[C]$ 와 content image 의 inversion 을 통해 생성
        4. DreamStyler
           - Advanced Texutal Inversion
           - Using BLIP-2, image encoder
           - Text 에 style binding
 
+- 우리가 제시하고자 하는 것은 artistic style 특화 personalization 이다. 
+    - 그 중에서도 사람에 대해서 실험
 
+> Personalization
+>> StyleDrop & Textual Inversion & DreamBooth 는 스타일을 사람에 대해서 실험하지 않았다.
+
+> Style Transfer
+>> Diffusion-enhanced PatchMatch & DreamStyler 는 스타일을 사람에 대해서 실험하지 않았다.
 
 ***
 
 ### <strong>Method</strong>
+- 넓은 범위의 artistic style 을 binding 시키겠다.
+- artistic style 은 추상적이다. 
+- DreamBooth 의 방법에서 class image/auxiliary image 는 학습 과정에서 영향을 끼치므로 중요하게 다뤄야 한다. 
+  - Auxiliary image 를 freezed diffusion model 에서 생성하는 것이 아닌 고품질의 이미지로 대체한다. 
+  - 이때, 이미지들은 target style 의 정보를 담고 있으면서도 더 일반적인 이미지로 구성한다. 
+-  
 
 
 ***
