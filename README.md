@@ -7,20 +7,20 @@ Theory for ML.
 [Reinforcement](#1-reinforcement)</br>
 [Deep Learning](#2-deep-learning)</br>
 [Machine Learning](#3-machine-learning)</br>
-[Math](#4.-math)</br>
+[Math](#4-math)</br>
 [University Lecture](#5-university-lecture)</br>
 [Simple Paper Review](#6-simple-paper-review)</br>
 [Helpful Blog](#7-helpful-blog)</br>
 [Failed Project](#8-failed-project)</br>
-[Etc.](#9-etc)</br>
+[Etc.](#9-toy-project-etc)</br>
 [Coding Test](#10-coding-test)</br>
 [External Lecture Materials](#11-외부-강의-자료)</br>
 
-# <strong> 0. How to Write paper </strong>
+# <strong>0. How to Write paper</strong>
 - <a href='./이론 pdf 파일/딥러닝 논문/paper-write/how-to-write.md'>How to Write Paper</a>
 - <a href='./이론 pdf 파일/딥러닝 논문/paper-write/Generative-AI.md'>Generative AI</a>
 
-# <strong> 1. Reinforcement </strong>
+# <strong>1. Reinforcement</strong>
 > <a href='https://github.com/qkrwnstj306/Reinforcement'> Code Practice</a>
 >> OpenAI GYM == 0.22.0 이나 그 근처로 하는 게 좋다. (return 되는 state form 이 version 마다 달라서,,)
 
@@ -54,7 +54,7 @@ Theory for ML.
 - <a href='./이론 pdf 파일/강화학습/Off policy_230117_004322.pdf'>Off policy 분석</a>
 - <a href='./이론 pdf 파일/강화학습/RNN 적용 with 똥 피하기_230129_202520.pdf'>RNN with 똥 피하기 game</a>
 
-# <strong> 2. Deep Learning </strong>
+# <strong>2. Deep Learning</strong>
 > <a href='https://github.com/qkrwnstj306/Machine-Learning-Practice'>Code Practice</a>
 ## Theory
 ### Basic
@@ -205,7 +205,7 @@ Theory for ML.
 - <a href='./이론 pdf 파일/딥러닝 논문/NAS(neural architecture search) with Reinforcement_230819_160802.pdf'>NAS : NEURAL ARCHITECTURE SEARCH WITH REINFORCEMENT LEARNING</a>
 	* <a href='./PPT/NAS with Reinforcement Learning.pptx'>NAS with Reinforcement Learning PPT</a>
 
-# <strong> 3. Machine Learning </strong>
+# <strong>3. Machine Learning</strong>
 ## Basic Theory
 - <a href='./이론 pdf 파일/머신러닝 이론/Chapter 02~04 머신러닝 군집 & 분류 & 회귀 알고리즘_230122_161047.pdf'>머신러닝 군집 & 분류 & 회귀 알고리즘 </a>
 - <a href='./이론 pdf 파일/머신러닝 이론/Chapter 05 CNN_CV_230122_132942.pdf'>CNN </a>
@@ -216,7 +216,7 @@ Theory for ML.
 - <a href='./이론 pdf 파일/머신러닝 이론/Chapter 10~13 알고있으면 쓸모있는 AI관련 지식_230122_132957.pdf'>알고있으면 쓸모있는 AI관련 지식</a>
 - <a href='./이론 pdf 파일/머신러닝 이론/Support vector machine(SVM)_230602_212947.pdf'>Support Vector Machine (SVM) </a>
 
-# <strong> 4. Math </strong>
+# <strong>4. Math</strong>
 - <a href='./이론 pdf 파일/수학/Expectation 성질_230504_000715.pdf'>Expectation Property</a>
 - <a href='./이론 pdf 파일/수학/Jacobian_230516_013721.pdf'>Jacobian Matrix </a>
 - <a href='./이론 pdf 파일/수학/결합, 주변, 조건부_230925_122308.pdf'>Joint/Margin/Conditional (결합/주변/조건부) Probability </a>
