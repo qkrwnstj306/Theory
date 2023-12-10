@@ -27,6 +27,17 @@
 ***
 
 ### <strong>Related Work</strong>
+- Text-to-Image Models 
+  - Several recent models such as Imagen, DALL-E2, Stable Diffusion(SD), Muse, Parti etc. demonstrate excellent image generation capabilities given a text prompt. 
+- Personalizaiton/Controlling Text-to-Imamge Models 
+  - Personalized Text-to-Image Synthesis has been studied to edit images of personal assets by leveraging the power of pre-trained text-to-image models. Textual inversion made easy find text representations (e.g., embedding, token) corresponding to a set of images of an object without changing parameters of the text-to-image model.
+  - DreamBooth fine-tunes an entire text-to-image model on a few images describing the subject of interest. As such, it is more expressive and captures the subject with greater details. 
+  - Parameter-efficient fine-tuning (PEFT) methods, such as LoRA or adapter tuning, are adopted to improve its efficiency.
+  - Custom diffusion and SVDiff have extended DreamBooth to synthesize multiple subjects simultaneously. Unlike these methods built on text-to-image diffusion models, we build StyleDrop on Muse, a generative vision transformer.
+
+- Style Transfer
+  -  While both output stylized images, StyleDrop is different from NST in many ways; ours is based on text-to-image models to generate content, whereas NST uses an image to guide content (e.g., spatial structure) for synthesis. 
+
 - Personalization/Controlling Text-to-Image Models
     1. DreamBooth
         - Optimize entire T2I network weights
@@ -74,6 +85,10 @@
 
 - 우리가 제시하고자 하는 것은 artistic style 특화 personalization 이다. 
     - 그 중에서도 사람에 대해서 실험
+    - Our method 는 DreamBooth & StyleDrop 과 비슷 
+    - DreamBooth architecture 를 사용
+    - StyleDrop 처럼 style personalization
+    - 하지만 사람에 대해서 집중한 점과 artistic style 에 대해서 집중한 점들이 다른 점이다. 실제 학습과정에서도 사람 이미지를 학습에 사용한다. 
 
 > Personalization
 >> StyleDrop & Textual Inversion & DreamBooth 는 스타일을 사람에 대해서 실험하지 않았다.

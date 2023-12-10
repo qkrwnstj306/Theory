@@ -288,12 +288,14 @@ Theory for ML.
 # 8. Failed Project
 - <a href='https://github.com/qkrwnstj306/Style-Similarity'>Style Similarity</a>
 
-# 9. Etc.
-- <a href='https://github.com/qkrwnstj306/sort_google_scholar'>Sort google scholar paper</a>
-- <a href='https://github.com/qkrwnstj306/html_study'>HTML study</a>
+# 9. Toy Project, etc.
+- <a href='https://github.com/qkrwnstj306/sort_google_scholar'>Sort Google Scholar Paper</a>
+- <a href='https://github.com/qkrwnstj306/html_study'>HTML Study</a>
 - <a href='https://github.com/qkrwnstj306/capston_design'>SD 1.5 & DreamBooth in Capston Design, 웹 소설 삽화 생성 프로젝트</a>
 - <a href='https://github.com/qkrwnstj306/Shortest-Path'>Shortest-Path in Python</a>
 - <a href='https://github.com/qkrwnstj306/Image-Crawling'>Image-Crawling</a>
+- <a href='https://github.com/qkrwnstj306/Robust-QA'>Make Robust QA-model via DistilBERT</a>
+- <a href='https://github.com/qkrwnstj306/Text-to-Image-Toy-Project'>Provide Real-Time Text-to-Image Synthesis with ChatGPT(v3.5) & LCM-LoRA</a>
 
 # 10. Coding Test
 - [ ] practice
