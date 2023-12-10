@@ -64,13 +64,13 @@
 - MINST dataset 에 대해서 실험을 진행
   - Teacher model 은 $67$ 개의 오류, student model 은 $146$ 개의 오류를 냈다.
   - 그리고 teacher model 의 지식을 student model 에 증류했을 때, $74$ 개의 오류를 달성
-  - 또한, MNIST dataset 에 대해서 학습을 할 때 (for classification), student model 은 숫자 $3$ image 를 학습 과정에서 사용하지 않았음에도 불구하고, test 시에 $3$ 을 $98.6%$ 로 맞췄다.
+  - 또한, MNIST dataset 에 대해서 학습을 할 때 (for classification), student model 은 숫자 $3$ image 를 학습 과정에서 사용하지 않았음에도 불구하고, test 시에 $3$ 을 $98.6\%$ 로 맞췄다.
 
 <p align='center'>
 <img src='./img7.png'>
 </p>
 
-- 심지어는 transfer set 에 숫자 $7$ 과 $8$ 만으로 증류했을 때는 $47.3/%$ 의 정확도를 달성했다.
+- 심지어는 transfer set 에 숫자 $7$ 과 $8$ 만으로 증류했을 때는 $47.3\%$ 의 정확도를 달성했다.
 
 ***
 
