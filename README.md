@@ -7,7 +7,7 @@ Theory for ML.
 [Reinforcement](#1-reinforcement)</br>
 [Deep Learning](#2-deep-learning)</br>
 [Machine Learning](#3-machine-learning)</br>
-[Math](#4-math)</br>
+[Math](#4.-math)</br>
 [University Lecture](#5-university-lecture)</br>
 [Simple Paper Review](#6-simple-paper-review)</br>
 [Helpful Blog](#7-helpful-blog)</br>
@@ -232,7 +232,7 @@ Theory for ML.
 - <a href='./이론 pdf 파일/수학/Norm.pdf'>Vector Norm</a>
 - <a href='./이론 pdf 파일/수학/Entropy.pdf'>Entropy with information theory</a>
 - <a href='./이론 pdf 파일/수학/기초수학.pdf'>기초 수학(산업 수학, 공학선형대수학, 신호와 시스템)</a>
-# <strong> 5. University Lecture </strong>
+# <strong>5. University Lecture</strong>
 ## 학부 (컴퓨터 네트워크, JAVA, 운영체제, 인터넷 프로그래밍, 데이터 통신, 암마이크로, 통신이론, 데이터 베이스 etc.)
 - <a href='https://www.notion.so/029b1e22a20f4579acb5f1651fc51b2a?pvs=4'>Notion</a>
 ## Computer vision 
