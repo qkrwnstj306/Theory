@@ -12,7 +12,7 @@ Theory for ML.
 [Simple Paper Review](#6-simple-paper-review)</br>
 [Helpful Blog](#7-helpful-blog)</br>
 [Failed Project](#8-failed-project)</br>
-[Etc.](#9-toy-project-etc)</br>
+[Toy project & Etc.](#9-toy-project-etc)</br>
 [Coding Test](#10-coding-test)</br>
 [External Lecture Materials](#11-외부-강의-자료)</br>
 
