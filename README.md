@@ -106,8 +106,6 @@ Theory for ML.
 - <a href='./이론 pdf 파일/딥러닝 논문/Alexnet_230626_174634.pdf'>AlexNet</a>
 	* <a href='./PPT/AlexNet.pptx'>AlexNet PPT</a>
 	* <a href='./이론 pdf 파일/딥러닝 논문/Alexnet/Alexnet.pdf'>Paper Review</a>
-- <a href='./이론 pdf 파일/딥러닝 논문/CLIP(contrasting language image pre training)_230527_225717.pdf'>CLIP(Contrasting Language Image)</a>
-	* <a href='./PPT/contrastive learning.pptx'>Constrastive Learning PPT</a>
 - <a href='./이론 pdf 파일/딥러닝 논문/FF Algorithm_230227_175359.pdf'>Forward-Forward Algorithm</a>
 	+ <a href='https://github.com/qkrwnstj306/forward-forward-algorithm'>Code Practice for FF algorithm</a>
 	* <a href='./PPT/FF algorithm.pptx'>FF Algorithm PPT</a>
@@ -185,6 +183,9 @@ Theory for ML.
 	+ <a href='https://github.com/qkrwnstj306/ChatGPT'>Code Practice using ChatGPT</a>
 	* <a href='./PPT/GPTv1.pptx'>GPT PPT</a>
 - <a href='./이론 pdf 파일/딥러닝 논문/GPT2_230916_202552.pdf'>GPTv2</a>
+- <a href='./이론 pdf 파일/딥러닝 논문/CLIP(contrasting language image pre training)_230527_225717.pdf'>CLIP: Learning Transferable Visual Models From Natural Language Supervision</a>
+	* <a href='./PPT/contrastive learning.pptx'>Constrastive Learning PPT</a>
+
 
 ### Anomaly Detection
 - <a href='./이론 pdf 파일/딥러닝 논문/Anomaly detection at microsoft_230810_204913.pdf'>Time-Series Anomaly Detection Service at Microsoft</a>

@@ -32,7 +32,8 @@
 ***
 
 ### <strong>Related Work</strong>
-
+- Contrastive Learning
+- Representation Learning
 
 ***
 
