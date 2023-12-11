@@ -65,7 +65,7 @@
 - **Optimal 한 상황을 가정하면, Discriminator 와 Generator 는 각각 어떤 값에 수렴하는가에 대한 증명**
 
 - Discriminator 에 대해서 먼저 보면, loss fucntion 에서 $x$ 에 대한 적분으로 묶어서 하나의 term 으로 볼 수 있다. 
-- 이때, Discriminator 를 $y$ 로 치환하고 $y$ 에 대해서 미분 = $0$ 으로 계산하면, 다음의 수식을 만족할 때 최적의 $D^*$ 인 것을 알 수 있다.
+- 이때, Discriminator 를 $y$ 로 치환하고 $y$ 에 대해서 미분 = $0$ 으로 계산하면, 다음의 수식을 만족할 때 최적의 $D^\*$ 인 것을 알 수 있다.
 
 $$ D_{G}^*(x) = \frac{p_{data}(x)}{p_{data}(x)+p_{g}(x)} $$
 
@@ -81,7 +81,7 @@ $$ G^*: \ p_{data}(x)=p_{g}(x) $$
 <img src='./img10.png'>
 </p>
 
-- 따라서, $G^*, \ D^{*}$ 일 때의 loss value 를 보면, $-\log{4}$ 일 때가 최솟값이다.
+- 따라서, $G^*$, $D^*$ 일 때의 loss value 를 보면, $-\log{4}$ 일 때가 최솟값이다.
 
 <p align="center">
 <img src='./img11.png'>
