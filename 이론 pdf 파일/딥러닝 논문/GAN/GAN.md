@@ -81,7 +81,7 @@ $$ G^*: \ p_{data}(x)=p_{g}(x) $$
 <img src='./img10.png'>
 </p>
 
-- 따라서, $G^*, \ D^*$ 일 때의 loss value 를 보면, $-\log{4}$ 일 때가 최솟값이다.
+- 따라서, $G^*, \ D^{*}$ 일 때의 loss value 를 보면, $-\log{4}$ 일 때가 최솟값이다.
 
 <p align="center">
 <img src='./img11.png'>
