@@ -278,6 +278,8 @@ Theory for ML.
   - <a href='./이론 pdf 파일/딥러닝 논문/image-style-transfer/image-style-transfer.md'>Paper Review</a>
 - <a href='./이론 pdf 파일/딥러닝 논문/StyleDrop_230626_130819.pdf'>StyleDrop: Text-to-Image Generation in Any Style</a>
   - <a href='./이론 pdf 파일/딥러닝 논문/StyleDrop/StyleDrop.md'>Paper Review</a>
+- <a href='https://arxiv.org/pdf/1411.1784.pdf%EF%BC%88CGAN%EF%BC%89'>CGAN: Conditional Generative Adversarial Nets</a>
+  - <a href='./이론 pdf 파일/딥러닝 논문/CGAN/CGAN.md'>Paper Review</a>
 
 
 # 7. Helpful Blog
