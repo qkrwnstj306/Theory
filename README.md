@@ -130,6 +130,7 @@ Theory for ML.
 - <a href='./이론 pdf 파일/딥러닝 논문/DreamStyler_231001_142049.pdf'>DreamStyler: Paint by Style Inversion with Text-to-Image Diffusion Models</a>
 	* <a href='PPT/DreamStyler.pptx'>DreamStyler PPT</a>
 - <a href='./이론 pdf 파일/딥러닝 논문/Generative Adversarial Nets_230512_221610.pdf'>GAN : Generative Adversarial Nets</a>
+  - <a href='./이론 pdf 파일/딥러닝 논문/GAN/GAN.md'>Paper Review</a>
 - <a href='./이론 pdf 파일/Diffusion/Latent Diffusion Model_230515_145957.pdf'>LDM(Latent Diffusion model) : High-Resolution Image Synthesis with Latent Diffusion Models</a>
 - <a href='./이론 pdf 파일/딥러닝 논문/StyleBoost_230829_113315.pdf'>StyleBoost: A Study of Personalizing Text-to-Image Generation in Any Style using DreamBooth</a>
     - <a href='./이론 pdf 파일/딥러닝 논문/StyleBoost/StyleBoost.md'>Paper Review</a>
