@@ -66,6 +66,7 @@ $$ F^k = \Sigma_{x,y}{f_k(x,y)} $$
   - 단순히 dog, cat classification task
   - $w_k^c$ 는 feature map $k$ 에 GAP 한 값과 class node $c$ 를 연결하는 weight
   - 예시에서의 $S_1 = F^1 \times 0.3(=w_1^1)+F^2 \times 0.5 + F^3 \times 0.1$
+
 $$ S_c = \Sigma_k{w_k^c F_k}$$
 
 <p align="center">
