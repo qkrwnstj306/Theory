@@ -22,6 +22,8 @@
 ***
 
 ### <strong>Intro</strong>
+- Bounding box annotation 은 비싸다
+  - Class labeling 은 덜 비싸므로, class label 로만 object localization 을 진행하겠다!!
 - 저자들은 global average pooling layer 에 대해서 이미지에 대한 CNN 의 암시된 attention 을 드러내는 포괄적인 localizable deep representation 을 만들어낼 수 있다고 생각했다. 
 - Global average pooling 의 단순함에도 불구하고, 본 논문의 저자들은 어떠한 bounding box annotation 을 이용한 학습을 하지 않고도 ILSVRC 2014 object localization 에 대해서 $37.1$% top-5 error 를 달성할 수 있었다.
 - Convolutional layers 가 object 의 위치를 알아낼 수 있는 놀라운 능력을 가지고 있음에도 불구하고, 이러한 능력은 classification 을 위해 사용되는 fully-connected layer 가 존재할 때 잃는다.

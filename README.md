@@ -300,6 +300,7 @@ Theory for ML.
 - <a href='https://github.com/qkrwnstj306/Shortest-Path'>Shortest-Path in Python</a>
 - <a href='https://github.com/qkrwnstj306/Image-Crawling'>Image-Crawling</a>
 - <a href='https://github.com/qkrwnstj306/Robust-QA'>Make Robust QA-model via DistilBERT</a>
+  - <a href='./PPT/DIstilBERT Final.pptx'>Robust QA Model PPT</a>
 - <a href='https://github.com/qkrwnstj306/Text-to-Image-Toy-Project'>Provide Real-Time Text-to-Image Synthesis with ChatGPT(v3.5) & LCM-LoRA</a>
 
 # 10. Coding Test
