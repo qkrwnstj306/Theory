@@ -62,11 +62,17 @@
 - *여기서 StyleDrop & DreamBooth 를 언급하는게 자연스러운가?*
 
 - List: [specialist,DreamArtist,textaul inversion,DreamBooth,StyleDrop,CustomDiffusion,SVDiff]
-- (1): 사람 propmt 대해서 style 이 잘 입혀지는지 inference 를 했는가?
-- (2): 사람 이미지를 학습 과정에서 사용했는가? for object
-- (3): 사람 이미지를 학습 과정에서 사용했는가? for style
+  - (1): 사람 propmt 대해서 style 이 잘 입혀지는지 inference 를 했는가?
+  - (2): 사람 이미지를 학습 과정에서 사용했는가? for object
+  - (3): 사람 이미지를 학습 과정에서 사용했는가? for style
 
-- 사람을 학습
+|     | Specialist Diffusion | DreamArtist | Textual Inversion | DreamBooth | StyleDrop | CustomDiffusion | SVDiff |
+|-----|:--------------------:|:-----------:|:-----------------:|------------|:---------:|-----------------|--------|
+| (1) |           O          |      O      |         X         |      X     |     O     |        X        |    X   |
+| (2) |           X          |      O      |         O         |      X     |     X     |        X        |    X   |
+| (3) |           X          |      X      |         O         |      X     |     O     |        X        |    X   |
+
+- 사람 이미지를 학습
   - 사람을 object 로 보고 object를 학습하는 것과
   - 사람 이미지를 artistic style 의 일부에 포함시켜, style 학습에 사람 이미지를 넣는 것은 다르다.
     - 사람 이미지를 style 의 일부로 포함시키는 것을 중요시 여기는 reference paper 는 찾지 못했다. 
@@ -79,13 +85,6 @@
     - 우리가 실험해본 결과, 유의미한 결과를 가져온다. 
     - 즉, style personalization 에선 style 의 일부에 사람 이미지를 포함해야 한다!
     - Style personalization 을 주제로 잡은 StyleDrop 과 비교해야한다.
-
-|     | Specialist Diffusion | DreamArtist | Textual Inversion | DreamBooth | StyleDrop | CustomDiffusion | SVDiff |
-|-----|:--------------------:|:-----------:|:-----------------:|------------|:---------:|-----------------|--------|
-| (1) |           O          |      O      |         X         |      X     |     O     |        X        |    X   |
-| (2) |           X          |      O      |         O         |      X     |     X     |        X        |    X   |
-| (3) |           X          |      X      |         O         |      X     |     O     |        X        |    X   |
-
 
 
 ***
