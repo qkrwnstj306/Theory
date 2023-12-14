@@ -75,7 +75,7 @@
 - 사람 이미지를 학습
   - 사람을 object 로 보고 object를 학습하는 것과
   - 사람 이미지를 artistic style 의 일부에 포함시켜, style 학습에 사람 이미지를 넣는 것은 다르다.
-    - 사람 이미지를 style 의 일부로 포함시키는 것을 중요시 여기는 reference paper 는 찾지 못했다. 
+    - 사람 이미지를 style 의 일부로 포함시키는 것을 중요한 요소로 보는 reference paper 는 찾지 못했다. 
     - 그럼, 우리는 왜 중요한 요소로 보고, 포함시켰는가?
       - 사람을 inference 단계에서 뽑아내는 건 흔한 일이다.
       - 사람을 학습시키는 것은 매우 어려운 일이다. 즉, 복잡한 관계를 학습해야 한다. 그러므로 course <-> fine-grained feature 를 다양하게 학습할 수 있다.
