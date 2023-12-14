@@ -52,6 +52,9 @@
 
 - <a href='/이론 pdf 파일/딥러닝 논문/DreamBooth/DreamBooth.md'>DreamBooth</a>
   - Optimize entire T2I network weights
+  - 관심 주제를 설명하는 몇 장의 이미지에 대해 entire text-to-image model 을 fine-tuning 한다.
+  - 따라서 표현력이 풍부하며 세부적인 내용으로 주제를 캡쳐할 수 있다.
+  - Language drift & overfitting 을 완화하기 위해 class-specific prior preservation loss & class-specific prior image 를 도입했다.
 - <a href='/이론 pdf 파일/딥러닝 논문/Textual_inversion/Textual_inversion.md'>Textual Inversion</a>
   - Optimize text embedding
 - <a href='/이론 pdf 파일/딥러닝 논문/LoRA_231007_193848.pdf'>LoRA</a>
@@ -63,6 +66,7 @@
 - <a href='/이론 pdf 파일/딥러닝 논문/StyleDrop_230626_130819.pdf'>StyleDrop</a>
   - Use adapter tuning and finetunes a small set of adapter weights for style personalization
   - Generation in any style with a single input image
+  - Style 특화 personalization. 다른 방법들은 painting style 에 제한되어 있지만, StyleDrop 은 a single style reference image 만을 사용하여 3D rendering, design illustration, sculpture 등 다양한 시각적 스타일을 시연한다.
 - DreamArtist
   - One-shot personalization techniques by employing a positive-negative prompt tuning strategy
 - HyperNetwork
@@ -73,7 +77,7 @@
 
 - StyleBoost
   - Style personalization with T2I diffusion models using DreamBooth
-  - *vs StyleDrop*
+  - *vs StyleDrop & DreamBooth*
 
 
 ***
