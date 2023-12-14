@@ -74,7 +74,7 @@
 - <a href='/이론 pdf 파일/딥러닝 논문/ControlNet_231018_163832.pdf'>ControlNet</a>
   - Propose ways to incorporate new input conditioning such as depth
 - Specialist Diffusion
-
+  - Object 학습/ not style
 - StyleBoost
   - Style personalization with T2I diffusion models using DreamBooth
   - *vs StyleDrop & DreamBooth*

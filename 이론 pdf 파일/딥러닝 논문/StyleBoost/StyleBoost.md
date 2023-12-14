@@ -15,7 +15,7 @@
 
 > Core Idea
 <div align=center>
-<strong>"test1"</strong></br>
+<strong>"훈련 과정에서 사람 이미지를 적극적으로 도입/DreamBooth 의 class-prior image 변형/Style personalization"</strong></br>
 </div>
 
 ***
@@ -26,14 +26,14 @@
 ***
 
 ### <strong>Related Work</strong>
+- **DreamBooth & StyleDrop 에 대한 detail description -> 비교를 위해**
+- **Style Transfer 와의 다른 점 부각**
 
 - **Text-to-Image Models**
   - Models like Imagen, DALL-E2, Stable Diffusion (SD), Muse, and Parti lead recent advancements in the field of text-to-image synthesis. Particularly, these models demonstrate remarkable image generation capabilities when presented with textual prompts. The textual prompts serve as guiding mechanisms, allowing these models to transform written descriptions into visually appealing images. This functionality represents a significant advancement, empowering users to influence and enhance the generated visual content using the expressive power of natural language.
   - [Imagen, DALL-E2, Stable Diffusion(SD), Muse 및 Parti와 같은 모델은 텍스트-이미지 합성 분야에서 최근 발전을 주도하고 있습니다. 특히 이러한 모델은 텍스트 프롬프트가 표시될 때 놀라운 이미지 생성 기능을 보여줍니다. 텍스트 프롬프트는 안내 메커니즘 역할을 하여 이러한 모델이 서면 설명을 시각적으로 매력적인 이미지로 변환할 수 있도록 해줍니다. 이 기능은 사용자가 자연어의 표현력을 사용하여 생성된 시각적 콘텐츠에 영향을 미치고 향상시킬 수 있다는 점에서 상당한 발전을 의미합니다.]
 
 - **Personalization/Controlling Generative Models**
-  - **DreamBooth & StyleDrop 에 대한 detail description -> 비교를 위해**
-  - **Style Transfer 와의 다른 점 부각**
   - With the development of the field of text-image synthesis, methods of personalization to suit the user's needs have emerged one after another.
   - [텍스트-이미지 합성 분야의 발전에 따라, 사용자의 요구에 맞게 개인화를 시키는 방법들도 연달아 등장했습니다.]
   - The exploration of personalized text-to-image synthesis has been a subject of research, aiming to enhance and control images of personal assets through the utilization of pre-trained text-to-image models. Textual inversion is used as a key technique to facilitate the discovery of text representations (e.g. embeddings for special tokens) corresponding to a set of images.
@@ -60,6 +60,32 @@
 - In our pursuit of artistic style-specific personalization, we conduct experiments with human subjects, distinguishing our method from other personalization methods. Notably, our approach actively incorporates human images into the training process, setting it apart uniquely in the realm of personalization studies.
 - [우리는 예술적 스타일에 특화된 개인화를 추구하면서 인간을 대상으로 실험을 진행하며 우리의 방식을 다른 개인화 방식과 구별합니다. 특히, 우리의 접근 방식은 인간의 이미지를 훈련 과정에 적극적으로 통합하여 개인화 연구 영역에서 이를 독특하게 차별화합니다.]
 - *여기서 StyleDrop & DreamBooth 를 언급하는게 자연스러운가?*
+
+- List: [specialist,DreamArtist,textaul inversion,DreamBooth,StyleDrop,CustomDiffusion,SVDiff]
+- (1): 사람 propmt 대해서 style 이 잘 입혀지는지 inference 를 했는가?
+- (2): 사람 이미지를 학습 과정에서 사용했는가? for object
+- (3): 사람 이미지를 학습 과정에서 사용했는가? for style
+
+- 사람을 학습
+  - 사람을 object 로 보고 object를 학습하는 것과
+  - 사람 이미지를 artistic style 의 일부에 포함시켜, style 학습에 사람 이미지를 넣는 것은 다르다.
+    - 사람 이미지를 style 의 일부로 포함시키는 것을 중요시 여기는 reference paper 는 찾지 못했다. 
+    - 그럼, 우리는 왜 중요한 요소로 보고, 포함시켰는가?
+      - 사람을 inference 단계에서 뽑아내는 건 흔한 일이다.
+      - 사람을 학습시키는 것은 매우 어려운 일이다. 즉, 복잡한 관계를 학습해야 한다. 그러므로 course <-> fine-grained feature 를 다양하게 학습할 수 있다.
+      - 사람을 포함해서 학습하면 FID 측면에서도 성능이 올라간다. 
+
+- 근본적인 의문: 왜 사람 이미지를 style 의 일부로 포함시켜서 학습하지 않는가?
+    - 우리가 실험해본 결과, 유의미한 결과를 가져온다. 
+    - 즉, style personalization 에선 style 의 일부에 사람 이미지를 포함해야 한다!
+    - Style personalization 을 주제로 잡은 StyleDrop 과 비교해야한다.
+
+|     | Specialist Diffusion | DreamArtist | Textual Inversion | DreamBooth | StyleDrop | CustomDiffusion | SVDiff |
+|-----|:--------------------:|:-----------:|:-----------------:|------------|:---------:|-----------------|--------|
+| (1) |           O          |      O      |         X         |      X     |     O     |        X        |    X   |
+| (2) |           X          |      O      |         O         |      X     |     X     |        X        |    X   |
+| (3) |           X          |      X      |         O         |      X     |     O     |        X        |    X   |
+
 
 
 ***
