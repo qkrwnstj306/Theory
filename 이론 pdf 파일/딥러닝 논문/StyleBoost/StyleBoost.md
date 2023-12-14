@@ -28,11 +28,11 @@
 
 ### <strong>Related Work</strong>
 
-- Text-to-Image Models
+- **Text-to-Image Models**
   - Models like Imagen, DALL-E2, Stable Diffusion (SD), Muse, and Parti lead recent advancements in the field of text-to-image synthesis. Particularly, these models demonstrate remarkable image generation capabilities when presented with textual prompts. The textual prompts serve as guiding mechanisms, allowing these models to transform written descriptions into visually appealing images. This functionality represents a significant advancement, empowering users to influence and enhance the generated visual content using the expressive power of natural language.
   - [Imagen, DALL-E2, Stable Diffusion(SD), Muse 및 Parti와 같은 모델은 텍스트-이미지 합성 분야에서 최근 발전을 주도하고 있습니다. 특히 이러한 모델은 텍스트 프롬프트가 표시될 때 놀라운 이미지 생성 기능을 보여줍니다. 텍스트 프롬프트는 안내 메커니즘 역할을 하여 이러한 모델이 서면 설명을 시각적으로 매력적인 이미지로 변환할 수 있도록 해줍니다. 이 기능은 사용자가 자연어의 표현력을 사용하여 생성된 시각적 콘텐츠에 영향을 미치고 향상시킬 수 있다는 점에서 상당한 발전을 의미합니다.]
 
-- Personalization/Controlling Generative Models
+- **Personalization/Controlling Generative Models**
   - **DreamBooth & StyleDrop 에 대한 detail description -> 비교를 위해**
   - **Style Transfer 와의 다른 점 부각**
   - With the development of the field of text-image synthesis, methods of personalization to suit the user's needs have emerged one after another.
@@ -46,12 +46,12 @@
   - Several other models, including ControlNet, HyperNetwork, DreamArtist, and Specialist Diffusion, propose diverse techniques such as incorporating new input conditioning, predicting network weights through auxiliary neural networks, implementing one-shot personalization strategies, optimizing cross-attention layers, and optimizing singular values of weights.
   - [ControlNet, HyperNetwork, DreamArtist, 그리고 Specialist Diffusion을 포함한 여러 모델은 새로운 입력 조건 통합, 부가 신경망을 통한 네트워크 가중치 예측, 일회성 개인화 전략 도입, 교차 주의 계층 최적화, 그리고 가중치의 특이값 최적화와 같은 다양한 기술을 제안합니다.]
 
-- Style Transfer(Diffusion-based)
-  - While both [Ours] and traditional Neural Style Transfer (NST) produce stylized images, they differ fundamentally. [StyleBoost], based on text-to-image models, generates content, whereas NST relies on an image to guide content synthesis based on spatial structure.
-  - [[Ours]와 전통적인 Neural Style Transfer (NST)은 모두 스타일화된 이미지를 생성하나, 근본적으로 다릅니다. [StyleBoost]는 텍스트-이미지 모델을 기반으로 내용을 생성하며, NST는 이미지를 사용하여 공간 구조를 기반으로 내용 합성을 안내합니다.]
+- **Style Transfer**
+  - While both **[Ours]** and traditional Neural Style Transfer (NST) produce stylized images, they differ fundamentally. **[StyleBoost]**, based on text-to-image models, generates content, whereas NST relies on an image to guide content synthesis based on spatial structure.
+  - [**[Ours]**와 전통적인 Neural Style Transfer (NST)은 모두 스타일화된 이미지를 생성하나, 근본적으로 다릅니다. **[StyleBoost]**는 텍스트-이미지 모델을 기반으로 내용을 생성하며, NST는 이미지를 사용하여 공간 구조를 기반으로 내용 합성을 안내합니다.]
   - Under the category of style transfer, traditional methods (CNN/GAN based) and diffusion-based methods, including Diffusion-Enhanced PatchMatch, StyleDiffusion, and Inversion-based Style Transfer, present diverse techniques. 
   - [스타일 전송 범주에서 전통적인 방법(CNN/GAN 기반)과 확산 기반 방법, 그 중 Diffusion-Enhanced PatchMatch, StyleDiffusion, 그리고 Inversion-based Style Transfer를 포함한 다양한 기술들이 제시되고 있습니다.]
-  - <CNN/GAN based description>
+  - **<CNN/GAN based description>**
   - Diffusion-Enhanced PatchMatch employs patch-based techniques with whitening and coloring transformations in latent space. StyleDiffusion proposes interpretable and controllable content-style disentanglement, addressing challenges in CLIP image space. Meanwhile, Inversion-based Style Transfer focuses on utilizing textual descriptions for synthesis.
   - [Diffusion-Enhanced PatchMatch는 잠재 공간에서 화이트닝 및 컬러링 변환을 사용하는 패치 기반 기술을 도입합니다. StyleDiffusion은 CLIP 이미지 공간에서의 도전 과제를 해결하기 위해 해석 가능하고 제어 가능한 콘텐츠-스타일 이탈을 제안합니다. 한편, Inversion-based Style Transfer는 합성을 위해 텍스트 설명을 활용하는 데 중점을 둡니다.]
   - During the inference stage, models like DreamStyler showcase advanced textual inversion, leveraging techniques such as BLIP-2 and an image encoder to generate content through the inversion of text and content images while binding style to text.
