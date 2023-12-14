@@ -8,6 +8,7 @@
 [Method](#method)</br>
 [Experiment](#experiment)</br>
 [Conclusion](#conclusion)</br>
+[Reference](#reference)</br>
 
 <p align="center">
 <img src='./img1.png'>
@@ -61,7 +62,7 @@
 - [우리는 예술적 스타일에 특화된 개인화를 추구하면서 인간을 대상으로 실험을 진행하며 우리의 방식을 다른 개인화 방식과 구별합니다. 특히, 우리의 접근 방식은 인간의 이미지를 훈련 과정에 적극적으로 통합하여 개인화 연구 영역에서 이를 독특하게 차별화합니다.]
 - *여기서 StyleDrop & DreamBooth 를 언급하는게 자연스러운가?*
 
-- List: [specialist,DreamArtist,textaul inversion,DreamBooth,StyleDrop,CustomDiffusion,SVDiff]
+- List: [Specialist Diffusion,DreamArtist,textaul inversion,DreamBooth,StyleDrop,CustomDiffusion,SVDiff]
   - (1): 사람 propmt 대해서 style 이 잘 입혀지는지 inference 를 했는가?
   - (2): 사람 이미지를 학습 과정에서 사용했는가? for object
   - (3): 사람 이미지를 학습 과정에서 사용했는가? for style
@@ -72,7 +73,7 @@
 | (2) |           X          |      O      |         O         |      X     |     X     |        X        |    X   |
 | (3) |           X          |      X      |         O         |      X     |     O     |        X        |    X   |
 
-- 사람 이미지를 학습
+- 사람 이미지를 학습 [Method]
   - 사람을 object 로 보고 object를 학습하는 것과
   - 사람 이미지를 artistic style 의 일부에 포함시켜, style 학습에 사람 이미지를 넣는 것은 다르다.
     - 사람 이미지를 style 의 일부로 포함시키는 것을 중요한 요소로 보는 reference paper 는 찾지 못했다. 
@@ -81,16 +82,18 @@
       - 사람을 학습시키는 것은 매우 어려운 일이다. 즉, 복잡한 관계를 학습해야 한다. 그러므로 course <-> fine-grained feature 를 다양하게 학습할 수 있다.
       - 사람을 포함해서 학습하면 FID 측면에서도 성능이 올라간다. 
 
-- 근본적인 의문: 왜 사람 이미지를 style 의 일부로 포함시켜서 학습하지 않는가?
+- 근본적인 의문: 왜 사람 이미지를 style 의 일부로 포함시켜서 학습하지 않는가? [Method]
     - 우리가 실험해본 결과, 유의미한 결과를 가져온다. 
     - 즉, style personalization 에선 style 의 일부에 사람 이미지를 포함해야 한다!
     - Style personalization 을 주제로 잡은 StyleDrop 과 비교해야한다.
 
-- StyleDrop 과의 비교.
-  - Style personalization 관점에서 비슷하지만, 사실 몇 장의 이미지로 학습하느냐가 다르다. StyleDrop 의 경우 한 장의 이미지로 style 을 학습하지만, 본 논문의 경우 다수의 이미지로 style 을 학습한다. 즉, 본 논문의 방법은 포괄적이면서도 광범위한 범위의 style binding 을 학습하는 것이다. 
-  - 따라서, 학습 비교 대상은 StyleDrop 이 아니라 넓은 의미에서의 style binding 이 가능한 method 들인 DreamBooth, Textual Inversion, LoRA, Custom Diffusion 이다. 
 
-- Text-to-Image generative model 의 personalization 이기 때문에 style 학습 뿐만 아니라, text 도 잘 반영해야 한다. 
+[StyleDrop 과의 비교]
+- StyleDrop and our proposed method share similarities in terms of style personalization, but they diverge in the number of images used for training. While StyleDrop learns style from a single image, our approach trains style using a diverse set of images. In essence, our method aims for comprehensive and extensive style binding, contrasting with the single-image style learning approach of StyleDrop. Therefore, the comparative benchmarks in our study encompass methods capable of broad-spectrum style binding, such as DreamBooth, Textual Inversion, LoRA, and Custom Diffusion.
+- [StyleDrop과 제안한 방법은 스타일 개인화 측면에서 유사성을 공유하지만 훈련에 사용되는 이미지 수에 차이가 있습니다. StyleDrop이 단일 이미지에서 스타일을 학습하는 반면, 우리의 접근 방식은 다양한 이미지 세트를 사용하여 스타일을 학습합니다. 본질적으로 우리의 방법은 StyleDrop의 단일 이미지 스타일 학습 접근 방식과 대조되는 포괄적이고 광범위한 스타일 바인딩을 목표로 합니다. 따라서 본 연구의 비교 벤치마크에는 DreamBooth, Textual Inversion, LoRA 및 Custom Diffusion과 같은 광범위한 스펙트럼 스타일 바인딩이 가능한 방법이 포함됩니다.]
+
+
+- Text-to-Image generative model 의 personalization 이기 때문에 style 학습 뿐만 아니라, text 도 잘 반영해야 한다. [Experiment]
   - 따라서 style 의 경우, LPIPS/KID/FID/Stlye loss 를 이용해 측정하고
   - Text alignment 의 경우, CLIP score 로 측정한다. 
 
@@ -136,3 +139,39 @@
 
 ### <strong>Question</strong>
 
+***
+
+### <strong>Reference</strong>
+- Text-to-Image Synthesis
+  - Imagen, DALL-E2, Stable Diffusion, Muse, Parti
+
+- Personalization/Controlling Generative Models
+  - Textual Inversion
+  - DreamBooth
+  - LoRA
+  - Custom Diffusion
+  - SVDiff
+  - StyleDrop
+  - ControlNet
+  - HyperNetwork
+  - DreamArtist
+  - Specialist Diffusion
+
+- Style Transfer (Diffusion-based)
+  - Diffusion-Enhanced PatchMatch
+  - StyleDiffusion
+  - Inversion-based Style Transfer
+  - DreamStyler
+    - BLIP-2
+
+
+- 기타
+  - YOLO
+  - inpainting
+  - upscaler
+  - clip
+  - fid
+  - kid
+  - DDPM
+  - GAN
+  - HuggingFace
