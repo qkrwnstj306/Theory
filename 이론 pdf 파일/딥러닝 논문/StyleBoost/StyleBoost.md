@@ -86,6 +86,13 @@
     - 즉, style personalization 에선 style 의 일부에 사람 이미지를 포함해야 한다!
     - Style personalization 을 주제로 잡은 StyleDrop 과 비교해야한다.
 
+- StyleDrop 과의 비교.
+  - Style personalization 관점에서 비슷하지만, 사실 몇 장의 이미지로 학습하느냐가 다르다. StyleDrop 의 경우 한 장의 이미지로 style 을 학습하지만, 본 논문의 경우 다수의 이미지로 style 을 학습한다. 즉, 본 논문의 방법은 포괄적이면서도 광범위한 범위의 style binding 을 학습하는 것이다. 
+  - 따라서, 학습 비교 대상은 StyleDrop 이 아니라 넓은 의미에서의 style binding 이 가능한 method 들인 DreamBooth, Textual Inversion, LoRA, Custom Diffusion 이다. 
+
+- Text-to-Image generative model 의 personalization 이기 때문에 style 학습 뿐만 아니라, text 도 잘 반영해야 한다. 
+  - 따라서 style 의 경우, LPIPS/KID/FID/Stlye loss 를 이용해 측정하고
+  - Text alignment 의 경우, CLIP score 로 측정한다. 
 
 ***
 
