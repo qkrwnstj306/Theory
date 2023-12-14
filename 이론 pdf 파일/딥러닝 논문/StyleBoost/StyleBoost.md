@@ -25,6 +25,27 @@
 
 
 ***
+### Test
+
+- Text-to-Image Models
+  - Recent Advancements in text-to-image models, exemplified by models like Imagen, DALL-E2, Stable Diffusion (SD), Muse, and Parti, demonstrate impressive image generation capabilities when provided with a textual prompt.
+
+- Personalization/Controlling Generative Models
+  - *The exploration of personalized text-to-image synthesis has been a subject of research, aiming to enhance and control images of personal assets through the utilization of pre-trained text-to-image models. Textual inversion serves as a key technique, facilitating the discovery of text representations (e.g., embedding, token) corresponding to a set of images without necessitating changes to the parameters of the text-to-image model.*
+  - DreamBooth, a representative model in this category, fine-tunes the entire text-to-image model using a small set of images that describe the subject of interest. This approach enhances expressiveness and enables detailed subject capture. To address language drift and overfitting, DreamBooth introduces class-specific prior preservation loss and class-specific prior image. Further advancements in parameter-efficient fine-tuning (PEFT), such as LoRA or adapter tuning, contribute to efficiency improvements.
+  - Additionally, methods like Custom Diffusion and SVDiff extend the capabilities of DreamBooth, enabling the simultaneous synthesis of multiple subjects. In contrast, the innovative StyleDrop model diverges by building upon Muse, a generative vision transformer, rather than relying on text-to-image diffusion models. StyleDrop utilizes adapter tuning and fine-tunes a small set of adapter weights, facilitating style personalization. Notably, it allows the generation of content in various visual styles using a single style reference image, spanning domains like 3D rendering, design illustration, and sculpture.
+  - Several other models, including ControlNet, HyperNetwork, DreamArtist, and Specialist Diffusion, propose diverse techniques such as incorporating new input conditioning, predicting network weights through auxiliary neural networks, implementing one-shot personalization strategies, optimizing cross-attention layers, and optimizing singular values of weights.
+
+- Style Transfer(Diffusion-based)
+  - *While both StyleDrop and traditional Neural Style Transfer (NST) produce stylized images, they differ fundamentally. StyleDrop, based on text-to-image models, generates content, whereas NST relies on an image to guide content synthesis based on spatial structure.*
+  - Under the category of style transfer, traditional methods (CNN/GAN based) and diffusion-based methods, including Diffusion-Enhanced PatchMatch, StyleDiffusion, and Inversion-based Style Transfer, present diverse techniques. 
+  - <CNN/GAN based description>
+  - Diffusion-Enhanced PatchMatch employs patch-based techniques with whitening and coloring transformations in latent space. StyleDiffusion proposes interpretable and controllable content-style disentanglement, addressing challenges in CLIP image space. Meanwhile, Inversion-based Style Transfer focuses on utilizing textual descriptions for synthesis.
+  - During the inference stage, models like DreamStyler showcase advanced textual inversion, leveraging techniques such as BLIP-2 and an image encoder to generate content through the inversion of text and content images while binding style to text.
+  - *In our pursuit of artistic style-specific personalization, we conduct experiments with human subjects, distinguishing our method from others. Notably, our approach incorporates actual human images in the training process, setting it apart in the realm of personalization studies.*
+ 
+
+***
 
 ### <strong>Related Work</strong>
 - Text-to-Image Models 
