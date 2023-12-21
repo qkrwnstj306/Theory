@@ -4,11 +4,10 @@
 ## Bayes's Theorem
 *MLE &MAE*
 
-[Intro](#intro)</br>
-[Related Work](#related-work)</br>
-[Method](#method)</br>
-[Experiment](#experiment)</br>
-[Conclusion](#conclusion)</br>
+[Definition](#definition)</br>
+[MLE](#maximum-likelihood-estimation)</br>
+[MAP](#maximum-a-posteriori-estimation)</br>
+
 
 
 
@@ -139,54 +138,19 @@ $$ \frac{\partial}{\partial\theta}L(\theta|D) = \frac{\partial}{\partial\theta}\
 - MAP는 MLE와 유사하지만, 사전확률(prior)을 고려하여 모델의 파라미터를 추정하는 방법이다. **사후확률을 최대화**하는 파라미터를 찾는 것이 목표이다.
 - 우리의 지식이나 경험을 추가하여 더욱 그럴듯한 확률을 추정하고자 한다. (e.g., 동전은 평평하다)
 
-$$ \hat{\theta}^{MLE} = \text{arg max}_\theta p(\theta|D) $$ 
+$$ \hat{\theta}^{MAP} = \text{arg max}_\theta p(\theta|D) $$ 
 
 $$ = \text{argmax}_\theta {\frac{p(D|\theta)p(\theta)}{p(D)}} $$
 
 - $\theta$ 에 대해서 $p(D)$ 는 상수 취급이므로, 제거할 수 있다.
 
-$$ \hat{\theta}^{MLE} \propto \text{arg max}_\theta {p(D|\theta)p(\theta)} $$
+$$ \hat{\theta}^{MAP} \propto \text{arg max}_\theta {p(D|\theta)p(\theta)} $$
 
 - $\log$ 를 씌우면,
 
-$$ \hat{\theta}^{MLE} \propto \text{arg max}_\theta {\log{p(D|\theta)} + \log{p(\theta)}} $$
+$$ \hat{\theta}^{MAP} \propto \text{arg max}_\theta {\log{p(D|\theta)} + \log{p(\theta)}} $$
 
 - Prior 를 고려해서 $\theta$ 를 추정하는 것을 알 수 있다. 이때, uniform prior distribution 이라고 한다면 MAP 는 MLE 와 같아지게 된다. 따라서, MLE 를 MAP 의 특수한 경우라고 볼 수 있다. 
   - Uniform prior distribution 이라고 하면, $p(\theta)$ 가 모든 $\theta$ 에 대해서 constant 이므로 $p(\theta)$ 항을 무시할 수 있다. 
   - 또한, prior 를 일종의 regularizer 의 역할을 한다고 볼 수도 있는데, data 가 적은 상황에서 prior 의 정보를 고려함으로써, overfitting 을 완화할 수도 있다.
   - 사실 data 가 무한정으로 많다면 MAP 에서의 첫 번째 항이 지배적이게 되므로 결국 MAP 와 MLE 가 같아지는 상황에 도달하게 된다. 즉, 우리의 사전 지식은 더 이상 고려되지 않는다. 
-
-### <strong>Intro</strong>
-
-
-***
-
-### <strong>Related Work</strong>
-
-
-***
-
-### <strong>Method</strong>
-
-
-***
-
-### <strong>Experiment</strong>
-
-
-***
-
-### <strong>Conclusion</strong>
-
-
-***
-
-### <strong>Question</strong>
-
-
-
-![](img_path)
-<a href="">link</a>
-
-
-> 인용구
