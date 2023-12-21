@@ -120,6 +120,9 @@ $$ max_\theta \Sigma_{i=1}^{N}{\log{p_\theta(x_i)}} $$
 
 - Score matching 을 이용하여 loss 를 바꿔주면, real log distribution 을 몰라도 된다. 하지만 여러 번의 backpropagation 을 해야해서 계산량이 많다. 
 - 따라서 scalable 하지 않다. 
+- Score Matching 의 직관적인 이해: 우리의 목적은 다음의 loss function 을 minimize 하는 것이다. 
+  - 첫 번째 텀 (Trace) 은 $-inf$ 로 가야하는데 score fucntion 에 한 번 더 미분한 값이니 ($p(x)$ 를 $2$ 번 미분) $p(x)$ 의 local maxima 를 의미한다. 
+  - 두 번째 텀 (제곱 텀) 은 score function 이므로 분포의 꼭대기에 도달했다면 당연하게도 $0$ 의 값을 가져야 한다.  
 
 <p align="center">
 <img src='./img15.png'>
@@ -132,6 +135,12 @@ $$ max_\theta \Sigma_{i=1}^{N}{\log{p_\theta(x_i)}} $$
 <p align="center">
 <img src='./img17.png'>
 </p>
+
+- Score Matching 증명
+  1. Expectation 을 적분으로 풀어서 쓴다.
+  2. 제곱을 풀어쓴다.
+  3. $\theta$ 와 관련 없는 항은 지운다.
+  4. 마지막 항이 문제인데, 부분 적분으로 풀어서 쓰면 앞의 텀이 $-inf / inf$ 일때, sampling 될 확률 값을 $0$ 으로 가정하여 소거한다. (실제로 그 범위에 있을 확률은 매우 적으니까)
 
 <p align="center">
 <img src='./img23.png'>
