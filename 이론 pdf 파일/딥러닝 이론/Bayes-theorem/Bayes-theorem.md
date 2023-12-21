@@ -145,11 +145,11 @@ $$ = \text{argmax}_\theta {\frac{p(D|\theta)p(\theta)}{p(D)}} $$
 
 - $\theta$ 에 대해서 $p(D)$ 는 상수 취급이므로, 제거할 수 있다.
 
-$$ \hat{\theta}{MLE} \propto \argmax_\theta {p(D|\theta)p(\theta)} $$
+$$ \hat{\theta}{MLE} \propto \text{arg max}_\theta {p(D|\theta)p(\theta)} $$
 
 - $\log$ 를 씌우면,
 
-$$ \hat{\theta}{MLE} \propto \argmax_\theta {\log{p(D|\theta)} + \log{p(\theta)}} $$
+$$ \hat{\theta}{MLE} \propto \text{arg max}_\theta {\log{p(D|\theta)} + \log{p(\theta)}} $$
 
 - Prior 를 고려해서 $\theta$ 를 추정하는 것을 알 수 있다. 이때, uniform prior distribution 이라고 한다면 MAP 는 MLE 와 같아지게 된다. 따라서, MLE 를 MAP 의 특수한 경우라고 볼 수 있다. 
   - Uniform prior distribution 이라고 하면, $p(\theta)$ 가 모든 $\theta$ 에 대해서 constant 이므로 $p(\theta)$ 항을 무시할 수 있다. 
