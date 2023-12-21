@@ -139,7 +139,7 @@ $$ \frac{\partial}{\partial\theta}L(\theta|D) = \frac{\partial}{\partial\theta}\
 - MAP는 MLE와 유사하지만, 사전확률(prior)을 고려하여 모델의 파라미터를 추정하는 방법이다. **사후확률을 최대화**하는 파라미터를 찾는 것이 목표이다.
 - 우리의 지식이나 경험을 추가하여 더욱 그럴듯한 확률을 추정하고자 한다. (e.g., 동전은 평평하다)
 
-$$ \hat{\theta}{MLE} = \argmax_{\theta}p(\theta|D) = \argmax_{\theta}{\frac{p(D|\theta)p(\theta)}{p(D)}} $$
+$$ \hat{\theta}{MLE} = \underset{\theta}{\operatorname{\argmax}}p(\theta|D) = \argmax_{\theta}{\frac{p(D|\theta)p(\theta)}{p(D)}} $$
 
 - $\theta$ 에 대해서 $p(D)$ 는 상수 취급이므로, 제거할 수 있다.
 
