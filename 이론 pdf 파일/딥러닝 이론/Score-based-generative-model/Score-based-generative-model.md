@@ -1,5 +1,4 @@
-![header](https://capsule-render.vercel.app/api?type=waving&color=auto&height=80&section=header&text=Welcome%20Theory%20Review&fontSize=50)
-
+<img src="https://capsule-render.vercel.app/api?type=waving&color=auto&height=80&section=header&text=Welcome%20Theory%20Review&fontSize=50" width="100%">
 
 ## Score-Based Generative Models
 *A representative reference: <a href='https://yang-song.net/blog/2021/score/'>Yang Song blog</a>*
@@ -21,6 +20,7 @@ $$ p(x) = \frac{p(x|y)p(y)}{p(y|x)} $$
 - 존재하는 생성 모델은 확률 분포를 표현하는 방법에 따라 두 category 로 분류할 수 있다.
     1. Likelihood-based models
         - 분포의 PDF/PMF 를 (approximate) maximum likelihood 를 통해 직접적으로 학습한다. 
+        - <a href='../Bayes-theorem/Bayes-theorem.md'>Bayes's Theorem 정리</a>
         - E.g., 
           - Autoregressive models (PixelRNN, etc.)
           - Normalizing flow models
@@ -32,6 +32,7 @@ $$ p(x) = \frac{p(x|y)p(y)}{p(y|x)} $$
         - 확률 분포를 sampling process 로 암시적으로 나타낸다. 
         - E.g.,    
           - GAN: 확률 분포를 직접 근사하지는 않고, 다른 loss 를 이용한다. 이때 이 loss 를 푸는 과정이 암시적으로는 확률 분포를 푸는 문제와 동일하다고 볼 수 있다. 즉, 간접적으로 푸는 형태.
+            - Generator: $p(x) = \int_z{p(x|z)p(z)dz}$ *implicit PDF 학습*
 
 <p align="center">
 <img src='./img1.png'>
@@ -52,6 +53,8 @@ $$ p(x) = \frac{p(x|y)p(y)}{p(y|x)} $$
 >> MNIST 를 예를 들면, mode 는 총 0-9까지 10개이고, generator 는 random noise 를 입력으로 받아서 생성한 이미지가 discriminator 를 속이기를 원한다. 이때, 0-9 의 다양한 mode 를 이용하지 않고 하나의 mode 만 생성하는 것.
 
 > MCMC: Markov chain Monte Carlo
+
+> Posterior: 사후 확률은 (Likelihood * Prior) / Evidence 로 정의되는데, Evidence 를 직접 계산하기 위해서는 전체 변수들에 대해 적분을 수행해야 한다. (Marginalize) 변수가 많아질수록 정확한 사후 확률 분포를 계산하기 어렵기 때문에 MCMC 같은 방법을 이용하여 근사한다. 
 
 - 본 review 에선, 이런 제한을 우회하면서 확률 분포를 표현하는 다른 방법을 소개한다.
     - Normalizing constant 가 tractable 하지 않아도 된다.
