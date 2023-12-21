@@ -117,7 +117,7 @@ $$ p(사랑|초콜릿) = \frac{p(초콜릿|사랑)p(사랑)}{p(초콜릿)} = \fr
   - 이때, 사후확률 (posterior) 이나 사전확률 (prior) 은 고려되지 않는다.
   - 주어진 데이터가 분포를 대표할 수 있는 데이터라는 가정이 있다. 즉, 확률 분포에서 독립적으로 추출되었다.
 
-$$ \hat{\theta}_{MLE} = \argmax_{\theta}p(D|\theta) = \argmax_{\theta}\prod_{i=1}^{N} p(D_i|\theta) $$
+$$ \hat{\theta}{MLE} = \argmax_{\theta}p(D|\theta) = \argmax_{\theta}\prod_{i=1}^{N} p(D_i|\theta) $$
 
 - log 를 씌우면, log-likelihood function $L(\theta|D)$ 이 된다.
   - log-likelihood fucntion 과 사후확률과는 다르다.
