@@ -22,8 +22,8 @@
 
 ### <strong>Intro</strong>
 - 자연어에 내재된 모호성(ambiguities inherent in natural language)과 out of distribution effects 로 인해서 특정 디자인 패턴, 질감 또는 재질을 활용하는 이미지 스타일을 합성하는 것은 어렵다.
-- 본 논문이서는 StyleDrop 이라는 것을 소개하여, 특정 스타일을 정확하게 따르는 이미지를 생성할 수 있게 하는 것이 목적이다. 
-- 매우 적은 learnable parameter(총 parameter 의 $1\%$ 미만)를 fine-tuning 하여 새로운 스타일을 효과적으로 학습한다. 또한 인간/자동 피드백을 사용하여 반복적인 훈련을 통해 품질을 향상시킨다. 
+- 본 논문에서는 StyleDrop 이라는 것을 소개하여, 특정 스타일을 정확하게 따르는 이미지를 생성할 수 있게 하는 것이 목적이다. 
+- 매우 적은 learnable parameter(총 parameter 의 $1$ % 미만)를 fine-tuning 하여 새로운 스타일을 효과적으로 학습한다. 또한 인간/자동 피드백을 사용하여 반복적인 훈련을 통해 품질을 향상시킨다. 
 - 더욱이, 사용자가 원하는 스타일을 지정하는 단일 이미지(one reference image)만 제공해도 인상적인 결과를 제공할 수 있다.
 - Muse 를 통해 구현된 StyleDrop 이 Stable diffusion/Imagen 에 적용된 DreamBooth & Textual Inversion 과 같은 다른 방법들을 앞선다는 것을 보여준다.  
 
@@ -54,7 +54,7 @@
 - 예를 들어, 반 고흐는 다양한 스타일의 그림을 가지고 있다. 따라서 단순히 "반 고흐" 라는 텍스트로 이미지를 뽑아낸다면 반 고흐 스타일 중 하나(랜덤으로 선택된) 또는 예측할 수 없는 여러 스타일의 혼합으로 이어질 수 있다. 
 - 따라서 본 논문에서는 하나의 이미지만 제공하여 스타일화시킨다. 
 - 총 $3$가지 component 로 이루어져 있다.   
-  - A transformer-based text-to-image generation model
+  - A transformer-based text-to-image generation model (masked generative image transformer)
     - Muse 가 Imagen/Stable Diffusion 과 같은 diffusion-based model 에 비해 단일 이미지에서 미세한 스타일을 학습하는 데 유리하다는 것을 발견
   - Adapter tuning
     - Large text-to-image transformer 를 효율적으로 style-tuning
@@ -67,6 +67,10 @@
 ***
 
 ### <strong>Experiment</strong>
+
+- Evaluation: 
+  - Text score (CLIP score: cosine similarity of image-text embedding)
+  - Style score (CLIP score: cosine similarity of synthesized image-style reference image embedding)
 
 <p align="center">
 <img src='./img3.png'>

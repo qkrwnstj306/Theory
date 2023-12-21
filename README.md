@@ -68,7 +68,7 @@ Theory for ML.
 - <a href='./이론 pdf 파일/딥러닝 이론/Information Theory_231004_170713.pdf'>Information Theory</a>
 - <a href='./이론 pdf 파일/딥러닝 이론/Layer와 node의 독립성_230518_152033.pdf'>Layer와 node의 독립성</a>
 - <a href='./이론 pdf 파일/딥러닝 이론/Loss funtion이 구불구불해지는 이유_230508_123952.pdf'>Loss funtion이 구불구불해지는 이유</a>
-- <a href='./이론 pdf 파일/딥러닝 이론/MLE & Logistic regression + Softmax_231005_132659.pdf'>MLE & Logistic regression + Softmax</a>
+- <a href='./이론 pdf 파일/딥러닝 이론/Logistic regression + Softmax_231221_124212.pdf'>Logistic regression + Softmax</a>
 - <a href='./이론 pdf 파일/딥러닝 이론/Normalization_230602_193420.pdf'>Normalization</a>
 - <a href='./이론 pdf 파일/딥러닝 이론/Regularization_231003_231904.pdf'>Regularization</a>
 - <a href='./이론 pdf 파일/딥러닝 이론/Reparameterization trick_230620_201328.pdf'>Reparameterization trick</a>
