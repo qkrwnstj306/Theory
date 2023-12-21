@@ -117,7 +117,7 @@ $$ p(사랑|초콜릿) = \frac{p(초콜릿|사랑)p(사랑)}{p(초콜릿)} = \fr
   - 이때, 사후확률 (posterior) 이나 사전확률 (prior) 은 고려되지 않는다.
   - 주어진 데이터가 분포를 대표할 수 있는 데이터라는 가정이 있다. 즉, 확률 분포에서 독립적으로 추출되었다.
 
-$$ \hat{\theta}{MLE} = \argmax_{\theta}{p(D|\theta)} = \argmax_{\theta}\prod_{i=1}^{N} p(D_i|\theta) $$
+$$ \hat{\theta}^{MLE} = \text{argmax}_\theta{p(D|\theta)} = \text{argmax}_\theta \prod_{i=1}^{N} p(D_i|\theta) $$
 
 - log 를 씌우면, log-likelihood function $L(\theta|D)$ 이 된다.
   - log-likelihood fucntion 과 사후확률과는 다르다.
@@ -145,11 +145,11 @@ $$ = \text{argmax}_\theta {\frac{p(D|\theta)p(\theta)}{p(D)}} $$
 
 - $\theta$ 에 대해서 $p(D)$ 는 상수 취급이므로, 제거할 수 있다.
 
-$$ \hat{\theta}{MLE} \propto \text{arg max}_\theta {p(D|\theta)p(\theta)} $$
+$$ \hat{\theta}^{MLE} \propto \text{arg max}_\theta {p(D|\theta)p(\theta)} $$
 
 - $\log$ 를 씌우면,
 
-$$ \hat{\theta}{MLE} \propto \text{arg max}_\theta {\log{p(D|\theta)} + \log{p(\theta)}} $$
+$$ \hat{\theta}^{MLE} \propto \text{arg max}_\theta {\log{p(D|\theta)} + \log{p(\theta)}} $$
 
 - Prior 를 고려해서 $\theta$ 를 추정하는 것을 알 수 있다. 이때, uniform prior distribution 이라고 한다면 MAP 는 MLE 와 같아지게 된다. 따라서, MLE 를 MAP 의 특수한 경우라고 볼 수 있다. 
   - Uniform prior distribution 이라고 하면, $p(\theta)$ 가 모든 $\theta$ 에 대해서 constant 이므로 $p(\theta)$ 항을 무시할 수 있다. 
