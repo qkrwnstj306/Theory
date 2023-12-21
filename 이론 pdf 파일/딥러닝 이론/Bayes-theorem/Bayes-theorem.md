@@ -41,7 +41,7 @@ $$ p(\theta|D) = \frac{p(D,\theta)}{p(D)} = \frac{p(D|\theta)p(\theta)}{p(D)} = 
 
 >> $\theta$ 가 연속적이라면, $p(D) = \int{p(D,\theta)d\theta}$
 
->> Posterior: 사후 확률은 (Likelihood * Prior) / Evidence 로 정의되는데, Evidence 를 직접 계산하기 위해서는 전체 변수들에 대해 적분을 수행해야 한다. (Marginalize) 변수가 많아질수록 정확한 사후 확률 분포를 계산하기 어렵기 때문에 MCMC 같은 방법을 이용하여 근사한다. 
+>> Posterior: 사후 확률은 (Likelihood * Prior) / Evidence 로 정의되는데, Evidence 를 직접 계산하기 위해서는 전체 변수들에 대해 적분을 수행해야 한다 (Marginalize). 변수가 많아질수록 정확한 사후 확률 분포를 계산하기 어렵기 때문에 MCMC 같은 방법을 이용하여 근사한다. 
 
 - 베이즈 정리를 보는 두 가지 관점
   - 전통적인 관점: 빈도주의 (frequentism)
