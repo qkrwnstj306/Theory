@@ -15,6 +15,10 @@ $$ utilize \ \nabla_x \log{p(x)} $$
 
 ### <strong>Intro</strong>
 
+*Generative Modeling by Estimating Gradients of the Data Distribution, 2019, Neurips, 1825 citation*
+
+*Score-based generative modeling through stochastic differential equations, 2020, arXiv, 2238 citation*
+
 $$ p(x) = \frac{p(x|y)p(y)}{p(y|x)} $$
 
 - 존재하는 생성 모델은 확률 분포를 표현하는 방법에 따라 두 category 로 분류할 수 있다.
@@ -160,6 +164,7 @@ Langevin dynamics
 - Score-based model $s_\theta(x) \approx \nabla_x \log{p(x)}$ 을 학습했으면, Langevin dynamics 라고 불리는 iterative procedure 을 통해 sampling 을 하면 된다. 
 - Langevin dynamics 는 오직 score function $\nabla_x \log{p(x)}$ 만을 사용해, $p(x)$ 로부터 MCMC procedure 를 제공한다.  
 - 구체적으로, 이 방법은 arbitrary prior distribution $x_0 \sim \pi(x)$ 에서 다음을 반복한다.
+- $\epsilon$ > 0: step size
 - 마지막 term 은 일종의 perturbation 을 추가하여 deterministic 한 local maxima 에 빠지지 않게 도와주는 역할이다. 
 - **Thus, sampling 시 score 방향으로 가되 local maxima 에 빠져나가려고 perturbation 을 추가했다. 즉, sampling 의 개선**
 
@@ -176,6 +181,7 @@ Langevin dynamics
 - Noisy 한 data 간의 score matching 을 학습한다. 
 - Noisy 하기 때문에 clean data 의 score matching 과 정확하지는 않지만, 그 noise 가 충분히 작으면 원래 데이터의 score 를 예측 가능하다는 점에서 효과적이다.
 - Denoising score matching 을 통해 얻고자 한 점은, scalable 하면서도 computation cost 가 비싸지 않은 loss 를 구하고자 하는 것이다.
+- 하지만, 정확한 data distribution 의 score 를 계산하지는 못한다. 즉 noise 가 낀 data 의 distribution 을 계산하는 것
 - **Thus, 학습 데이터에 약간의 noise 를 추가하여 loss function 을 내가 표현할 수 있는 값들로 바꾸면서 동시에 scalability 를 챙겼다. 즉, loss 의 개선**
 
 <p align="center">
@@ -184,9 +190,23 @@ Langevin dynamics
 
 - $\log{p(x)}$ 가 noise 가 추가됨으로써, 다음과 같이 변환된다. $\rightarrow \log{q_{\sigma}(\tilde{x}|x)}$
 
+$$ q(\tilde{x}|x): Noise \ distribution $$
+
+- $q(\tilde{x})$ 는 $q(\tilde{x}|x)$ 를 $x$ 에 대해서 marginalize 해서 구할 수 있다.
+
+$$ q(\tilde{x}) = \int  q(\tilde{x}|x) p_{data}(x)dx $$
+
+$$ E_{q(\tilde{x})}[\frac{1}{2}||  \nabla_x \log{p_\theta(\tilde{x})} - \nabla_x \log{q(\tilde{x})} ||_2^2] = E_{q(\tilde{x})}[\frac{1}{2}||  \nabla_x \log{p_\theta(\tilde{x})} - \nabla_x \log{q(\tilde{x}|x)} ||_2^2] + constant$$
+
+- For a Gaussian perturbation kernel
+
+$$ \nabla_x \log{q(\tilde{x}|x)} = \nabla_x \log{N(\tilde{x}|x, \sigma^2 I)} = \frac{(\tilde{x} - x)}{\sigma^2} $$
+
 <p align="center">
 <img src='./img29.png'>
 </p>
+
+- Loss 를 보면 $\tilde{x} -x = noise$ 로 볼 수 있는데, 결국 noise 를 맞추는 objective 즉, DDPM 에서의 목적과 동일하다. 
 
 <p align="center">
 <img src='./img20.png'>
@@ -210,11 +230,24 @@ Langevin dynamics
 <img src='./img6.png'>
 </p>
 
-- 주요 문제는 적은 데이터 포인트가 존재하는 낮은 밀도 영역에서의 학습은 불완전하기 때문에 추정된 score function 이 부정확하다는 사실이다. 이는 score matching 이 Fisher divergence 를 최소화하도록 설계되었기 때문에 예상된 결과라고 볼 수 있다.  
-  - Langevin dynamics 로 sampling process 를 시작할 때, 초기 sample 은 높은 확률로 low density region 에 위치한다. 따라서 부정확한 score-based model 로 인해, sampling 이 올바른 방향으로 진행되지 않는다. 
+1. 주요 문제는 적은 데이터 포인트가 존재하는 낮은 밀도 영역에서의 학습은 불완전하기 때문에 추정된 score function 이 부정확하다는 사실이다. 이는 score matching 이 Fisher divergence 를 최소화하도록 설계되었기 때문에 예상된 결과라고 볼 수 있다.  
+   1.  Langevin dynamics 로 sampling process 를 시작할 때, 초기 sample 은 높은 확률로 low density region 에 위치한다. 따라서 부정확한 score-based model 로 인해, sampling 이 올바른 방향으로 진행되지 않는다. 
 
 <p align="center">
 <img src='./img7.png'>
+</p>
+
+2. 마찬가지로, 낮은 밀도 영역으로 인해 발생하는 문제이다.
+   1. $2$ 개의 mode 로 구성된 mixture data distribution 을 가정.
+   2. $p_{data}(x) = \pi p_1(x) + (1-\pi)p_2(x)$
+   3. $\nabla_x \log$ 를 씌워보면, $\pi$ 와 관련된 항들은 사라진다.
+   4. $\pi = 0.99$ 라면, $p_1(x)$ 에서 많이 sampling 이 되어야 하는데 그 구분이 되어있지 않기에 문제가 생긴다.
+   5. 즉, 실제 분포와 상관없이 균일하게 sampling 된다는 것을 의미하고 기존의 Langevin dynamics sampling 을 사용한 multi variative distribution 을 추정할 수 없다는 것을 의미한다. 
+
+$$ \nabla_x \log{p_{data}(x)} = \nabla_x \log{p_1(x)} + \nabla_x \log{p_2(x)} $$
+
+<p align="center">
+<img src='./img39.png'>
 </p>
 
 #### Solution (NCSN)
@@ -223,6 +256,8 @@ Langevin dynamics
 - Noise 의 크기가 충분히 큰 경우, 낮은 데이터 밀도 지역에 데이터를 채워 넣어 estimated score 의 정확도를 향상시킬 수 있다. 
   - noise 를 추가하면, 데이터 분포는 smooth 해지기 때문에 데이터 밀도가 낮은 지역을 어느 정도 학습 할 수 있게 된다. 즉, 실제 데이터 분포는 아니지만 밀도가 낮은 지역에서 어디로 가야 하는 지에 대한 방향성을 제시할 수 있다.
 - 그럼 우리가 생각해야 될 것은, '적절한 noise 크기를 어떻게 선택할 것인가' 이다. 큰 노이즈는 분명히 더 많은 낮은 밀도 영역을 포함하여 더 나은 score 를 추정할 수 있지만, 데이터를 지나치게 손상시키고 원래 분포에서 상당히 벗어날 수 있다. 반면 작은 노이즈는 원래 데이터 분포를 적게 손상시키지만 우리가 원하는 만큼 낮은 밀도 영역을 충분히 커버하지 못할 수 있다.  
+  - 초기에는 noise 를 많이 더해서 low density region 에서 벗어나고
+  - 시간이 지날수록 noise 를 적게 줘서, Denoising score matching 처럼 적은 noise 상태에서 정확한 $p(x)$ 의 score 를 예측함으로써, 올바른 sampling 을 할 수 있다.
 - **Thus, 학습용 data 에 multi-scale noise 추가. 내가 가지고 있는 데이터는 확률값이 높은 곳에서 sampling 된 데이터들이고 그 데이터들로 학습을 한다. 하지만 model 을 통해 sampling 을 할 때는 초기에 랜덤하게 시작하기 때문에 확률값이 낮은 공간에서는 score 값이 부정확하다. 따라서, 큰 noise 부터 작은 noise 까지 multi-scale 로 data 에 noise 를 더해줌으로써 score 값의 방향성을 제시해준다. 그에 따라, noise 가 network 에 condition 으로 추가되고 sampling 방식도 바뀐다 (Annealed Langevin Dynamics). 즉, loss 와 sampling 의 개선**
 - Data 에 noise 를 더하는 denoising score matching 과 유사하다. (Advanced denoising score mathcing?)
 
@@ -230,7 +265,7 @@ Langevin dynamics
 <img src='./img8.png'>
 </p>
 
-- 따라서, multiple scaled of noise perturbations 를 제안한다.
+- 따라서, multiple scaled of noise perturbations 를 제안한다. (Loss 는 Denoising Score Matching with Langevin Dynamics 와 같다)
 
 <p align="center">
 <img src='./img28.png'>
