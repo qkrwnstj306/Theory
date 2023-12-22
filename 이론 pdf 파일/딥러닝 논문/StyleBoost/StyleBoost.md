@@ -49,6 +49,8 @@
 - **Style Transfer**
   - While both **[Ours]** and traditional Neural Style Transfer (NST) produce stylized images, they differ fundamentally. **[StyleBoost]**, based on text-to-image models, generates content, whereas NST relies on an image to guide content synthesis based on spatial structure.
   - [ **[Ours]** 와 전통적인 Neural Style Transfer (NST)은 모두 스타일화된 이미지를 생성하나, 근본적으로 다릅니다. **[StyleBoost]** 는 텍스트-이미지 모델을 기반으로 내용을 생성하며, NST는 이미지를 사용하여 공간 구조를 기반으로 내용 합성을 안내합니다.]
+  - Style transfer involves the transformation of the visual style of images or content into a different style, placing emphasis on imparting artistic effects. In contrast, personalization techniques such as StyleBoost tailor the model to specific users, optimizing the user experience with a primary focus on customizing the model itself.
+  - [스타일 전이는 이미지나 콘텐츠의 시각적인 스타일을 다른 이미지나 스타일로 변환하는 기술이며, 예술적 효과를 주는 것에 중점이 있습니다. 반면에 StyleBoost와 같은 개인화는 모델을 특정 사용자에게 맞게 조정하여 사용자 경험을 최적화하는 작업이며, 주로 모델의 맞춤화에 중점을 둡니다.]
   - Under the category of style transfer, traditional methods (CNN/GAN based) and diffusion-based methods, including Diffusion-Enhanced PatchMatch, StyleDiffusion, and Inversion-based Style Transfer, present diverse techniques. 
   - [스타일 전송 범주에서 전통적인 방법(CNN/GAN 기반)과 확산 기반 방법, 그 중 Diffusion-Enhanced PatchMatch, StyleDiffusion, 그리고 Inversion-based Style Transfer를 포함한 다양한 기술들이 제시되고 있습니다.]
   - **<CNN/GAN based description>**
