@@ -5,8 +5,8 @@
 *Marcov Chain Monte Carlo*
 
 [Definition](#definition)</br>
-[MLE](#maximum-likelihood-estimation)</br>
-[MAP](#maximum-a-posteriori-estimation)</br>
+[Sampling](#mcmc-sampling)</br>
+[Estimation](#bayesian-estimation)</br>
 
 
 

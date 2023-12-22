@@ -24,7 +24,7 @@ $$ p(x) = \frac{p(x|y)p(y)}{p(y|x)} $$
         - E.g., 
           - Autoregressive models (PixelRNN, etc.)
           - Normalizing flow models
-          - Energy-based models (EBMs)
+          - <a href='../Energy-based-model/Energy-based-model.md'>Energy-based models (EBMs)</a>
           - VAE: 
             - Bayes rule 로 표현한 값의 사후 확률까지 approximation 하고자 했다.
             - ELBO trick 으로 확률 분포를 근사한다.  
