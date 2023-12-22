@@ -196,7 +196,7 @@ $$ q(\tilde{x}|x): Noise \ distribution $$
 
 $$ q(\tilde{x}) = \int  q(\tilde{x}|x) p_{data}(x)dx $$
 
-$$ E_{q(\tilde{x})}[\frac{1}{2} || \nabla_{x} \log{p_{\theta}(\tilde{x})} - \nabla_{x} \log{q(\tilde{x})} ||_2^{2} ] = E_{q(\tilde{x})}[\frac{1}{2} ||  \nabla_x \log{p_{\theta}(\tilde{x})} - \nabla_x \log{q(\tilde{x}|x)} ||] + constant $$
+$$ E_{q(\tilde{x})}[\frac{1}{2} || \nabla_{x} \log{p_{\theta}(\tilde{x})} - \nabla_{x} \log{q(\tilde{x})} ||_2^2 ] = E_{q(\tilde{x})}[\frac{1}{2} ||  \nabla_x \log{p_{\theta}(\tilde{x})} - \nabla_x \log{q(\tilde{x}|x)} ||] + constant $$
 
 - For a Gaussian perturbation kernel
 
