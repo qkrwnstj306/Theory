@@ -60,7 +60,7 @@ $$ \int p_{\theta}(x) (- \nabla_{\theta} f_{\theta}(x))dx $$
 
 $$ E_{x \sim p_{\theta}(x)}[- \nabla_{\theta}f_{\theta}(x)] $$
 
-- Monte Carlo sampling 을 통해 estimation 하면 될 것 같지만, EBM (Energy-based Model) 을 학습시키려면 $x \sim p_{\theta}(x)$ 이기에, EBM 에서 sampling 을 해야 한다. EBM 도 Diffusion-based model 처럼 iterative 하게 sampling 을 해야 하는데, 이걸 매 iteration 마다 sampling 해줘야 하니 엄청 느리다. 
+- Monte Carlo sampling 을 통해 estimation 하면 될 것 같지만, EBM (Energy-based Model) 을 학습시키려면 $x \sim p_{\theta}(x)$ 이기에, EBM 에서 sampling 을 해야 한다. EBM 도 Diffusion-based model 처럼 iterative 하게 sampling 을 해야 하는데, 이걸 매 iteration 마다 sampling 해줘야 하니 계산량이 많고 엄청 느리다. 
 
 
 > Normalizing constant 
