@@ -57,9 +57,6 @@ $$ p(x) = \frac{p(x|y)p(y)}{p(y|x)} $$
 > <a href='../MCMC/MCMC.md'>MCMC: Markov chain Monte Carlo</a>
 
 
-> Normalizing constant 
->> 정규화 상수의 개념은 확률 이론 및 기타 영역에서 다양하게 발생한다. 정규화 상수는 확률 함수를 전체 확률이 $1$인 확률 밀도 함수로 변환하는 데 사용된다. 
-
 
 *** 
 
@@ -124,6 +121,11 @@ $$ max_\theta \Sigma_{i=1}^{N}{\log{p_\theta(x_i)}} $$
 </p>
 
 - Score matching 을 이용하여 loss 를 바꿔주면, real log distribution 을 몰라도 된다. 하지만 여러 번의 backpropagation 을 해야해서 계산량이 많다. 
+- Score network 의 Jacobian trace 를 구해야 된다.
+  - Data 가 image 이고 그 dim 이 $300 \times 300$ 이라면 $90,000$ dimension 을 갖는다. 
+  - 따라서 score 의 dimension 도 $90,000$ 을 가지고 
+  - 거기에서 Jacobian trace 를 구하는 건 $90,000 \times 90,000$ 을 dimension 을 가지게 된다.  
+  - 즉, 계산량이 많다.
 - 따라서 scalable 하지 않다. 
 - Score Matching 의 직관적인 이해: 우리의 목적은 다음의 loss function 을 minimize 하는 것이다. 
   - 첫 번째 텀 (Trace) 은 $-inf$ 로 가야하는데 score fucntion 에 한 번 더 미분한 값이니 ($p(x)$ 를 $2$ 번 미분) $p(x)$ 의 local maxima 를 의미한다. 
