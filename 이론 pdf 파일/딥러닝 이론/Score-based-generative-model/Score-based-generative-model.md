@@ -41,20 +41,27 @@ $$ p(x) = \frac{p(x|y)p(y)}{p(y|x)} $$
 - 하지만, 이 두 가지 방법론은 significant limitation 이 존재한다. 
   - Likelihood-based models
     - Tractable normalizing constant 를 보장해야 해서 model 구조의 강력한 제한이 있거나
-      - E.g., causal convolutions in autoregressive models, invertible networks in normalizing flow models
-    - Approximate the normalizing constant -> 계산 비용이 많이 든다.
-      - E.g., variational inference in VAEs, MCMC sampling used in contrastive divergence
+      - E.g., invertible networks in normalizing flow models
+    - Approximate the normalizing constant: 계산 비용이 많이 든다.
+      - E.g., energy-based model 
     - Maximum likelihood 를 근사하는 objective 로 설정. 정확한 계산이 아니다.
       - E.g., ELBO of VAE
+    - Sampling speed 가 느리다. 
+      - E.g., Autoregressive models
   - Implicit generative models
-    - Adversarial training: Unstable, mode collapse
+    - Adversarial training: unstable, mode collapse
 
 > Mode collapse: generator 가 다양한 이미지를 만들어내지 못하고, 비슷한 이미지를 생성하는 경우를 말한다. 
 >> MNIST 를 예를 들면, mode 는 총 0-9까지 10개이고, generator 는 random noise 를 입력으로 받아서 생성한 이미지가 discriminator 를 속이기를 원한다. 이때, 0-9 의 다양한 mode 를 이용하지 않고 하나의 mode 만 생성하는 것.
 
 > <a href='../MCMC/MCMC.md'>MCMC: Markov chain Monte Carlo</a>
 
-> Posterior: 사후 확률은 (Likelihood * Prior) / Evidence 로 정의되는데, Evidence 를 직접 계산하기 위해서는 전체 변수들에 대해 적분을 수행해야 한다. (Marginalize) 변수가 많아질수록 정확한 사후 확률 분포를 계산하기 어렵기 때문에 MCMC 같은 방법을 이용하여 근사한다. 
+
+> Normalizing constant 
+>> 정규화 상수의 개념은 확률 이론 및 기타 영역에서 다양하게 발생한다. 정규화 상수는 확률 함수를 전체 확률이 $1$인 확률 밀도 함수로 변환하는 데 사용된다. 
+
+
+*** 
 
 - 본 review 에선, 이런 제한을 우회하면서 확률 분포를 표현하는 다른 방법을 소개한다.
     - Normalizing constant 가 tractable 하지 않아도 된다.
@@ -68,8 +75,6 @@ $$ \nabla_x \log{p(x)} = Score \ function $$
 <img src='./img2.png'>
 </p>
 
-> Normalizing constant
->> 정규화 상수의 개념은 확률 이론 및 기타 영역에서 다양하게 발생한다. 정규화 상수는 확률 함수를 전체 확률이 $1$인 확률 밀도 함수로 변환하는 데 사용된다. 
 
 ***
 
