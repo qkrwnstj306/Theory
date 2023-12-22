@@ -175,6 +175,20 @@ Langevin dynamics
 <img src='./img30.png'>
 </p>
 
+- $\log{p(x)}$ 가 noise 가 추가됨으로써, 다음과 같이 변환된다. $\rightarrow \log{q_{\sigma}(\tilde{x}|x)}$
+
+<p align="center">
+<img src='./img29.png'>
+</p>
+
+<p align="center">
+<img src='./img20.png'>
+</p>
+
+<p align="center">
+<img src='./img21.png'>
+</p>
+
 <p align="center">
 <img src='./img31.png'>
 </p>
@@ -212,17 +226,7 @@ Langevin dynamics
 <p align="center">
 <img src='./img28.png'>
 </p>
-<p align="center">
-<img src='./img29.png'>
-</p>
 
-<p align="center">
-<img src='./img20.png'>
-</p>
-
-<p align="center">
-<img src='./img21.png'>
-</p>
 
 - 이때의, model 은 *Noise Conditional Score-Based Model* $s_\theta(\bar x,\sigma)$ 로써, NCSN 이라고 부른다. 
 
