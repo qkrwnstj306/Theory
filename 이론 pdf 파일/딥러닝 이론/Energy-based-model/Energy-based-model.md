@@ -5,10 +5,6 @@
 *Normalizing Constant*
 
 [Definition](#definition)</br>
-[MLE](#)</br>
-[MAP](#)</br>
-
-
 
 
 ***

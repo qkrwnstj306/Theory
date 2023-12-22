@@ -82,6 +82,10 @@ Theory for ML.
 - <a href='./이론 pdf 파일/딥러닝 이론/가중치 초기화_221228_002945.pdf'>Weight Initialization</a>
 - <a href='./이론 pdf 파일/딥러닝 이론/인공지능의 이해  혁팬하임_230122_212153.pdf'>혁팬하임 pdf</a>
 - <a href='./이론 pdf 파일/딥러닝 이론/RNN.pdf'>RNN</a>
+- <a href='./이론 pdf 파일/딥러닝 이론/Energy-based-model/Energy-based-model.md'>Energy-based Model: Normalizing Constant</a>
+- <a href='./이론 pdf 파일/딥러닝 이론/MCMC/MCMC.md'>MCMC: Marcov Chain Monte Carlo</a>
+- <a href='./이론 pdf 파일/딥러닝 이론/SDE/SDE.md'>SED: Stochastic Differential Equation</a>
+
 
 #### Andrew Ang in Coursera
 - <a href='./이론 pdf 파일/딥러닝 이론/Andrew Ang/Lecture1_230101_184831.pdf'>Lecture 1. Supervised Learning</a>

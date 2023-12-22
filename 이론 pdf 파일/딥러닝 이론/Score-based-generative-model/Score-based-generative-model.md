@@ -159,8 +159,8 @@ $$ max_\theta \Sigma_{i=1}^{N}{\log{p_\theta(x_i)}} $$
 
 > Trace: 주대각선 성분들의 합
 
-#### Sampling: Langevin dynamics
-Langevin dynamics 
+#### Sampling: <a href='../SDE/SDE.md'>Langevin dynamics</a>
+Langevin dynamics: 
 - Score-based model $s_\theta(x) \approx \nabla_x \log{p(x)}$ 을 학습했으면, Langevin dynamics 라고 불리는 iterative procedure 을 통해 sampling 을 하면 된다. 
 - Langevin dynamics 는 오직 score function $\nabla_x \log{p(x)}$ 만을 사용해, $p(x)$ 로부터 MCMC procedure 를 제공한다.  
 - 구체적으로, 이 방법은 arbitrary prior distribution $x_0 \sim \pi(x)$ 에서 다음을 반복한다.
