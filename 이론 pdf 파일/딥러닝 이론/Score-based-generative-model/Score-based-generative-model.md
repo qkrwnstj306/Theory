@@ -204,7 +204,7 @@ $$ E_{q(\tilde{x})}[\frac{1}{2} \Vert S_{\theta}(\tilde{x}) - \nabla_{x} \log{q(
 
 #### *Proof* via <a href='../denoising_score_matching_techreport.pdf'>6, 12p in Technical Report</a> (Pascal Vincent)
 
-- 먼저 $x$ 와 $\tilde{x}$ 는 $q(\tilde{x}|x)p_{data}(x)$ 의 분포에서 sampling 한다. 이때, $q(\tilde{x}|x)p_{data}(x) = q(\tilde{x},x)$ 이므로 joint density probability 이다. 즉, $x,\tilde{x} \sim q(\tilde{x},x)$ 임을 기억하면 된다. 
+- 먼저 $x$ 와 $\tilde{x}$ 는 $q(\tilde{x}|x)p_{data}(x)$ 의 분포에서 sampling 한다. 이때, $q(\tilde{x}|x)p_{data}(x) = q(\tilde{x},x)$ 이므로 joint density probability 이다. 즉, $x,\tilde{x} \sim q(x,\tilde{x})$ 임을 기억하면 된다. 
   
 - 그런 다음, 우리가 원하는 objective function 을 다시 보자.
 
@@ -246,11 +246,11 @@ $$ = \int_{\tilde{x}} S_{\theta}(\tilde{x}) (\int_{x}  p_{data}(x)q(\tilde{x}|x)
 
 - $S_{\theta}(\tilde{x})$ 는 $x$ 와 관련이 없으니, 마찬가지로 적분 안에 넣을 수 있다.
 
-$$ = \int_{\tilde{x}} \int_{x} S_{\theta}(\tilde{x})   p_{data}(x)q(\tilde{x}|x)\nabla_{\tilde{x}}\log q(\tilde{x}|x) dx d\tilde{x}  $$
+$$ = \int_{\tilde{x}} \int_{x} S_{\theta}(\tilde{x})   p_{data}(x) q(x,\tilde{x})\nabla_{\tilde{x}}\log q(\tilde{x}|x) dx d\tilde{x}  $$
 
-- $q(\tilde{x}|x)p_{data}(x) = q(\tilde{x},x)$ 
+- $q(\tilde{x}|x)p_{data}(x) =  q(x,\tilde{x})$ 
 
-$$ = \int_{\tilde{x}} \int_{x} S_{\theta}(\tilde{x})   q(\tilde{x},x)\nabla_{\tilde{x}}\log q(\tilde{x}|x) dx d\tilde{x}  $$
+$$ = \int_{\tilde{x}} \int_{x} S_{\theta}(\tilde{x})    q(x,\tilde{x})\nabla_{\tilde{x}}\log q(\tilde{x}|x) dx d\tilde{x}  $$
 
 - $\eta(\theta)$ 가 결합 확률 분포의 기댓값으로 표현이 된다.
 
@@ -258,10 +258,10 @@ $$ = E_{q(x,\tilde{x})}[S_{\theta}(\tilde{x})\nabla_{\tilde{x}}\log q(\tilde{x}|
 
 - 다시 obejctive function 을 보면,
 
-$$ E_{q(\tilde{x})}[\frac{1}{2} \Vert S_{\theta}(\tilde{x}) - \nabla_{\tilde{x}} \log{q(\tilde{x})} \Vert_2^2 ] = E_{q(\tilde{x})}[\frac{1}{2} \Vert S_{\theta}(\tilde{x}) \Vert_2^2] - E_{q(x,\tilde{x})}[S_{\theta}(\tilde{x})\nabla_{\tilde{x}}\log q(\tilde{x}|x)] + C_2  $$
+$$ E_{q(\tilde{x})}[\frac{1}{2} \Vert S_{\theta}(\tilde{x}) - \nabla_{\tilde{x}} \log{q(\tilde{x})} \Vert_2^2 ] = E_{q(\tilde{x})}[\frac{1}{2} \Vert S_{\theta}(\tilde{x}) \Vert_2^2] - E_{q(x,\tilde{x})}[S_{\theta}(\tilde{x})\nabla_{\tilde{x}}\log q(\tilde{x}|x)] + C_2  , \ (1) $$
 
 - 그리고 우리가 구하고자 하는 건 다음과 같다. (우리가 표현할 수 있는 값들로만 이루어져 있으니)
-  - 기댓값의 아래 첨자가 바뀐 이유는 목적 함수에서 $x$ 를 sampling 해야 하기 때문이다.
+  - 기댓값의 아래 첨자가 바뀐 이유는 목적 함수에서 $x$ 라는 확률 변수도 추가됐기 때문이다.
 
 $$ E_{q(x,\tilde{x})}[\frac{1}{2} \Vert S_{\theta}(\tilde{x}) - \nabla_{\tilde{x}} \log{q(\tilde{x}|x)} \Vert_2^2 ] $$
 
@@ -270,11 +270,11 @@ $$ E_{q(x,\tilde{x})}[\frac{1}{2} \Vert S_{\theta}(\tilde{x}) - \nabla_{\tilde{x
   - $+C_2 - C_3$ 를 하면 동일하다.
 
 
-$$ E_{q(\tilde{x})}[\frac{1}{2} \Vert S_{\theta}(\tilde{x}) \Vert_2^2] - E_{q(x,\tilde{x})}[S_{\theta}(\tilde{x})\nabla_{\tilde{x}}\log q(\tilde{x}|x)]  + C_3 $$
+$$ E_{q(\tilde{x})}[\frac{1}{2} \Vert S_{\theta}(\tilde{x}) \Vert_2^2] - E_{q(x,\tilde{x})}[S_{\theta}(\tilde{x})\nabla_{\tilde{x}}\log q(\tilde{x}|x)]  + C_3 , \ (2) $$
 
 $$ C_3 = E_{q(x,\tilde{x})}[\frac{1}{2} \Vert \nabla_{\tilde{x}}\log q(\tilde{x}|x) \Vert_2^{2}] $$
 
-$$ E_{q(\tilde{x})}[\frac{1}{2} \Vert S_{\theta}(\tilde{x}) \Vert_2^2] - E_{q(x,\tilde{x})}[S_{\theta}(\tilde{x})\nabla_{\tilde{x}}\log q(\tilde{x}|x)] + C_2 = E_{q(\tilde{x})}[\frac{1}{2} \Vert S_{\theta}(\tilde{x}) \Vert_2^2] - E_{q(x,\tilde{x})}[S_{\theta}(\tilde{x})\nabla_{\tilde{x}}\log q(\tilde{x}|x)]  + C_3 + C_2 - C_3$$
+$$ E_{q(\tilde{x})}[\frac{1}{2} \Vert S_{\theta}(\tilde{x}) \Vert_2^2] - E_{q(x,\tilde{x})}[S_{\theta}(\tilde{x})\nabla_{\tilde{x}}\log q(\tilde{x}|x)] + C_2 , \ (1) = E_{q(\tilde{x})}[\frac{1}{2} \Vert S_{\theta}(\tilde{x}) \Vert_2^2] - E_{q(x,\tilde{x})}[S_{\theta}(\tilde{x})\nabla_{\tilde{x}}\log q(\tilde{x}|x)]  + C_3 , \ (2) + C_2 - C_3$$
 
 - 따라서, 우리는 목적 함수를 다음과 같이 바꿀 수 있게 된다.
 
