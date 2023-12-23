@@ -290,6 +290,9 @@ $$ \nabla_{\tilde{x}} \log{q(\tilde{x}|x)} = \nabla_{\tilde{x}} \log{N(\tilde{x}
 </p>
 
 - Loss 를 보면 $\tilde{x} -x = noise$ 로 볼 수 있는데, 결국 noise 를 맞추는 objective 즉, DDPM 에서의 목적과 유사하다.
+  - Noise scale $\sigma$ 가 들어갔기에 아래첨자로 표시해줬다.
+
+$$ Loss = E_{q_{\sigma}(x, \tilde{x})}[\frac{1}{2} \Vert S_{\theta}(\tilde{x}) - \nabla_{\tilde{x}} \log{q(\tilde{x}|x)} \Vert_2^2] = E_{q_{\sigma}(x, \tilde{x})}[\frac{1}{2} \Vert S_{\theta}(\tilde{x}) - \frac{x-\tilde{x}}{\sigma^2} \Vert_2^2] \\ = E_{q_{\sigma}(\tilde{x} | x)}E_{p_{data}}[\frac{1}{2} \Vert S_{\theta}(\tilde{x}) - \frac{x-\tilde{x}}{\sigma^2} \Vert_2^2] $$
 
 <p align="center">
 <img src='./img31.png'>
@@ -341,10 +344,9 @@ $$ \nabla_x \log{p_{data}(x)} = \nabla_x \log{p_1(x)} + \nabla_x \log{p_2(x)} $$
 </p>
 
 - 따라서, multiple scaled of noise perturbations 를 제안한다. (Loss 는 Denoising Score Matching with Langevin Dynamics 와 같다)
-  - 아래의 그림은 2번째 항이 틀렸다. 
-  - $\tilde{x} - x \rightarrow x - \tilde{x}$ 로 바꿔야 된다. (DSBA 고려대 발표자료인데 음수 붙이는 걸 깜빡한거 같다)
-<p align="center">
-<img src='./img28.png'>
+
+ <p align="center">
+<img src='./img40.png'>
 </p>
 
 $$ Loss = E_{q_{\sigma}(x, \tilde{x})}[\frac{1}{2} \Vert S_{\theta}(\tilde{x}, \sigma) - \nabla_{\tilde{x}} \log{q(\tilde{x}|x)} \Vert_2^2] = E_{q_{\sigma}(x, \tilde{x})}[\frac{1}{2} \Vert S_{\theta}(\tilde{x}, \sigma) - \frac{x-\tilde{x}}{\sigma^2} \Vert_2^2] \\ = E_{q_{\sigma}(\tilde{x} | x)}E_{p_{data}}[\frac{1}{2} \Vert S_{\theta}(\tilde{x},\sigma) - \frac{x-\tilde{x}}{\sigma^2} \Vert_2^2] $$
@@ -352,6 +354,14 @@ $$ Loss = E_{q_{\sigma}(x, \tilde{x})}[\frac{1}{2} \Vert S_{\theta}(\tilde{x}, \
 <p align="center">
 <img src='./img21.png'>
 </p>
+
+- 이건, DSBA 고려대 발표자료인데 $\tilde{x}$ 가 아니라 $x$ 에 대해서 미분한 거 같다.
+  - 아래의 그림은 2번째 항이 틀렸다. 
+  - $\tilde{x} - x \rightarrow x - \tilde{x}$ 로 바꿔야 된다. 
+
+<p align="center">
+<img src='./img28.png'>
+</p> 
 
 - 이때의, model 은 *Noise Conditional Score-Based Model* $s_\theta(\tilde{x},\sigma)$ 로써, NCSN 이라고 부른다. 
 
