@@ -204,7 +204,7 @@ $$ E_{q(\tilde{x})}[\frac{1}{2} \Vert S_{\theta}(\tilde{x}) - \nabla_{x} \log{q(
 
 #### *Proof* via <a href='../denoising_score_matching_techreport.pdf'>6, 12p in Technical Report</a> (Pascal Vincent)
 
-- 먼저 $x$ 와 $\tilde{x}$ 는 $q(\tilde{x}|x)p_{data}(x)$ 의 분포에서 sampling 한다. 이때, $q(\tilde{x}|x)p_{data}(x) = q(\tilde{x},x)$ 이므로 joint density probability 이다. 즉, $x,\tilde{x} \sim q(x,\tilde{x})$ 임을 기억하면 된다. 
+- 먼저 $x$ 와 $\tilde{x}$ 는 $q(\tilde{x}|x)p_{data}(x)$ 의 분포에서 sampling ($x$ 를 뽑고 그 조건하에서 noise 를 더해 $\tilde{x}$ 를 뽑는다) 한다. 이때, $q(\tilde{x}|x)p_{data}(x) = q(\tilde{x},x)$ 이므로 joint density probability 이다. 즉, $x,\tilde{x} \sim q(x,\tilde{x})$ 임을 기억하면 된다. (조건부 확률은 시간축이랑은 관계가 없다는 걸 유의하면 joint 로 바뀌는 걸 이해할 수 있다)
   
 - 그런 다음, 우리가 원하는 objective function 을 다시 보자.
 
