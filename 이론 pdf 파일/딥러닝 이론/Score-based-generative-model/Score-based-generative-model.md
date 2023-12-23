@@ -82,6 +82,10 @@ $$ \nabla_x \log{p(x)} = Score \ function $$
 ### <strong>Method</strong>
 Process: learn score matching -> Langevin dynamics sampling
 
+- $\Vert \Vert_2^2$ : 유클리드 norm 의 제곱 ($x^2 + y^2 + \cdots$)
+
+- $\Vert \Vert_2$ : 우리가 아는 거리 공식 (유클리드안 거리) 이자 $L_2$ norm
+
 #### Score fucntion
   
 - Dataset $\{x_1,x_2, \cdots, x_N\}$ 이 주어졌을 때, model 이 $p(x)$ 를 배우기를 원한다. 
@@ -188,7 +192,7 @@ Langevin dynamics:
 <img src='./img30.png'>
 </p>
 
-- $\log{p(x)}$ 가 noise 가 추가됨으로써, 다음과 같이 변환된다. $\rightarrow \log{q_{\sigma}(\tilde{x}|x)}$
+- $\log{q_{\sigma}(\tilde{x}|x)}$ : $x$ 를 조건으로 $\tilde{x}$ 가 일어날 확률을 우리가 정의한다. (여기서는 Gaussian distribution)
 
 $$ q(\tilde{x}|x): Noise \ distribution $$
 
@@ -196,7 +200,85 @@ $$ q(\tilde{x}|x): Noise \ distribution $$
 
 $$ q(\tilde{x}) = \int  q(\tilde{x}|x) p_{data}(x)dx $$
 
-$$ E_{q(\tilde{x})}[\frac{1}{2} \Vert \nabla_{x} \log{p_{\theta}(\tilde{x})} - \nabla_{x} \log{q(\tilde{x})} \Vert_2^2 ] = E_{q(\tilde{x})}[\frac{1}{2} \Vert  \nabla_x \log{p_{\theta}(\tilde{x})} - \nabla_x \log{q(\tilde{x}|x)} \Vert_2^2] + constant $$
+$$ E_{q(\tilde{x})}[\frac{1}{2} \Vert S_{\theta}(\tilde{x}) - \nabla_{x} \log{q(\tilde{x})} \Vert_2^2 ] = E_{q(x, \tilde{x})}[\frac{1}{2} \Vert S_{\theta}(\tilde{x}) - \nabla_x \log{q(\tilde{x}|x)} \Vert_2^2] + constant $$
+
+#### *Proof* via <a href='../denoising_score_matching_techreport.pdf'>6, 12p in Technical Report</a> (Pascal Vincent)
+
+- 먼저 $x$ 와 $\tilde{x}$ 는 $q(\tilde{x}|x)p_{data}(x)$ 의 분포에서 sampling 한다. 이때, $q(\tilde{x}|x)p_{data}(x) = q(\tilde{x},x)$ 이므로 joint density probability 이다. 즉, $x,\tilde{x} \sim q(\tilde{x},x)$ 임을 기억하면 된다. 
+  
+- 그런 다음, 우리가 원하는 objective function 을 다시 보자.
+
+$$ E_{q(\tilde{x})}[\frac{1}{2} \Vert S_{\theta}(\tilde{x}) - \nabla_{\tilde{x}} \log{q(\tilde{x})} \Vert_2^2 ] $$
+
+- 제곱을 풀어쓴다. $C_2$ 는 $\theta$ 에 관한 함수가 아니기 때문에 이 목적 함수에서는 상수 취급이다.
+
+$$ E_{q(\tilde{x})}[\frac{1}{2} \Vert S_{\theta}(\tilde{x}) \Vert_2^2] - \eta(\theta) + C_2 $$
+
+$$ C_2 = E_{q(\tilde{x})}[\frac{1}{2} \Vert \nabla_{\tilde{x}}\log q(\tilde{x}) \Vert_2^{2}] $$
+
+- 이때, $\eta(\theta)$ 는 다음과 같다.
+
+$$ \eta(\theta) = E_{q(\tilde{x})}[S_{\theta}(\tilde{x}) \nabla_{\tilde{x}}\log q(\tilde{x})] $$
+
+- 적분으로 풀면
+
+$$ = \int_{\tilde{x}} q(\tilde{x}) S_{\theta}(\tilde{x}) \nabla_{\tilde{x}}\log q(\tilde{x}) d\tilde{x} $$
+
+- $\log$ 미분
+
+$$  = \int_{\tilde{x}} q(\tilde{x}) S_{\theta}(\tilde{x}) \frac{\nabla_{\tilde{x}}q(\tilde{x})}{q(\tilde{x})} d\tilde{x}  $$
+
+- 약분
+
+$$ = \int_{\tilde{x}} S_{\theta}(\tilde{x}) \nabla_{\tilde{x}}q(\tilde{x}) d\tilde{x}  $$
+
+- $q(\tilde{x}) = \int  q(\tilde{x}|x) p_{data}(x)dx$ 
+
+$$ = \int_{\tilde{x}} S_{\theta}(\tilde{x}) (\nabla_{\tilde{x}} \int_{x}  q(\tilde{x}|x) p_{data}(x)dx) d\tilde{x}  $$
+
+- $\nabla_{\tilde{x}}$ 를 $x$ 에 대한 적분 안으로 집어 넣는다. ($x$ 에 대해서 적분이니까 가능)
+
+$$ = \int_{\tilde{x}} S_{\theta}(\tilde{x}) (\int_{x}  (\nabla_{\tilde{x}}q(\tilde{x}|x)) p_{data}(x)dx) d\tilde{x}  $$
+
+- $\log$ 미분을 역으로 이용 (score function trick)
+
+$$ = \int_{\tilde{x}} S_{\theta}(\tilde{x}) (\int_{x}  p_{data}(x)q(\tilde{x}|x)\nabla_{\tilde{x}}\log q(\tilde{x}|x) dx) d\tilde{x}  $$
+
+- $S_{\theta}(\tilde{x})$ 는 $x$ 와 관련이 없으니, 마찬가지로 적분 안에 넣을 수 있다.
+
+$$ = \int_{\tilde{x}} \int_{x} S_{\theta}(\tilde{x})   p_{data}(x)q(\tilde{x}|x)\nabla_{\tilde{x}}\log q(\tilde{x}|x) dx d\tilde{x}  $$
+
+- $q(\tilde{x}|x)p_{data}(x) = q(\tilde{x},x)$ 
+
+$$ = \int_{\tilde{x}} \int_{x} S_{\theta}(\tilde{x})   q(\tilde{x},x)\nabla_{\tilde{x}}\log q(\tilde{x}|x) dx d\tilde{x}  $$
+
+- $\eta(\theta)$ 가 결합 확률 분포의 기댓값으로 표현이 된다.
+
+$$ = E_{q(x,\tilde{x})}[S_{\theta}(\tilde{x})\nabla_{\tilde{x}}\log q(\tilde{x}|x)] $$ 
+
+- 다시 obejctive function 을 보면,
+
+$$ E_{q(\tilde{x})}[\frac{1}{2} \Vert S_{\theta}(\tilde{x}) - \nabla_{\tilde{x}} \log{q(\tilde{x})} \Vert_2^2 ] = E_{q(\tilde{x})}[\frac{1}{2} \Vert S_{\theta}(\tilde{x}) \Vert_2^2] - E_{q(x,\tilde{x})}[S_{\theta}(\tilde{x})\nabla_{\tilde{x}}\log q(\tilde{x}|x)] + C_2  $$
+
+- 그리고 우리가 구하고자 하는 건 다음과 같다. (우리가 표현할 수 있는 값들로만 이루어져 있으니)
+  - 기댓값의 아래 첨자가 바뀐 이유는 목적 함수에서 $x$ 를 sampling 해야 하기 때문이다.
+
+$$ E_{q(x,\tilde{x})}[\frac{1}{2} \Vert S_{\theta}(\tilde{x}) - \nabla_{\tilde{x}} \log{q(\tilde{x}|x)} \Vert_2^2 ] $$
+
+- 우리가 구하고자 하는 목적 함수를 마찬가지로 제곱을 풀어써보면, 처음의 목적 함수와 $\theta$ 입장에서 같다는 걸 알 수 있다.
+  - 첫 번째 항의 기댓값의 아래 첨자가 바뀐 이유는 역시나, 첫 번째 항에 $x$ 가 없기 때문이다.
+  - $+C_2 - C_3$ 를 하면 동일하다.
+
+
+$$ E_{q(\tilde{x})}[\frac{1}{2} \Vert S_{\theta}(\tilde{x}) \Vert_2^2] - E_{q(x,\tilde{x})}[S_{\theta}(\tilde{x})\nabla_{\tilde{x}}\log q(\tilde{x}|x)]  + C_3 $$
+
+$$ C_3 = E_{q(x,\tilde{x})}[\frac{1}{2} \Vert \nabla_{\tilde{x}}\log q(\tilde{x}|x) \Vert_2^{2}] $$
+
+$$ E_{q(\tilde{x})}[\frac{1}{2} \Vert S_{\theta}(\tilde{x}) \Vert_2^2] - E_{q(x,\tilde{x})}[S_{\theta}(\tilde{x})\nabla_{\tilde{x}}\log q(\tilde{x}|x)] + C_2 = E_{q(\tilde{x})}[\frac{1}{2} \Vert S_{\theta}(\tilde{x}) \Vert_2^2] - E_{q(x,\tilde{x})}[S_{\theta}(\tilde{x})\nabla_{\tilde{x}}\log q(\tilde{x}|x)]  + C_3 + C_2 - C_3$$
+
+- 따라서, 우리는 목적 함수를 다음과 같이 바꿀 수 있게 된다.
+
+$$ E_{q(\tilde{x})}[\frac{1}{2} \Vert S_{\theta}(\tilde{x}) - \nabla_{x} \log{q(\tilde{x})} \Vert_2^2 ] = E_{q(x, \tilde{x})}[\frac{1}{2} \Vert S_{\theta}(\tilde{x}) - \nabla_x \log{q(\tilde{x}|x)} \Vert_2^2] + constant $$
 
 - For a Gaussian perturbation kernel
 
