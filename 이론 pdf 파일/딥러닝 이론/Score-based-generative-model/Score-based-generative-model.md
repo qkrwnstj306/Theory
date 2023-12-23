@@ -200,11 +200,11 @@ $$ q(\tilde{x}|x): Noise \ distribution $$
 
 $$ q(\tilde{x}) = \int  q(\tilde{x}|x) p_{data}(x)dx $$
 
-$$ E_{q(\tilde{x})}[\frac{1}{2} \Vert S_{\theta}(\tilde{x}) - \nabla_{x} \log{q(\tilde{x})} \Vert_2^2 ] = E_{q(x, \tilde{x})}[\frac{1}{2} \Vert S_{\theta}(\tilde{x}) - \nabla_x \log{q(\tilde{x}|x)} \Vert_2^2] + constant $$
+$$ E_{q(\tilde{x})}[\frac{1}{2} \Vert S_{\theta}(\tilde{x}) - \nabla_{\tilde{x}} \log{q(\tilde{x})} \Vert_2^2 ] = E_{q(x, \tilde{x})}[\frac{1}{2} \Vert S_{\theta}(\tilde{x}) - \nabla_{\tilde{x}} \log{q(\tilde{x}|x)} \Vert_2^2] + constant $$
 
 #### *Proof* via <a href='../denoising_score_matching_techreport.pdf'>6, 12p in Technical Report</a> (Pascal Vincent)
 
-- 먼저 $x$ 와 $\tilde{x}$ 는 $q(\tilde{x}|x)p_{data}(x)$ 의 분포에서 sampling ($x$ 를 뽑고 그 조건하에서 noise 를 더해 $\tilde{x}$ 를 뽑는다) 한다. 이때, $q(\tilde{x}|x)p_{data}(x) = q(\tilde{x},x)$ 이므로 joint density probability 이다. 즉, $x,\tilde{x} \sim q(x,\tilde{x})$ 임을 기억하면 된다. (조건부 확률은 시간축이랑은 관계가 없다는 걸 유의하면 joint 로 바뀌는 걸 이해할 수 있다)
+- 먼저 $x$ 와 $\tilde{x}$ 는 $q(\tilde{x}|x)p_{data}(x)$ 의 분포에서 sampling ($x$ 를 뽑고 그 조건하에서 noise 를 더해 $\tilde{x}$ 를 뽑는다) 한다. 이때, $q(\tilde{x}|x)p_{data}(x) = q(x,\tilde{x})$ 이므로 joint density probability 이다. 즉, $x,\tilde{x} \sim q(x,\tilde{x})$ 임을 기억하면 된다. (조건부 확률은 시간축이랑은 관계가 없다는 걸 유의하면 joint 로 바뀌는 걸 이해할 수 있다)
   - <a href='../확률.md'>Reference Information: 조건부, 결합 확률</a>
   
 - 그런 다음, 우리가 원하는 objective function 을 다시 보자.
@@ -279,25 +279,17 @@ $$ E_{q(\tilde{x})}[\frac{1}{2} \Vert S_{\theta}(\tilde{x}) \Vert_2^2] - E_{q(x,
 
 - 따라서, 우리는 목적 함수를 다음과 같이 바꿀 수 있게 된다.
 
-$$ E_{q(\tilde{x})}[\frac{1}{2} \Vert S_{\theta}(\tilde{x}) - \nabla_{x} \log{q(\tilde{x})} \Vert_2^2 ] = E_{q(x, \tilde{x})}[\frac{1}{2} \Vert S_{\theta}(\tilde{x}) - \nabla_x \log{q(\tilde{x}|x)} \Vert_2^2] + constant $$
+$$ E_{q(\tilde{x})}[\frac{1}{2} \Vert S_{\theta}(\tilde{x}) - \nabla_{\tilde{x}} \log{q(\tilde{x})} \Vert_2^2 ] = E_{q(x, \tilde{x})}[\frac{1}{2} \Vert S_{\theta}(\tilde{x}) - \nabla_{\tilde{x}} \log{q(\tilde{x}|x)} \Vert_2^2] + constant $$
 
 - For a Gaussian perturbation kernel
 
-$$ \nabla_x \log{q(\tilde{x}|x)} = \nabla_x \log{N(\tilde{x}|x, \sigma^2 I)} = \frac{(\tilde{x} - x)}{\sigma^2} $$
+$$ \nabla_{\tilde{x}} \log{q(\tilde{x}|x)} = \nabla_{\tilde{x}} \log{N(\tilde{x}|x, \sigma^2 I)} = -\frac{(\tilde{x} - x)}{\sigma^2} $$
 
 <p align="center">
 <img src='./img29.png'>
 </p>
 
-- Loss 를 보면 $\tilde{x} -x = noise$ 로 볼 수 있는데, 결국 noise 를 맞추는 objective 즉, DDPM 에서의 목적과 동일하다. 
-
-<p align="center">
-<img src='./img20.png'>
-</p>
-
-<p align="center">
-<img src='./img21.png'>
-</p>
+- Loss 를 보면 $\tilde{x} -x = noise$ 로 볼 수 있는데, 결국 noise 를 맞추는 objective 즉, DDPM 에서의 목적과 유사하다.
 
 <p align="center">
 <img src='./img31.png'>
@@ -349,11 +341,17 @@ $$ \nabla_x \log{p_{data}(x)} = \nabla_x \log{p_1(x)} + \nabla_x \log{p_2(x)} $$
 </p>
 
 - 따라서, multiple scaled of noise perturbations 를 제안한다. (Loss 는 Denoising Score Matching with Langevin Dynamics 와 같다)
-
+  - 아래의 그림은 2번째 항이 틀렸다. 
+  - $\tilde{x} - x \rightarrow x - \tilde{x}$ 로 바꿔야 된다. (DSBA 고려대 발표자료인데 음수 붙이는 걸 깜빡한거 같다)
 <p align="center">
 <img src='./img28.png'>
 </p>
 
+$$ Loss = E_{q_{\sigma}(x, \tilde{x})}[\frac{1}{2} \Vert S_{\theta}(\tilde{x}, \sigma) - \nabla_{\tilde{x}} \log{q(\tilde{x}|x)} \Vert_2^2] = E_{q_{\sigma}(x, \tilde{x})}[\frac{1}{2} \Vert S_{\theta}(\tilde{x}, \sigma) - \frac{x-\tilde{x}}{\sigma^2} \Vert_2^2] \\ = E_{q_{\sigma}(\tilde{x} | x)}E_{p_{data}}[\frac{1}{2} \Vert S_{\theta}(\tilde{x},\sigma) - \frac{x-\tilde{x}}{\sigma^2} \Vert_2^2] $$
+
+<p align="center">
+<img src='./img21.png'>
+</p>
 
 - 이때의, model 은 *Noise Conditional Score-Based Model* $s_\theta(\tilde{x},\sigma)$ 로써, NCSN 이라고 부른다. 
 
