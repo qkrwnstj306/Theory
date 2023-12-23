@@ -354,7 +354,7 @@ $$ \nabla_x \log{p_{data}(x)} = \nabla_x \log{p_1(x)} + \nabla_x \log{p_2(x)} $$
 </p>
 
 
-- 이때의, model 은 *Noise Conditional Score-Based Model* $s_\theta(\bar x,\sigma)$ 로써, NCSN 이라고 부른다. 
+- 이때의, model 은 *Noise Conditional Score-Based Model* $s_\theta(\tilde{x},\sigma)$ 로써, NCSN 이라고 부른다. 
 
 <p align="center">
 <img src='./img32.png'>
