@@ -60,10 +60,7 @@ $$ p(x) = p(x_1,x_2, \cdots , x_{100}) = p(x_1) \times p(x_2) \times \cdots \tim
 크게 3 가지인거 같다. 
 
 1. 베이지 룰
-
-2. 깁스 분포 in score-based/energy-based
-
-
+2. 깁스 분포 in score-based/energy-based models
 3. x 를 특정 확률 변수들로 쪼개서 $p(x)$ 를 계산. 
   - 즉, $p(x)$ 를 다변수 확률 분포이자 결합확률분포로 본다. 
   - 원래라면, $p(x)$ 는 알 수 없는 분포이기 때문에 $x$ 자체를 쪼개는 게 말이 되지 않는다.
