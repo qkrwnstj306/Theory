@@ -195,7 +195,7 @@ Langevin dynamics:
 - $\log{q_{\sigma}(\tilde{x}|x)}$ : $x$ 를 조건으로 $\tilde{x}$ 가 일어날 확률을 우리가 정의한다. (여기서는 multivariate Gaussian distribution)
 
 $$ q(\tilde{x}|x): Noise \ distribution \\ 
-x + \epsilon \text{   where, } \epsilon \sim N(0,\sigma^2 I) $$
+x + z \text{   where, } z \sim N(0,\sigma^2 I) $$
 
 - $q(\tilde{x})$ 는 $q(\tilde{x}|x)$ 를 $x$ 에 대해서 marginalize 해서 구할 수 있다.
 
@@ -388,6 +388,12 @@ $$ Loss = E_{q_{\sigma}(x, \tilde{x})}[\frac{1}{2} \Vert S_{\theta}(\tilde{x}, \
 </p> 
 
 - 이때의, model 은 *Noise Conditional Score-Based Model* $s_\theta(\tilde{x},\sigma)$ 로써, NCSN 이라고 부른다. 
+  - 논문에서의 setting
+    - $L$: 10
+    - $\sigma_1$, $\sigma_{10}$: 1, 0.01
+    - T: 100
+    - $\epsilon$: $2 \times 10^{-5}$ (noise 가 아니다)
+
 
 <p align="center">
 <img src='./img32.png'>

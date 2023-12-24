@@ -36,7 +36,7 @@ $$ p(x) = p(x_1,x_2, \cdots , x_{100}) = p(x_1) \times p(x_2) \times \cdots \tim
   - 예로, 모델 구조를 통해 pixel-wise independent learning 의 단점을 개선할 수 있다. Kernel 을 이용해 인접한 pixel 간의 공간적 정보를 담을 수 있는 CNN 이나 attention 구조를 통해 다른 pixel 간의 관계를 살펴볼 수도 있다.
 - 그럼 왜 픽셀마다 개별적인 학습인가? 
   - loss fucntion 을 뜯어 보면 자세히 알 수 있다. 일반적으로 픽셀마다 값을 뽑은 뒤에 (이미지니까 $2$ or $3$ 차원) 같은 차원의 어떤 값 (e.g., noise) 를 빼주고 전체적으로 평균을 낸다. 이 과정에서 특정 픽셀이 다른 픽셀들과 상호작용을 한 것은 평균을 내기 위한 덧셈과 나눗셈이다. 실제로 결합확률로 해당 픽셀값을 샘플링하려면 그에 맞는 수식을 바탕으로 풀어써야하는데 그런게 없이 단일 확률에서 샘플링했다.
-  - 개별적인 학습이 이해가 안된다면 generative model 의 목적 함수에서 일반적으로 나타나는 $\Vert \text{objective fucntion} \Vert_2^2$ 을 보자. Norm 을 구하는 것 자체가 이미 각 픽셀을 개별적인 원소로 보고 제곱하여 계산한다는 의미이다. 제곱하고 더하는 이 연산이 과연 픽셀 간의 상호작용을 고려한 것일까.
+  - 개별적인 학습이 이해가 안된다면 generative model 의 목적 함수에서 일반적으로 나타나는 $\Vert \text{objective fucntion} \Vert_2^2$ 을 보자. Norm 을 구하는 것 자체가 이미 각 픽셀을 학습과정에서 개별적인 원소로 보고 각 확률적인 오차를 제곱하여 계산한다는 의미이다. 제곱하고 더하는 이 연산이 과연 픽셀 간의 상호작용을 고려한 것일까.
 
 > Objective Function of Denoising Score Matching 
 
@@ -47,5 +47,5 @@ $$ p(x) = p(x_1,x_2, \cdots , x_{100}) = p(x_1) \times p(x_2) \times \cdots \tim
 > Objective Function of DDPM
 
 <p align="center">
-<img src='./img3.png'>
+<img src='./img4.png'>
 </p>
