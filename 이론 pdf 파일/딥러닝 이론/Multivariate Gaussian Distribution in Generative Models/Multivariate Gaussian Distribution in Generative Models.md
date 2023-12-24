@@ -1,8 +1,8 @@
 <img src="https://capsule-render.vercel.app/api?type=waving&color=auto&height=80&section=header&text=Welcome%20Theory%20Review&fontSize=50" width="100%">
 
 
-## Pixel-Wise Independent Learning
-*in image generative models*
+## Multivariate Gaussian Distribution in Generative Models
+*Effectiveness via Multivariate Gaussian Distribution*
 
 [Definition](#definition)</br>
 [Update Definition](#update-definition)
