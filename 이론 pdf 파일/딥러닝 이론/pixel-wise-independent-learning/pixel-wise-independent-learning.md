@@ -62,14 +62,14 @@ $$ p(x) = p(x_1,x_2, \cdots , x_{100}) = p(x_1) \times p(x_2) \times \cdots \tim
 1. 베이지 룰
 2. 깁스 분포 in score-based/energy-based models
 3. x 를 특정 확률 변수들로 쪼개서 $p(x)$ 를 계산. 
-  - 즉, $p(x)$ 를 다변수 확률 분포이자 결합확률분포로 본다. 
-  - 원래라면, $p(x)$ 는 알 수 없는 분포이기 때문에 $x$ 자체를 쪼개는 게 말이 되지 않는다.
-  - 이렇게 쪼개는 것 자체가, $p(x)$ 에서 $x$ 를 결정하는 요인을 내가 결정하는 것이라고 볼 수 있다. 
-  - E.g., $p(x)$ 를 결정하는 확률 변수는  
-    - $R,G,B$ channel 이다. 
-    - pixel 값 
-    - (사람 눈, 사람 코) in 사람 데이터
-  - E.g., Autoregressive models (pixelCNN/pixelRNN)
+   1. 즉, $p(x)$ 를 다변수 확률 분포이자 결합확률분포로 본다. 
+   2. 원래라면, $p(x)$ 는 알 수 없는 분포이기 때문에 $x$ 자체를 쪼개는 게 말이 되지 않는다.
+   3. 이렇게 쪼개는 것 자체가, $p(x)$ 에서 $x$ 를 결정하는 요인을 내가 결정하는 것이라고 볼 수 있다. 
+   4. E.g., $p(x)$ 를 결정하는 확률 변수는  
+      1. $R,G,B$ channel 이다. 
+      2. pixel 값 
+      3. (사람 눈, 사람 코) in 사람 데이터
+   5. E.g., Autoregressive models (pixelCNN/pixelRNN)
 
 <p align="center">
 <img src='./img5.png'>
