@@ -15,7 +15,7 @@
 
 $$ L(\theta) = E_{x \sim p_{data}(x)}[\log p_{\theta}(x)] = - D_{KL}(p_{data}(x) || p(\theta)) + const $$
 
-- Gibbs distribution: 다변수 시스템에서 각 변수의 결합 확률 분포를 나타낸다.
+- Gibbs distribution: 다변수 시스템에서 각 변수의 결합 확률 분포를 나타낸다. $f_{\theta}(x)$ 는 model 의 output 이라고 생각하면 된다.
   
 $$ p_{\theta}(x) = \frac{\exp{(-f_{\theta}(x))}}{Z_{\theta}} $$
 

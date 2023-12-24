@@ -192,9 +192,10 @@ Langevin dynamics:
 <img src='./img30.png'>
 </p>
 
-- $\log{q_{\sigma}(\tilde{x}|x)}$ : $x$ 를 조건으로 $\tilde{x}$ 가 일어날 확률을 우리가 정의한다. (여기서는 Gaussian distribution)
+- $\log{q_{\sigma}(\tilde{x}|x)}$ : $x$ 를 조건으로 $\tilde{x}$ 가 일어날 확률을 우리가 정의한다. (여기서는 multivariate Gaussian distribution)
 
-$$ q(\tilde{x}|x): Noise \ distribution $$
+$$ q(\tilde{x}|x): Noise \ distribution \\ 
+x + \epsilon \text{   where, } \epsilon \sim N(0,\sigma^2 I) $$
 
 - $q(\tilde{x})$ 는 $q(\tilde{x}|x)$ 를 $x$ 에 대해서 marginalize 해서 구할 수 있다.
 
@@ -320,7 +321,7 @@ $$ Loss = E_{q_{\sigma}(x, \tilde{x})}[\frac{1}{2} \Vert S_{\theta}(\tilde{x}) -
    2. $p_{data}(x) = \pi p_1(x) + (1-\pi)p_2(x)$
    3. $\nabla_x \log$ 를 씌워보면, $\pi$ 와 관련된 항들은 사라진다.
    4. $\pi = 0.99$ 라면, $p_1(x)$ 에서 많이 sampling 이 되어야 하는데 그 구분이 되어있지 않기에 문제가 생긴다.
-      1. 이게 무슨말이냐면, 아래 수식을 봤을 때 $p_{data}(x)$ 의 score 가 상대적인 모드의 차이를 반영하지 않았기에 모드의 거리가 가까우면 그곳으로 간다는 얘기이다. 
+      1. 이게 무슨말이냐면, 아래 수식을 봤을 때 $p_{data}(x)$ 의 score 가 상대적인 모드의 차이를 반영하지 않았기에 모드와의 거리가 가까우면 그곳으로 간다는 얘기이다. 
    5. 즉, 실제 분포와 상관없이 균일하게 sampling 된다는 것을 의미하고 기존의 Langevin dynamics sampling 을 사용하여 multi variative distribution 을 추정할 수 없다는 것을 의미한다.
    6. $p_{data}$ 의 score 가 분포의 상대적 차이를 반영하지 않아서 우리는 sampling 을 통해 경험적으로 학습을 해야한다. 하지만, 두 모드는 낮은 밀도 영역으로 분리되어 있다고 가정했기에, 특정 모드에서 다른 모드로 넘어갈 때 밀도가 낮은 지역을 통과해야 한다는 말이 된다. 밀도가 낮은 지역은 기울기가 작기 때문에 Langevin dynamics sampling 을 통해 밀도가 낮은 지역을 횡단하기가 매우 힘들고 해당 지역의 학습 데이터 샘플도 부족하기에 score 가 부정확하다. 따라서, sampling 을 통해 경험적으로 모드 간의 분포 차이를 학습하기 어려워진다. 
    7. 이 문제는 large noise 를 더해, low density 를 채워서 추후에 해결한다.
@@ -334,7 +335,7 @@ $$ \nabla_x \log{p_{data}(x)} = \nabla_x \log{p_1(x)} + \nabla_x \log{p_2(x)} $$
 3. 그렇다면, 이전에 제시된 *Denoising Score Matching* 은 이런 문제를 왜 해결하지 못했는지에 대해 살펴보자
    1. Denoising Score Matching 의 Loss function 은 다음과 같다. 
    2. 우리는 $p(x)$ 가 다변량 확률 분포임은 알 수 있지만, 구체적인 모형은 알 수 없다. 따라서 $q(\tilde{x})$ 로 근사하고자 했고, $\theta$ 에 대해서 objective function 을 잘 풀어보니 $q(\tilde{x}|x)$ 의 score 를 찾는게 $p(x)$ 의 score 를 찾는 것과 유사하다는 걸 알아냈다. 이때의 noise 는 아주 작아야 성립한다.
-   3. $q(\tilde{x}|x) \sim N(\tilde{x};x,\sigma^2)$ 으로 우리가 정의할 수 있기에 결국 $q(\tilde{x}|x)$ 는 다변량 가우시안 분포로 정의를 했다. 이렇게 정의했을 때, 분포를 정확하게 특정할 수 있다는 점에 주목해야한다. 
+   3. $q(\tilde{x}|x) \sim N(\tilde{x}|x;x,\sigma^2 I)$ 으로 우리가 정의할 수 있기에 결국 $q(\tilde{x}|x)$ 는 다변량 가우시안 분포로 정의를 했다. 이렇게 정의했을 때, 분포를 정확하게 특정할 수 있다는 점에 주목해야한다. 
    4. 다시 돌아와서, 위의 $2$ 가지 문제가 왜 생겼는지에 대해 생각해보면 결국 low density region 을 채우지 못했기에 발생하는 것이다.
    5. Denoising score matching 은 noise 를 아주 작게 설정해야 목적 식이 성립하기에, scalability 는 챙겼지만 low density region 은 채우지 못한 것이다.   
 
