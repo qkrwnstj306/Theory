@@ -61,7 +61,7 @@ $$ p(x) = p(x_1,x_2, \cdots , x_{100}) = p(x_1) \times p(x_2) \times \cdots \tim
 
 1. 베이지 룰
 2. 깁스 분포 in score-based/energy-based models
-3. x 를 특정 확률 변수들로 쪼개서 $p(x)$ 를 계산. 
+3. $x$ 를 특정 확률 변수들로 쪼개서 $p(x)$ 를 계산. 
    1. E.g., Autoregressive models (pixelCNN/pixelRNN): $p(x)$ 를 다변수 확률 분포이자 결합확률분포로 본다. 
    2. 원래라면, $p(x)$ 는 알 수 없는 분포이기 때문에 $x$ 자체를 쪼개는 게 말이 되지 않는다.
    3. 이렇게 쪼개는 것 자체가, $p(x)$ 에서 $x$ 를 결정하는 요인을 내가 결정하는 것이라고 볼 수 있다. 강력한 가정을 하는 것이다.
@@ -97,7 +97,7 @@ $$ N(x ; \mu, \Sigma) = \dfrac{1}{(2\pi)^{d/2} |\varSigma| ^{1/d}} \exp \left( -
 
 - 위의 조건들을 바탕으로 풀어쓰면,
 
-$$ N(x ; \mu, \varSigma) = \dfrac{1}{(2\pi)^{d/2} |\varSigma| ^{1/d}} \exp \left( -\dfrac{1}{2} \frac{(x-\mu)^2}{\sigma^2}  \right) = \dfrac{1}{(2\pi)^{d/2} |\varSigma| ^{1/d}} \exp \left( -\dfrac{1}{2} \sum_{i = 1}^{d}\frac{(x_{i}-\mu_{i})^2}{\sigma^2}  \right) $$
+$$ \text{multivariate gaussian distribution defenition}: \\  N(x ; \mu, \varSigma) = \dfrac{1}{(2\pi)^{d/2} |\varSigma| ^{1/d}} \exp \left( -\dfrac{1}{2} \frac{(x-\mu)^2}{\sigma^2}  \right) = \dfrac{1}{(2\pi)^{d/2} |\varSigma| ^{1/d}} \exp \left( -\dfrac{1}{2} \sum_{i = 1}^{d}\frac{(x_{i}-\mu_{i})^2}{\sigma^2}  \right) $$
 
 - Notation 을 NCSN 에 맞춰주면, 
 
