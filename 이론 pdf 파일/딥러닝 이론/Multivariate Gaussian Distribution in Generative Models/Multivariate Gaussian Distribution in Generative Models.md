@@ -92,17 +92,6 @@ $$ p(x) = p(x_1,x_2, \cdots , x_{100}) = p(x_1) \times p(x_2) \times \cdots \tim
 <img src='./img3.png'>
 </p> 
 
-
-$$ \text{Multivariate Gaussian Distribution Definition}: \\ N(x ; \mu, \Sigma) = \dfrac{1}{(2\pi)^{d/2} |\varSigma| ^{1/d}} \exp \left( -\dfrac{1}{2} (x-\mu)^T \varSigma^{-1} (x-\mu) \right) $$
-
-- 위의 조건들을 바탕으로 풀어쓰면,
-
-$$ N(x ; \mu, \varSigma) = \dfrac{1}{(2\pi)^{d/2} |\varSigma| ^{1/d}} \exp \left( -\dfrac{1}{2} \frac{(x-\mu)^2}{\sigma^2}  \right) = \dfrac{1}{(2\pi)^{d/2} |\varSigma| ^{1/d}} \exp \left( -\dfrac{1}{2} \sum_{i = 1}^{d}\frac{(x_{i}-\mu_{i})^2}{\sigma^2}  \right) $$
-
-- Notation 을 NCSN 에 맞춰주면, 
-
-$$ N(\tilde{x} ; x, \varSigma) = \dfrac{1}{(2\pi)^{d/2} |\varSigma| ^{1/d}} \exp \left( -\dfrac{1}{2} \frac{(\tilde{x}-x)^2}{\sigma^2}  \right) = \dfrac{1}{(2\pi)^{d/2} |\varSigma| ^{1/d}} \exp \left( -\dfrac{1}{2} \sum_{i = 1}^{d}\frac{(\tilde{x}_i-x_i)^2}{\sigma^2}  \right) $$
-
 - 공분산 행렬의 비대각 원소는 $0$ 이고, 주대각 원소는 동일할 때의 역함수 계산
 
 <p align="center">
@@ -113,8 +102,18 @@ $$ N(\tilde{x} ; x, \varSigma) = \dfrac{1}{(2\pi)^{d/2} |\varSigma| ^{1/d}} \exp
 <img src='./img7.png'>
 </p> 
 
+$$ \text{Multivariate Gaussian Distribution Definition}: \\ N(x ; \mu, \Sigma) = \dfrac{1}{(2\pi)^{d/2} |\varSigma| ^{1/d}} \exp \left( -\dfrac{1}{2} (x-\mu)^T \varSigma^{-1} (x-\mu) \right) $$
+
+- 위의 조건들을 바탕으로 풀어쓰면, (공분산이 독립이고 주대각 원소가 동일해서 가능)
+
+$$ N(x ; \mu, \varSigma) = \dfrac{1}{(2\pi)^{d/2} |\varSigma| ^{1/d}} \exp \left( -\dfrac{1}{2} \frac{(x-\mu)^2}{\sigma^2}  \right) = \dfrac{1}{(2\pi)^{d/2} |\varSigma| ^{1/d}} \exp \left( -\dfrac{1}{2} \sum_{i = 1}^{d}\frac{(x_{i}-\mu_{i})^2}{\sigma^2}  \right) \tag{1}$$
+
+- Notation 을 NCSN 에 맞춰주면, 
+
+$$ N(\tilde{x} ; x, \varSigma) = \dfrac{1}{(2\pi)^{d/2} |\varSigma| ^{1/d}} \exp \left( -\dfrac{1}{2} \frac{(\tilde{x}-x)^2}{\sigma^2}  \right) = \dfrac{1}{(2\pi)^{d/2} |\varSigma| ^{1/d}} \exp \left( -\dfrac{1}{2} \sum_{i = 1}^{d}\frac{(\tilde{x}_i-x_i)^2}{\sigma^2}  \right) $$
+
 - 다음의 조건들을 바탕으로 목적 함수를 풀어쓰면, 다음과 같다.
-  - $\nabla_{x}\log$ 를 주의
+  - $\nabla_{x}\log$ 를 계산
 
 $$ Loss = E_{q_{\sigma}(x, \tilde{x})}[\frac{1}{2} \Vert S_{\theta}(\tilde{x}) - \nabla_{\tilde{x}} \log{q(\tilde{x}|x)} \Vert_2^2] = E_{q_{\sigma}(x, \tilde{x})}[\frac{1}{2} \Vert S_{\theta}(\tilde{x}) - \frac{x-\tilde{x}}{\sigma^2} \Vert_2^2] \\ = E_{q_{\sigma}(\tilde{x} | x)}E_{p_{data}}[\frac{1}{2} \Vert S_{\theta}(\tilde{x}) - \frac{x-\tilde{x}}{\sigma^2} \Vert_2^2] $$
 
@@ -122,8 +121,12 @@ $$ Loss = E_{q_{\sigma}(x, \tilde{x})}[\frac{1}{2} \Vert S_{\theta}(\tilde{x}) -
 
 
 - In DDPM, 역시나 $Noise \sim N(0,I)$ 를 더해줘서 다변량 가우시안 분포를 따른다. 정확히는 $\beta_t$ noise scheduling 을 거치긴 한다. 그래도 분산이 단위행렬인 즉, 각 확률 변수 (pixel) $x_1, x_2, \cdots$ 가 독립이기 때문에 공분산이 주대각 원소만 남고 주대각 원소들의 값이 모두 동일하다는 걸 알 수 있다. 
-- 이건 목적 함수를 내가 표현할 수 있게 만들어준다. $\rightarrow$ noise 를 더해서 다변량 가우시안 분포 
-- 계산상 편리함을 가져다 준다. $\rightarrow$ noise 의 확률변수 (픽셀)가 독립이고 분산이 동일해서 공분산 계산이 쉽다. 
+  - DDPM 에서 $\Vert \Vert_2^2$ 가 쓰인 이유는, 목적 함수가 결국 다변량 가우시안 분포의 평균값들을 예측하는 문제로 바뀌기 때문이다. 당연하게도 스칼라 값이 아니라, pixel 차원만큼 있기 때문에 사용된다. 
+
+
+- **Noise 를 더해서 다변량 가우시안 분포를 만드는 것은 목적 함수를 내가 표현할 수 있게 만들어준다. $\rightarrow$ noise 를 더해서 평균이 각 pixel 값이고 분산이 $\sigma^2I$ 인 다변량 가우시안 분포**
+- **계산상 편리함을 가져다 준다. $\rightarrow$ noise 의 확률변수 (픽셀)가 독립이고 분산이 동일해서 공분산 계산이 쉽다. 단순하게 표현됨** 
+
 
 <p align="center">
 <img src='./img8.png'>
