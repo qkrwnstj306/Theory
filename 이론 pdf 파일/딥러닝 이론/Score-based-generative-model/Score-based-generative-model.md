@@ -331,7 +331,7 @@ $$ \nabla_x \log{p_{data}(x)} = \nabla_x \log{p_1(x)} + \nabla_x \log{p_2(x)} $$
 <img src='./low-density.jpg'>
 </p>
 
-1. 그렇다면, 이전에 제시된 *Denoising Score Matching* 은 이런 문제를 왜 해결하지 못했는지에 대해 살펴보자
+3. 그렇다면, 이전에 제시된 *Denoising Score Matching* 은 이런 문제를 왜 해결하지 못했는지에 대해 살펴보자
    1. Denoising Score Matching 의 Loss function 은 다음과 같다. 
    2. 우리는 $p(x)$ 가 다변량 확률 분포임은 알 수 있지만, 구체적인 모형은 알 수 없다. 따라서 $q(\tilde{x})$ 로 근사하고자 했고, $\theta$ 에 대해서 objective function 을 잘 풀어보니 $q(\tilde{x}|x)$ 의 score 를 찾는게 $p(x)$ 의 score 를 찾는 것과 유사하다는 걸 알아냈다. 이때의 noise 는 아주 작아야 성립한다.
    3. $q(\tilde{x}|x) \sim N(\tilde{x};x,\sigma^2)$ 으로 우리가 정의할 수 있기에 결국 $q(\tilde{x}|x)$ 는 다변량 가우시안 분포로 정의를 했다. 이렇게 정의했을 때, 분포를 정확하게 특정할 수 있다는 점에 주목해야한다. 
