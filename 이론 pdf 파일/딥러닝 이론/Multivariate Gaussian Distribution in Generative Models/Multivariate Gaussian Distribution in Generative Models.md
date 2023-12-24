@@ -97,7 +97,7 @@ $$ N(x ; \mu, \Sigma) = \dfrac{1}{(2\pi)^{d/2} |\varSigma| ^{1/d}} \exp \left( -
 
 - 위의 조건들을 바탕으로 풀어쓰면,
 
-$$ \text{multivariate gaussian distribution defenition}: \\  N(x ; \mu, \varSigma) = \dfrac{1}{(2\pi)^{d/2} |\varSigma| ^{1/d}} \exp \left( -\dfrac{1}{2} \frac{(x-\mu)^2}{\sigma^2}  \right) = \dfrac{1}{(2\pi)^{d/2} |\varSigma| ^{1/d}} \exp \left( -\dfrac{1}{2} \sum_{i = 1}^{d}\frac{(x_{i}-\mu_{i})^2}{\sigma^2}  \right) $$
+$$ \text{Multivariate Gaussian Distribution Definition}: \\  N(x ; \mu, \varSigma) = \dfrac{1}{(2\pi)^{d/2} |\varSigma| ^{1/d}} \exp \left( -\dfrac{1}{2} \frac{(x-\mu)^2}{\sigma^2}  \right) = \dfrac{1}{(2\pi)^{d/2} |\varSigma| ^{1/d}} \exp \left( -\dfrac{1}{2} \sum_{i = 1}^{d}\frac{(x_{i}-\mu_{i})^2}{\sigma^2}  \right) $$
 
 - Notation 을 NCSN 에 맞춰주면, 
 
