@@ -316,13 +316,31 @@ $$ Loss = E_{q_{\sigma}(x, \tilde{x})}[\frac{1}{2} \Vert S_{\theta}(\tilde{x}) -
 </p>
 
 2. 마찬가지로, 낮은 밀도 영역으로 인해 발생하는 문제이다.
-   1. $2$ 개의 mode 로 구성된 mixture data distribution 을 가정.
+   1. $2$ 개의 mode 로 구성된 mixture data distribution 을 가정. 두 모드는 낮은 밀도 영역으로 분리되어 있다고 가정. 즉, 두 모드가 엄청 멀리 있다고 생각해보자.
    2. $p_{data}(x) = \pi p_1(x) + (1-\pi)p_2(x)$
    3. $\nabla_x \log$ 를 씌워보면, $\pi$ 와 관련된 항들은 사라진다.
    4. $\pi = 0.99$ 라면, $p_1(x)$ 에서 많이 sampling 이 되어야 하는데 그 구분이 되어있지 않기에 문제가 생긴다.
-   5. 즉, 실제 분포와 상관없이 균일하게 sampling 된다는 것을 의미하고 기존의 Langevin dynamics sampling 을 사용한 multi variative distribution 을 추정할 수 없다는 것을 의미한다. 
+      1. 이게 무슨말이냐면, 아래 수식을 봤을 때 $p_{data}(x)$ 의 score 가 상대적인 모드의 차이를 반영하지 않았기에 모드의 거리가 가까우면 그곳으로 간다는 얘기이다. 
+   5. 즉, 실제 분포와 상관없이 균일하게 sampling 된다는 것을 의미하고 기존의 Langevin dynamics sampling 을 사용하여 multi variative distribution 을 추정할 수 없다는 것을 의미한다.
+   6. $p_{data}$ 의 score 가 분포의 상대적 차이를 반영하지 않아서 우리는 sampling 을 통해 경험적으로 학습을 해야한다. 하지만, 두 모드는 낮은 밀도 영역으로 분리되어 있다고 가정했기에, 특정 모드에서 다른 모드로 넘어갈 때 밀도가 낮은 지역을 통과해야 한다는 말이 된다. 밀도가 낮은 지역은 기울기가 작기 때문에 Langevin dynamics sampling 을 통해 밀도가 낮은 지역을 횡단하기가 매우 힘들고 해당 지역의 학습 데이터 샘플도 부족하기에 score 가 부정확하다. 따라서, sampling 을 통해 경험적으로 모드 간의 분포 차이를 학습하기 어려워진다. 
+   7. 이 문제는 large noise 를 더해, low density 를 채워서 추후에 해결한다.
 
 $$ \nabla_x \log{p_{data}(x)} = \nabla_x \log{p_1(x)} + \nabla_x \log{p_2(x)} $$
+
+<p align="center">
+<img src='./low-density.jpg'>
+</p>
+
+1. 그렇다면, 이전에 제시된 *Denoising Score Matching* 은 이런 문제를 왜 해결하지 못했는지에 대해 살펴보자
+   1. Denoising Score Matching 의 Loss function 은 다음과 같다. 
+   2. 우리는 $p(x)$ 가 다변량 확률 분포임은 알 수 있지만, 구체적인 모형은 알 수 없다. 따라서 $q(\tilde{x})$ 로 근사하고자 했고, $\theta$ 에 대해서 objective function 을 잘 풀어보니 $q(\tilde{x}|x)$ 의 score 를 찾는게 $p(x)$ 의 score 를 찾는 것과 유사하다는 걸 알아냈다. 이때의 noise 는 아주 작아야 성립한다.
+   3. $q(\tilde{x}|x) \sim N(\tilde{x};x,\sigma^2)$ 으로 우리가 정의할 수 있기에 결국 $q(\tilde{x}|x)$ 는 다변량 가우시안 분포로 정의를 했다. 이렇게 정의했을 때, 분포를 정확하게 특정할 수 있다는 점에 주목해야한다. 
+   4. 다시 돌아와서, 위의 $2$ 가지 문제가 왜 생겼는지에 대해 생각해보면 결국 low density region 을 채우지 못했기에 발생하는 것이다.
+   5. Denoising score matching 은 noise 를 아주 작게 설정해야 목적 식이 성립하기에, scalability 는 챙겼지만 low density region 은 채우지 못한 것이다.   
+
+
+$$ Loss = E_{q_{\sigma}(x, \tilde{x})}[\frac{1}{2} \Vert S_{\theta}(\tilde{x}) - \nabla_{\tilde{x}} \log{q(\tilde{x}|x)} \Vert_2^2] = E_{q_{\sigma}(x, \tilde{x})}[\frac{1}{2} \Vert S_{\theta}(\tilde{x}) - \frac{x-\tilde{x}}{\sigma^2} \Vert_2^2] \\ = E_{q_{\sigma}(\tilde{x} | x)}E_{p_{data}}[\frac{1}{2} \Vert S_{\theta}(\tilde{x}) - \frac{x-\tilde{x}}{\sigma^2} \Vert_2^2] $$
+
 
 <p align="center">
 <img src='./img39.png'>
@@ -334,8 +352,13 @@ $$ \nabla_x \log{p_{data}(x)} = \nabla_x \log{p_1(x)} + \nabla_x \log{p_2(x)} $$
 - Noise 의 크기가 충분히 큰 경우, 낮은 데이터 밀도 지역에 데이터를 채워 넣어 estimated score 의 정확도를 향상시킬 수 있다. 
   - noise 를 추가하면, 데이터 분포는 smooth 해지기 때문에 데이터 밀도가 낮은 지역을 어느 정도 학습 할 수 있게 된다. 즉, 실제 데이터 분포는 아니지만 밀도가 낮은 지역에서 어디로 가야 하는 지에 대한 방향성을 제시할 수 있다.
 - 그럼 우리가 생각해야 될 것은, '적절한 noise 크기를 어떻게 선택할 것인가' 이다. 큰 노이즈는 분명히 더 많은 낮은 밀도 영역을 포함하여 더 나은 score 를 추정할 수 있지만, 데이터를 지나치게 손상시키고 원래 분포에서 상당히 벗어날 수 있다. 반면 작은 노이즈는 원래 데이터 분포를 적게 손상시키지만 우리가 원하는 만큼 낮은 밀도 영역을 충분히 커버하지 못할 수 있다.  
-  - 초기에는 noise 를 많이 더해서 low density region 에서 벗어나고
+  - 초기에는 noise 를 많이 더해서 low density region 에서 벗어나는 용도로 사용하고
   - 시간이 지날수록 noise 를 적게 줘서, Denoising score matching 처럼 적은 noise 상태에서 정확한 $p(x)$ 의 score 를 예측함으로써, 올바른 sampling 을 할 수 있다.
+  - 이 방법이 효과적인 이유는 다음과 같다. 
+    - 다변량 가우시안 분포는 분산이 크다면 전체 영역을 커버할 수 있다.
+    - Denoising score matching 은 그러지 못했다.
+    - 초기 sampling 시에 큰 noise 를 더해줌으로써, low density region 을 채워줘서 방향을 제시해준다.
+    - 어느 영역에 도달하면, noise 를 적게 더해줘도 입력이 들어왔을 때 low density region 이 아니라는 가정이 있다.  
 - **Thus, 학습용 data 에 multi-scale noise 추가. 내가 가지고 있는 데이터는 확률값이 높은 곳에서 sampling 된 데이터들이고 그 데이터들로 학습을 한다. 하지만 model 을 통해 sampling 을 할 때는 초기에 랜덤하게 시작하기 때문에 확률값이 낮은 공간에서는 score 값이 부정확하다. 따라서, 큰 noise 부터 작은 noise 까지 multi-scale 로 data 에 noise 를 더해줌으로써 score 값의 방향성을 제시해준다. 그에 따라, noise 가 network 에 condition 으로 추가되고 sampling 방식도 바뀐다 (Annealed Langevin Dynamics). 즉, loss 와 sampling 의 개선**
 - Data 에 noise 를 더하는 denoising score matching 과 유사하다. (Advanced denoising score mathcing?)
 
@@ -463,3 +486,6 @@ $$ \nabla_x \log{p_{\sigma_i}(x)} \approx s_\theta(x_t,t\ or \ \sigma) = - \frac
 ***
 
 ### <strong>Question</strong>
+
+- Denoising Score Matching 의 목적함수는 NCSN 에서도 사용된다. 여기서 궁금한 건 $q(\tilde{x}|x)$ 가 모드가 하나인 다변량 가우시안 분포라는 것이냐다. 이게 왜 중요하냐면 결국 모드가 하나라면 score fucntion 은 어디서 sampling 이 되든 한 곳으로 모일 것이다. 이건 올바른 학습 방법이 아니다. 
+  - 자문자답을 해보자면, $q(\tilde{x}|x)$ 는 하나의 모드를 가지는 다변량 가우시안 분포가 맞지만 어떤 $x$ 가 주어지냐에 따라 바뀌기 때문에 상관없다. 무슨 말이냐면, $x$ 가 결국 langevin dynamics 를 통해 계속 바뀐 상태로 network 의 입력으로 들어갈텐데 그때마다 model 은 다른 다변량 가우시안 분포를 예측하기에 사실상 하나의 분포를 고정시켜놓고 올라타는 게 아니라는 말이다. 물론 특정 영역안에 들어가면 입력이 들어왔을 때, model 이 생각하는 다변량 가우시안 분포가 유사해서 수렴을 할 거 같긴 하다.
