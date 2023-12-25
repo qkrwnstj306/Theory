@@ -121,7 +121,7 @@ $$ Loss = E_{q_{\sigma}(x, \tilde{x})}[\frac{1}{2} \Vert S_{\theta}(\tilde{x}) -
 
 
 - In DDPM, 역시나 $Noise \sim N(0,I)$ 를 더해줘서 다변량 가우시안 분포를 따른다. 정확히는 $\beta_t$ noise scheduling 을 거치긴 한다. 그래도 분산이 단위행렬인 즉, 각 확률 변수 (pixel) $x_1, x_2, \cdots$ 가 독립이기 때문에 공분산이 주대각 원소만 남고 주대각 원소들의 값이 모두 동일하다는 걸 알 수 있다. 
-  - DDPM 에서 $\Vert \Vert_2^2$ 가 쓰인 이유는, 목적 함수가 결국 다변량 가우시안 분포의 평균값들을 예측하는 문제로 바뀌기 때문이다. 당연하게도 스칼라 값이 아니라, pixel 차원만큼 있기 때문에 사용된다. 
+  - DDPM 에서 $\Vert \Vert_2^2$ 가 쓰인 이유는, KL-Divergence 의 target distribution 을 직접 구했기에, 목적 함수가 결국 다변량 가우시안 분포의 평균값들을 예측하는 문제로 바뀌기 때문이다. 당연하게도 스칼라 값이 아니라, pixel 차원만큼 있기 때문에 사용된다. 
 
 <p align="center">
 <img src='./img8.png'>

@@ -84,7 +84,7 @@ Theory for ML.
 - <a href='./이론 pdf 파일/딥러닝 이론/RNN.pdf'>RNN</a>
 - <a href='./이론 pdf 파일/딥러닝 이론/Energy-based-model/Energy-based-model.md'>Energy-based Model: Normalizing Constant</a>
 - <a href='./이론 pdf 파일/딥러닝 이론/MCMC/MCMC.md'>MCMC: Marcov Chain Monte Carlo</a>
-- <a href='./이론 pdf 파일/딥러닝 이론/SDE/SDE.md'>SED: Stochastic Differential Equation</a>
+- <a href='./이론 pdf 파일/딥러닝 이론/SDE/SDE.md'>SDE: Stochastic Differential Equation</a>
 - <a href='./이론 pdf 파일/딥러닝 이론/Multivariate Gaussian Distribution in Generative Models/Multivariate Gaussian Distribution in Generative Models.md'>Multivariate Gaussian Distribution in Generative Models</a>
 
 #### Andrew Ang in Coursera
