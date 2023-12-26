@@ -37,6 +37,8 @@ $$ p(x) = \frac{p(x|y)p(y)}{p(y|x)} $$
         - E.g.,    
           - GAN: 확률 분포를 직접 근사하지는 않고, 다른 loss 를 이용한다. 이때 이 loss 를 푸는 과정이 암시적으로는 확률 분포를 푸는 문제와 동일하다고 볼 수 있다. 즉, 간접적으로 푸는 형태.
             - Generator: $p(x) = \int_z{p(x|z)p(z)dz}$ , *implicit PDF 학습*
+            - GAN 은 위의 수식이 intractable 하므로, Monte Carlo 로 근사한다. 
+            - 실제로 loss 는 위와 다르지만 implicit 하게 maximize.
 
 <p align="center">
 <img src='./img1.png'>
@@ -355,6 +357,7 @@ $$ Loss = E_{q_{\sigma}(x, \tilde{x})}[\frac{1}{2} \Vert S_{\theta}(\tilde{x}) -
 - 그럼 우리가 생각해야 될 것은, '적절한 noise 크기를 어떻게 선택할 것인가' 이다. 큰 노이즈는 분명히 더 많은 낮은 밀도 영역을 포함하여 더 나은 score 를 추정할 수 있지만, 데이터를 지나치게 손상시키고 원래 분포에서 상당히 벗어날 수 있다. 반면 작은 노이즈는 원래 데이터 분포를 적게 손상시키지만 우리가 원하는 만큼 낮은 밀도 영역을 충분히 커버하지 못할 수 있다.  
   - 초기에는 noise 를 많이 더해서 low density region 에서 벗어나는 용도로 사용하고
   - 시간이 지날수록 noise 를 적게 줘서, Denoising score matching 처럼 적은 noise 상태에서 정확한 $p(x)$ 의 score 를 예측함으로써, 올바른 sampling 을 할 수 있다.
+  - 초기부터 정확하게 값을 추정할 필요는 없다. 즉, 방향성은 같으니 어떤 점 보단 영역을 향해 가는 느낌이다.
   - 이 방법이 효과적인 이유는 다음과 같다. 
     - 다변량 가우시안 분포는 분산이 크다면 전체 영역을 커버할 수 있다.
     - Denoising score matching 은 그러지 못했다.

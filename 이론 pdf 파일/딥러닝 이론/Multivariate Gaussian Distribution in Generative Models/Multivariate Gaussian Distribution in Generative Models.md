@@ -131,5 +131,15 @@ $$ Loss = E_{q_{\sigma}(x, \tilde{x})}[\frac{1}{2} \Vert S_{\theta}(\tilde{x}) -
 <img src='./img9.png'>
 </p> 
 
-- **Noise 를 더해서 다변량 가우시안 분포를 만드는 것은 목적 함수를 내가 표현할 수 있게 만들어준다. $\rightarrow$ noise 를 더해서 평균이 각 pixel 값이고 분산이 $\sigma^2I$ 인 다변량 가우시안 분포**
+- 목적 함수를 풀다보니, pixel-wise operation 이 일어난 것 뿐이다.
+  - 다음의 예시는 score-matching 목적 함수이다.
+  - Noise 를 더하지 않으면서 $p(x)$ 의 score function 을 구하는 식이다.
+  - 항상 $\Vert \Vert_2^2$ 가 전체에 있는 것도 아니다.
+
+<p align="center">
+<img src='../Score-based-generative-model/img15.png'>
+</p>
+
+
+- **$Noise \sim N(0,\sigma^2 I)$ 를 더해서 다변량 가우시안 분포를 만드는 것은 목적 함수를 내가 표현할 수 있게 만들어준다. $\rightarrow$ noise 를 더해서 평균이 각 pixel 값이고 분산이 $\sigma^2I$ 인 다변량 가우시안 분포**
 - **계산상 편리함을 가져다 준다. $\rightarrow$ noise 의 확률변수 (픽셀)가 독립이고 분산이 동일해서 공분산 계산이 쉽다. $Eq. \ 1$ 처럼 단순하게 표현됨** 
