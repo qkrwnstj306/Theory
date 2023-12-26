@@ -102,7 +102,7 @@ $$ arg\  min_{\theta,\phi} \sum_i - \log{p_{\theta}(x_i|z)} +  D_{KL} (q_{\phi}(
 - 즉, $\log{p_{\theta}(x|z)} -  D_{KL} (q_{\phi}(z|x)||p_{\theta}(z))$ 를 maximize 하는 게 $\log p_{\theta}(x)$ 를 정확히는 추정 못해도 근사는 할 수 있다
 
 - 두 번째 항을 다시보자.
-  - $q_{\phi}(z|x_i)$ 가 $p_{\theta}(z)$ (사실 parameterize 가 안 되어있기 때문에 $p(z)$) 의 분포와 같아야 한다. 
+  - $q_{\phi}(z|x_i)$ 가 $p_{\theta}(z)$ (사실 parameterize 가 안 되어있기 때문에 $p(z)$ ) 의 분포와 같아야 한다. 
   - 우리는 encoder output 이 multivariate gaussian distribution 으로 가정했기 때문에, $q_{\phi}(z|x_i) \sim N(\mu_i, \sigma_i^2 I)$ 가 $p(z) \sim N(0,I)$ 의 분포를 따라야 한다.
   - <a href='https://simpling.tistory.com/33'>KLD for Gaussian Distribution</a>
 
