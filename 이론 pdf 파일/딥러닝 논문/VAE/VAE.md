@@ -36,6 +36,9 @@ $$ p(x) = \frac{p(x|z)p(z)}{p(z|x)} $$
 
 
 - 간단한 정의를 마쳤으니, 이제 목적 함수에 대해 살펴보자.
+  - 다변량 가우시안 분포로 가정하면 MSE 로 수식이 전개되고
+  - 다변량 베르누이 분포로 가정하면 Cross Entropy 로 전개된다.
+
 
 <p align="center">
 <img src='./img2.png'>
@@ -50,7 +53,7 @@ $$ \max_{\theta} - D_{KL}[\frac{p(x)}{p_{\theta}(x)}] = \max_{\theta} \ p_{\thet
 $$ \log p_{\theta}(x) $$
 
 - $q_{\phi}(z|x)$ 에 대해서 기댓값을 구한다. 이때, $\int q_{\phi}(z|x) dz= 1$ 이고 $p(x)$ 는 $z$ 에 대해서 독립이기 때문에 상수취급이다.
-  - **$q_{\phi}(z|x)$ 에 대해서 기댓값을 구하는 이유는 기댓값으로 표현해야, 추후에 KL-Divergence 로 표현하여 풀 수 있기 때문이다.**
+  - **$q_{\phi}(z|x)$ 에 대해서 기댓값을 구하는 이유는 일종의 trick 이다. 기댓값으로 표현해야, 추후에 KL-Divergence 로 표현하여 풀 수 있기 때문이다.**
   - 기댓값으로 표현하지 않으면 그냥 나눗셈이 된다.
   - 이때, $q_{\phi}(z|x)$ 로 sampling 한 $z$ 에 대한 기댓값이라는 것을 주의해야 한다.
 
@@ -104,26 +107,17 @@ $$ \text{arg min}_{\theta,\phi} \sum_i - \log{p_{\theta}(x_i|z)} +  D_{KL} (q_{\
 - 두 번째 항을 다시보자.
   - $q_{\phi}(z|x_i)$ 가 $p_{\theta}(z)$ (사실 parameterize 가 안 되어있기 때문에 $p(z)$) 의 분포와 같아야 한다. 
   - 우리는 encoder output 이 multivariate gaussian distribution 으로 가정했기 때문에, $q_{\phi}(z|x_i) \sim N(\mu_i, \sigma_i^2 I)$ 가 $p(z) \sim N(0,I)$ 의 분포를 따라야 한다.
+  - <a href='https://simpling.tistory.com/33'>KLD for Gaussian Distribution</a>
 
+<p align="center">
+<img src='./img4.png'>
+</p>
 
-***
+- 세 번째 항은 다음과 같이 풀어쓴다.
+  - $D$: Decoder output dimension
+  - $i$: Data sample $i$-th
 
-### <strong>Experiment</strong>
+<p align="center">
+<img src='./img5.png'>
+</p>
 
-
-***
-
-### <strong>Conclusion</strong>
-
-
-***
-
-### <strong>Question</strong>
-
-
-
-![](img_path)
-<a href="">link</a>
-
-
-> 인용구

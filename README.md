@@ -145,6 +145,7 @@ Theory for ML.
 - <a href='./이론 pdf 파일/딥러닝 논문/StyleGAN_230517_095353.pdf'>StyleGAN : A Style-Based Generator Architecture for Generative Adversarial Networks</a>
 - <a href='./이론 pdf 파일/딥러닝 논문/StyleGANv2_230620_160458.pdf'>StyleGAN2 : Analyzing and Improving the Image Quality of StyleGAN</a>
 - <a href='./이론 pdf 파일/딥러닝 논문/VAE_230706_175059.pdf'>VAE : Auto-Encoding Variational Bayes</a>
+    - <a href='./이론 pdf 파일/딥러닝 논문/VAE/VAE.md'>Paper Review</a>
 	+ <a href='https://github.com/qkrwnstj306/VAE'> VAE code practice</a>
 - <a href='./이론 pdf 파일/딥러닝 논문/ViT Vision Transformer_230705_150728.pdf'>ViT : AN IMAGE IS WORTH 16 X 16 WORDS : TRANSFORMERS FOR IMAGE RECOGNITION AT SCALE</a>
   - <a href='./PPT/ViT.pptx'>ViT PPT</a>
