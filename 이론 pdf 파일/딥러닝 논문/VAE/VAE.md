@@ -4,11 +4,8 @@
 ## Auto-Encoding Variational Bayes
 *arXiv(2013), 32062 citation*
 
-[Intro](#intro)</br>
-[Related Work](#related-work)</br>
 [Method](#method)</br>
-[Experiment](#experiment)</br>
-[Conclusion](#conclusion)</br>
+
 
 <p align="center">
 <img src='./img1.png'>
@@ -100,7 +97,7 @@ $$ \log p_{\theta}(x) \geq  \log{p_{\theta}(x|z)} -  D_{KL} (q_{\phi}(z|x)||p_{\
 
 - Gradient descent 고려하면, (minimize 니까 음수를 곱한다)
 
-$$ \text{arg min}_{\theta,\phi} \sum_i - \log{p_{\theta}(x_i|z)} +  D_{KL} (q_{\phi}(z|x_i)||p_{\theta}(z)) $$
+$$ arg\  min_{\theta,\phi} \sum_i - \log{p_{\theta}(x_i|z)} +  D_{KL} (q_{\phi}(z|x_i)||p_{\theta}(z)) $$
 
 - 즉, $\log{p_{\theta}(x|z)} -  D_{KL} (q_{\phi}(z|x)||p_{\theta}(z))$ 를 maximize 하는 게 $\log p_{\theta}(x)$ 를 정확히는 추정 못해도 근사는 할 수 있다
 
