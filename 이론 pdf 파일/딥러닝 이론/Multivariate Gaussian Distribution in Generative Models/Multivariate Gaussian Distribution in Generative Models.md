@@ -102,15 +102,16 @@ $$ p(x) = p(x_1,x_2, \cdots , x_{100}) = p(x_1) \times p(x_2) \times \cdots \tim
 <img src='./img7.png'>
 </p> 
 
-$$ \text{Multivariate Gaussian Distribution Definition}: \\ N(x ; \mu, \Sigma) = \dfrac{1}{(2\pi)^{d/2} |\varSigma| ^{1/d}} \exp \left( -\dfrac{1}{2} (x-\mu)^T \varSigma^{-1} (x-\mu) \right) $$
+$$ \text{Multivariate Gaussian Distribution Definition}: \\ N(x ; \mu, \Sigma) = \dfrac{1}{(2\pi)^{d/2} |\varSigma| ^{1/2}} \exp \left( -\dfrac{1}{2} (x-\mu)^T \varSigma^{-1} (x-\mu) \right) $$
+
 
 - 위의 조건들을 바탕으로 풀어쓰면, (공분산이 독립이고 주대각 원소가 동일해서 가능)
 
-$$ N(x ; \mu, \varSigma) = \dfrac{1}{(2\pi)^{d/2} |\varSigma| ^{1/d}} \exp \left( -\dfrac{1}{2} \frac{(x-\mu)^2}{\sigma^2}  \right) = \dfrac{1}{(2\pi)^{d/2} |\varSigma| ^{1/d}} \exp \left( -\dfrac{1}{2} \sum_{i = 1}^{d}\frac{(x_{i}-\mu_{i})^2}{\sigma^2}  \right) \tag{1}$$
+$$ N(x ; \mu, \varSigma) = \dfrac{1}{(2\pi)^{d/2} |\varSigma| ^{1/2}} \exp \left( -\dfrac{1}{2} \frac{(x-\mu)^2}{\sigma^2}  \right) = \dfrac{1}{(2\pi)^{d/2} |\varSigma| ^{1/2}} \exp \left( -\dfrac{1}{2} \sum_{i = 1}^{d}\frac{(x_{i}-\mu_{i})^2}{\sigma^2}  \right) \tag{1}$$
 
 - Notation 을 NCSN 에 맞춰주면, 
 
-$$ N(\tilde{x} ; x, \varSigma) = \dfrac{1}{(2\pi)^{d/2} |\varSigma| ^{1/d}} \exp \left( -\dfrac{1}{2} \frac{(\tilde{x}-x)^2}{\sigma^2}  \right) = \dfrac{1}{(2\pi)^{d/2} |\varSigma| ^{1/d}} \exp \left( -\dfrac{1}{2} \sum_{i = 1}^{d}\frac{(\tilde{x}_i-x_i)^2}{\sigma^2}  \right) $$
+$$ N(\tilde{x} ; x, \varSigma) = \dfrac{1}{(2\pi)^{d/2} |\varSigma| ^{1/2}} \exp \left( -\dfrac{1}{2} \frac{(\tilde{x}-x)^2}{\sigma^2}  \right) = \dfrac{1}{(2\pi)^{d/2} |\varSigma| ^{1/2}} \exp \left( -\dfrac{1}{2} \sum_{i = 1}^{d}\frac{(\tilde{x}_i-x_i)^2}{\sigma^2}  \right) $$
 
 - 다음의 조건들을 바탕으로 목적 함수를 풀어쓰면, 다음과 같다.
   - $\nabla_{x}\log$ 를 계산
