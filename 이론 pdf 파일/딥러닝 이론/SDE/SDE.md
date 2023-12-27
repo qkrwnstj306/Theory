@@ -47,7 +47,11 @@ $$ n(t) = \frac{dw(t)}{dt} \ [\textbf{Weak Derivative}]$$
     - $S = t_0 < t_1 < \cdots < t_n = T$
     - 여기서 $G(t)$ 에 $t=t_i$ 가 들어오는 것에 주목.
     - $t_i$ 는 partition $(t_i, t_{t+1})$ 에서 왼쪽 점이다.
-    - $\displaystyle\sum_{i=0}^{n} G(t_i^*)(w(t_{i+1}) - w(t_i)), \ t_i \leq t_i^* \leq t_{i+1}$ 임의의 점이면 적분이 존재하지 않을 수 있다.
+    - $\displaystyle\sum_{i=0}^{n-1} G(\hat t_i)(w(t_{i+1}) - w(t_i)), \ t_i \leq \hat t_i \leq t_{i+1}$ 임의의 점이면 적분이 존재하지 않을 수 있다.
+
+- Stochastic Differential Equation (SDE: 확률 미분 방정식)
+  - 배경
+    - 상미분 방정식 (ODE) </br> <p align=center>$\\ \frac{dx}{dt} = f(x,t)$</p>
 
 
 
