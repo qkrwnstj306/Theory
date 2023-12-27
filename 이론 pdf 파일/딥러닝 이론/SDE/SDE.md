@@ -24,10 +24,10 @@
       - 여기서 $Q$ 는 spectral density 라고 부른다.
   - 특징
     - $n(t)$ 는 $t$ 에 관해서 불연속이다. 
-    - $n(t)$ 는 $[t_0, \infin)$ 의 모든 부분 구간 $[t_1,t_2], \ t_0 \leq t_1 \leq t_2$ 안에서 unbounded 이고 아주 큰 값과 아주 작은 값을 갖는다.
+    - $n(t)$ 는 $[t_0, \infty)$ 의 모든 부분 구간 $[t_1,t_2], \ t_0 \leq t_1 \leq t_2$ 안에서 unbounded 이고 아주 큰 값과 아주 작은 값을 갖는다.
 
 - Brownian Motion (브라운 운동)
-  - Stochastic process $w(t) \in R^d, \ t \in [t_0, \infin]$ 가 다음을 만족할 때, Brownian motion 이라고 부른다.
+  - Stochastic process $w(t) \in R^d, \ t \in [t_0, \infty]$ 가 다음을 만족할 때, Brownian motion 이라고 부른다.
     - 1. $s < t$ 일 때, $w(t) - w(s) \sim N(0, (t-s)Q)$
     - 2. $w(t_0) = 0$
     - 3. $t_1 < t_2 < t_3 < \cdots < t_N$ 에 대하여 $w(t_2) - w(t_1), w(t_3) - w(t_2), \cdots , w(t_N) - w(t_{N-1})$ 는 독립이고 가우시안 분포를 따른다.
@@ -43,7 +43,7 @@ $$ n(t) = \frac{dw(t)}{dt} \ [\textbf{Weak Derivative}]$$
 - Ito Integration (이토 적분)
   - $G(t) \in R^d \times R^d$ 를 stochastic process 라고 가정.
   - $w(t) \in R^d$ 를 Brownian motion 이라고 가정.
-  - $\int_S^T G(t) dw(t) = \lim_{n \rightarrow \infin} \displaystyle\sum_{i=0}^{n-1} G(t_i)(w(t_{i+1}) - w(t_i))$
+  - $\int_S^T G(t) dw(t) = \lim_{n \rightarrow \infty} \displaystyle\sum_{i=0}^{n-1} G(t_i)(w(t_{i+1}) - w(t_i))$
     - $S = t_0 < t_1 < \cdots < t_n = T$
     - 여기서 $G(t)$ 에 $t=t_i$ 가 들어오는 것에 주목.
     - $t_i$ 는 partition $(t_i, t_{t+1})$ 에서 왼쪽 점이다.
