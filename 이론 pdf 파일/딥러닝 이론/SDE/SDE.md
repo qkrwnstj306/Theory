@@ -16,7 +16,7 @@
 - White Gaussian Noise (백색 가우시안 잡음)
   - 통신 시스템에서, 열잡음이 신호에 영향을 주는 특성에 따라 붙여진 이름이다. 모든 주파수에 걸쳐서 나타난다.
     - 열 에너지에 의해 발생하는 것으로 저항기에서 많이 발생하며 기기 내부 잡음의 주요한 원인이 된다.
-  - Stochastic process $\text{Noise} \ n(t) \in R^d, \ t \in [t_0, \infin ]$ 가 다음을 만족할 때 White Gaussian Noise 라고 부른다.
+  - Stochastic process $\text{Noise} \ n(t) \in R^d, \ t \in [t_0, \infty ]$ 가 다음을 만족할 때 White Gaussian Noise 라고 부른다.
     - 1. $t_1 \neq t_2$ 일 때, $n(t_1), n(t_2)$ 가 독립
       - 즉, noise 가 더해지는게 시간 축과는 상관없다.
     - 2. $n(t)$ 가 Gaussian Process
