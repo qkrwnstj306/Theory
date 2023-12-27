@@ -86,6 +86,7 @@ Theory for ML.
 - <a href='./이론 pdf 파일/딥러닝 이론/MCMC/MCMC.md'>MCMC: Marcov Chain Monte Carlo</a>
 - <a href='./이론 pdf 파일/딥러닝 이론/SDE/SDE.md'>SDE: Stochastic Differential Equation</a>
 - <a href='./이론 pdf 파일/딥러닝 이론/Multivariate Gaussian Distribution in Generative Models/Multivariate Gaussian Distribution in Generative Models.md'>Multivariate Gaussian Distribution in Generative Models</a>
+  - <a href='./PPT/pixel-wise independent learning.pptx'>PPT</a>
 
 #### Andrew Ang in Coursera
 - <a href='./이론 pdf 파일/딥러닝 이론/Andrew Ang/Lecture1_230101_184831.pdf'>Lecture 1. Supervised Learning</a>
@@ -105,6 +106,7 @@ Theory for ML.
 	- <a href='./이론 pdf 파일/Diffusion/Lt-1 proof_221229_144243.pdf'>Denoising Process 분석3. Loss 일부 분석 </a>
 	- <a href='./이론 pdf 파일/Diffusion/Latent diffusion model(Stable diffusion)_231003_105800.pdf'>Latent Diffusion model Overview </a>
 - <a href='./이론 pdf 파일/딥러닝 이론/Score-based-generative-model/Score-based-generative-model.md'>Score-based Generative Model Review</a>
+  - <a href='./PPT/Generative-Modeling-by-Estimating-Gradients-of-the-Data-Distribution.pptx'>PPT: Generative Modeling by Estimating Gradients of the Data Distribution, 2019, Neurips, 1825 citation</a>
 
 ## Paper Review
 ### Basic 
