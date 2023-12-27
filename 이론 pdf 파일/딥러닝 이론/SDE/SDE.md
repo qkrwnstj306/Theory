@@ -51,7 +51,7 @@ $$ n(t) = \frac{dw(t)}{dt} \ [\textbf{Weak Derivative}]$$
 
 - Stochastic Differential Equation (SDE: 확률 미분 방정식)
   - 배경
-    - 상미분 방정식 (ODE) </br> <p align=center>$\\ \frac{dx}{dt} = f(x,t)$</p>
+    - 상미분 방정식 (ODE) </br> $\\ \frac{dx}{dt} = f(x,t)$
 
 
 
