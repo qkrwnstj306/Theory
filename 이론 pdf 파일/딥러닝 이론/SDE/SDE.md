@@ -43,7 +43,7 @@ $$ n(t) = \frac{dw(t)}{dt} \ [\textbf{Weak Derivative}]$$
 - Ito Integration (이토 적분)
   - $G(t) \in R^d \times R^d$ 를 stochastic process 라고 가정.
   - $w(t) \in R^d$ 를 Brownian motion 이라고 가정.
-  - $\int_S^T G(t) dw(t) = \lim_{n \rightarrow \infty} \displaystyle\sum_{i=0}^{n-1} G(t_i)(w(t_{i+1}) - w(t_i))$
+  - $\displaystyle\int_S^T G(t) dw(t) = \lim_{n \rightarrow \infty} \displaystyle\sum_{i=0}^{n-1} G(t_i)(w(t_{i+1}) - w(t_i))$
     - $S = t_0 < t_1 < \cdots < t_n = T$
     - 여기서 $G(t)$ 에 $t=t_i$ 가 들어오는 것에 주목.
     - $t_i$ 는 partition $(t_i, t_{t+1})$ 에서 왼쪽 점이다.
@@ -51,12 +51,49 @@ $$ n(t) = \frac{dw(t)}{dt} \ [\textbf{Weak Derivative}]$$
 
 - Stochastic Differential Equation (SDE: 확률 미분 방정식)
   - 배경
-    - 상미분 방정식 (ODE) </br> $\\ \frac{dx}{dt} = f(x,t)$
+    - 상미분 방정식 (ODE) </br></br>$\\ \frac{dx}{dt} = f(x,t)$
+    - 미분 방정식에 noise 가 낀 경우, </br></br> $\\\frac{dx}{dt} = f(x,t) + L(x,t)n(t)$</br></br>
+      - $n(t)$ 는 spectral density 가 $Q$ 인 white noise
+      - 정의가 잘 되는가?
+
+$$ dx = f(x,t)dt + L(x,t)n(t)dt $$
+
+- 실제로는 정의가 안된다.
+
+$$ x(t+ \Delta) - x(t) = \displaystyle\int_t^{t+\Delta} f(x,s) ds + \displaystyle\int_t^{t+\Delta} L(x,s)n(s) ds $$
+
+- White noise n(t) 는 unbounded 이고 discontinuous 하므로 $\displaystyle\int_t^{t+\Delta} L(x,s)n(s) ds$ 는 존재하지 않는다.
+  - 하지만 diffusion coefficient 가 $Q$ 인 브라운 운동 $w$ 에 대하여 $n(t) = \frac{dw(t)}{dt} \ [\text{weak derivative}]$ 로 표현할 수 있으므로,
+  - 브라운 운동을 이용해서 $\displaystyle\int_t^{t+\Delta} L(x,s)n(s) ds$ 대신 이토 적분 $\displaystyle\int_t^{t+\Delta} L(x,s)dw(s)$ 를 이용한다.
+
+$$ x(t+ \Delta) - x(t) = dx = \displaystyle\int_t^{t+\Delta} f(x,s) ds + \displaystyle\int_t^{t+\Delta} L(x,s)dw(s) $$
+
+- 상미분 방정식 $\frac{dx}{dt} = f(x,t)$ 에 white noise 가 낀 것으로 해석이 가능하다.
+- 수학적인 이유 때문에 white noise 에 대한 적분이 아닌 이토 적분으로 정의힌다.
+
+- 기호정리
+  - $X_t$: 확률 미분 방정식을 따르는 stochastic process
+  - $B_t$: Brownian motion
+  - 확률 미분 방정식
+
+$$ dX_t = b(t, X_t) dt + \sigma(t, X_t) dB_t  $$
+
+$$ X_t \in R^n, b(t,X_t) \in R^n, \sigma(t,X_t) \in R^n \times R^m, B_t \in R^m $$
+
+$$ b(t,x): \text{drift coefficient} $$
+
+$$ \sigma(t,x): \text{diffusion coefficient} $$
 
 
+- Ito Diffusion
+  - 확률 미분 방정식이 $t$ 에 의존하지 않으면서 Lipschitz continuous 를 만족하는 Stochastic process $X_t$ 를 ito diffusion 이라고 한다.
+
+$$ dX_t = b(X_t) dt + \sigma(X_t) dB_t  $$
+
+- Lipschitz continuous: 두 점 사이의 거리를 일정 비 이상으로 증가시키지 않는 함수
 
 
-
+$$ |b(x) - b(y)| + |\sigma(x) - \sigma(y)| \leq |x-y| $$
 
 
 ***
