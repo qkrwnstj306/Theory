@@ -250,7 +250,7 @@ $$ = \int_{\tilde{x}} S_{\theta}(\tilde{x}) (\int_{x}  p_{data}(x)q(\tilde{x}|x)
 
 - $S_{\theta}(\tilde{x})$ 는 $x$ 와 관련이 없으니, 마찬가지로 적분 안에 넣을 수 있다.
 
-$$ = \int_{\tilde{x}} \int_{x} S_{\theta}(\tilde{x})   p_{data}(x) q(x,\tilde{x})\nabla_{\tilde{x}}\log q(\tilde{x}|x) dx d\tilde{x}  $$
+$$ = \int_{\tilde{x}} \int_{x} S_{\theta}(\tilde{x})   p_{data}(x) q(\tilde{x}|x)\nabla_{\tilde{x}}\log q(\tilde{x}|x) dx d\tilde{x}  $$
 
 - $q(\tilde{x}|x)p_{data}(x) =  q(x,\tilde{x})$ 
 
