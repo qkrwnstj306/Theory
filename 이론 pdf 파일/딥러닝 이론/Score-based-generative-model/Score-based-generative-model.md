@@ -348,6 +348,8 @@ $$ \nabla_x \log{p_{data}(x)} = \nabla_x \log{p_1(x)} + \nabla_x \log{p_2(x)} $$
 
 $$ Loss = E_{q_{\sigma}(x, \tilde{x})}[\frac{1}{2} \Vert S_{\theta}(\tilde{x}) - \nabla_{\tilde{x}} \log{q(\tilde{x}|x)} \Vert_2^2] = E_{q_{\sigma}(x, \tilde{x})}[\frac{1}{2} \Vert S_{\theta}(\tilde{x}) - \frac{x-\tilde{x}}{\sigma^2} \Vert_2^2] \\ = E_{q_{\sigma}(\tilde{x} | x)}E_{p_{data}}[\frac{1}{2} \Vert S_{\theta}(\tilde{x}) - \frac{x-\tilde{x}}{\sigma^2} \Vert_2^2] $$
 
+- 두 모드를 가지는 실제 데이터 분포에 작은 노이즈를 더한 경우, low density region 이 채워지지 않는다.
+
 <p align="center">
 <img src='./img41.png'>
 </p>
