@@ -334,6 +334,10 @@ $$ \nabla_x \log{p_{data}(x)} = \nabla_x \log{p_1(x)} + \nabla_x \log{p_2(x)} $$
 <img src='./low-density.jpg'>
 </p>
 
+<p align="center">
+<img src='./img39.png'>
+</p>
+
 3. 그렇다면, 이전에 제시된 *Denoising Score Matching* 은 이런 문제를 왜 해결하지 못했는지에 대해 살펴보자
    1. Denoising Score Matching 의 Loss function 은 다음과 같다. 
    2. 우리는 $p(x)$ 가 다변량 확률 분포임은 알 수 있지만, 구체적인 모형은 알 수 없다. 따라서 $q(\tilde{x})$ 로 근사하고자 했고, $\theta$ 에 대해서 objective function 을 잘 풀어보니 $q(\tilde{x}|x)$ 의 score 를 찾는게 $p(x)$ 의 score 를 찾는 것과 유사하다는 걸 알아냈다. 이때의 noise 는 아주 작아야 성립한다.
@@ -344,10 +348,10 @@ $$ \nabla_x \log{p_{data}(x)} = \nabla_x \log{p_1(x)} + \nabla_x \log{p_2(x)} $$
 
 $$ Loss = E_{q_{\sigma}(x, \tilde{x})}[\frac{1}{2} \Vert S_{\theta}(\tilde{x}) - \nabla_{\tilde{x}} \log{q(\tilde{x}|x)} \Vert_2^2] = E_{q_{\sigma}(x, \tilde{x})}[\frac{1}{2} \Vert S_{\theta}(\tilde{x}) - \frac{x-\tilde{x}}{\sigma^2} \Vert_2^2] \\ = E_{q_{\sigma}(\tilde{x} | x)}E_{p_{data}}[\frac{1}{2} \Vert S_{\theta}(\tilde{x}) - \frac{x-\tilde{x}}{\sigma^2} \Vert_2^2] $$
 
-
 <p align="center">
-<img src='./img39.png'>
+<img src='./img41.png'>
 </p>
+
 
 #### Solution (NCSN)
 
@@ -408,14 +412,26 @@ $$ Loss = E_{q_{\sigma}(x, \tilde{x})}[\frac{1}{2} \Vert S_{\theta}(\tilde{x}, \
 <img src='./img22.png'>
 </p>
 
+- 데이터에 noise 를 주는 것은 다음과 같이 표현할 수 있다. 
+  - 두 mode 를 가지는 확률 분포에서, noise 를 조금 주는 것은 실제 데이터 분포와 유사하다.
+  - Data 에 noise 를 많이 준다면 우측 column 과 같이, 기존의 low density region 까지 data 가 분포할 수 있다. 따라서, Noise 를 많이 준 data 의 score function 을 학습한다면 내가 random 하게 뽑은 data (low density region 에 위치한) 들을 iterative 하게 sampling 했을 때 정상적으로 방향을 잡을 수가 있다.
+  - 이때의 파란 점은 실제 data 이다. 
 
 <p align="center">
 <img src='./img10.png'>
 </p>
 
+- 일차원으로 보면 다음과 같이 표현할 수도 있다.
+
+<p align="center">
+<img src='./img42.jpg'>
+</p>
+
 <!-- <p align="center">
 <img src='./img11.png'>
 </p> -->
+
+- 이때의 파란 점은 내가 random 하게 뽑은 data sample 이다. 
 
 <p align="center">
 <img src='./img12.png'>
