@@ -53,8 +53,8 @@ $$ n(t) = \frac{dw(t)}{dt} \ [\textbf{Weak Derivative}]$$
 
 - Stochastic Differential Equation (SDE: 확률 미분 방정식)
   - 배경
-    - 상미분 방정식 (ODE) </br></br>$\frac{dx}{dt} = f(x,t)$
-    - 미분 방정식에 noise 가 낀 경우, </br></br> $\\\frac{dx}{dt} = f(x,t) + L(x,t)n(t)$</br></br>
+    - 상미분 방정식 (ODE) </br></br>$\\ \frac{dx}{dt} = f(x,t)$
+    - 미분 방정식에 noise 가 낀 경우, </br></br> $\\ \frac{dx}{dt} = f(x,t) + L(x,t)n(t)$</br></br>
       - $n(t)$ 는 spectral density 가 $Q$ 인 white noise
       - 정의가 잘 되는가?
 
