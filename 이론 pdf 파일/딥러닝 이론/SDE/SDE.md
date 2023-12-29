@@ -21,6 +21,7 @@
       - 즉, noise 가 더해지는게 시간 축과는 상관없다.
     - 2. $n(t)$ 가 Gaussian Process
     - 3. $E[n(t)] = 0, \ E[n(t)n(s)^T] = 0 \ (\text{if} \ t \neq s, \ E[n(t)n(t)^T] = Q)$
+      - $t \neq s$ 인 상황에서는 확률적 독립이기에 다음과 같이 표현할 수 있다. $E[n(t)n(s)^T] = E[n(t)] \times E[n(s)]$ 이때, $E[n(t)] =\ E[n(s)] = 0$ 이라서, $E[n(t)n(s)^T] = 0$ 이다.
       - 여기서 $Q$ 는 spectral density 라고 부른다.
   - 특징
     - $n(t)$ 는 $t$ 에 관해서 불연속이다. 
