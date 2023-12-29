@@ -460,6 +460,8 @@ $$ Loss = E_{q_{\sigma}(x, \tilde{x})}[\frac{1}{2} \Vert S_{\theta}(\tilde{x}, \
 
 #### DDPM 과의 연관성: Score-based Generative Modes Through SDEs
 
+*<a href='../SDE/SDE.md'>SDE: Stochastic Differential Equation</a>*
+
 - Ordinary Differential Equation(ODE, 상미분 방정식)
   - ODE 를 푼다는 얘기는 상미분 방정식에 대응이 되는 함수를 찾는 것이다. 
 
