@@ -131,6 +131,18 @@
 
 ### <strong>Experiment</strong>
 
+- $6$ 가지의 artistic style 에 대해서 실험한다. (realistic, SureB, anime, romanticism, impressionism, pixel-art)
+  - 비교 대상: LoRA/TI/DreamBooth/CustomDiffusion/SVDiff
+  - Evaluation: FID/KID/CLIP score + Style Loss/Attention Map
+
+- LoRA: Auxiliary image 는 DreamBooth paper 에서 제안한 방법이기에 Style reference image 로만 학습한다.
+  - 1. HuggingFace dataset 을 만든다. (create_dataset.py)
+  - 2. lora_train_with_diffusers.sh 를 실행시켜서 학습한다. 
+
+
+- 실험 결과
+
+
 
 ***
 
