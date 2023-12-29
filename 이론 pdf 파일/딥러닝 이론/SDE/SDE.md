@@ -20,7 +20,7 @@
     - 1. $t_1 \neq t_2$ 일 때, $n(t_1), n(t_2)$ 가 독립
       - 즉, noise 가 더해지는게 시간 축과는 상관없다.
     - 2. $n(t)$ 가 Gaussian Process
-    - 3. $E[n(t)] = 0, \ E[n(t)n(s)^T] = 0 \ (\text{if} \ t \neq s, \ E[n(t)n(t)^T] = Q)$
+    - 3. $E[n(t)] = 0, \ E[n(t)n(s)^T] = 0 \ (\text{if} \ t = s, \ E[n(t)n(t)^T] = Q)$
       - $t \neq s$ 인 상황에서는 확률적 독립이기에 다음과 같이 표현할 수 있다. $E[n(t)n(s)^T] = E[n(t)] \times E[n(s)]$ 이때, $E[n(t)] =\ E[n(s)] = 0$ 이라서, $E[n(t)n(s)^T] = 0$ 이다.
       - 여기서 $Q$ 는 spectral density 라고 부른다.
   - 특징
@@ -38,6 +38,7 @@
   - 특징
     - $w(t)$ 는 $t$ 에 관해서 미분 불가능하다.
     - White Gaussian noise $n(t)$ 의 specatral density 가 $Q$ 라면 
+    - <a href='http://mbhauser.com/informal-notes/white-gaussian-noise.pdf'>증명 pdf</a>
 
 $$ n(t) = \frac{dw(t)}{dt} \ [\textbf{Weak Derivative}]$$
 
@@ -52,7 +53,7 @@ $$ n(t) = \frac{dw(t)}{dt} \ [\textbf{Weak Derivative}]$$
 
 - Stochastic Differential Equation (SDE: 확률 미분 방정식)
   - 배경
-    - 상미분 방정식 (ODE) </br></br>$\\ \frac{dx}{dt} = f(x,t)$
+    - 상미분 방정식 (ODE) </br></br>$\frac{dx}{dt} = f(x,t)$
     - 미분 방정식에 noise 가 낀 경우, </br></br> $\\\frac{dx}{dt} = f(x,t) + L(x,t)n(t)$</br></br>
       - $n(t)$ 는 spectral density 가 $Q$ 인 white noise
       - 정의가 잘 되는가?
