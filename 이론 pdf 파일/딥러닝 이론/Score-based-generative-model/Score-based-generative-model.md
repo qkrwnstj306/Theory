@@ -192,97 +192,97 @@ Langevin dynamics:
 
 - $\log{q_{\sigma}(\tilde{x}|x)}$ : $x$ 를 조건으로 $\tilde{x}$ 가 일어날 확률을 우리가 정의한다. (여기서는 multivariate Gaussian distribution)
 
-$$ q(\tilde{x}|x): Noise \ distribution \\ 
+$$ q_{\sigma}(\tilde{x}|x): Noise \ distribution \\ 
 x + z \text{   where, } z \sim N(0,\sigma^2 I) $$
 
-- $q(\tilde{x})$ 는 $q(\tilde{x}|x)$ 를 $x$ 에 대해서 marginalize 해서 구할 수 있다.
+- $q_{\sigma}(\tilde{x})$ 는 $q_{\sigma}(\tilde{x}|x)$ 를 $x$ 에 대해서 marginalize 해서 구할 수 있다.
 
-$$ q(\tilde{x}) = \int  q(\tilde{x}|x) p_{data}(x)dx $$
+$$ q_{\sigma}(\tilde{x}) = \int  q_{\sigma}(\tilde{x}|x) p_{data}(x)dx $$
 
-$$ E_{q(\tilde{x})}[\frac{1}{2} \Vert S_{\theta}(\tilde{x}) - \nabla_{\tilde{x}} \log{q(\tilde{x})} \Vert_2^2 ] = E_{q(x, \tilde{x})}[\frac{1}{2} \Vert S_{\theta}(\tilde{x}) - \nabla_{\tilde{x}} \log{q(\tilde{x}|x)} \Vert_2^2] + constant $$
+$$ E_{q(\tilde{x})}[\frac{1}{2} \Vert S_{\theta}(\tilde{x}) - \nabla_{\tilde{x}} \log{q_{\sigma}(\tilde{x})} \Vert_2^2 ] = E_{q(x, \tilde{x})}[\frac{1}{2} \Vert S_{\theta}(\tilde{x}) - \nabla_{\tilde{x}} \log{q_{\sigma}(\tilde{x}|x)} \Vert_2^2] + constant $$
 
 #### *Proof* via <a href='../denoising_score_matching_techreport.pdf'>6, 12p in Technical Report</a> (Pascal Vincent)
 
-- 먼저 $x$ 와 $\tilde{x}$ 는 $q(\tilde{x}|x)p_{data}(x)$ 의 분포에서 sampling ($x$ 를 뽑고 그 조건하에서 noise 를 더해 $\tilde{x}$ 를 뽑는다) 한다. 이때, $q(\tilde{x}|x)p_{data}(x) = q(x,\tilde{x})$ 이므로 joint density probability 이다. 즉, $x,\tilde{x} \sim q(x,\tilde{x})$ 임을 기억하면 된다. (조건부 확률은 시간축이랑은 관계가 없다는 걸 유의하면 joint 로 바뀌는 걸 이해할 수 있다)
+- 먼저 $x$ 와 $\tilde{x}$ 는 $q_{\sigma}(\tilde{x}|x)p_{data}(x)$ 의 분포에서 sampling ($x$ 를 뽑고 그 조건하에서 noise 를 더해 $\tilde{x}$ 를 뽑는다) 한다. 이때, $q_{\sigma}(\tilde{x}|x)p_{data}(x) = q_{\sigma}(x,\tilde{x})$ 이므로 joint density probability 이다. 즉, $x,\tilde{x} \sim q_{\sigma}(x,\tilde{x})$ 임을 기억하면 된다. (조건부 확률은 시간축이랑은 관계가 없다는 걸 유의하면 joint 로 바뀌는 걸 이해할 수 있다)
   - <a href='../확률.md'>Reference Information: 조건부, 결합 확률</a>
   
 - 그런 다음, 우리가 원하는 objective function 을 다시 보자.
 
-$$ E_{q(\tilde{x})}[\frac{1}{2} \Vert S_{\theta}(\tilde{x}) - \nabla_{\tilde{x}} \log{q(\tilde{x})} \Vert_2^2 ] $$
+$$ E_{q_{\sigma}(\tilde{x})}[\frac{1}{2} \Vert S_{\theta}(\tilde{x}) - \nabla_{\tilde{x}} \log{q_{\sigma}(\tilde{x})} \Vert_2^2 ] $$
 
 - 제곱을 풀어쓴다. $C_2$ 는 $\theta$ 에 관한 함수가 아니기 때문에 이 목적 함수에서는 상수 취급이다.
 
-$$ E_{q(\tilde{x})}[\frac{1}{2} \Vert S_{\theta}(\tilde{x}) \Vert_2^2] - \eta(\theta) + C_2 $$
+$$ E_{q_{\sigma}(\tilde{x})}[\frac{1}{2} \Vert S_{\theta}(\tilde{x}) \Vert_2^2] - \eta(\theta) + C_2 $$
 
-$$ C_2 = E_{q(\tilde{x})}[\frac{1}{2} \Vert \nabla_{\tilde{x}}\log q(\tilde{x}) \Vert_2^{2}] $$
+$$ C_2 = E_{q_{\sigma}(\tilde{x})}[\frac{1}{2} \Vert \nabla_{\tilde{x}}\log q_{\sigma}(\tilde{x}) \Vert_2^{2}] $$
 
 - 이때, $\eta(\theta)$ 는 다음과 같다.
 
-$$ \eta(\theta) = E_{q(\tilde{x})}[S_{\theta}(\tilde{x}) \nabla_{\tilde{x}}\log q(\tilde{x})] $$
+$$ \eta(\theta) = E_{q_{\sigma}(\tilde{x})}[S_{\theta}(\tilde{x}) \nabla_{\tilde{x}}\log q_{\sigma}(\tilde{x})] $$
 
 - 적분으로 풀면
 
-$$ = \int_{\tilde{x}} q(\tilde{x}) S_{\theta}(\tilde{x}) \nabla_{\tilde{x}}\log q(\tilde{x}) d\tilde{x} $$
+$$ = \int_{\tilde{x}} q_{\sigma}(\tilde{x}) S_{\theta}(\tilde{x}) \nabla_{\tilde{x}}\log q_{\sigma}(\tilde{x}) d\tilde{x} $$
 
 - $\log$ 미분
 
-$$  = \int_{\tilde{x}} q(\tilde{x}) S_{\theta}(\tilde{x}) \frac{\nabla_{\tilde{x}}q(\tilde{x})}{q(\tilde{x})} d\tilde{x}  $$
+$$  = \int_{\tilde{x}} q_{\sigma}(\tilde{x}) S_{\theta}(\tilde{x}) \frac{\nabla_{\tilde{x}}q_{\sigma}(\tilde{x})}{q_{\sigma}(\tilde{x})} d\tilde{x}  $$
 
 - 약분
 
-$$ = \int_{\tilde{x}} S_{\theta}(\tilde{x}) \nabla_{\tilde{x}}q(\tilde{x}) d\tilde{x}  $$
+$$ = \int_{\tilde{x}} S_{\theta}(\tilde{x}) \nabla_{\tilde{x}}q_{\sigma}(\tilde{x}) d\tilde{x}  $$
 
-- $q(\tilde{x}) = \int  q(\tilde{x}|x) p_{data}(x)dx$ 
+- $q_{\sigma}(\tilde{x}) = \int  q_{\sigma}(\tilde{x}|x) p_{data}(x)dx$ 
 
-$$ = \int_{\tilde{x}} S_{\theta}(\tilde{x}) (\nabla_{\tilde{x}} \int_{x}  q(\tilde{x}|x) p_{data}(x)dx) d\tilde{x}  $$
+$$ = \int_{\tilde{x}} S_{\theta}(\tilde{x}) (\nabla_{\tilde{x}} \int_{x}  q_{\sigma}(\tilde{x}|x) p_{data}(x)dx) d\tilde{x}  $$
 
 - $\nabla_{\tilde{x}}$ 를 $x$ 에 대한 적분 안으로 집어 넣는다. ($x$ 에 대해서 적분이니까 가능)
 
-$$ = \int_{\tilde{x}} S_{\theta}(\tilde{x}) (\int_{x}  (\nabla_{\tilde{x}}q(\tilde{x}|x)) p_{data}(x)dx) d\tilde{x}  $$
+$$ = \int_{\tilde{x}} S_{\theta}(\tilde{x}) (\int_{x}  (\nabla_{\tilde{x}}q_{\sigma}(\tilde{x}|x)) p_{data}(x)dx) d\tilde{x}  $$
 
 - $\log$ 미분을 역으로 이용 (score function trick)
 
-$$ = \int_{\tilde{x}} S_{\theta}(\tilde{x}) (\int_{x}  p_{data}(x)q(\tilde{x}|x)\nabla_{\tilde{x}}\log q(\tilde{x}|x) dx) d\tilde{x}  $$
+$$ = \int_{\tilde{x}} S_{\theta}(\tilde{x}) (\int_{x}  p_{data}(x)q_{\sigma}(\tilde{x}|x)\nabla_{\tilde{x}}\log q_{\sigma}(\tilde{x}|x) dx) d\tilde{x}  $$
 
 - $S_{\theta}(\tilde{x})$ 는 $x$ 와 관련이 없으니, 마찬가지로 적분 안에 넣을 수 있다.
 
-$$ = \int_{\tilde{x}} \int_{x} S_{\theta}(\tilde{x})   p_{data}(x) q(\tilde{x}|x)\nabla_{\tilde{x}}\log q(\tilde{x}|x) dx d\tilde{x}  $$
+$$ = \int_{\tilde{x}} \int_{x} S_{\theta}(\tilde{x})   p_{data}(x) q_{\sigma}(\tilde{x}|x)\nabla_{\tilde{x}}\log q_{\sigma}(\tilde{x}|x) dx d\tilde{x}  $$
 
-- $q(\tilde{x}|x)p_{data}(x) =  q(x,\tilde{x})$ 
+- $q_{\sigma}(\tilde{x}|x)p_{data}(x) =  q_{\sigma}(x,\tilde{x})$ 
 
-$$ = \int_{\tilde{x}} \int_{x} S_{\theta}(\tilde{x})    q(x,\tilde{x})\nabla_{\tilde{x}}\log q(\tilde{x}|x) dx d\tilde{x}  $$
+$$ = \int_{\tilde{x}} \int_{x} S_{\theta}(\tilde{x})    q_{\sigma}(x,\tilde{x})\nabla_{\tilde{x}}\log q_{\sigma}(\tilde{x}|x) dx d\tilde{x}  $$
 
 - $\eta(\theta)$ 가 결합 확률 분포의 기댓값으로 표현이 된다.
 
-$$ = E_{q(x,\tilde{x})}[S_{\theta}(\tilde{x})\nabla_{\tilde{x}}\log q(\tilde{x}|x)] $$ 
+$$ = E_{q_{\sigma}(x,\tilde{x})}[S_{\theta}(\tilde{x})\nabla_{\tilde{x}}\log q_{\sigma}(\tilde{x}|x)] $$ 
 
 - 다시 obejctive function 을 보면,
 
-$$ E_{q(\tilde{x})}[\frac{1}{2} \Vert S_{\theta}(\tilde{x}) - \nabla_{\tilde{x}} \log{q(\tilde{x})} \Vert_2^2 ] = E_{q(\tilde{x})}[\frac{1}{2} \Vert S_{\theta}(\tilde{x}) \Vert_2^2] - E_{q(x,\tilde{x})}[S_{\theta}(\tilde{x})\nabla_{\tilde{x}}\log q(\tilde{x}|x)] + C_2  , \ (1) $$
+$$ E_{q_{\sigma}(\tilde{x})}[\frac{1}{2} \Vert S_{\theta}(\tilde{x}) - \nabla_{\tilde{x}} \log{q_{\sigma}(\tilde{x})} \Vert_2^2 ] = E_{q_{\sigma}(\tilde{x})}[\frac{1}{2} \Vert S_{\theta}(\tilde{x}) \Vert_2^2] - E_{q_{\sigma}(x,\tilde{x})}[S_{\theta}(\tilde{x})\nabla_{\tilde{x}}\log q_{\sigma}(\tilde{x}|x)] + C_2  , \ (1) $$
 
 - 그리고 우리가 구하고자 하는 건 다음과 같다. (우리가 표현할 수 있는 값들로만 이루어져 있으니)
   - 기댓값의 아래 첨자가 바뀐 이유는 목적 함수에서 $x$ 라는 확률 변수도 추가됐기 때문이다.
 
-$$ E_{q(x,\tilde{x})}[\frac{1}{2} \Vert S_{\theta}(\tilde{x}) - \nabla_{\tilde{x}} \log{q(\tilde{x}|x)} \Vert_2^2 ] $$
+$$ E_{q_{\sigma}(x,\tilde{x})}[\frac{1}{2} \Vert S_{\theta}(\tilde{x}) - \nabla_{\tilde{x}} \log{q_{\sigma}(\tilde{x}|x)} \Vert_2^2 ] $$
 
 - 우리가 구하고자 하는 목적 함수를 마찬가지로 제곱을 풀어써보면, 처음의 목적 함수와 $\theta$ 입장에서 같다는 걸 알 수 있다.
   - 첫 번째 항의 기댓값의 아래 첨자가 바뀐 이유는 역시나, 첫 번째 항에 $x$ 가 없기 때문이다.
   - $+C_2 - C_3$ 를 하면 동일하다.
 
 
-$$ E_{q(\tilde{x})}[\frac{1}{2} \Vert S_{\theta}(\tilde{x}) \Vert_2^2] - E_{q(x,\tilde{x})}[S_{\theta}(\tilde{x})\nabla_{\tilde{x}}\log q(\tilde{x}|x)]  + C_3 , \ (2) $$
+$$ E_{q_{\sigma}(\tilde{x})}[\frac{1}{2} \Vert S_{\theta}(\tilde{x}) \Vert_2^2] - E_{q_{\sigma}(x,\tilde{x})}[S_{\theta}(\tilde{x})\nabla_{\tilde{x}}\log q_{\sigma}(\tilde{x}|x)]  + C_3 , \ (2) $$
 
-$$ C_3 = E_{q(x,\tilde{x})}[\frac{1}{2} \Vert \nabla_{\tilde{x}}\log q(\tilde{x}|x) \Vert_2^{2}] $$
+$$ C_3 = E_{q_{\sigma}(x,\tilde{x})}[\frac{1}{2} \Vert \nabla_{\tilde{x}}\log q_{\sigma}(\tilde{x}|x) \Vert_2^{2}] $$
 
-$$ E_{q(\tilde{x})}[\frac{1}{2} \Vert S_{\theta}(\tilde{x}) \Vert_2^2] - E_{q(x,\tilde{x})}[S_{\theta}(\tilde{x})\nabla_{\tilde{x}}\log q(\tilde{x}|x)] + C_2 , \ (1) = E_{q(\tilde{x})}[\frac{1}{2} \Vert S_{\theta}(\tilde{x}) \Vert_2^2] - E_{q(x,\tilde{x})}[S_{\theta}(\tilde{x})\nabla_{\tilde{x}}\log q(\tilde{x}|x)]  + C_3 , \ (2) + C_2 - C_3$$
+$$ E_{q_{\sigma}(\tilde{x})}[\frac{1}{2} \Vert S_{\theta}(\tilde{x}) \Vert_2^2] - E_{q_{\sigma}(x,\tilde{x})}[S_{\theta}(\tilde{x})\nabla_{\tilde{x}}\log q_{\sigma}(\tilde{x}|x)] + C_2 , \ (1) = E_{q_{\sigma}(\tilde{x})}[\frac{1}{2} \Vert S_{\theta}(\tilde{x}) \Vert_2^2] - E_{q_{\sigma}(x,\tilde{x})}[S_{\theta}(\tilde{x})\nabla_{\tilde{x}}\log q_{\sigma}(\tilde{x}|x)]  + C_3 , \ (2) + C_2 - C_3$$
 
 - 따라서, 우리는 목적 함수를 다음과 같이 바꿀 수 있게 된다.
 
-$$ E_{q(\tilde{x})}[\frac{1}{2} \Vert S_{\theta}(\tilde{x}) - \nabla_{\tilde{x}} \log{q(\tilde{x})} \Vert_2^2 ] = E_{q(x, \tilde{x})}[\frac{1}{2} \Vert S_{\theta}(\tilde{x}) - \nabla_{\tilde{x}} \log{q(\tilde{x}|x)} \Vert_2^2] + constant $$
+$$ E_{q_{\sigma}(\tilde{x})}[\frac{1}{2} \Vert S_{\theta}(\tilde{x}) - \nabla_{\tilde{x}} \log{q_{\sigma}(\tilde{x})} \Vert_2^2 ] = E_{q_{\sigma}(x, \tilde{x})}[\frac{1}{2} \Vert S_{\theta}(\tilde{x}) - \nabla_{\tilde{x}} \log{q_{\sigma}(\tilde{x}|x)} \Vert_2^2] + constant $$
 
 - For a Gaussian perturbation kernel
 
-$$ \nabla_{\tilde{x}} \log{q(\tilde{x}|x)} = \nabla_{\tilde{x}} \log{N(\tilde{x}|x, \sigma^2 I)} = -\frac{(\tilde{x} - x)}{\sigma^2} $$
+$$ \nabla_{\tilde{x}} \log{q_{\sigma}(\tilde{x}|x)} = \nabla_{\tilde{x}} \log{N(\tilde{x}|x, \sigma^2 I)} = -\frac{(\tilde{x} - x)}{\sigma^2} $$
 
 <p align="center">
 <img src='./img29.png'>
@@ -291,7 +291,7 @@ $$ \nabla_{\tilde{x}} \log{q(\tilde{x}|x)} = \nabla_{\tilde{x}} \log{N(\tilde{x}
 - Loss 를 보면 $\tilde{x} -x = noise$ 로 볼 수 있는데, 결국 noise 를 맞추는 objective 즉, DDPM 에서의 목적과 유사하다.
   - Noise scale $\sigma$ 가 들어갔기에 아래첨자로 표시해줬다.
 
-$$ Loss = E_{q_{\sigma}(x, \tilde{x})}[\frac{1}{2} \Vert S_{\theta}(\tilde{x}) - \nabla_{\tilde{x}} \log{q(\tilde{x}|x)} \Vert_2^2] = E_{q_{\sigma}(x, \tilde{x})}[\frac{1}{2} \Vert S_{\theta}(\tilde{x}) - \frac{x-\tilde{x}}{\sigma^2} \Vert_2^2] \\ = E_{q_{\sigma}(\tilde{x} | x)}E_{p_{data}}[\frac{1}{2} \Vert S_{\theta}(\tilde{x}) - \frac{x-\tilde{x}}{\sigma^2} \Vert_2^2] $$
+$$ Loss = E_{q_{\sigma}(x, \tilde{x})}[\frac{1}{2} \Vert S_{\theta}(\tilde{x}) - \nabla_{\tilde{x}} \log{q_{\sigma}(\tilde{x}|x)} \Vert_2^2] = E_{q_{\sigma}(x, \tilde{x})}[\frac{1}{2} \Vert S_{\theta}(\tilde{x}) - \frac{x-\tilde{x}}{\sigma^2} \Vert_2^2] \\ = E_{q_{\sigma}(\tilde{x} | x)}E_{p_{data}}[\frac{1}{2} \Vert S_{\theta}(\tilde{x}) - \frac{x-\tilde{x}}{\sigma^2} \Vert_2^2] $$
 
 <p align="center">
 <img src='./img31.png'>
@@ -336,13 +336,14 @@ $$ \nabla_x \log{p_{data}(x)} = \nabla_x \log{p_1(x)} + \nabla_x \log{p_2(x)} $$
 
 3. 그렇다면, 이전에 제시된 *Denoising Score Matching* 은 이런 문제를 왜 해결하지 못했는지에 대해 살펴보자
    1. Denoising Score Matching 의 Loss function 은 다음과 같다. 
-   2. 우리는 $p(x)$ 가 다변량 확률 분포임은 알 수 있지만, 구체적인 모형은 알 수 없다. 따라서 $q(\tilde{x})$ 로 근사하고자 했고, $\theta$ 에 대해서 objective function 을 잘 풀어보니 $q(\tilde{x}|x)$ 의 score 를 찾는게 $p(x)$ 의 score 를 찾는 것과 유사하다는 걸 알아냈다. 이때의 noise 는 아주 작아야 성립한다.
-   3. $q(\tilde{x}|x) \sim N(\tilde{x}|x;x,\sigma^2 I)$ 으로 우리가 정의할 수 있기에 결국 $q(\tilde{x}|x)$ 는 다변량 가우시안 분포로 정의를 했다. 이렇게 정의했을 때, 분포를 정확하게 특정할 수 있다는 점에 주목해야한다. 
+   2. 우리는 $p(x)$ 가 다변량 확률 분포임은 알 수 있지만, 구체적인 모형은 알 수 없다. 따라서 $q_{\sigma}(\tilde{x})$ 로 근사하고자 했고, $\theta$ 에 대해서 objective function 을 잘 풀어보니 $q_{\sigma}(\tilde{x}|x)$ 의 score 를 찾는게 $p(x)$ 의 score 를 찾는 것과 유사하다는 걸 알아냈다. 이때의 noise 는 아주 작아야 성립한다.
+   3. $q_{\sigma}(\tilde{x}|x) \sim N(\tilde{x}|x;x,\sigma^2 I)$ 으로 우리가 정의할 수 있기에 결국 $q_{\sigma}(\tilde{x}|x)$ 는 다변량 가우시안 분포로 정의를 했다. 이렇게 정의했을 때, 분포를 정확하게 특정할 수 있다는 점에 주목해야한다. 
    4. 다시 돌아와서, 위의 $2$ 가지 문제가 왜 생겼는지에 대해 생각해보면 결국 low density region 을 채우지 못했기에 발생하는 것이다.
    5. Denoising score matching 은 noise 를 아주 작게 설정해야 목적 식이 성립하기에, scalability 는 챙겼지만 low density region 은 채우지 못한 것이다.   
 
 
-$$ Loss = E_{q_{\sigma}(x, \tilde{x})}[\frac{1}{2} \Vert S_{\theta}(\tilde{x}) - \nabla_{\tilde{x}} \log{q(\tilde{x}|x)} \Vert_2^2] = E_{q_{\sigma}(x, \tilde{x})}[\frac{1}{2} \Vert S_{\theta}(\tilde{x}) - \frac{x-\tilde{x}}{\sigma^2} \Vert_2^2] \\ = E_{q_{\sigma}(\tilde{x} | x)}E_{p_{data}}[\frac{1}{2} \Vert S_{\theta}(\tilde{x}) - \frac{x-\tilde{x}}{\sigma^2} \Vert_2^2] $$
+$$ Loss = E_{q_{\sigma}(x, \tilde{x})}[\frac{1}{2} \Vert S_{\theta}(\tilde{x}) - \nabla_{\tilde{x}} \log{q_{\sigma}(\tilde{x}|x)} \Vert_2^2] = E_{q_{\sigma}(x, \tilde{x})}[\frac{1}{2} \Vert S_{\theta}(\tilde{x}) - \frac{x-\tilde{x}}{\sigma^2} \Vert_2^2] \\ = E_{q_{\sigma}(\tilde{x} | x)}E_{p_{data}}[\frac{1}{2} \Vert S_{\theta}(\tilde{x}) - \frac{x-\tilde{x}}{\sigma^2} \Vert_2^2] $$
+
 
 - 두 모드를 가지는 실제 데이터 분포에 작은 노이즈를 더한 경우, low density region 이 채워지지 않는다.
 
@@ -378,7 +379,7 @@ $$ Loss = E_{q_{\sigma}(x, \tilde{x})}[\frac{1}{2} \Vert S_{\theta}(\tilde{x}) -
 <img src='./img40.png'>
 </p>
 
-$$ Loss = E_{q_{\sigma}(x, \tilde{x})}[\frac{1}{2} \Vert S_{\theta}(\tilde{x}, \sigma) - \nabla_{\tilde{x}} \log{q(\tilde{x}|x)} \Vert_2^2] = E_{q_{\sigma}(x, \tilde{x})}[\frac{1}{2} \Vert S_{\theta}(\tilde{x}, \sigma) - \frac{x-\tilde{x}}{\sigma^2} \Vert_2^2] \\ = E_{q_{\sigma}(\tilde{x} | x)}E_{p_{data}}[\frac{1}{2} \Vert S_{\theta}(\tilde{x},\sigma) - \frac{x-\tilde{x}}{\sigma^2} \Vert_2^2] $$
+$$ Loss = E_{q_{\sigma}(x, \tilde{x})}[\frac{1}{2} \Vert S_{\theta}(\tilde{x}, \sigma) - \nabla_{\tilde{x}} \log{q_{\sigma}(\tilde{x}|x)} \Vert_2^2] = E_{q_{\sigma}(x, \tilde{x})}[\frac{1}{2} \Vert S_{\theta}(\tilde{x}, \sigma) - \frac{x-\tilde{x}}{\sigma^2} \Vert_2^2] \\ = E_{q_{\sigma}(\tilde{x} | x)}E_{p_{data}}[\frac{1}{2} \Vert S_{\theta}(\tilde{x},\sigma) - \frac{x-\tilde{x}}{\sigma^2} \Vert_2^2] $$
 
 <p align="center">
 <img src='./img21.png'>
@@ -454,11 +455,107 @@ $$ Loss = E_{q_{\sigma}(x, \tilde{x})}[\frac{1}{2} \Vert S_{\theta}(\tilde{x}, \
 
 ## <strong>Score-based generative modeling through stochastic differential equations, 2020, arXiv, 2238 citation</strong>
 
+### Probabilistic Generative Models using Noise
+
+- 훈련 데이터를 점진적으로 늘어나는 noise 로 손상시키고, 이 손상을 역전시켜 데이터의 생성 모델을 형성하는 성공적인 $2$ 가지 probabilistic generative modes 가 있다. 
+  - Score matching with Langevin dynamics (SMLD): score function 을 추정한 뒤, Langevin dynamics 를 사용하여 noise scale 을 감소시키면서 data 를 sampling.
+  - Denoising diffusion probabilistic modeling (DDPM): 각 step 에서의 noise corruption (손상) 을 reverse (역전) 하기 위해 model 을 훈련시킨다. 훈련이 가능하도록 역방향 분포의 기능적인 형태의 지식을 활용한다. 
+  - 연속적인 상태 공간의 경우, DDPM 의 목적 함수는 암시적으로 각 noise scale 의 score fucntion 을 나타낸다.
+  - 따라서, 본 논문에서는 SDE 관점에서 두 모델 클래스 (SMLD & DDPM) 를 score-based generative models 로 통합시킬 수 있다.
+
+### *<a href='../SDE/SDE.md'>SDE: Stochastic Differential Equation</a>*
+
+- Diffusion coefficient $g(t)$ 가 일반적인 SDE 에서와는 달리, $x_t$ 는 입력으로 받지 않는다. 
+
+- Forward SDE: noise 를 점진적으로 더하는 과정 (data $\rightarrow$ noise)
+
+$$ dx = f(x,t)dt + g(t)dw,\  [\text{In Continuous}] $$
+
+$$ x_{t+1}-x_t = f(x_t,t) + g(t)z_t, \ [\text{In Discrete}] $$
+
+- Reverse SDE: noise 를 점진적으로 제거하는 과정 (noise $\rightarrow$ data)
+
+$$ dx = [f(x,t) - g^2(t) \nabla_x \log p_t(x)] dt + g(t)d\bar w, \ [\text{In Continuous}] $$
+
+$$ x_{t}-x_{t+1} = [f(x_{t+1},t+1) - g^2(t+1) \nabla_x \log p_{t+1}(x_{t+1})] + g(t)z_t, \ [\text{In Discrete}] $$
+
+### Objective Function: SMLD vs DDPM
+
+- SMLD 에서의 NCSN 의 목적 함수를 먼저 보자.
+
+$$ Loss = E_{q_{\sigma}(x, \tilde{x})}[\frac{1}{2} \Vert S_{\theta}(\tilde{x}, \sigma) - \nabla_{\tilde{x}} \log{q_{\sigma}(\tilde{x}|x)} \Vert_2^2] = E_{q_{\sigma}(x, \tilde{x})}[\frac{1}{2} \Vert S_{\theta}(\tilde{x}, \sigma) - \frac{x-\tilde{x}}{\sigma^2} \Vert_2^2] \\ = E_{q_{\sigma}(\tilde{x} | x)}E_{p_{data}}[\frac{1}{2} \Vert S_{\theta}(\tilde{x},\sigma) - \frac{x-\tilde{x}}{\sigma^2} \Vert_2^2] $$
+
+- Sampling: Annealed Langevin dynamics 은 다음과 같다.
+
+$$ x_i^m = x_i^{m-1} + \epsilon_i s_{\theta}(x_i^{m-1}, \sigma_i) + \sqrt{2\epsilon_i}z_i^m, m = 1, 2, \cdots, M $$
+
+<!-- - $i$ 를 time step 인 $t$ 로 본다면 다음과 같다.
+  - noise scale $\sigma_t$ 만큼 perturbation 된 data $x$ 를 $M$ 만큼 iterative 하게 sampling 한다. 
+
+$$ x_t^m = x_t^{m-1} + \epsilon_t s_{\theta}(x_t^{m-1}, \sigma_t) + \sqrt{2\epsilon_t}z_t^m, m = 1, 2, \cdots, M $$ -->
+
+- 다시 목적 함수로 돌아와서, $q_{\sigma_i}(\tilde{x}|x)$ 를 $\nabla_{\tilde{x}}\log$ 로 씌워서 계산하면 다음과 같다.
+  - $\tilde{x} = x + z \ z , \sim N(0,\sigma^2I) = x + \sigma\epsilon, \ \epsilon \sim N(0,I)$
+
+$$ \nabla_{\tilde{x}} \log q_{\sigma_i}(\tilde{x}|x) = - \frac{\tilde{x}- x}{\sigma_i^2} = - \frac{\sigma_i\epsilon}{\sigma^2} = - \frac{\epsilon}{\sigma_i} $$
+
+- $s_{\theta}(\tilde{x},\sigma_i)$ 는 다음과 같이 볼 수 있다. (둘은 같아야 하므로)
+
+$$ S_{\theta}(\tilde{x},\sigma_i) = \frac{D_{\theta}(\tilde{x},\sigma_i) - \tilde{x}}{\sigma_i^2} = - \frac{\epsilon_{\theta}(\tilde{x},\sigma_i)}{\sigma_i} $$
+
+- 따라서 풀어 쓴, 최종 목적식은 다음과 같이 볼 수 있다.
+  - Data $x$ 에 noise scale $\sigma_i$ 만큼 perturbation 을 준, $\tilde{x}$ 의 score fucntion 을 추정하는 건
+  - Data $x$ 에서 noise scale $\sigma_i$ 를 가지고 $\tilde{x}$ 를 만들 때, 어떤 standard Gaussian noise 가 더해졌는지 찾는 문제와 같다.
+
+$$ S_{\theta}(\tilde{x},\sigma_i) - \nabla_{\tilde{x}} \log q_{\sigma_i}(\tilde{x}|x) = \frac{\epsilon - \epsilon_{\theta}(\tilde{x}, \sigma_i)}{\sigma_i} $$
+
+- 그리고 이는, DDPM 에서의 목적 함수와 같다.
+  - DDPM 에서의 Time step $t$ 와 SMLD 에서의 $i$ 는 같다.
+  - Time step $t$ 는 noise scale 에 대한 정보를 주는 것과 동일하다.
+    - SMLD 의 noise scale $\sigma_i$ 과 동일한 역할을 하는 것은 $\sqrt{1-\bar \alpha_t}$ 이다.
+  - $\sigma_i$ 는 hyper-parameter 이기 때문에 training 과정에선 loss 의 중요도를 판단하는 용도로 사용된다. 
+    - E.g.,  $\frac{\epsilon - \epsilon_{\theta}(\tilde{x}, \sigma_i)}{10}$ vs $\frac{\epsilon - \epsilon_{\theta}(\tilde{x}, \sigma_i)}{1}$ 을 학습할 때, 후자에 더 비중을 두고 $\theta$ 를 update 한다. 
+    - DDPM 에서는 time step $t$ 에 따라 변하는 상수 값이 존재하지만 $1$ 로 setting 하고 학습한다.
+
+$$ x_t = \sqrt{\bar \alpha_t}x_0 + \sqrt{1- \bar \alpha_t}\epsilon $$
+
+$$ \epsilon - \epsilon_{\theta}(\sqrt{\bar \alpha_t}x_0 + \sqrt{1- \bar \alpha_t}\epsilon,t), \ [\text{DDPM Objective function}]= \epsilon - \epsilon_{\theta}(x_t,t) $$
+
+- 반대로 DDPM 의 목적식을 score function 으로 표현해보자.
+  - $x_0$ 에서 perturbation 한 $x_t$ 는 SMLD 에서의 $\tilde{x}$ 와 같다.
+
+$$ Loss = E_{q_{\sigma}(x, \tilde{x})}[\frac{1}{2} \Vert S_{\theta}(\tilde{x}, i) - \nabla_{\tilde{x}} \log{q_{\sigma}(\tilde{x}|x)} \Vert_2^2] = E_{q_{t}(x, x_t)}[\frac{1}{2} \Vert S_{\theta}(x_t, t) - \nabla_{x_t} \log{q_{t}(x_t|x)} \Vert_2^2] $$
+
+- $x_t = \sqrt{\bar \alpha_t}x_0 + \sqrt{1- \bar \alpha_t}\epsilon$ 이므로, $p_t(x_t|x_0) \sim N(\sqrt{\bar \alpha_t}x_0,(1-\bar \alpha_t)I)$ 이다.
+
+$$ p_t(x_t|x_0) = \frac{1}{\sqrt{2\pi\sigma^2}}\exp(- \frac{1}{2}\frac{(x-\mu)^2}{\sigma^2}) = \frac{1}{\sqrt{2\pi (1-\bar \alpha_t)}}\exp(- \frac{1}{2}\frac{(x_t- \sqrt{\bar \alpha_t}x_0)^2}{1-\bar\alpha_t})  $$
+
+$$ \nabla_{x_t}\log p_t(x_t|x_0) = - \frac{x_t - \sqrt{\bar \alpha}x_0}{1- \bar \alpha_t} $$
+
+- $x_t = \sqrt{\bar \alpha_t}x_0 + \sqrt{1- \bar \alpha_t}\epsilon$ 대입
+
+$$ = - \frac{\sqrt{1-\bar \alpha_t}\epsilon}{1- \bar \alpha_t}  = - \frac{\epsilon}{\sqrt{1-\bar \alpha_t}} $$
+
+- $S_{\theta}(x_t, t) - \nabla_{x_t} \log{q_{t}(x_t|x)}$ 를 풀어써보면 다음과 같다.
+
+$$ S_{\theta}(x_t, t) - \nabla_{x_t} \log{q_{t}(x_t|x)} = - \frac{\epsilon_{\theta}}{\sqrt{1-\bar \alpha_t}} - ( - \frac{\epsilon}{\sqrt{1-\bar \alpha_t}}) = \frac{\epsilon - \epsilon_{\theta}}{\sqrt{1-\bar \alpha_t}} $$
+
+- SMLD 에서의 noise scale 인 $\sigma_i$ 과 DDPM 에서의 $\sqrt{1-\bar \alpha_t}$ 는 동일하다는 것을 다시 한 번 알 수 있다.
+  - 하지만 noise scale 이 비슷하다고 forward process 나 backward process 가 동일한 것은 아니다. 
+  - DDPM 에서는 noise scale 만 있는 것이 아니라 signal scale 또한 존재한다. 
+  - Signal scale: $\sqrt{\bar\alpha_t}$ 로써, $x_0$ 를 scaling 하여 $t \rightarrow \infty$ 일 때, pure noise $\sim N(0,I)$ 을 가게 해주는 용도로 사용된다. 
+
+- DDPM sampling 
+  - 이때의 $\sigma_t$ 는 SMLD 에서의 $\sigma_i$ 와는 다르다. $\sigma_i$ 는 $x_0$ 에서 $x_t$ 로의 noise scale 이라면, $\sigma_t$ 는 $t$ 에서 $t-1$ 로 가는 reverse process 의 표준편차이다. 
+
+$$ x_{t-1} = \frac{1}{\sqrt{\alpha_t}} (x_t - \frac{1- \alpha_t}{\sqrt{1-\bar \alpha_t}} \epsilon_{\theta}(x_t,t)) + \sigma_t z $$
+
+$$ \sigma_t = \sqrt{\tilde{\beta_t}} = \sqrt{\beta_t} \ \text{or} \sqrt{\frac{1- \bar \alpha_{t-1}}{1- \bar \alpha_t}\beta_t} $$
+
+
 #### DDPM 과의 연관성: Score-based Generative Modes Through SDEs
 
-*<a href='../SDE/SDE.md'>SDE: Stochastic Differential Equation</a>*
-
-- Ordinary Differential Equation(ODE, 상미분 방정식)
+- Ordinary Differential Equation (ODE, 상미분 방정식)
   - ODE 를 푼다는 얘기는 상미분 방정식에 대응이 되는 함수를 찾는 것이다. 
 
 <p align="center">
