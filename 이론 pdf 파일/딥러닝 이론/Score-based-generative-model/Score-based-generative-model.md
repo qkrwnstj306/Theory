@@ -538,9 +538,9 @@ $$ \nabla_{x_t}\log p_t(x_t|x_0) = - \frac{x_t - \sqrt{\bar \alpha}x_0}{1- \bar 
 
 $$ \nabla_{x_t}\log p_t(x_t|x_0) = - \frac{\sqrt{1-\bar \alpha_t}\epsilon}{1- \bar \alpha_t}  = - \frac{\epsilon}{\sqrt{1-\bar \alpha_t}} $$
 
-- $S_{\theta}(x_t, t) - \nabla_{x_t} \log{q_{t}(x_t|x)}$ 를 풀어써보면 다음과 같다.
+- $S_{\theta}(x_t, t) - \nabla_{x_t} \log{q_{t}(x_t|x_0)}$ 를 풀어써보면 다음과 같다.
 
-$$ S_{\theta}(x_t, t) - \nabla_{x_t} \log{q_{t}(x_t|x)} = - \frac{\epsilon_{\theta}}{\sqrt{1-\bar \alpha_t}} - ( - \frac{\epsilon}{\sqrt{1-\bar \alpha_t}}) = \frac{\epsilon - \epsilon_{\theta}}{\sqrt{1-\bar \alpha_t}} $$
+$$ S_{\theta}(x_t, t) - \nabla_{x_t} \log{q_{t}(x_t|x_0)} = - \frac{\epsilon_{\theta}}{\sqrt{1-\bar \alpha_t}} - ( - \frac{\epsilon}{\sqrt{1-\bar \alpha_t}}) = \frac{\epsilon - \epsilon_{\theta}}{\sqrt{1-\bar \alpha_t}} $$
 
 - SMLD 에서의 noise scale 인 $\sigma_i$ 과 DDPM 에서의 $\sqrt{1-\bar \alpha_t}$ 는 동일하다는 것을 다시 한 번 알 수 있다.
   - 하지만 noise scale 이 비슷하다고 forward process 나 backward process 가 동일한 것은 아니다. 
@@ -554,11 +554,31 @@ $$ x_{t-1} = \frac{1}{\sqrt{\alpha_t}} (x_t - \frac{1- \alpha_t}{\sqrt{1-\bar \a
 
 $$ \sigma_t = \sqrt{\tilde{\beta_t}} = \sqrt{\beta_t} \ \text{or} \sqrt{\frac{1- \bar \alpha_{t-1}}{1- \bar \alpha_t}\beta_t} $$
 
+- DDPM 의 sampling 도 score function 으로 표현해보면 다음과 같다.
+  - $\sigma_t = \sqrt{\beta_t}$ 로 본다.
+
+$$ \beta_i = 1- \alpha_i $$
+
+$$ x_{i-1} = \frac{1}{\sqrt{1- \beta_i}}(x_i + \beta_i S_{\theta}(x_i, i)) + \sqrt{\beta_i} z_i, i = N, N-1, \cdots, 1 $$
+
 - 정리해보자면, 
   - SMLD 와 DDPM 모두 $x_0$ 가 주어졌을 때 perturbation 된 $x_t$ 의 score function 을 estimation 하는 것이다. 
   - 다만 그 예측한 noise 가 DDPM 의 경우, Marcov Property 를 가지기에 이전 time step 에 관한 noise 인지 $x_0 \rightarrow x_t$ 에 관한 noise 인지  헷갈릴 수도 있다.
   - DDPM loss 전개 시에, KL-Divergence 를 계산하는데 $x_t = \sqrt{\bar \alpha_t}x_0 + \sqrt{1- \bar \alpha_t}\epsilon$ 를 이용해 $x_0$ 를 $x_t$ 로 표현하는 과정에서 나온 노이즈여서 $x_t$ 까지의 noise 를 의미한다.  
 
+- SMLD 의 Objective function & Sampling method
+
+$$ [\text{objective function}] \ S_{\theta}(\tilde{x},\sigma_i) - \nabla_{\tilde{x}} \log q_{\sigma_i}(\tilde{x}|x) = \frac{\epsilon - \epsilon_{\theta}(\tilde{x}, \sigma_i)}{\sigma_i} $$
+
+$$ [\text{objective function}] \ x_i^m = x_i^{m-1} + \epsilon_i s_{\theta}(x_i^{m-1}, \sigma_i) + \sqrt{2\epsilon_i}z_i^m, m = 1, 2, \cdots, M $$
+
+- DDPM 의 Objective function & Sampling method
+
+$$ S_{\theta}(x_i,i) = - \frac{\epsilon_{\theta}}{\sqrt{1-\bar \alpha_i}} $$
+
+$$ [\text{objective function}] \ S_{\theta}(x_i, i) - \nabla_{x_i} \log{q_{i}(x_i|x_0)} = \frac{\epsilon - \epsilon_{\theta}}{\sqrt{1-\bar \alpha_i}} $$
+
+$$ [\text{sampling method}] \ x_{i-1} = \frac{1}{\sqrt{1- \beta_i}}(x_i + \beta_i S_{\theta}(x_i, i)) + \sqrt{\beta_i} z_i, i = N, N-1, \cdots, 1 $$
 
 #### DDPM 과의 연관성: Score-based Generative Modes Through SDEs
 
