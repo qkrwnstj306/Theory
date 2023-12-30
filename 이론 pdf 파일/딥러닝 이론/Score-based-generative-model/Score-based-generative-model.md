@@ -532,9 +532,11 @@ $$ p_t(x_t|x_0) = \frac{1}{\sqrt{2\pi\sigma^2}}\exp(- \frac{1}{2}\frac{(x-\mu)^2
 
 $$ \nabla_{x_t}\log p_t(x_t|x_0) = - \frac{x_t - \sqrt{\bar \alpha}x_0}{1- \bar \alpha_t} $$
 
-- $x_t = \sqrt{\bar \alpha_t}x_0 + \sqrt{1- \bar \alpha_t}\epsilon$ 대입
+- **$x_t = \sqrt{\bar \alpha_t}x_0 + \sqrt{1- \bar \alpha_t}\epsilon$ 대입**
+  - $S_{\theta}(x_t,t)$ 도 동일하게 적용.
+  - 이 과정에서 DDPM 을 score function estimation 으로 보고 활용할 수 있게 된다. 
 
-$$ = - \frac{\sqrt{1-\bar \alpha_t}\epsilon}{1- \bar \alpha_t}  = - \frac{\epsilon}{\sqrt{1-\bar \alpha_t}} $$
+$$ \nabla_{x_t}\log p_t(x_t|x_0) = - \frac{\sqrt{1-\bar \alpha_t}\epsilon}{1- \bar \alpha_t}  = - \frac{\epsilon}{\sqrt{1-\bar \alpha_t}} $$
 
 - $S_{\theta}(x_t, t) - \nabla_{x_t} \log{q_{t}(x_t|x)}$ 를 풀어써보면 다음과 같다.
 
@@ -551,6 +553,11 @@ $$ S_{\theta}(x_t, t) - \nabla_{x_t} \log{q_{t}(x_t|x)} = - \frac{\epsilon_{\the
 $$ x_{t-1} = \frac{1}{\sqrt{\alpha_t}} (x_t - \frac{1- \alpha_t}{\sqrt{1-\bar \alpha_t}} \epsilon_{\theta}(x_t,t)) + \sigma_t z $$
 
 $$ \sigma_t = \sqrt{\tilde{\beta_t}} = \sqrt{\beta_t} \ \text{or} \sqrt{\frac{1- \bar \alpha_{t-1}}{1- \bar \alpha_t}\beta_t} $$
+
+- 정리해보자면, 
+  - SMLD 와 DDPM 모두 $x_0$ 가 주어졌을 때 perturbation 된 $x_t$ 의 score function 을 estimation 하는 것이다. 
+  - 다만 그 예측한 noise 가 DDPM 의 경우, Marcov Property 를 가지기에 이전 time step 에 관한 noise 인지 $x_0 \rightarrow x_t$ 에 관한 noise 인지  헷갈릴 수도 있다.
+  - DDPM loss 전개 시에, KL-Divergence 를 계산하는데 $x_t = \sqrt{\bar \alpha_t}x_0 + \sqrt{1- \bar \alpha_t}\epsilon$ 를 이용해 $x_0$ 를 $x_t$ 로 표현하는 과정에서 나온 노이즈여서 $x_t$ 까지의 noise 를 의미한다.  
 
 
 #### DDPM 과의 연관성: Score-based Generative Modes Through SDEs
