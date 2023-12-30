@@ -457,7 +457,7 @@ $$ Loss = E_{q_{\sigma}(x, \tilde{x})}[\frac{1}{2} \Vert S_{\theta}(\tilde{x}, \
 
 ### Probabilistic Generative Models using Noise
 
-- 훈련 데이터를 점진적으로 늘어나는 noise 로 손상시키고, 이 손상을 역전시켜 데이터의 생성 모델을 형성하는 성공적인 $2$ 가지 probabilistic generative modes 가 있다. 
+- 훈련 데이터를 점진적으로 늘어나는 noise 로 손상시키고, 이 손상을 역전시켜 데이터의 생성 모델을 형성하는 성공적인 $2$ 가지 probabilistic generative models 가 있다. 
   - Score matching with Langevin dynamics (SMLD): score function 을 추정한 뒤, Langevin dynamics 를 사용하여 noise scale 을 감소시키면서 data 를 sampling.
   - Denoising diffusion probabilistic modeling (DDPM): 각 step 에서의 noise corruption (손상) 을 reverse (역전) 하기 위해 model 을 훈련시킨다. 훈련이 가능하도록 역방향 분포의 기능적인 형태의 지식을 활용한다. 
   - 연속적인 상태 공간의 경우, DDPM 의 목적 함수는 암시적으로 각 noise scale 의 score fucntion 을 나타낸다.
@@ -545,10 +545,9 @@ $$ \beta_i = 1- \alpha_i $$
 
 $$ x_{i-1} = \frac{1}{\sqrt{1- \beta_i}}(x_i + \beta_i S_{\theta}(x_i, i)) + \sqrt{\beta_i} z_i, i = N, N-1, \cdots, 1 $$
 
-- 정리해보자면, 
-  - SMLD 와 DDPM 모두 $x_0$ 가 주어졌을 때 perturbation 된 $x_t$ 의 score function 을 estimation 하는 것이다. 
-  - 다만 그 예측한 noise 가 DDPM 의 경우, Marcov Property 를 가지기에 이전 time step 에 관한 noise 인지 $x_0 \rightarrow x_t$ 에 관한 noise 인지  헷갈릴 수도 있다.
-  - DDPM loss 전개 시에, KL-Divergence 를 계산하는데 $x_t = \sqrt{\bar \alpha_t}x_0 + \sqrt{1- \bar \alpha_t}\epsilon$ 를 이용해 $x_0$ 를 $x_t$ 로 표현하는 과정에서 나온 노이즈여서 $x_t$ 까지의 noise 를 의미한다.  
+- 정리해보자면, SMLD 와 DDPM 모두 $x_0$ 가 주어졌을 때 perturbation 된 $x_t$ 의 score function 을 estimation 하는 것이다. 즉, 목적 함수가 동일하다.
+  - 여기서 DDPM 의 경우, Marcov Property 를 가지기에  예측한 noise 가 이전 time step 에 관한 noise 인지 $x_0 \rightarrow x_t$ 에 관한 noise 인지  헷갈릴 수도 있다.
+  - 하지만 DDPM loss 전개 시에, KL-Divergence 를 계산하는데 $x_t = \sqrt{\bar \alpha_t}x_0 + \sqrt{1- \bar \alpha_t}\epsilon$ 를 이용해 $x_0$ 를 $x_t$ 로 표현하는 과정에서 나온 노이즈여서 $x_t$ 까지의 noise 를 의미한다.  
 
 - SMLD 의 Objective function & Sampling method
 
