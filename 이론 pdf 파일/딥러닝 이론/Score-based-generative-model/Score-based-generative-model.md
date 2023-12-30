@@ -3,21 +3,17 @@
 ## Score-Based Generative Models
 *A representative reference: <a href='https://yang-song.net/blog/2021/score/'>Yang Song blog</a>*
 
-[Intro](#intro)</br>
-[Method](#method)</br>
-[Conclusion](#conclusion)</br>
+[Generative Modeling by Estimating Gradients of the Data Distribution, 2019, Neurips, 1825 citation](#generative-modeling-by-estimating-gradients-of-the-data-distribution-2019-neurips-1825-citation)</br>
+[Score-based generative modeling through stochastic differential equations, 2020, arXiv, 2238 citation](#score-based-generative-modeling-through-stochastic-differential-equations-2020-arxiv-2238-citation)</br>
 
 > Core Idea
 
 $$ utilize \ \nabla_x \log{p(x)} $$
 
 ***
+## <strong>Generative Modeling by Estimating Gradients of the Data Distribution, 2019, Neurips, 1825 citation</strong>
 
 ### <strong>Intro</strong>
-
-*Generative Modeling by Estimating Gradients of the Data Distribution, 2019, Neurips, 1825 citation*
-
-*Score-based generative modeling through stochastic differential equations, 2020, arXiv, 2238 citation*
 
 $$ p(x) = \frac{p(x|y)p(y)}{p(y|x)} $$
 
@@ -456,7 +452,7 @@ $$ Loss = E_{q_{\sigma}(x, \tilde{x})}[\frac{1}{2} \Vert S_{\theta}(\tilde{x}, \
 </p>
 
 
-
+## <strong>Score-based generative modeling through stochastic differential equations, 2020, arXiv, 2238 citation</strong>
 
 #### DDPM 과의 연관성: Score-based Generative Modes Through SDEs
 
