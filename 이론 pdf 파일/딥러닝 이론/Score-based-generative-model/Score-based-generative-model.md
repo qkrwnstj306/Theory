@@ -463,22 +463,6 @@ $$ Loss = E_{q_{\sigma}(x, \tilde{x})}[\frac{1}{2} \Vert S_{\theta}(\tilde{x}, \
   - 연속적인 상태 공간의 경우, DDPM 의 목적 함수는 암시적으로 각 noise scale 의 score fucntion 을 나타낸다.
   - 따라서, 본 논문에서는 SDE 관점에서 두 모델 클래스 (SMLD & DDPM) 를 score-based generative models 로 통합시킬 수 있다.
 
-### *<a href='../SDE/SDE.md'>SDE: Stochastic Differential Equation</a>*
-
-- Diffusion coefficient $g(t)$ 가 일반적인 SDE 에서와는 달리, $x_t$ 는 입력으로 받지 않는다. 
-
-- Forward SDE: noise 를 점진적으로 더하는 과정 (data $\rightarrow$ noise)
-
-$$ dx = f(x,t)dt + g(t)dw,\  [\text{In Continuous}] $$
-
-$$ x_{t+1}-x_t = f(x_t,t) + g(t)z_t, \ [\text{In Discrete}] $$
-
-- Reverse SDE: noise 를 점진적으로 제거하는 과정 (noise $\rightarrow$ data)
-
-$$ dx = [f(x,t) - g^2(t) \nabla_x \log p_t(x)] dt + g(t)d\bar w, \ [\text{In Continuous}] $$
-
-$$ x_{t}-x_{t+1} = [f(x_{t+1},t+1) - g^2(t+1) \nabla_x \log p_{t+1}(x_{t+1})] + g(t)z_t, \ [\text{In Discrete}] $$
-
 ### Objective Function: SMLD vs DDPM
 
 - SMLD 에서의 NCSN 의 목적 함수를 먼저 보자.
@@ -540,7 +524,7 @@ $$ \nabla_{x_t}\log p_t(x_t|x_0) = - \frac{\sqrt{1-\bar \alpha_t}\epsilon}{1- \b
 
 - $S_{\theta}(x_t, t) - \nabla_{x_t} \log{q_{t}(x_t|x_0)}$ 를 풀어써보면 다음과 같다.
 
-$$ S_{\theta}(x_t, t) - \nabla_{x_t} \log{q_{t}(x_t|x_0)} = - \frac{\epsilon_{\theta}}{\sqrt{1-\bar \alpha_t}} - ( - \frac{\epsilon}{\sqrt{1-\bar \alpha_t}}) = \frac{\epsilon - \epsilon_{\theta}}{\sqrt{1-\bar \alpha_t}} $$
+$$ S_{\theta}(x_t, t) - \nabla_{x_t} \log{q_{t}(x_t|x_0)} = - \frac{\epsilon_{\theta}}{\sqrt{1-\bar \alpha_t}} - ( - \frac{\epsilon}{\sqrt{1-\bar \alpha_t}}) = \frac{\epsilon - \epsilon_{\theta}(x_t,t)}{\sqrt{1-\bar \alpha_t}} $$
 
 - SMLD 에서의 noise scale 인 $\sigma_i$ 과 DDPM 에서의 $\sqrt{1-\bar \alpha_t}$ 는 동일하다는 것을 다시 한 번 알 수 있다.
   - 하지만 noise scale 이 비슷하다고 forward process 나 backward process 가 동일한 것은 아니다. 
@@ -570,15 +554,34 @@ $$ x_{i-1} = \frac{1}{\sqrt{1- \beta_i}}(x_i + \beta_i S_{\theta}(x_i, i)) + \sq
 
 $$ [\text{objective function}] \ S_{\theta}(\tilde{x},\sigma_i) - \nabla_{\tilde{x}} \log q_{\sigma_i}(\tilde{x}|x) = \frac{\epsilon - \epsilon_{\theta}(\tilde{x}, \sigma_i)}{\sigma_i} $$
 
-$$ [\text{objective function}] \ x_i^m = x_i^{m-1} + \epsilon_i s_{\theta}(x_i^{m-1}, \sigma_i) + \sqrt{2\epsilon_i}z_i^m, m = 1, 2, \cdots, M $$
+$$ [\text{sampling method}] \ x_i^m = x_i^{m-1} + \epsilon_i s_{\theta}(x_i^{m-1}, \sigma_i) + \sqrt{2\epsilon_i}z_i^m, m = 1, 2, \cdots, M $$
 
 - DDPM 의 Objective function & Sampling method
 
-$$ S_{\theta}(x_i,i) = - \frac{\epsilon_{\theta}}{\sqrt{1-\bar \alpha_i}} $$
+$$ S_{\theta}(x_i,i) = - \frac{\epsilon_{\theta}(x_t,t)}{\sqrt{1-\bar \alpha_i}} $$
 
-$$ [\text{objective function}] \ S_{\theta}(x_i, i) - \nabla_{x_i} \log{q_{i}(x_i|x_0)} = \frac{\epsilon - \epsilon_{\theta}}{\sqrt{1-\bar \alpha_i}} $$
+$$ [\text{objective function}] \ S_{\theta}(x_i, i) - \nabla_{x_i} \log{q_{i}(x_i|x_0)} = \frac{\epsilon - \epsilon_{\theta}(x_i, i)}{\sqrt{1-\bar \alpha_i}} $$
 
 $$ [\text{sampling method}] \ x_{i-1} = \frac{1}{\sqrt{1- \beta_i}}(x_i + \beta_i S_{\theta}(x_i, i)) + \sqrt{\beta_i} z_i, i = N, N-1, \cdots, 1 $$
+
+### *<a href='../SDE/SDE.md'>SDE: Stochastic Differential Equation</a>*
+
+- 이제, 이산적인 process 였던 SMLD 와 DDPM 을 연속적으로 보자
+- Diffusion coefficient $g(t)$ 가 일반적인 SDE 에서와는 달리, $x_t$ 는 입력으로 받지 않는다. 
+
+- Forward SDE: noise 를 점진적으로 더하는 과정 (data $\rightarrow$ noise)
+
+$$ dx = f(x,t)dt + g(t)dw,\  [\text{In Continuous}] $$
+
+$$ x_{t+1}-x_t = f(x_t,t) + g(t)z_t, \ [\text{In Discrete}] $$
+
+- Reverse SDE: noise 를 점진적으로 제거하는 과정 (noise $\rightarrow$ data)
+  - SDE 가 존재한다면, reverse-time SDE 또한 존재한다.
+  - Anderson (1982) 증명
+
+$$ dx = [f(x,t) - g^2(t) \nabla_x \log p_t(x)] dt + g(t)d\bar w, \ [\text{In Continuous}] $$
+
+$$ x_{t}-x_{t+1} = [f(x_{t+1},t+1) - g^2(t+1) \nabla_x \log p_{t+1}(x_{t+1})] + g(t)z_t, \ [\text{In Discrete}] $$
 
 #### DDPM 과의 연관성: Score-based Generative Modes Through SDEs
 
@@ -595,14 +598,6 @@ $$ [\text{sampling method}] \ x_{i-1} = \frac{1}{\sqrt{1- \beta_i}}(x_i + \beta_
  <p align="center">
 <img src='./img34.png'>
 </p>
-
-- SDE 가 존재한다면, reverse-time SDE 또한 존재한다.
-
-$$ dx = f(x,t)dt + g(t)dw $$
-
-- Anderson, 1982
-
-$$ dx = [f(x,t) - g(t)^2 \nabla_x \log p_t(x)] dt + g(t)d\bar w $$
 
 - SDE 가 DDPM 보다 더 general 한 fomulation 이다. time 에 대해서 연속적이고 더 정확한 값이기 때문에.
 

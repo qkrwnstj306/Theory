@@ -23,7 +23,29 @@ $$ \Delta x = x_2 - x_1 $$
 
 $$ \Delta x \rightarrow dx $$
 
+- Difference Equation
 
+$$ x_{n+1} - x_n = f(x_n,n)(n+1 - n) $$
+
+$$ \Delta x = f(x,n)\Delta n $$
+
+- Differential Equation
+
+$$ dx = f(x,t)dt $$
+
+$$ \frac{dx}{dt} = f(x,t) $$
+
+- Stochastic Difference Equation
+
+$$ x_{n+1} - x_n = f(x_n,n) + G(x_n,n)"noise" $$
+
+$$ \Delta x = f(x,n)\Delta n + G(x_n,n) \Delta n Z_n $$
+
+- Stochastic Differential Equation
+
+$$ dx = f(x,t)dt + G(x,t)Z_t dt $$
+
+$$ \frac{dx}{dt} = f(x,t) + G(x,t)Z_t $$
 
 - White Gaussian Noise (백색 가우시안 잡음)
   - 통신 시스템에서, 열잡음이 신호에 영향을 주는 특성에 따라 붙여진 이름이다. 모든 주파수에 걸쳐서 나타난다.
@@ -79,14 +101,34 @@ $$ dx = f(x,t)dt + L(x,t)n(t)dt $$
 
 $$ x(t+ \Delta) - x(t) = \displaystyle\int_t^{t+\Delta} f(x,s) ds + \displaystyle\int_t^{t+\Delta} L(x,s)n(s) ds $$
 
-- White noise n(t) 는 unbounded 이고 discontinuous 하므로 $\displaystyle\int_t^{t+\Delta} L(x,s)n(s) ds$ 는 존재하지 않는다.
+- White noise n(t) 는 unbounded 이고 **discontinuous** 하므로 $\displaystyle\int_t^{t+\Delta} L(x,s)n(s) ds$ 는 존재하지 않는다.
   - 하지만 diffusion matrix 가 $Q$ 인 브라운 운동 $w$ 에 대하여 $n(t) = \frac{dw(t)}{dt} \ [\text{weak derivative}]$ 로 표현할 수 있으므로,
   - 브라운 운동을 이용해서 $\displaystyle\int_t^{t+\Delta} L(x,s)n(s) ds$ 대신 이토 적분 $\displaystyle\int_t^{t+\Delta} L(x,s)dw(s)$ 를 이용한다.
 
 $$ x(t+ \Delta) - x(t) = dx = \displaystyle\int_t^{t+\Delta} f(x,s) ds + \displaystyle\int_t^{t+\Delta} L(x,s)dw(s) $$
 
+- 시작점이 $x_0$ 로 고정이라면 다음과 같다.
+
+$$ dx = f(t,X)dt + G(t,X)dW $$
+
+$$ X_t = X_0 + \int_0^t f(s,X_s) ds + \int_0^t G(s,X_s)dW_s $$
+
+$$ X_m = X_0 + \sum_{0 \leq j \leq m-1} f(t_j,X_j)\Delta t_j + \sum_{0 \leq j \leq m-1} G(t_j, X_j) \Delta W_j, \ \text{discretization} $$
+
+
 - 상미분 방정식 $\frac{dx}{dt} = f(x,t)$ 에 white noise 가 낀 것으로 해석이 가능하다.
 - 수학적인 이유 때문에 white noise 에 대한 적분이 아닌 이토 적분으로 정의힌다.
+  - 하지만, Brownian motion 은 $t$ 에 대해서 연속적이지만 미분 불가능하기 때문에 이산적으로 정의한다.
+  - $S$ 에서 $T$ 까지의 구간에서 $G(t)$ 함수를 $w(t)$ 에 대해 적분한다면, 리만 합으로 바꾸기 위해 시간 구간을 여러 작은 구간으로 나눈다.
+  - 작은 구간의 길이를 $\Delta t_i$ 로 표기하고, 각 부분 구간에서의 t 값은 $t_i = S + i \Delta t_i$ 로 나타낸다. 
+
+
+
+$$ \displaystyle\int_S^T G(t) dw(t) = \lim_{n \rightarrow \infty} \displaystyle\sum_{i=0}^{n-1} G(t_i)(w(t_{i+1}) - w(t_i)) $$
+
+<p align="center">
+<img src='./img1.jpg'>
+</p>
 
 - 기호정리
   - $X_t$: 확률 미분 방정식을 따르는 stochastic process
