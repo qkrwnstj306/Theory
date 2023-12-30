@@ -13,6 +13,18 @@
 
 ### <strong>Definition</strong>
 
+- Difference (차분): 두 값 사이의 차이를 나타낸다. 
+
+$$ \Delta x = x_2 - x_1 $$
+
+- 만일, 차분값이 0 에 가까워 지면 다음과 같다. 
+  - 이때의 $dx$ 를 derivative 라고 부른다. 
+  - Differential 은 $\frac{dy}{dx}$ 와 같이 derivative 가 포함된 함수식이다. 
+
+$$ \Delta x \rightarrow dx $$
+
+
+
 - White Gaussian Noise (백색 가우시안 잡음)
   - 통신 시스템에서, 열잡음이 신호에 영향을 주는 특성에 따라 붙여진 이름이다. 모든 주파수에 걸쳐서 나타난다.
     - 열 에너지에 의해 발생하는 것으로 저항기에서 많이 발생하며 기기 내부 잡음의 주요한 원인이 된다.
@@ -23,6 +35,7 @@
     - 3. $E[n(t)] = 0, \ E[n(t)n(s)^T] = 0 \ (\text{if} \ t = s, \ E[n(t)n(t)^T] = Q)$
       - $t \neq s$ 인 상황에서는 확률적 독립이기에 다음과 같이 표현할 수 있다. $E[n(t)n(s)^T] = E[n(t)] \times E[n(s)]$ 이때, $E[n(t)] =\ E[n(s)] = 0$ 이라서, $E[n(t)n(s)^T] = 0$ 이다.
       - 여기서 $Q$ 는 spectral density 라고 부른다.
+      - $t = s$ 일때 $n(t) \sim N(0,Q)$ 의 분포를 따른다. 
   - 특징
     - $n(t)$ 는 $t$ 에 관해서 불연속이다. 
     - $n(t)$ 는 $[t_0, \infty)$ 의 모든 부분 구간 $[t_1,t_2], \ t_0 \leq t_1 \leq t_2$ 안에서 unbounded 이고 아주 큰 값과 아주 작은 값을 갖는다.
@@ -33,12 +46,13 @@
     - 2. $w(t_0) = 0$
     - 3. $t_1 < t_2 < t_3 < \cdots < t_N$ 에 대하여 $w(t_2) - w(t_1), w(t_3) - w(t_2), \cdots , w(t_N) - w(t_{N-1})$ 는 독립이고 가우시안 분포를 따른다.
       - 여기서 $Q$ 는 diffusion matrix 라고 부른다.
-  - $s < t$ 일 때, $w(t) - w(s) \sim N(0, (t-s)Q)$ 이고, 둘의 차이가 $1$ 이라면, $N(0,Q)$ 의 분포를 따른다. 
-    - $N(0,Q)$ 의 분포는 $\text{if} \ t \neq s, \ E[n(t)n(t)^T] = Q$  와 같다.
   - 특징
-    - $w(t)$ 는 $t$ 에 관해서 미분 불가능하다.
-    - White Gaussian noise $n(t)$ 의 specatral density 가 $Q$ 라면 
-    - <a href='http://mbhauser.com/informal-notes/white-gaussian-noise.pdf'>증명 pdf</a>
+    - 브라운 운동은 시간에 대해 연속적이지만 경로 자체는 대부분 미분 불가능한 지점이 존재한다. 
+    - $w(t)$ 는 $t$ 에 관해서 미분 불가능하다. (weak derivative 로 미분 불가능한 지점에서도 동작하게끔 정의한다)
+    - White Gaussian noise $n(t)$ 의 specatral density 가 $Q$ 라면 다음을 만족한다.
+      - 브라운 운동에서의 증가량은 gaussian distribution 을 따르고, 시간 간격이 작을 때 브라운 운동의 변화는 white gaussian distribution 에 근사할 수 있다.
+      - $\frac{w(t+1) - w(t)}{t+1 - t} \sim N(0,Q)$ 
+      - <a href='http://mbhauser.com/informal-notes/white-gaussian-noise.pdf'>증명 pdf</a>
 
 $$ n(t) = \frac{dw(t)}{dt} \ [\textbf{Weak Derivative}]$$
 
@@ -52,6 +66,7 @@ $$ n(t) = \frac{dw(t)}{dt} \ [\textbf{Weak Derivative}]$$
     - $\displaystyle\sum_{i=0}^{n-1} G(\hat t_i)(w(t_{i+1}) - w(t_i)), \ t_i \leq \hat t_i \leq t_{i+1}$ 임의의 점이면 적분이 존재하지 않을 수 있다.
 
 - Stochastic Differential Equation (SDE: 확률 미분 방정식)
+  - 원래 함수를 모를 때 도함수와 함수값을 이용하여 원래 함수를 추정하거나, 현재 관측하지 않은 변수에서의 함수값을 추정하는 것이다. 
   - 배경
     - 상미분 방정식 (ODE) </br></br>$\\ \frac{dx}{dt} = f(x,t)$
     - 미분 방정식에 noise 가 낀 경우, </br></br> $\\ \frac{dx}{dt} = f(x,t) + L(x,t)n(t)$</br></br>
@@ -65,7 +80,7 @@ $$ dx = f(x,t)dt + L(x,t)n(t)dt $$
 $$ x(t+ \Delta) - x(t) = \displaystyle\int_t^{t+\Delta} f(x,s) ds + \displaystyle\int_t^{t+\Delta} L(x,s)n(s) ds $$
 
 - White noise n(t) 는 unbounded 이고 discontinuous 하므로 $\displaystyle\int_t^{t+\Delta} L(x,s)n(s) ds$ 는 존재하지 않는다.
-  - 하지만 diffusion coefficient 가 $Q$ 인 브라운 운동 $w$ 에 대하여 $n(t) = \frac{dw(t)}{dt} \ [\text{weak derivative}]$ 로 표현할 수 있으므로,
+  - 하지만 diffusion matrix 가 $Q$ 인 브라운 운동 $w$ 에 대하여 $n(t) = \frac{dw(t)}{dt} \ [\text{weak derivative}]$ 로 표현할 수 있으므로,
   - 브라운 운동을 이용해서 $\displaystyle\int_t^{t+\Delta} L(x,s)n(s) ds$ 대신 이토 적분 $\displaystyle\int_t^{t+\Delta} L(x,s)dw(s)$ 를 이용한다.
 
 $$ x(t+ \Delta) - x(t) = dx = \displaystyle\int_t^{t+\Delta} f(x,s) ds + \displaystyle\int_t^{t+\Delta} L(x,s)dw(s) $$
@@ -76,7 +91,6 @@ $$ x(t+ \Delta) - x(t) = dx = \displaystyle\int_t^{t+\Delta} f(x,s) ds + \displa
 - 기호정리
   - $X_t$: 확률 미분 방정식을 따르는 stochastic process
   - $B_t$: Brownian motion
-  - 확률 미분 방정식: 시간의 변화에 따른 확률 과정 $X_t$ 의 변화는 기대값이 $b(t,X_t)$ 이고 분산이 $\sigma(x,t)^2$ 의 정규분포를 따르고 과거의 움직임과는 독립이다.
 
 $$ dX_t = b(t, X_t) dt + \sigma(t, X_t) dB_t  $$
 
@@ -114,6 +128,17 @@ $$ dx = \frac{1}{2} \nabla_x \log{p(x)}dt + dw $$
 
 - 즉, $dt = \epsilon$, $dw = \sqrt{\epsilon}z_i \sim N(0,\epsilon)$ 를 만족하는 *SDE* 로 볼 수 있다.
 
+### <strong>Numerical SDE solvers</strong> 
+
+- SDE 를 이산적인 시간 그리드에서 수치적으로 푸는 알고리즘이다. 
+
+- Euler-Maruyama Method: 이 방법은 간단하고 직관적으로 구현될 수 있으며, 작은 시간 간격에서 미분 방정식을 근사화합니다.
+
+- Milstein Method: Euler-Maruyama의 확장으로, 특히 diffusion term이 XtXt​에 대해 편미분 가능한 경우 더 나은 근사화를 제공합니다.
+
+- Runge-Kutta Methods: 고전적인 미분 방정식에 사용되는 Runge-Kutta 방법을 확장하여 SDE에 대한 수치 해법을 제공합니다.
+
+- Stochastic Taylor Expansion Methods: 고차원의 정확도를 제공하는 방법 중 하나로, 테일러 전개를 사용하여 미분 방정식을 근사화합니다.
 
 ### <strong>Example</strong>
 

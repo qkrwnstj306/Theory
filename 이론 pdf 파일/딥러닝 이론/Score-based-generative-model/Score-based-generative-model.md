@@ -476,12 +476,22 @@ $$ Loss = E_{q_{\sigma}(x, \tilde{x})}[\frac{1}{2} \Vert S_{\theta}(\tilde{x}, \
 <img src='./img34.png'>
 </p>
 
+- SDE 가 존재한다면, reverse-time SDE 또한 존재한다.
+
+$$ dx = f(x,t)dt + g(t)dw $$
+
+- Anderson, 1982
+
+$$ dx = [f(x,t) - g(t)^2 \nabla_x \log p_t(x)] dt + g(t)d\bar w $$
+
 - SDE 가 DDPM 보다 더 general 한 fomulation 이다. time 에 대해서 연속적이고 더 정확한 값이기 때문에.
+
  <p align="center">
 <img src='./img35.png'>
 </p>
 
 - 각 forward process 를 보면 다음과 같다.
+
  <p align="center">
 <img src='./img36.png'>
 </p>
