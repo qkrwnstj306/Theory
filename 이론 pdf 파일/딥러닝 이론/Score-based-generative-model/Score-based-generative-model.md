@@ -583,6 +583,8 @@ $$ dx = [f(x,t) - g^2(t) \nabla_x \log p_t(x)] dt + g(t)d\bar w, \ [\text{In Con
 
 $$ x_{t}-x_{t+1} = [f(x_{t+1},t+1) - g^2(t+1) \nabla_x \log p_{t+1}(x_{t+1})] + g(t)z_t, \ [\text{In Discrete}] $$
 
+
+
 #### DDPM 과의 연관성: Score-based Generative Modes Through SDEs
 
 - Ordinary Differential Equation (ODE, 상미분 방정식)
