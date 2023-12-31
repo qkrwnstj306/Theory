@@ -65,6 +65,7 @@ $$ \frac{dx}{dt} = f(x,t) + G(x,t)Z_t $$
 - Brownian Motion (브라운 운동)
   - Stochastic process $w(t) \in R^d, \ t \in [t_0, \infty]$ 가 다음을 만족할 때, Brownian motion 이라고 부른다.
     - 1. $s < t$ 일 때, $w(t) - w(s) \sim N(0, (t-s)Q)$
+      - **일차원이면, $w(t) - w(s) \sim N(0, t-s)$**
     - 2. $w(t_0) = 0$
     - 3. $t_1 < t_2 < t_3 < \cdots < t_N$ 에 대하여 $w(t_2) - w(t_1), w(t_3) - w(t_2), \cdots , w(t_N) - w(t_{N-1})$ 는 독립이고 가우시안 분포를 따른다.
       - 여기서 $Q$ 는 diffusion matrix 라고 부른다.
