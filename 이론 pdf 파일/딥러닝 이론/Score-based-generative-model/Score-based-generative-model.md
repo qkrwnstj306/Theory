@@ -565,7 +565,6 @@ $$ [\text{sampling method}] \ x_{i-1} = \frac{1}{\sqrt{1- \beta_i}}(x_i + \beta_
 
 ### *<a href='../SDE/SDE.md'>SDE: Stochastic Differential Equation</a>*
 
-- 이제, 이산적인 process 였던 SMLD 와 DDPM 을 연속적으로 보자
 - Diffusion coefficient $g(t)$ 가 일반적인 SDE 에서와는 달리, $x_t$ 는 입력으로 받지 않는다. 
 
 - Forward SDE: noise 를 점진적으로 더하는 과정 (data $\rightarrow$ noise)
@@ -582,6 +581,96 @@ $$ dx = [f(x,t) - g^2(t) \nabla_x \log p_t(x)] dt + g(t)d\bar w, \ [\text{In Con
 
 $$ x_{t}-x_{t+1} = [f(x_{t+1},t+1) - g^2(t+1) \nabla_x \log p_{t+1}(x_{t+1})] + g(t)z_t, \ [\text{In Discrete}] $$
 
+- 이제, 이산적인 process 였던 SMLD 와 DDPM 을 연속적으로 보자
+
+- Variance Exploding SDE: SMLD
+  - SMLD 의 $p_{\sigma}(x_i|x_0) = x_i = x_0 + \sigma_iz_i, \ z \sim N(0,I)$ 를 이용하여 Markov chain 을 따르는 수식을 만들어보자.
+  - $x_0$ 를 $x_{i-1}$ 에 대해서 잘 표현해보면 Markov chain 을 만족시킬 수 있을 거 같다.
+  - $x_{i-1} = x_0 + \sigma_{i-1} z_{i-1}$ 를 $x_0$ 에 대해서 표현해보자.
+  - $x_0 = x_{i-1} - \sigma_{i-1}z_{i-1}$ 을 대입해보자
+  - $x_i = x_{i-1} - \sigma_{i-1}z_{i-1} + \sigma_iz_i$ 로 만들어진다.
+  - 이때, 정규 분포를 따르는 두 확률 변수의 합은 다음과 같이 표현된다.
+  - 따라서, $x_i = x_{i-1} + \sqrt{\sigma_i^2 - \sigma_{i-1}^2}z_{i-1}$ 로 표현할 수 있다.
+
+
+$$ X+Y \sim N(\mu_x + \mu_y , \sigma_x^2 + \sigma_y^2) $$
+
+$$ \sigma_iz_i - \sigma_{i-1}z_{i-1} \sim N(0,(\sigma_i^2 - \sigma_{i-1}^2)I) $$
+
+$$ x_i = x_{i-1} + \sqrt{\sigma_i^2 - \sigma_{i-1}^2}z_{i-1} , \ i = 1, \cdots, N , \ z \sim N(0,I) $$
+
+- $x(\frac{i}{N}) = x_i, \sigma(\frac{i}{N}) = \sigma_i, z(\frac{i}{N}) = z_i, \Delta t = \frac{1}{N}$ 로 정의하고 $N \rightarrow \infty$ 로 보내면, 다음과 같이 표현할 수 있다. 
+
+$$ x(t+\Delta t) = x(t) + \sqrt{\sigma^2(t + \Delta t) - \sigma^2(t)}z(t) $$
+
+- <a href='../Taylor/Taylor.md'>Taylor's Series</a> 의 first-order 를 이용하면 다음과 같이 근사할 수 있다.
+  - 이때, $\Delta t << 1$ 이어야 근사가 가능하다. $t$ 점과 멀리 떨어져 있으면 안된다. 
+
+$$ f(a+h) \approx f(a) + f'(a)h $$
+
+$$ \sigma^2(t+ \Delta t) \approx \sigma^2(t) + \frac{d \sigma^2(t)}{dt}\Delta t $$
+
+$$ \sigma^2(t+ \Delta t) - \sigma^2(t) \approx \frac{d \sigma^2(t)}{dt}\Delta t $$
+
+$$ x(t+\Delta t) = x(t) + \sqrt{\sigma^2(t + \Delta t) - \sigma^2(t)}z(t) \approx x(t) + \sqrt{\frac{d \sigma^2(t)}{dt}\Delta t}z(t) $$
+
+- Continuous time 으로 보내기 위해 $\Delta t \rightarrow 0$
+
+$$ x(t+\Delta t) - x(t)  \approx \sqrt{\frac{d \sigma^2(t)}{dt}\Delta t}z(t) $$
+
+- 우리는 SDE 에서 Brownian motion 이 다음의 성질을 갖는 걸 알고 있다.
+
+$$ \Delta w = \sqrt{t-s}z = \sqrt{\Delta t}z, \ z \sim N(0,1) $$
+
+$$ x(t+\Delta t) - x(t)  \approx \sqrt{\frac{d \sigma^2(t)}{dt}}\Delta w $$
+
+$$ dx = \sqrt{\frac{d \sigma^2(t)}{dt}}dw $$
+
+- 여기서 우리는 SMLD 의 noise injection 을 forward SDE 로 표현했다.
+
+<p align="center">
+<img src='./img43.jpg'>
+</p>
+
+- Variance Preserving SDE: DDPM 
+  - DDPM 의 forward process in discrete time 을 보자.
+    - $z_{i-1} \sim N(0,I)$
+
+$$ x_i = \sqrt{1-\beta_i}x_{i-1} + \sqrt{\beta_i}z_{i-1},  \ i = 1, \cdots, N $$
+
+- $\beta_i = \frac{\bar \beta_i}{N}$ 으로 정의해보자.
+
+$$ x_i = \sqrt{1-\frac{\bar \beta_i}{N}}x_{i-1} + \sqrt{\frac{\bar \beta_i}{N}}z_{i-1},  \ i = 1, \cdots, N $$
+
+- $\beta(\frac{i}{N}) = \bar \beta_i, x(\frac{i}{N}) = x_i, z(\frac{i}{N}) = z_i, \Delta t = \frac{1}{N}$ 로 정의하고 $N \rightarrow \infty$ 로 보내면,  다음과 같이 쓸 수 있다.
+
+$$ x(t + \Delta t) = \sqrt{1 - \beta(t + \Delta t)\Delta t}x(t) + \sqrt{\beta(t+ \Delta t)\Delta t}z(t) $$
+
+- 위와는 다르게, Taylor's series 를 전개해보자
+
+$$ f(x) \approx f(a) + f'(a)(x-a) $$
+
+- $x = \beta(t+\Delta t)\Delta t$ 로 치환하고, $f(x) =\sqrt{1 - x}$ 로 본다.
+  - 이때, $\Delta t << 0$ 이라면, $x= a = 0$ 인 지점으로 보고 맥클로린 급수를 사용한다. 
+  - $\beta$ 는 다음과 같은 범위를 지니고 있다. $0 < \beta < 1$ (DDPM 에서는 $0.0001 \sim 0.02$)
+  - $\Delta t << 0$ 일때, $x = a = 0$ 에서 근사해도 괜찮을 것이다. 
+
+$$ \sqrt{1 - x} \approx 1 - \frac{1}{2}x $$
+
+- $x = \beta(t+\Delta t)\Delta t$ 로 다시 치환해보자.
+
+$$ \sqrt{1 - \beta(t + \Delta t)\Delta t} \approx 1 - \frac{1}{2}\beta(t+\Delta t)\Delta t $$
+
+- 최종적으론, 다음과 같이 근사할 수 있다.
+  - $\beta(t+\Delta t) \approx \beta(t)$: $\beta$ 자체가 $(0,1)$ 의 범위를 지니기 때문에 (실제로는 더 작음) $\Delta t << 1$ 일 때는 근사가 가능하다?
+
+$$ x(t + \Delta t) \approx (1 - \frac{1}{2}\beta(t+\Delta t)\Delta t)x(t) + \sqrt{\beta(t+ \Delta t)\Delta t}z(t) = x(t) - \frac{1}{2}\beta(t+\Delta t)\Delta t x(t) + \sqrt{\beta(t+ \Delta t)\Delta t}z(t) \\ \approx x(t) - \frac{1}{2}\beta(t)\Delta t x(t) + \sqrt{\beta(t)\Delta t}z(t) $$
+
+- Noise 를 더해서 내가 아는 분포로 표현하는 건 동일하다. 하지만 DDPM 은 noise 를 더함으로써, pure noise 로 만들었고, SMLD 는 low density region 을 채웠다. 
+  - 서로 달라 보이는 이 과정들이 SDE 관점에서는 어떤 forward SDE 를 선택하냐에 따라서 다른 class 로 볼 순 있지만 사실, 같은 framework 에서 작동한다.
+  - **VE/VP SDE 의 discretization: SMLD/DDPM**
+
+- VP SDE (DDPM) 에서는 pure noise 에서 sampling 하면 되는데 VE SDE (SMLD) 에서는 variance exploding 이여서 pure noise 는 아니고 평균이 data $x$ 이다. 따라서 signal 이 있으나 마나하게 variance 를 엄청 크게 주고 초기에 sampling 을 한다.
 
 
 #### DDPM 과의 연관성: Score-based Generative Modes Through SDEs

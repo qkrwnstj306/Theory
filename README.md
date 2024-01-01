@@ -243,6 +243,10 @@ Theory for ML.
 - <a href='./이론 pdf 파일/수학/Norm.pdf'>Vector Norm</a>
 - <a href='./이론 pdf 파일/수학/Entropy.pdf'>Entropy with information theory</a>
 - <a href='./이론 pdf 파일/수학/기초수학.pdf'>기초 수학(산업 수학, 공학선형대수학, 신호와 시스템)</a>
+- <a href='./이론 pdf 파일/딥러닝 이론/Gaussian-Distribution/Gaussian-Distribution.md'>Gaussian Distribution</a>
+- <a href='./이론 pdf 파일/딥러닝 이론/Taylor/Taylor.md'>Taylor</a>
+
+
 # <strong>5. University Lecture</strong>
 ## 학부 (컴퓨터 네트워크, JAVA, 운영체제, 인터넷 프로그래밍, 데이터 통신, 암마이크로, 통신이론, 데이터 베이스 etc.)
 - <a href='https://www.notion.so/029b1e22a20f4579acb5f1651fc51b2a?pvs=4'>Notion</a>

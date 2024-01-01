@@ -66,6 +66,7 @@ $$ \frac{dx}{dt} = f(x,t) + G(x,t)Z_t $$
   - Stochastic process $w(t) \in R^d, \ t \in [t_0, \infty]$ 가 다음을 만족할 때, Brownian motion 이라고 부른다.
     - 1. $s < t$ 일 때, $w(t) - w(s) \sim N(0, (t-s)Q)$
       - **일차원이면, $w(t) - w(s) \sim N(0, t-s)$**
+          - $\Delta w = \sqrt{t-s}z = \sqrt{\Delta t}z, \ z \sim N(0,1)$
     - 2. $w(t_0) = 0$
     - 3. $t_1 < t_2 < t_3 < \cdots < t_N$ 에 대하여 $w(t_2) - w(t_1), w(t_3) - w(t_2), \cdots , w(t_N) - w(t_{N-1})$ 는 독립이고 가우시안 분포를 따른다.
       - 여기서 $Q$ 는 diffusion matrix 라고 부른다.
@@ -146,6 +147,7 @@ $$ \sigma(t,x): \text{diffusion coefficient} $$
 
 - Ito Diffusion
   - 확률 미분 방정식이 $t$ 에 의존하지 않으면서 Lipschitz continuous 를 만족하는 Stochastic process $X_t$ 를 ito diffusion 이라고 한다.
+  - 이때, unique strong solution 을 가진다.
 
 $$ dX_t = b(X_t) dt + \sigma(X_t) dB_t  $$
 
@@ -169,7 +171,12 @@ $$ x_i - x_{i-1} = \frac{1}{2} \nabla_x \log{p(x)}\epsilon + \sqrt{\epsilon}z_i 
 
 $$ dx = \frac{1}{2} \nabla_x \log{p(x)}dt + dw $$
 
-- 즉, $dt = \epsilon$, $dw = \sqrt{\epsilon}z_i \sim N(0,\epsilon)$ 를 만족하는 *SDE* 로 볼 수 있다.
+- 우리는 위에서 Brownian motion 이 다음의 성질을 갖는 걸 알고 있다.
+
+$$ \Delta w = \sqrt{t-s}z = \sqrt{\Delta t}z, \ z \sim N(0,1) $$
+
+
+- 연속 시간으로 본다면, $dt = \epsilon$, $dw = \sqrt{\epsilon}z_i = \sqrt{dt}z_i \sim N(0,\epsilon(=dt))$ 를 만족하는 *SDE* 로 볼 수 있다.
 
 ### <strong>Numerical SDE solvers</strong> 
 
