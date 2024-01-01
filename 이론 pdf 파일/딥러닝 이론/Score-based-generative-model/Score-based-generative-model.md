@@ -586,9 +586,9 @@ $$ x_{t}-x_{t+1} = [f(x_{t+1},t+1) - g^2(t+1) \nabla_x \log p_{t+1}(x_{t+1})] + 
 - Variance Exploding SDE: SMLD
   - SMLD 의 $p_{\sigma}(x_i|x_0) = x_i = x_0 + \sigma_iz_i, \ z \sim N(0,I)$ 를 이용하여 Markov chain 을 따르는 수식을 만들어보자.
   - $x_0$ 를 $x_{i-1}$ 에 대해서 잘 표현해보면 Markov chain 을 만족시킬 수 있을 거 같다.
-  - $x_{i-1} = x_0 + \sigma_{i-1} z_{i-1}$ 를 $x_0$ 에 대해서 표현해보자.
-  - $x_0 = x_{i-1} - \sigma_{i-1}z_{i-1}$ 을 대입해보자
-  - $x_i = x_{i-1} - \sigma_{i-1}z_{i-1} + \sigma_iz_i$ 로 만들어진다.
+  - 1. $x_{i-1} = x_0 + \sigma_{i-1} z_{i-1}$ 를 $x_0$ 에 대해서 표현해보자.
+  - 2. $x_0 = x_{i-1} - \sigma_{i-1}z_{i-1}$ 을 대입해보자
+  - 3. $x_i = x_{i-1} - \sigma_{i-1}z_{i-1} + \sigma_iz_i$ 로 만들어진다.
   - 이때, 정규 분포를 따르는 두 확률 변수의 합은 다음과 같이 표현된다.
   - 따라서, $x_i = x_{i-1} + \sqrt{\sigma_i^2 - \sigma_{i-1}^2}z_{i-1}$ 로 표현할 수 있다.
 
@@ -602,6 +602,10 @@ $$ x_i = x_{i-1} + \sqrt{\sigma_i^2 - \sigma_{i-1}^2}z_{i-1} , \ i = 1, \cdots, 
 - $x(\frac{i}{N}) = x_i, \sigma(\frac{i}{N}) = \sigma_i, z(\frac{i}{N}) = z_i, \Delta t = \frac{1}{N}$ 로 정의하고 $N \rightarrow \infty$ 로 보내면, 다음과 같이 표현할 수 있다. 
 
 $$ x(t+\Delta t) = x(t) + \sqrt{\sigma^2(t + \Delta t) - \sigma^2(t)}z(t) $$
+
+<p align="center">
+<img src='./img43.jpg'>
+</p>
 
 - <a href='../Taylor/Taylor.md'>Taylor's Series</a> 의 first-order 를 이용하면 다음과 같이 근사할 수 있다.
   - 이때, $\Delta t << 1$ 이어야 근사가 가능하다. $t$ 점과 멀리 떨어져 있으면 안된다. 
@@ -627,10 +631,6 @@ $$ x(t+\Delta t) - x(t)  \approx \sqrt{\frac{d \sigma^2(t)}{dt}}\Delta w $$
 $$ dx = \sqrt{\frac{d \sigma^2(t)}{dt}}dw $$
 
 - 여기서 우리는 SMLD 의 noise injection 을 forward SDE 로 표현했다.
-
-<p align="center">
-<img src='./img43.jpg'>
-</p>
 
 - Variance Preserving SDE: DDPM 
   - DDPM 의 forward process in discrete time 을 보자.
