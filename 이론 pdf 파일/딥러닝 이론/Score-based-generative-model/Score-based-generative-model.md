@@ -599,7 +599,8 @@ $$ \sigma_iz_i - \sigma_{i-1}z_{i-1} \sim N(0,(\sigma_i^2 - \sigma_{i-1}^2)I) $$
 
 $$ x_i = x_{i-1} + \sqrt{\sigma_i^2 - \sigma_{i-1}^2}z_{i-1} , \ i = 1, \cdots, N , \ z \sim N(0,I) $$
 
-- $x(\frac{i}{N}) = x_i, \sigma(\frac{i}{N}) = \sigma_i, z(\frac{i}{N}) = z_i, \Delta t = \frac{1}{N}$ 로 정의하고 $N \rightarrow \infty$ 로 보내면, 다음과 같이 표현할 수 있다. 
+- $t = \frac{i}{N}, x(\frac{i}{N}) = x_i, \sigma(\frac{i}{N}) = \sigma_i, z(\frac{i}{N}) = z_i, \Delta t = \frac{1}{N}$ 로 정의하고 $N \rightarrow \infty$ 로 보내면, 다음과 같이 표현할 수 있다.
+  - E.g., $x_{i+1} = x(\frac{i+1}{N}) = x(\frac{i}{N}+\Delta t) = x(t+\Delta t)$ 
 
 $$ x(t+\Delta t) = x(t) + \sqrt{\sigma^2(t + \Delta t) - \sigma^2(t)}z(t) $$
 
