@@ -478,7 +478,7 @@ $$ x_i^m = x_i^{m-1} + \epsilon_i s_{\theta}(x_i^{m-1}, \sigma_i) + \sqrt{2\epsi
 
 $$ x_t^m = x_t^{m-1} + \epsilon_t s_{\theta}(x_t^{m-1}, \sigma_t) + \sqrt{2\epsilon_t}z_t^m, m = 1, 2, \cdots, M $$ -->
 
-- 다시 목적 함수로 돌아와서, $q_{\sigma_i}(\tilde{x}|x)$ 를 $\nabla_{\tilde{x}}\log$ 로 씌워서 계산하면 다음과 같다.
+- 다시 목적 함수로 돌아와서, $q_{\sigma_i}(\tilde{x}|x)$ 를 $\nabla_{\tilde{x}}\log$ 로 씌워서 계산하면 다음과 같다. (실제로 미분하면 계산이 간단하다)
   - $\tilde{x} = x + z \ z , \sim N(0,\sigma^2I) = x + \sigma\epsilon, \ \epsilon \sim N(0,I)$
 
 $$ \nabla_{\tilde{x}} \log q_{\sigma_i}(\tilde{x}|x) = - \frac{\tilde{x}- x}{\sigma_i^2} = - \frac{\sigma_i\epsilon}{\sigma^2} = - \frac{\epsilon}{\sigma_i} $$
@@ -501,7 +501,7 @@ $$ S_{\theta}(\tilde{x},\sigma_i) - \nabla_{\tilde{x}} \log q_{\sigma_i}(\tilde{
     - E.g.,  $\frac{\epsilon - \epsilon_{\theta}(\tilde{x}, \sigma_i)}{10}$ vs $\frac{\epsilon - \epsilon_{\theta}(\tilde{x}, \sigma_i)}{1}$ 을 학습할 때, 후자에 더 비중을 두고 $\theta$ 를 update 한다. 
     - DDPM 에서는 time step $t$ 에 따라 변하는 상수 값이 존재하지만 $1$ 로 setting 하고 학습한다.
 
-$$ x_t = \sqrt{\bar \alpha_t}x_0 + \sqrt{1- \bar \alpha_t}\epsilon $$
+$$ x_t = \sqrt{\bar \alpha_t}x_0 + \sqrt{1- \bar \alpha_t}\epsilon \\ \text{like (signal scale)} \times x_0 + \text{noise scale} \times \epsilon   $$
 
 $$ \epsilon - \epsilon_{\theta}(\sqrt{\bar \alpha_t}x_0 + \sqrt{1- \bar \alpha_t}\epsilon,t), \ [\text{DDPM Objective function}]= \epsilon - \epsilon_{\theta}(x_t,t) $$
 
@@ -670,24 +670,14 @@ $$ x(t + \Delta t) \approx (1 - \frac{1}{2}\beta(t+\Delta t)\Delta t)x(t) + \sqr
   - 서로 달라 보이는 이 과정들이 SDE 관점에서는 어떤 forward SDE 를 선택하냐에 따라서 다른 class 로 볼 순 있지만 사실, 같은 framework 에서 작동한다.
   - **VE/VP SDE 의 discretization: SMLD/DDPM**
 
-- VP SDE (DDPM) 에서는 pure noise 에서 sampling 하면 되는데 VE SDE (SMLD) 에서는 variance exploding 이여서 pure noise 는 아니고 평균이 data $x$ 이다. 따라서 signal 이 있으나 마나하게 variance 를 엄청 크게 주고 초기에 sampling 을 한다.
+- VP SDE (DDPM) 에서는 pure noise 에서 sampling 하면 되는데 VE SDE (SMLD) 에서는 variance exploding 이여서 pure noise 는 아니고 평균이 data $x$ 이다. 따라서 signal 이 있으나 마나하게 variance 를 엄청 크게 주고 초기에 sampling 을 하는 게 맞지만, DDPM 과 동일하게 pure noise 에서 sampling 하는 것 같다.
 
+- **그렇다면 왜 VE/VP SDE 라는 명칭이 붙었을까?**
+
+### Probability Flow ODE (PF ODE)
+*Forward SDE 와 동일한 확률 분포를 갖는 ODE*
 
 #### DDPM 과의 연관성: Score-based Generative Modes Through SDEs
-
-- Ordinary Differential Equation (ODE, 상미분 방정식)
-  - ODE 를 푼다는 얘기는 상미분 방정식에 대응이 되는 함수를 찾는 것이다. 
-
-<p align="center">
-<img src='./img33.png'>
-</p>
-
-- SDE 를 푸는 것은 random process 를 찾는 것이다. 즉, 어떤 time step 에 대해서 snap shot 을 봤을 때, 그때의 확률 분포를 찾는 것.
-  - SDE 는 자연 현상을 modeling 하기에 ODE 보다 더 적합하다.
-
- <p align="center">
-<img src='./img34.png'>
-</p>
 
 - SDE 가 DDPM 보다 더 general 한 fomulation 이다. time 에 대해서 연속적이고 더 정확한 값이기 때문에.
 
