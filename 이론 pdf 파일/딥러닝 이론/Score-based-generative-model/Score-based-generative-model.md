@@ -583,7 +583,7 @@ $$ x_{t}-x_{t+1} = [f(x_{t+1},t+1) - g^2(t+1) \nabla_x \log p_{t+1}(x_{t+1})] + 
 
 - 이제, 이산적인 process 였던 SMLD 와 DDPM 을 연속적으로 보자
 
-- Variance Exploding SDE: SMLD
+- **Variance Exploding SDE: SMLD**
   - SMLD 의 $p_{\sigma}(x_i|x_0) = x_i = x_0 + \sigma_iz_i, \ z \sim N(0,I)$ 를 이용하여 Markov chain 을 따르는 수식을 만들어보자.
   - $x_0$ 를 $x_{i-1}$ 에 대해서 잘 표현해보면 Markov chain 을 만족시킬 수 있을 거 같다.
   - 1. $x_{i-1} = x_0 + \sigma_{i-1} z_{i-1}$ 를 $x_0$ 에 대해서 표현해보자.
@@ -619,21 +619,23 @@ $$ \sigma^2(t+ \Delta t) - \sigma^2(t) \approx \frac{d \sigma^2(t)}{dt}\Delta t 
 
 $$ x(t+\Delta t) = x(t) + \sqrt{\sigma^2(t + \Delta t) - \sigma^2(t)}z(t) \approx x(t) + \sqrt{\frac{d \sigma^2(t)}{dt}\Delta t}z(t) $$
 
-- Continuous time 으로 보내기 위해 $\Delta t \rightarrow 0$
-
-$$ x(t+\Delta t) - x(t)  \approx \sqrt{\frac{d \sigma^2(t)}{dt}\Delta t}z(t) $$
 
 - 우리는 SDE 에서 Brownian motion 이 다음의 성질을 갖는 걸 알고 있다.
 
 $$ \Delta w = \sqrt{t-s}z = \sqrt{\Delta t}z, \ z \sim N(0,1) $$
 
+
+$$ x(t+\Delta t) - x(t)  \approx \sqrt{\frac{d \sigma^2(t)}{dt}\Delta t}z(t) $$
+
 $$ x(t+\Delta t) - x(t)  \approx \sqrt{\frac{d \sigma^2(t)}{dt}}\Delta w $$
+
+- Continuous time 으로 보내기 위해 $\Delta t \rightarrow 0$
 
 $$ dx = \sqrt{\frac{d \sigma^2(t)}{dt}}dw $$
 
 - 여기서 우리는 SMLD 의 noise injection 을 forward SDE 로 표현했다.
 
-- Variance Preserving SDE: DDPM 
+- **Variance Preserving SDE: DDPM**
   - DDPM 의 forward process in discrete time 을 보자.
     - $z_{i-1} \sim N(0,I)$
 
@@ -647,14 +649,14 @@ $$ x_i = \sqrt{1-\frac{\bar \beta_i}{N}}x_{i-1} + \sqrt{\frac{\bar \beta_i}{N}}z
 
 $$ x(t + \Delta t) = \sqrt{1 - \beta(t + \Delta t)\Delta t}x(t) + \sqrt{\beta(t+ \Delta t)\Delta t}z(t) $$
 
-- 위와는 다르게, Taylor's series 를 전개해보자
+- 위와는 다르게 Taylor's series 를 전개해보자
 
 $$ f(x) \approx f(a) + f'(a)(x-a) $$
 
 - $x = \beta(t+\Delta t)\Delta t$ 로 치환하고, $f(x) =\sqrt{1 - x}$ 로 본다.
-  - 이때, $\Delta t << 0$ 이라면, $x= a = 0$ 인 지점으로 보고 맥클로린 급수를 사용한다. 
   - $\beta$ 는 다음과 같은 범위를 지니고 있다. $0 < \beta < 1$ (DDPM 에서는 $0.0001 \sim 0.02$)
-  - $\Delta t << 0$ 일때, $x = a = 0$ 에서 근사해도 괜찮을 것이다. 
+  - 따라서, $\Delta t << 1$ 일때, $x = a = 0$ 에 가까울 것이다. 
+  - $\Delta t << 1$ 인 조건하에, $x= a = 0$ 인 지점으로 보고 맥클로린 급수 ($a=0$ 인 테일러 급수)를 사용하여 근사할 수 있을 것이다.
 
 $$ \sqrt{1 - x} \approx 1 - \frac{1}{2}x $$
 
