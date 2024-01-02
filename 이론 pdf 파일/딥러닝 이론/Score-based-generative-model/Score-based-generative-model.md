@@ -937,7 +937,7 @@ $$ x_{i-1} = x_i + (\sigma_i^2 - \sigma_{i-1}^2)S_{\theta}(x_i, i) + \sqrt{\frac
 $$ x_{i-1} = \frac{1}{\sqrt{1-\beta_i}}(x_i + \beta_i S_{\theta}(x_i,i)) + \sqrt{\beta_i}z_i $$
 
 
-1. Probability Flow ODE (PF ODE)
+3. Probability Flow ODE (PF ODE)
 
 - For VE SDE,
 
