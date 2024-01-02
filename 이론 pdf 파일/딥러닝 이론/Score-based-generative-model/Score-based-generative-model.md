@@ -367,6 +367,10 @@ $$ Loss = E_{q_{\sigma}(x, \tilde{x})}[\frac{1}{2} \Vert S_{\theta}(\tilde{x}) -
     - 초기 sampling 시에 큰 noise 를 더해줌으로써, low density region 을 채워줘서 방향을 제시해준다.
     - 어느 영역에 도달하면, noise 를 적게 더해줘도 입력이 들어왔을 때 low density region 이 아니라는 가정이 있다.  
 - **Thus, 학습용 data 에 multi-scale noise 추가. 내가 가지고 있는 데이터는 확률값이 높은 곳에서 sampling 된 데이터들이고 그 데이터들로 학습을 한다. 하지만 model 을 통해 sampling 을 할 때는 초기에 랜덤하게 시작하기 때문에 확률값이 낮은 공간에서는 score 값이 부정확하다. 따라서, 큰 noise 부터 작은 noise 까지 multi-scale 로 data 에 noise 를 더해줌으로써 score 값의 방향성을 제시해준다. 그에 따라, noise 가 network 에 condition 으로 추가되고 sampling 방식도 바뀐다 (Annealed Langevin Dynamics). 즉, loss 와 sampling 의 개선**
+
+- $\sigma_{min}$ is small enough, $p_{\sigma_{min}}(x) \approx p_{data}(x)$
+- $\sigma_{max}$ is large enough, $p_{\sigma_{max}}(x) \approx N(x;0,\sigma_{max}^2I)$
+
 - Data 에 noise 를 더하는 denoising score matching 과 유사하다. (Advanced denoising score mathcing?)
 
 <p align="center">
@@ -576,6 +580,7 @@ $$ x_{t+1}-x_t = f(x_t,t) + g(t)z_t, \ [\text{In Discrete}] $$
 - Reverse SDE: noise 를 점진적으로 제거하는 과정 (noise $\rightarrow$ data)
   - SDE 가 존재한다면, reverse-time SDE 또한 존재한다.
   - Anderson (1982) 증명
+  - 이때의 $\nabla_x \log p_t(x)$ 는 "the score of the marginal probability densities as a function of time" 즉, $t$ 에 대해서 marginalize 를 한 것이다. (모든 $t$ 에 대해서 적분)
 
 $$ dx = [f(x,t) - g^2(t) \nabla_x \log p_t(x)] dt + g(t)d\bar w, \ [\text{In Continuous}] $$
 
@@ -680,6 +685,7 @@ $$ dx = - \frac{1}{2}\beta(t)\Delta t x(t) + \sqrt{\beta(t)}dw $$
   - **VE/VP SDE 의 discretization: SMLD/DDPM**
 
 - VP SDE (DDPM) 에서는 pure noise 에서 sampling 하면 되는데 VE SDE (SMLD) 에서는 variance exploding 이여서 pure noise 는 아니고 평균이 data $x$ 이다. 따라서 signal 이 있으나 마나하게 variance 를 엄청 크게 주고 초기에 sampling 을 하는 게 맞지만, DDPM 과 동일하게 pure noise 에서 sampling 하는 것 같다.
+  - NCSN paper 에서는 $\sigma_{max}$ is large enough, $p_{\sigma_{max}}(x) \approx N(x;0,\sigma_{max}^2I)$ 로 표현했다.
 
 - **그렇다면 왜 VE/VP SDE 라는 명칭이 붙었을까?**
   - 사실 수식으로 증명되어 있지만, 이해하기가 어렵기 때문에 직관적으로 보자.
@@ -735,14 +741,14 @@ $$ dx = f(x,t)dt + g(t)dw, \  (\text{Forward})$$
 $$ dx = [f(x,t) - g(t)^2 \nabla_x \log p_t(x)]dt + g(t)d\bar w , \ (\text{Reverse}) $$
 
 - Numerical SDE solvers = Predictor
-  - 아래의 $3$ 가지 방법들은 모두 reverse-time SDE 를 discretization 하는 방법들이다.  
+  - 아래의 $3$ 가지 방법들은 모두 reverse-time SDE 를 서로 다른 방식으로 discretization 한 것이다.
 
 
 - 1. Reverse Diffusion Sampling: Euler-Maruyama Method 에 따른 discretization strategy
 
 $$ x(t_i) - x(t_{i+1}) = [f(x(t_{i+1}),t_{i+1})- G(t_{i+1})G(t_{i+1})^T \nabla_x \log p_t(x(t_{i+1}))](-\Delta t) + G(t_{i+1})\sqrt{\Delta t}z_{i+1}  $$
 
-- 2. Ancestral Sampling: 미리 정의한 조건부 확률 분포로부터 이미지를 sampling 하는 방법
+- 2. Ancestral Sampling: 미리 정의한 조건부 확률 분포$\prod_{i=1}^N p_{\theta}(x_{i-1}|x_i)$ 로부터 이미지를 sampling 하는 방법
 
 - DDPM sampling 
   - Reverse-time VP SDE 의 special discretization 
@@ -816,6 +822,8 @@ $$ x_i = (2  - \sqrt{1-\beta_{i+1}} )x_{i+1} + \beta_{i+1} S_{\theta}(x_{i+1},i+
 - Smooth interpolation
 - Exact likelihood computation
 
+- Forward PF ODE
+
 $$ dx = \tilde{f}(x,t)dt $$
 
 $$ x_i - x_{i+1} = - \tilde{f}(x_{i+1}, t_{i+1})\Delta t_{i+1}  $$
@@ -830,13 +838,20 @@ $$ x_i - x_{i+1} = - f(x_{i+1}, t_{i+1}) - \frac{1}{2} \nabla [G(x_{i+1}, t_{i+1
 <img src='./img46.png'>
 </p>
 
+- Interpolation & Fast sampling
+
+<p align="center">
+<img src='./img48.png'>
+</p>
+
 ### Predictor and Corrector (PC) sampler
 
 - Predictor: time step 을 옮길 때 사용
   - Ancestral sampling, reverse diffusion sampling, probability flow sampling
 
 - Corrector: 특정 time step 에서 값을 조정
-  - Langevin dynamics
+  - Any score-based MCMC approach
+  - E.g., Langevin dynamics
 
 - SMLD 는 predictor 를 identity, corrector 를 annealed Langevin dynamics 를 쓴 꼴이다.
 - DDPM 은 predictor 를 ancestral sampling, corrector 를 identity 를 쓴 꼴이다. 
@@ -845,6 +860,24 @@ $$ x_i - x_{i+1} = - f(x_{i+1}, t_{i+1}) - \frac{1}{2} \nabla [G(x_{i+1}, t_{i+1
 <img src='./img45.png'>
 </p>
 
+- Predictor & Corrector algorithm
+  - Corrector 는 langevin dynamics 로 동일하다.
+  - Algorithm 2. VE SDE: predictor 는 SMLD 의 ancestral sampling
+  - Algorithm 3. VP SDE: predictor 는 reverse diffusion sampling 
+
+<p align="center">
+<img src='./img49.png'>
+</p>
+
+### Experimental Results
+
+- Predictor + Corrector 를 함께 쓰면 성능이 더 좋다. 
+  - Probability Flow 를 predictor 로 사용하는 경우에 성능이 가장 좋았다.
+  - $C2000$ 의 경우, corrector 만 사용한 실험이기에 predictor 와는 관계없이 결과가 일정해서 하나로만 결과를 표시했다.
+
+<p align="center">
+<img src='./img47.png'>
+</p>
 
 ### Contribution
 
@@ -870,16 +903,52 @@ $$ \nabla_x \log{p_{\sigma_i}(x)} \approx s_\theta(x_t,t\ or \ \sigma) = - \frac
 ***
 
 ### <strong>Conclusion</strong>
-- Advangtage of Score-based generative models
-  - GAN-level sample without adversarial training.
-  - Flexibel model architecture.
-  - Exact log-likelihood computation.
-  - Inverse problem solving without re-training models.
-- Process
-    1. Large number of noise-perturbed data distributions
-    2. Learn score function using score matching
-    3. Samples with Langevin-type sampling 
-- SDE 구조 내에서 NCSN 과 DDPM 을 통합
+
+- Forward SDE
+
+$$ x_i = x_0 + \sigma_i^2z_i , \ [\text{VE SDE Discretizaion}] $$
+
+$$ x_i = \sqrt{\bar \alpha_i}x_0 + \sqrt{1- \bar \alpha_i}\epsilon, \  [\text{VP SDE Discretizaion}] $$
+
+- Training Objective Function
+
+$$ \epsilon - \epsilon_{\theta}(x_t,t \ \text{or} \sigma_t) $$
+
+- Reverse-time SDE: predictor + corrector
+
+predictor 
+
+1. Reverse Diffusion Sampling
+
+- For VP SDE,
+
+$$  (1+ \frac{1}{2}\beta_{i})x_i + \beta_i S_{\theta}(x_i,i)  + \sqrt{\beta_i}z_i , \ [\text{Reverse Diffusion sampling - 1}] $$
+
+$$ (2  - \sqrt{1-\beta_i} )x_i + \beta_i S_{\theta}(x_i,i)  + \sqrt{\beta_i}z_i, \ [\text{Reverse Diffusion sampling - 2}] $$
+
+2. Ancestral Sampling
+
+- For VE SDE,
+
+$$ x_{i-1} = x_i + (\sigma_i^2 - \sigma_{i-1}^2)S_{\theta}(x_i, i) + \sqrt{\frac{\sigma_{i-1}^2 (\sigma_i^2 - \sigma_{i-1}^2)}{\sigma_i^2}}z_i, \ i =1,2,\cdots, N, \ \text{where } x_N \sim N(0,\sigma_N^2I) $$
+
+- For VP SDE,
+
+$$ x_{i-1} = \frac{1}{\sqrt{1-\beta_i}}(x_i + \beta_i S_{\theta}(x_i,i)) + \sqrt{\beta_i}z_i $$
+
+
+1. Probability Flow ODE (PF ODE)
+
+- For VE SDE,
+
+$$ x_i = x_{i+1} + \frac{1}{2}(\sigma_{i+1}^2 - \sigma_i^2)S_{\theta}(x_{i+1},\sigma_{i+1})$$
+
+- For VP SDE,
+
+$$ x_i = (2  - \sqrt{1-\beta_{i+1}} )x_{i+1} + \beta_{i+1} S_{\theta}(x_{i+1},i+1)  + \sqrt{\beta_i}z_i $$
+
+
+
 ***
 
 ### <strong>Question</strong>
