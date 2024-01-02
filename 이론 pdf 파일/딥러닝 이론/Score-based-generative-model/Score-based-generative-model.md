@@ -192,7 +192,7 @@ Langevin dynamics:
 
 - $\log{q_{\sigma}(\tilde{x}|x)}$ : $x$ 를 조건으로 $\tilde{x}$ 가 일어날 확률을 우리가 정의한다. (여기서는 multivariate Gaussian distribution)
 
-$$ q_{\sigma}(\tilde{x}|x): Noise \ distribution \\ 
+$$ q_{\sigma}(\tilde{x}|x): Noise \ distribution \\ , \ \ 
 x + z \text{   where, } z \sim N(0,\sigma^2 I) $$
 
 - $q_{\sigma}(\tilde{x})$ 는 $q_{\sigma}(\tilde{x}|x)$ 를 $x$ 에 대해서 marginalize 해서 구할 수 있다.
