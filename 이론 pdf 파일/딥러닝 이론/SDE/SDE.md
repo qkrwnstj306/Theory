@@ -206,6 +206,12 @@ $$ \Delta w = \sqrt{t-s}z = \sqrt{\Delta t}z, \ z \sim N(0,1) $$
 
 - Stochastic Taylor Expansion Methods: 고차원의 정확도를 제공하는 방법 중 하나로, 테일러 전개를 사용하여 미분 방정식을 근사화합니다.
 
+### <strong>Numerical ODE solvers</strong> 
+
+- Euler method
+- Runge-Kutta method
+- Adams method
+
 ### <strong>Example</strong>
 
 - 예를 들어 쇠구슬을 $3$ 층에서 떨어뜨렸을 때, 일정 시간 뒤에 물체의 낙하지점은 중력가속도를 이용한 미분 방정식으로 풀 수 있다. 그렇기에, 수 차례의 반복실험에서도 같은 결과를 얻을 수 있다. (물론, 실험에 의한 오차는 있을 수 있다) **[결정론적 모형]**

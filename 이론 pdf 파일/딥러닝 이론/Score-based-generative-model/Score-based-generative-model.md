@@ -669,6 +669,12 @@ $$ \sqrt{1 - \beta(t + \Delta t)\Delta t} \approx 1 - \frac{1}{2}\beta(t+\Delta 
 
 $$ x(t + \Delta t) \approx (1 - \frac{1}{2}\beta(t+\Delta t)\Delta t)x(t) + \sqrt{\beta(t+ \Delta t)\Delta t}z(t) = x(t) - \frac{1}{2}\beta(t+\Delta t)\Delta t x(t) + \sqrt{\beta(t+ \Delta t)\Delta t}z(t) \\ \approx x(t) - \frac{1}{2}\beta(t)\Delta t x(t) + \sqrt{\beta(t)\Delta t}z(t) $$
 
+$$ dx =  - \frac{1}{2}\beta(t)\Delta t x(t) + \sqrt{\beta(t)\Delta t}z(t) $$
+
+- $\Delta t \rightarrow 0$,
+
+$$ dx = - \frac{1}{2}\beta(t)\Delta t x(t) + \sqrt{\beta(t)}dw $$
+
 - Noise 를 더해서 내가 아는 분포로 표현하는 건 동일하다. 하지만 DDPM 은 noise 를 더함으로써, pure noise 로 만들었고, SMLD 는 low density region 을 채웠다. 
   - 서로 달라 보이는 이 과정들이 SDE 관점에서는 어떤 forward SDE 를 선택하냐에 따라서 다른 class 로 볼 순 있지만 사실, 같은 framework 에서 작동한다.
   - **VE/VP SDE 의 discretization: SMLD/DDPM**
@@ -676,37 +682,190 @@ $$ x(t + \Delta t) \approx (1 - \frac{1}{2}\beta(t+\Delta t)\Delta t)x(t) + \sqr
 - VP SDE (DDPM) 에서는 pure noise 에서 sampling 하면 되는데 VE SDE (SMLD) 에서는 variance exploding 이여서 pure noise 는 아니고 평균이 data $x$ 이다. 따라서 signal 이 있으나 마나하게 variance 를 엄청 크게 주고 초기에 sampling 을 하는 게 맞지만, DDPM 과 동일하게 pure noise 에서 sampling 하는 것 같다.
 
 - **그렇다면 왜 VE/VP SDE 라는 명칭이 붙었을까?**
+  - 사실 수식으로 증명되어 있지만, 이해하기가 어렵기 때문에 직관적으로 보자.
+  - VE SDE discretization: $i$ 가 커지면 커질 수록 $\sigma_i^2$ 의 값은 커지는데 $\sigma$ 값의 범위가 정해져있지 않으므로 exploding 할 수 있다.
+  - VP SDE discretization: $i$ 가 커지면 커질 수록 $\bar \alpha_i$ 의 값은 $\beta_i$ 값의 범위가 $(0,1)$ 로 정해져있기 때문에 $0$ 에 수렴하게 된다. 즉, variance 가 $1$ 에 수렴하게 된다. 
+
+$$ x_i = x_0 + \sigma_i^2z_i , \ [\text{VE SDE Discretizaion}] $$
+
+$$ x_i = \sqrt{\bar \alpha_i}x_0 + \sqrt{1- \bar \alpha_i}\epsilon, \  [\text{VP SDE Discretizaion}] $$
+
+
+- 실제 논문에서 실험을 했을 때, discretization 과 continuous version 의 분산이 동일하게 작동하는 것을 볼 수 있다. 
+  - SMLD 의 분산은 발산
+  - DDPM 의 분산은 $1$ 에 수렴
+
+<p align="center">
+<img src='./img44.png'>
+</p>
+
+
+### $\sigma(t) \And \beta(t)$ definition
+
+- Forward SDE
+
+$$ dx = \sqrt{\frac{d \sigma^2(t)}{dt}}dw, \ [\text{SMLD}]$$
+
+$$ dx = - \frac{1}{2}\beta(t)\Delta t x(t) + \sqrt{\beta(t)}dw, \ \ [\text{DDPM}] $$
+
+- In SMLD, $\sigma(t) = \sigma_{min}(\frac{\sigma_{max}}{\sigma_{min}})^t$ and $\sigma_i = \sigma_{min}(\frac{\sigma_{max}}{\sigma_{min}})^{\frac{i-1}{N-1}}$
+  - $\sigma_0 = 0$
+  - $\sigma_0 = 0$ 인데, 정의한 $\sigma(t)$ 에 $t=0$ 을 대입하면 $\sigma_{min}$ 이 나온다. 즉, 실제로는 $t \in [\epsilon,1]$ 의 범위를 사용한다. $\sigma(0^+) = \sigma_{min}$ ($\epsilon = 10^{-5}$ in paper)
+
+$$ dx = \sigma_{min}(\frac{\sigma_{max}}{\sigma_{min}})^t \sqrt{2 \log \frac{\sigma_{max}}{\sigma_{min}}}dw, t \in (0,1] $$
+
+$$ p_{0t}(x(t)|x(0)) = N(x(t); x(0), \sigma_{min}^2(\frac{\sigma_{max}}{\sigma_{min}})^{2t}I)  $$
+
+- In DDPM, $\beta_i = \frac{\bar \beta_{min}}{N} + \frac{i-1}{N(N-1)}(\bar \beta_{max} - \bar \beta_{min})$
+  - In the limit of $N \rightarrow \infty$
+  - 마찬가지로 $t \in [\epsilon,1]$ 의 범위에서 구현
+
+
+$$ dx = - \frac{1}{2} (\bar \beta_{min} + t(\bar \beta_{max} - \bar \beta_{min}))x dt + \sqrt{\bar \beta_{min} + t(\bar \beta_{max} - \bar \beta_{min})}dw , \ t \in [0,1] $$
+
+$$ p_{0t}(x(t)|x(0)) = N(x(t); x(0)e^{-\frac{1}{4}t^2(\bar \beta_{max} - \bar \beta_{min})- \frac{1}{2}t\bar \beta_{min}}, I- Ie^{-\frac{1}{2}t^2(\bar \beta_{max} - \bar \beta_{min}) - t \bar \beta_{min}}) $$
+
+
+### Solving the Reverse SDE
+
+- General Form
+
+$$ dx = f(x,t)dt + g(t)dw, \  (\text{Forward})$$
+
+$$ dx = [f(x,t) - g(t)^2 \nabla_x \log p_t(x)]dt + g(t)d\bar w , \ (\text{Reverse}) $$
+
+- Numerical SDE solvers = Predictor
+  - 아래의 $3$ 가지 방법들은 모두 reverse-time SDE 를 discretization 하는 방법들이다.  
+
+
+- 1. Reverse Diffusion Sampling: Euler-Maruyama Method 에 따른 discretization strategy
+
+$$ x(t_i) - x(t_{i+1}) = [f(x(t_{i+1}),t_{i+1})- G(t_{i+1})G(t_{i+1})^T \nabla_x \log p_t(x(t_{i+1}))](-\Delta t) + G(t_{i+1})\sqrt{\Delta t}z_{i+1}  $$
+
+- 2. Ancestral Sampling: 미리 정의한 조건부 확률 분포로부터 이미지를 sampling 하는 방법
+
+- DDPM sampling 
+  - Reverse-time VP SDE 의 special discretization 
+
+$$ x_{i-1} = \frac{1}{\sqrt{1-\beta_i}}(x_i + \beta_i S_{\theta}(x_i,i)) + \sqrt{\beta_i}z_i $$
+
+- 위 수식을 reverse diffusion sampling method 의 식으로 바꿔보자.
+
+$$ x_{i-1} =  \frac{1}{\sqrt{1-\beta_i}}(x_i + \beta_i S_{\theta}(x_i,i)) + \sqrt{\beta_i}z_i $$
+
+- First-order Taylor's series 로 $\frac{1}{\sqrt{1-\beta_i}}$ 를 근사한다.
+  - $x = \beta_i, f(x) \approx f(a) + f'(a)(x-a), \ a = 0$ 을 이용
+  - $o(-)$ 는 error 값이다.
+
+
+$$ = (1+ \frac{1}{2}\beta_{i} + o(\beta_{i}))(x_i + \beta_i S_{\theta}(x_i,i)) + \sqrt{\beta_i}z_i $$
+
+$$ \approx (1+ \frac{1}{2}\beta_{i})(x_i + \beta_i S_{\theta}(x_i,i)) + \sqrt{\beta_i}z_i  $$
+
+$$ = (1+ \frac{1}{2}\beta_{i})x_i + \beta_i S_{\theta}(x_i,i) + \frac{1}{2}\beta_i^2S_{\theta}(x_i,i) + \sqrt{\beta_i}z_i $$
+
+- $\frac{1}{2}\beta_i^2S_{\theta}(x_i,i)$ 가 아주 작은 값이니 소거
+
+$$ \approx (1+ \frac{1}{2}\beta_{i})x_i + \beta_i S_{\theta}(x_i,i)  + \sqrt{\beta_i}z_i , \ [\text{Reverse Diffusion sampling - 1}] $$
+
+$$ = [2 - (1 - \frac{1}{2}\beta_{i})]x_i + \beta_i S_{\theta}(x_i,i)  + \sqrt{\beta_i}z_i $$
+
+$$ \approx [2 - (1 - \frac{1}{2}\beta_{i}) + o(\beta_i)]x_i + \beta_i S_{\theta}(x_i,i)  + \sqrt{\beta_i}z_i $$
+
+- $- \sqrt{1- \beta_i}$ 를 first-order Taylor 근사를 하면 $-1 + \frac{1}{2}\beta_i + o(\beta_i)$ 가 나온다.
+
+$$ = (2  - \sqrt{1-\beta_i} )x_i + \beta_i S_{\theta}(x_i,i)  + \sqrt{\beta_i}z_i, \ [\text{Reverse Diffusion sampling - 2}] $$
+
+- DDPM 의 Ancestral sampling 을 Reverse Diffusion sampling 의 $2$ 가지 version 으로 바꿀 수 있다.
+
+- SMLD model 또한 마찬가지로, DDPM 처럼 ancestral sampling 으로 표현할 수 있다. 
+  - Reverse Diffusion sampling 이 아님에 주목
+  - DDPM paper 에서 제안한 방법처럼 유도하면 된다.
+  - $\sigma_1 < \sigma_2 < \cdots < \sigma_N$
+
+$$ p(x_i|x_{i-1}) = N(x_i; x_{i-1}, (\sigma_i^2 - \sigma_{i-1}^2)I), \ i = 1,2,\cdots, N $$
+
+$$ q(x_{i-1}|x_i,x_0) = N(x_{i-1}; \frac{\sigma_{i-1}^2}{\sigma_i^2}x_i + (1-\frac{\sigma_{i-1}^2}{\sigma_i^2})x_0, \frac{\sigma_{i-1}^2(\sigma_i^2-\sigma_{i-1}^2)}{\sigma_i^2}I) $$
+
+$$ L_{t-1} = E_q[D_{KL}(q(x_{i-1}|x_i,x_0)|| p_{\theta}(x_{i-1}|x_i))]  $$
+
+$$ = E_q[\frac{1}{2\gamma_i^2}  \Vert \frac{\sigma_{i-1}^2}{\sigma_i^2}x_i + (1 - \frac{\sigma_{i-1}^2}{\sigma_i^2})x_0 - \mu_{\theta}(x_i,i) \Vert_2^2  ] + C $$
+
+$$ = E_{x_0,z}[\frac{1}{2\gamma_i^2}  \Vert x_i(x_i,z) - \frac{\sigma_i^2 - \sigma_{i-1}^2}{\sigma_i}z  - \mu_{\theta}(x_i(x_0,z),i) \Vert_2^2  ] + C $$
+
+$$ \mu_{\theta}(x_i,i)  = x_i + (\sigma_i^2 - \sigma_{i-1}^2)S_{\theta}(x_i,i), \ \gamma_i = \sqrt{\frac{\sigma_{i-1}^2 (\sigma_i^2 - \sigma_{i-1}^2)}{\sigma_i^2}}  $$
+
+- Ancestral Sampling of SMLD
+
+$$ x_{i-1} = x_i + (\sigma_i^2 - \sigma_{i-1}^2)S_{\theta}(x_i, i) + \sqrt{\frac{\sigma_{i-1}^2 (\sigma_i^2 - \sigma_{i-1}^2)}{\sigma_i^2}}z_i, \ i =1,2,\cdots, N, \ \text{where } x_N \sim N(0,\sigma_N^2I) $$
+
+
+- 3. Probability Flow
+
+$$ dx = [f(x,t) - \frac{1}{2}g(t)^2 \nabla_x \log p_t(x)]dt $$
+
+$$ x_i = x_{i+1} + \frac{1}{2}(\sigma_{i+1}^2 - \sigma_i^2)S_{\theta}(x_{i+1},\sigma_{i+1}) , \ [\text{SMLD}]$$
+
+$$ x_i = (2  - \sqrt{1-\beta_{i+1}} )x_{i+1} + \beta_{i+1} S_{\theta}(x_{i+1},i+1)  + \sqrt{\beta_i}z_i, \ [\text{DDPM}] $$
 
 ### Probability Flow ODE (PF ODE)
 *Forward SDE 와 동일한 확률 분포를 갖는 ODE*
 
-#### DDPM 과의 연관성: Score-based Generative Modes Through SDEs
+- $z_i \sim N(0,I)$ 를 필요로 하지 않기에, deterministic sampler 이다. 
+- Fast sampling
+- Smooth interpolation
+- Exact likelihood computation
 
-- SDE 가 DDPM 보다 더 general 한 fomulation 이다. time 에 대해서 연속적이고 더 정확한 값이기 때문에.
+$$ dx = \tilde{f}(x,t)dt $$
 
- <p align="center">
-<img src='./img35.png'>
+$$ x_i - x_{i+1} = - \tilde{f}(x_{i+1}, t_{i+1})\Delta t_{i+1}  $$
+
+$$ \tilde{f}(x,t) := f(x,t) - \frac{1}{2} \nabla [G(x, t)G(x, t)^T] - \frac{1}{2}G(x, t)G(x, t)^T \nabla_x \log p_t(x)  $$
+
+$$ x_i - x_{i+1} = - f(x_{i+1}, t_{i+1}) - \frac{1}{2} \nabla [G(x_{i+1}, t_{i+1})G(x_{i+1}, t_{i+1})^T] - \frac{1}{2}G(x_{i+1}, t_{i+1})G(x_{i+1}, t_{i+1})^T S_{\theta}(x_{i+1}, t_{i+1}) $$
+
+- Deterministic process 이기 때문에 data $x$ 가 주어졌을 때, unique 한 latent vector $z$ 도 구할 수 있다.
+
+<p align="center">
+<img src='./img46.png'>
 </p>
 
-- 각 forward process 를 보면 다음과 같다.
+### Predictor and Corrector (PC) sampler
 
- <p align="center">
-<img src='./img36.png'>
+- Predictor: time step 을 옮길 때 사용
+  - Ancestral sampling, reverse diffusion sampling, probability flow sampling
+
+- Corrector: 특정 time step 에서 값을 조정
+  - Langevin dynamics
+
+- SMLD 는 predictor 를 identity, corrector 를 annealed Langevin dynamics 를 쓴 꼴이다.
+- DDPM 은 predictor 를 ancestral sampling, corrector 를 identity 를 쓴 꼴이다. 
+
+<p align="center">
+<img src='./img45.png'>
 </p>
 
- <p align="center">
-<img src='./img37.png'>
-</p>
 
-- 이때 Reverse SDE in DDPM 을 보면, 다음과 같이 표현할 수 있다. (분산을 $\beta_t$ 로 봤을 때)
+### Contribution
 
-$$ x_{t-1} = \frac{1}{\sqrt{\alpha_t}}(x_t- \frac{1-\alpha_t}{\sqrt{1-\bar\alpha_t}}\epsilon_\theta(x_t,t)) + \sqrt{\beta_t}z_t $$
+- 첫 번째 contribution
+  - SDE 를 통해 DDPM 과 SMLD 를 하나의 framework 로 통합시킨다.
+  - DDPM 과 SMLD 는 SDE 관점에서 SDE 의 discretization 이자, 어떤 forward SDE 를 선택하는가에 따라 다른 class 이다. 
+    - VE/VP SDE 로 확장
 
-- Reverse SDE 끼리의 동일한 항들을 제거하다 보면, 결국 남는건 아래와 같다.
+- 두 번째 contribution (첫 번째 contribution 의 연장선)
   - 해당 수식을 classifier guidance 및 classfier-free 에 사용한다.
-  - 이 수식이 말하고자 하는 것은, $\beta$ 및 $\alpha$ 가 상수 값이니 결국 $\epsilon$ 을 학습하는 게 SDE 관점에서 score function 을 학습하는 것과 같다라는 말이다!!
+  - 이 수식이 말하고자 하는 것은, $\beta$ 및 $\alpha$ 가 상수 값이니 결국 $\epsilon$ 을 학습하는 게 score function 을 학습하는 것과 같다라는 말이다. (목적함수가 동일)
 
 $$ \nabla_x \log{p_{\sigma_i}(x)} \approx s_\theta(x_t,t\ or \ \sigma) = - \frac{1}{\sqrt{1-\bar\alpha_t}}\epsilon_\theta(x_t, t\ or \ \sigma) $$
+
+- 세 번째 contribution via Probability Flow ODE
+  - Deterministic 하게 sampling 을 하게 되면 continuous normalizing flow 가 돼서, likelihood 계산을 정확하게 할 수 있다.
+  - One-to-One map 이기 때문에, 데이터가 정해지면 latent vector 가 정해져서 smooth interpolation 이 가능하다.
+  - Fast sampling
+
+- 네 번째 contribution
+  - Score network 의 modularity 로 인해, controllable generation 이 가능하다. 
 
 ***
 
