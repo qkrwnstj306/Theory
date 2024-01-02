@@ -916,7 +916,7 @@ $$ \epsilon - \epsilon_{\theta}(x_t,t \ \text{or} \sigma_t) $$
 
 - Reverse-time SDE: predictor + corrector
 
-predictor 
+*predictor*
 
 1. Reverse Diffusion Sampling
 
@@ -947,7 +947,11 @@ $$ x_i = x_{i+1} + \frac{1}{2}(\sigma_{i+1}^2 - \sigma_i^2)S_{\theta}(x_{i+1},\s
 
 $$ x_i = (2  - \sqrt{1-\beta_{i+1}} )x_{i+1} + \beta_{i+1} S_{\theta}(x_{i+1},i+1)  + \sqrt{\beta_i}z_i $$
 
+*corrector*
 
+- Langevin dynamics
+
+$$ x_i = x_i + \epsilon_i S_{\theta}(x_i,i) + \sqrt{2 \epsilon_i}z, \ \text{where} \ z \sim N(0,I) $$
 
 ***
 
