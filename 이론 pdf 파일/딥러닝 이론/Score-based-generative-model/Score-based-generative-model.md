@@ -464,8 +464,8 @@ $$ Loss = E_{q_{\sigma}(x, \tilde{x})}[\frac{1}{2} \Vert S_{\theta}(\tilde{x}, \
 - 훈련 데이터를 점진적으로 늘어나는 noise 로 손상시키고, 이 손상을 역전시켜 데이터의 생성 모델을 형성하는 성공적인 $2$ 가지 probabilistic generative models 가 있다. 
   - Score matching with Langevin dynamics (SMLD): score function 을 추정한 뒤, Langevin dynamics 를 사용하여 noise scale 을 감소시키면서 data 를 sampling.
   - Denoising diffusion probabilistic modeling (DDPM): 각 step 에서의 noise corruption (손상) 을 reverse (역전) 하기 위해 model 을 훈련시킨다. 훈련이 가능하도록 역방향 분포의 기능적인 형태의 지식을 활용한다. 
-  - 연속적인 상태 공간의 경우, DDPM 의 목적 함수는 암시적으로 각 noise scale 의 score fucntion 을 나타낸다.
-  - 따라서, 본 논문에서는 SDE 관점에서 두 모델 클래스 (SMLD & DDPM) 를 score-based generative models 로 통합시킬 수 있다.
+  - DDPM 의 목적 함수는 암시적으로 각 noise scale 의 score fucntion 을 나타낸다.
+  - 본 논문에서는 SDE 관점에서 두 모델 클래스 (SMLD & DDPM) 를 score-based generative models 로 통합시킬 수 있다.
 
 ### Objective Function: SMLD vs DDPM
 
@@ -498,14 +498,14 @@ $$ S_{\theta}(\tilde{x},\sigma_i) = \frac{D_{\theta}(\tilde{x},\sigma_i) - \tild
 $$ S_{\theta}(\tilde{x},\sigma_i) - \nabla_{\tilde{x}} \log q_{\sigma_i}(\tilde{x}|x) = \frac{\epsilon - \epsilon_{\theta}(\tilde{x}, \sigma_i)}{\sigma_i} $$
 
 - 그리고 이는, DDPM 에서의 목적 함수와 같다.
-  - DDPM 에서의 Time step $t$ 와 SMLD 에서의 $i$ 는 같다.
+  - DDPM 에서의 time step $t$ 와 SMLD 에서의 $i$ 는 같다.
   - Time step $t$ 는 noise scale 에 대한 정보를 주는 것과 동일하다.
     - SMLD 의 noise scale $\sigma_i$ 과 동일한 역할을 하는 것은 $\sqrt{1-\bar \alpha_t}$ 이다.
   - $\sigma_i$ 는 hyper-parameter 이기 때문에 training 과정에선 loss 의 중요도를 판단하는 용도로 사용된다. 
     - E.g.,  $\frac{\epsilon - \epsilon_{\theta}(\tilde{x}, \sigma_i)}{10}$ vs $\frac{\epsilon - \epsilon_{\theta}(\tilde{x}, \sigma_i)}{1}$ 을 학습할 때, 후자에 더 비중을 두고 $\theta$ 를 update 한다. 
-    - DDPM 에서는 time step $t$ 에 따라 변하는 상수 값이 존재하지만 $1$ 로 setting 하고 학습한다.
+    - DDPM 에서는 time step $t$ 에 따라 변하는 상수 값이 존재하지만 $1$ 로 setting 하고 학습한다. 즉, $\sigma_i$/$\sqrt{1-\bar \alpha_t}$ 를 반영하는 건 선택 사항이다.
 
-$$ x_t = \sqrt{\bar \alpha_t}x_0 + \sqrt{1- \bar \alpha_t}\epsilon \\ \text{like (signal scale)} \times x_0 + \text{noise scale} \times \epsilon   $$
+$$ x_t = \sqrt{\bar \alpha_t}x_0 + \sqrt{1- \bar \alpha_t}\epsilon, \ \text{like (signal scale)} \times x_0 + \text{(noise scale)} \times \epsilon   $$
 
 $$ \epsilon - \epsilon_{\theta}(\sqrt{\bar \alpha_t}x_0 + \sqrt{1- \bar \alpha_t}\epsilon,t), \ [\text{DDPM Objective function}]= \epsilon - \epsilon_{\theta}(x_t,t) $$
 
@@ -561,7 +561,7 @@ $$ [\text{sampling method}] \ x_i^m = x_i^{m-1} + \epsilon_i s_{\theta}(x_i^{m-1
 
 - DDPM 의 Objective function & Sampling method
 
-$$ S_{\theta}(x_i,i) = - \frac{\epsilon_{\theta}(x_t,t)}{\sqrt{1-\bar \alpha_i}} $$
+$$ S_{\theta}(x_t,t) = - \frac{\epsilon_{\theta}(x_t,t)}{\sqrt{1-\bar \alpha_t}} $$
 
 $$ [\text{objective function}] \ S_{\theta}(x_i, i) - \nabla_{x_i} \log{q_{i}(x_i|x_0)} = \frac{\epsilon - \epsilon_{\theta}(x_i, i)}{\sqrt{1-\bar \alpha_i}} $$
 
@@ -674,11 +674,11 @@ $$ \sqrt{1 - \beta(t + \Delta t)\Delta t} \approx 1 - \frac{1}{2}\beta(t+\Delta 
 
 $$ x(t + \Delta t) \approx (1 - \frac{1}{2}\beta(t+\Delta t)\Delta t)x(t) + \sqrt{\beta(t+ \Delta t)\Delta t}z(t) = x(t) - \frac{1}{2}\beta(t+\Delta t)\Delta t x(t) + \sqrt{\beta(t+ \Delta t)\Delta t}z(t) \\ \approx x(t) - \frac{1}{2}\beta(t)\Delta t x(t) + \sqrt{\beta(t)\Delta t}z(t) $$
 
-$$ dx =  - \frac{1}{2}\beta(t)\Delta t x(t) + \sqrt{\beta(t)\Delta t}z(t) $$
+$$ \Delta x =  - \frac{1}{2}\beta(t)\Delta t x(t) + \sqrt{\beta(t)\Delta t}z(t) $$
 
 - $\Delta t \rightarrow 0$,
 
-$$ dx = - \frac{1}{2}\beta(t)\Delta t x(t) + \sqrt{\beta(t)}dw $$
+$$ dx = - \frac{1}{2}\beta(t) x(t) dt + \sqrt{\beta(t)}dw $$
 
 - Noise 를 더해서 내가 아는 분포로 표현하는 건 동일하다. 하지만 DDPM 은 noise 를 더함으로써, pure noise 로 만들었고, SMLD 는 low density region 을 채웠다. 
   - 서로 달라 보이는 이 과정들이 SDE 관점에서는 어떤 forward SDE 를 선택하냐에 따라서 다른 class 로 볼 순 있지만 사실, 같은 framework 에서 작동한다.
@@ -1007,6 +1007,8 @@ $$ x_i = \sqrt{\bar \alpha_i}x_0 + \sqrt{1- \bar \alpha_i}\epsilon, \  [\text{VP
   - $\sqrt{1-\bar \alpha_t} \ \text{in DDPM} = \sigma_t \ \text{in SMLD}$
 
 $$ \nabla_{x_t}\log p_t(x_t|x_0) = - \frac{\epsilon}{\sqrt{1-\bar \alpha_t}} $$
+
+$$ \nabla_{x_t}\log p_t(x_t|x_0) \approx S_{\theta}(x_t,\sigma_t) = - \frac{\epsilon_{\theta}(x_t,\sigma_t)}{\sqrt{1-\bar \alpha_i}} $$
 
 $$ \epsilon - \epsilon_{\theta}(x_t,t \ \text{or} \sigma_t) $$
 
