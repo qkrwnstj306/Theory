@@ -531,7 +531,7 @@ $$ \nabla_{x_t}\log p_t(x_t|x_0) = - \frac{\sqrt{1-\bar \alpha_t}\epsilon}{1- \b
 $$ S_{\theta}(x_t, t) - \nabla_{x_t} \log{q_{t}(x_t|x_0)} = - \frac{\epsilon_{\theta}}{\sqrt{1-\bar \alpha_t}} - ( - \frac{\epsilon}{\sqrt{1-\bar \alpha_t}}) = \frac{\epsilon - \epsilon_{\theta}(x_t,t)}{\sqrt{1-\bar \alpha_t}} $$
 
 - SMLD 에서의 noise scale 인 $\sigma_i$ 과 DDPM 에서의 $\sqrt{1-\bar \alpha_t}$ 는 동일하다는 것을 다시 한 번 알 수 있다.
-  - 하지만 noise scale 이 비슷하다고 forward process 나 backward process 가 동일한 것은 아니다. 
+  - 하지만 noise scale 이 동일하다고해서, 그 forward process 나 backward process 가 동일한 것은 아니다.  
   - DDPM 에서는 noise scale 만 있는 것이 아니라 signal scale 또한 존재한다. 
   - Signal scale: $\sqrt{\bar\alpha_t}$ 로써, $x_0$ 를 scaling 하여 $t \rightarrow \infty$ 일 때, pure noise $\sim N(0,I)$ 을 가게 해주는 용도로 사용된다. 
 
@@ -748,7 +748,7 @@ $$ dx = [f(x,t) - g(t)^2 \nabla_x \log p_t(x)]dt + g(t)d\bar w , \ (\text{Revers
 
 $$ x(t_i) - x(t_{i+1}) = [f(x(t_{i+1}),t_{i+1})- G(t_{i+1})G(t_{i+1})^T \nabla_x \log p_t(x(t_{i+1}))](-\Delta t) + G(t_{i+1})\sqrt{\Delta t}z_{i+1}  $$
 
-- 2. Ancestral Sampling: 미리 정의한 조건부 확률 분포$\prod_{i=1}^N p_{\theta}(x_{i-1}|x_i)$ 로부터 이미지를 sampling 하는 방법
+- 2. Ancestral Sampling: 미리 정의한 조건부 확률 분포 $\prod_{i=1}^N p_{\theta}(x_{i-1}|x_i)$ 로부터 이미지를 sampling 하는 방법
 
 - DDPM sampling 
   - Reverse-time VP SDE 의 special discretization 
@@ -812,7 +812,7 @@ $$ dx = [f(x,t) - \frac{1}{2}g(t)^2 \nabla_x \log p_t(x)]dt $$
 
 $$ x_i = x_{i+1} + \frac{1}{2}(\sigma_{i+1}^2 - \sigma_i^2)S_{\theta}(x_{i+1},\sigma_{i+1}) , \ [\text{SMLD}]$$
 
-$$ x_i = (2  - \sqrt{1-\beta_{i+1}} )x_{i+1} + \beta_{i+1} S_{\theta}(x_{i+1},i+1)  + \sqrt{\beta_i}z_i, \ [\text{DDPM}] $$
+$$ x_i = (2  - \sqrt{1-\beta_{i+1}} )x_{i+1} + \frac{1}{2}\beta_{i+1} S_{\theta}(x_{i+1},i+1) \ [\text{DDPM}] $$
 
 ### Probability Flow ODE (PF ODE)
 *Forward SDE 와 동일한 확률 분포를 갖는 ODE*
@@ -904,21 +904,122 @@ $$ \nabla_x \log{p_{\sigma_i}(x)} \approx s_\theta(x_t,t\ or \ \sigma) = - \frac
 
 ### <strong>Conclusion</strong>
 
-- Forward SDE
+- 정리를 해보자면, NCSN 과 DDPM 의 forward process 를 general 하게 continuous time 으로 보냈더니, SDE (stochastic differential equation) 의 VE/VP discretization (시간 차이가 $1$ 인) 으로 볼 수 있었다. 
+  - 이 과정에서 NCSN 과 DDPM 의 목적 함수도 같다는 걸 알 수 있었다.
+    - $x_0 \rightarrow x_t$ 까지 더해진 noise prediction
+
+$$ \textbf{NCSN: } \  x_i = x_{i-1} + \sqrt{\sigma_i^2 - \sigma_{i-1}^2}z_{i-1} $$
+
+$$ \textbf{DDPM: } \ x_i = \sqrt{1-\beta_i}x_{i-1} + \sqrt{\beta_i}z_{i-1} $$
+
+$$ i = 1, \cdots, N $$
+
+***
+
+
+$$ \textbf{VE SDE: } \ dx = \sqrt{\frac{d \sigma^2(t)}{dt}}dw $$
+
+$$ \textbf{VP SDE: } \ dx = - \frac{1}{2}\beta(t)x(t)dt + \sqrt{\beta(t)}dw $$
+
+$$ t = [0,1] $$
+
+- Forward SDE 가 정의되면, reverse-time SDE 도 정의할 수 있다. 
+
+$$ \textbf{Forward SDE: } \ dx = f(x,t)dt + g(t)dw $$
+
+$$ \textbf{Reverse SDE: } \ dx = [f(x,t) - g^2(t) \nabla_x \log p_t(x)] dt + g(t)d\bar w $$
+
+- $f(x,t)$ 와 $g(t)$ 를 먼저 정의해보자
+  - VE SDE: $f(x,t) = Null$, $g(t) = \sqrt{\frac{d \sigma^2(t)}{dt}}$
+  - VP SDE: $f(x,t) = - \frac{1}{2}\beta(t)x(t)$, $g(t) = \sqrt{\beta(t)}$
+
+- Reverse SDE 에 필요한 요소를 모두 구했으니, Numerical SDE Solver(=Predictor) 로 Reverse SDE 를 discretization 하자.
+  - 실제로 generation 할 때는 discrete env (e.g., computer) 로 할 테니 이산화를 해야한다.
+  - 시간 차이는 $1$ 로 setting 
+  - 총 $3$ 가지 방법을 소개한다. (Reverse Diffusion Sampling, Ancestral Sampling, Probability Flow ODE)
+
+1. Euler-Maruyama Method
+   1.  Euler-Maruyama Method 에 따른 discretization strategy 를 본 논문에서는 reverse diffusion sampling 이라고 명명했다.
+
+$$ x(t_i) - x(t_{i+1}) = [f(x(t_{i+1}),t_{i+1})- G(t_{i+1})G(t_{i+1})^T \nabla_x \log p_t(x(t_{i+1}))](-\Delta t) + G(t_{i+1})\sqrt{\Delta t}z_{i+1}  $$
+
+- VE Reverse SDE  
+
+$$ x_{i-1} = x_i + (\sigma_i^2 - \sigma_{i-1}^2)S_{\theta}(x_i, i) + \sqrt{ (\sigma_i^2 - \sigma_{i-1}^2)}z_i, \ i =1,2,\cdots, N, \ \text{where } x_N \sim N(0,\sigma_N^2I) $$
+
+- VP reverse SDE
+  - 사실 두 개의 수식은 같은 수식으로 볼 수 있다. 하지만, Forward SDE 를 정확하게 Reverse-time SDE 로 표현한 것은 맨 위의 수식이다.
+  - 논문에서는 아래 수식을 이용했다.
+
+$$ x_{i-1} = (1+ \frac{1}{2}\beta_{i})x_i + \beta_i S_{\theta}(x_i,i)  + \sqrt{\beta_i}z_i $$
+
+
+$$ x_{i-1} = (2  - \sqrt{1-\beta_i} )x_i + \beta_i S_{\theta}(x_i,i)  + \sqrt{\beta_i}z_i $$
+
+
+2. Ancestral Sampling 
+   1. NCSN 과 DDPM 에서 쓴 sampling 방식이다. Special sampler 로 볼 수 있고, reverse-time SDE format 에는 맞지 않아서 따로 정의한 거 같다. 
+   2. 실제로 NCSN 에서는 sampling 방식을 제시하지 않았지만, DDPM 처럼 풀어서 쓰면 ancestral sampling 을 구할 수 있다. 
+   3. Ancestral sampling 을 근사하게 되면, Euler-Maruyama Method 를 구할 수 있다.
+   4. NCSN 에서 사용한 sampler 인 Langevin dynamics 는 Nemerical SDE solver 가 아닌, MCMC sampler 여서 추후에 corrector 에서 사용한다. 
+
+
+- VE Reverse SDE  
+
+$$ x_{i-1} = x_i + (\sigma_i^2 - \sigma_{i-1}^2)S_{\theta}(x_i, i) + \sqrt{\frac{\sigma_{i-1}^2 (\sigma_i^2 - \sigma_{i-1}^2)}{\sigma_i^2}}z_i, \ i =1,2,\cdots, N, \ \text{where } x_N \sim N(0,\sigma_N^2I) $$
+
+- VP reverse SDE
+
+$$ x_{i-1} =  \frac{1}{\sqrt{1-\beta_i}}(x_i + \beta_i S_{\theta}(x_i,i)) + \sqrt{\beta_i}z_i $$
+
+3. Probaility Flow ODE (PF ODE)
+   1. Reverse-time SDE 와 동일한 확률 분포를 갖는 ODE 이다. 
+   2. $z_i \sim N(0,I)$ 를 필요로 하지 않기에, deterministic sampler 이다
+   3. Fast sampling
+   4. Smooth interpolation
+   5. Exact likelihood computation
+   6. Deterministic process 이기 때문에 data $x$ 가 주어졌을 때, unique 한 latent vector $z$ 도 구할 수 있다.
+
+$$ dx = [f(x,t) - \frac{1}{2}g(t)^2 \nabla_x \log p_t(x)]dt $$
+
+- VE Reverse SDE  
+
+$$ x_i = x_{i+1} + \frac{1}{2}(\sigma_{i+1}^2 - \sigma_i^2)S_{\theta}(x_{i+1},\sigma_{i+1}) $$
+
+- VP reverse SDE
+
+$$ x_i = (2  - \sqrt{1-\beta_{i+1}} )x_{i+1} + \beta_{i+1} S_{\theta}(x_{i+1},i+1)  + \sqrt{\beta_i}z_i $$
+
+
+- 마지막으로 우리가 실제 구현시에 이용할 수식들은 다음과 같다.
+  - 우리는 continuous time 으로 구현할 수 없어서 모든 수식을 이산화해서 구현해야한다.
+  - VE 를 고르면 VE 에 맞는 수식들만 써야 한다. VP 도 마찬가지.
+
+
+- Forward process ($x_0 \rightarrow x_t$)
+
 
 $$ x_i = x_0 + \sigma_i^2z_i , \ [\text{VE SDE Discretizaion}] $$
 
 $$ x_i = \sqrt{\bar \alpha_i}x_0 + \sqrt{1- \bar \alpha_i}\epsilon, \  [\text{VP SDE Discretizaion}] $$
 
 - Training Objective Function
+  - $\sqrt{1-\bar \alpha_t} \ \text{in DDPM} = \sigma_t \ \text{in SMLD}$
+
+$$ \nabla_{x_t}\log p_t(x_t|x_0) = - \frac{\epsilon}{\sqrt{1-\bar \alpha_t}} $$
 
 $$ \epsilon - \epsilon_{\theta}(x_t,t \ \text{or} \sigma_t) $$
 
-- Reverse-time SDE: predictor + corrector
+- Reverse process (Generation): predictor + corrector
 
 *predictor*
 
 1. Reverse Diffusion Sampling
+
+- For VE SDE,
+
+$$ x_{i-1} = x_i + (\sigma_i^2 - \sigma_{i-1}^2)S_{\theta}(x_i, i) + \sqrt{ (\sigma_i^2 - \sigma_{i-1}^2)}z_i, \ i =1,2,\cdots, N, \ \text{where } x_N \sim N(0,\sigma_N^2I) $$
+
 
 - For VP SDE,
 
@@ -945,7 +1046,7 @@ $$ x_i = x_{i+1} + \frac{1}{2}(\sigma_{i+1}^2 - \sigma_i^2)S_{\theta}(x_{i+1},\s
 
 - For VP SDE,
 
-$$ x_i = (2  - \sqrt{1-\beta_{i+1}} )x_{i+1} + \beta_{i+1} S_{\theta}(x_{i+1},i+1)  + \sqrt{\beta_i}z_i $$
+$$ x_i = (2  - \sqrt{1-\beta_{i+1}} )x_{i+1} + \frac{1}{2}\beta_{i+1} S_{\theta}(x_{i+1},i+1) $$
 
 *corrector*
 

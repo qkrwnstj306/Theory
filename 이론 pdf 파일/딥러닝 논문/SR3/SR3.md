@@ -77,6 +77,7 @@ $$ [reverse \ process] \ p_\theta(y_{t-1}|y_t, x) $$
 - **Training**
   - high-resolution 인 $y$ 와 low-resolution 인 $x$ 를 ($y$ 와 차원이 같음) sampling 해서, $x$, $y$, $\bar\alpha_t$ 를 model 의 입력으로 전달해서 $\epsilon$ 을 prediction 한다. 
   - 기존의 DDPM 과 다른 점은 condition 으로 $x$ 가 들어가는 것과 $\bar\alpha_t$ 가 들어가는 것이다. time step $t$ 가 아닌 $\bar\alpha_t$ 가 들어가는 것은 결국 동일하게 time info(noise level) 를 전달할 수 있기 때문이다. 
+  - Low resolution image 를 condition 형식으로 (물론 input 으로 concat 해서 들어가지만) 넣어서, $y_t$ 에 들어간 noise 를 예측하는 것이다. 
 
 <p align="center">
 <img src='./img4.png'>
