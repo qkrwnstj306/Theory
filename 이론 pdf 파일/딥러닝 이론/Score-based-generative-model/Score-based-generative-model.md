@@ -822,7 +822,7 @@ $$ x_i = (2  - \sqrt{1-\beta_{i+1}} )x_{i+1} + \frac{1}{2}\beta_{i+1} S_{\theta}
 - Smooth interpolation
 - Exact likelihood computation
 
-- Forward PF ODE
+- PF ODE
 
 $$ dx = \tilde{f}(x,t)dt $$
 
@@ -862,8 +862,8 @@ $$ x_i - x_{i+1} = - f(x_{i+1}, t_{i+1}) - \frac{1}{2} \nabla [G(x_{i+1}, t_{i+1
 
 - Predictor & Corrector algorithm
   - Corrector 는 langevin dynamics 로 동일하다.
-  - Algorithm 2. VE SDE: predictor 는 SMLD 의 ancestral sampling
-  - Algorithm 3. VP SDE: predictor 는 reverse diffusion sampling 
+  - Algorithm 2. VE SDE: predictor 는 VE reverse diffusion sampling 
+  - Algorithm 3. VP SDE: predictor 는 VP reverse diffusion sampling 
 
 <p align="center">
 <img src='./img49.png'>
@@ -913,8 +913,6 @@ $$ \textbf{NCSN: } \  x_i = x_{i-1} + \sqrt{\sigma_i^2 - \sigma_{i-1}^2}z_{i-1} 
 $$ \textbf{DDPM: } \ x_i = \sqrt{1-\beta_i}x_{i-1} + \sqrt{\beta_i}z_{i-1} $$
 
 $$ i = 1, \cdots, N $$
-
-***
 
 
 $$ \textbf{VE SDE: } \ dx = \sqrt{\frac{d \sigma^2(t)}{dt}}dw $$
