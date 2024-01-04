@@ -748,7 +748,7 @@ $$ dx = [f(x,t) - g(t)^2 \nabla_x \log p_t(x)]dt + g(t)d\bar w , \ (\text{Revers
 
 $$ x(t_i) - x(t_{i+1}) = [f(x(t_{i+1}),t_{i+1})- G(t_{i+1})G(t_{i+1})^T \nabla_x \log p_t(x(t_{i+1}))](-\Delta t) + G(t_{i+1})\sqrt{\Delta t}z_{i+1}  $$
 
-- 2. Ancestral Sampling: 미리 정의한 조건부 확률 분포 $\prod_{i=1}^N p_{\theta}(x_{i-1}|x_i)$ 로부터 이미지를 sampling 하는 방법
+- 2. Ancestral Sampling: 미리 정의한 조건부 확률 분포 $\displaystyle\prod_{i=1}^N p_{\theta}(x_{i-1}|x_i)$ 로부터 이미지를 sampling 하는 방법
 
 - DDPM sampling 
   - Reverse-time VP SDE 의 special discretization 
