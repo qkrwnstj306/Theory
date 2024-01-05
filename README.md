@@ -176,8 +176,10 @@ Theory for ML.
   - <a href='./이론 pdf 파일/딥러닝 논문/Textual_inversion/Textual_inversion.md'>Paper Review2</a>
 - <a href='https://arxiv.org/abs/2108.01073'>SDEdit: Guided Image Synthesis and Editing with Stochastic Differential Equations</a>
   - <a href='./이론 pdf 파일/딥러닝 논문/SDEdit/SDEdit.md'>Paper Review</a>
+  - <a href='./PPT/SDEdit&ILVR.pptx'>SDEdit&ILVR PPT</a>
 - <a href='https://arxiv.org/pdf/2108.02938.pdf'>ILVR: Conditioning Method for Denoising Diffusion Probabilistic Models</a>
   - <a href='./이론 pdf 파일/딥러닝 논문/ILVR/ILVR.md'>Paper Review</a>
+  - <a href='./PPT/SDEdit&ILVR.pptx'>SDEdit&ILVR PPT</a>
 
 
 ### Natural Language
