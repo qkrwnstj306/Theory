@@ -174,6 +174,11 @@ Theory for ML.
 - <a href='https://arxiv.org/pdf/2208.01618.pdf'>An Image is Worth One Word: Personalizing Text-to-Image Generation using Textual Inversion</a>
   - <a href='./이론 pdf 파일/딥러닝 논문/Textual Inversion_230315_210614.pdf'>Paper Review</a>
   - <a href='./이론 pdf 파일/딥러닝 논문/Textual_inversion/Textual_inversion.md'>Paper Review2</a>
+- <a href='https://arxiv.org/abs/2108.01073'>SDEdit: Guided Image Synthesis and Editing with Stochastic Differential Equations</a>
+  - <a href='./이론 pdf 파일/딥러닝 논문/SDEdit/SDEdit.md'>Paper Review</a>
+- <a href='https://arxiv.org/pdf/2108.02938.pdf'>ILVR: Conditioning Method for Denoising Diffusion Probabilistic Models</a>
+  - <a href='./이론 pdf 파일/딥러닝 논문/ILVR/ILVR.md'>Paper Review</a>
+
 
 ### Natural Language
 - <a href='./이론 pdf 파일/딥러닝 이론/LSTM.pdf'>LSTM : Long Short-Term Memory</a>
