@@ -105,8 +105,11 @@ Theory for ML.
 	- <a href='./이론 pdf 파일/Diffusion/Forward에서의 분산_230503_004753.pdf'>Denoising Process 분석2. Forward에서의 분산 </a>
 	- <a href='./이론 pdf 파일/Diffusion/Lt-1 proof_221229_144243.pdf'>Denoising Process 분석3. Loss 일부 분석 </a>
 	- <a href='./이론 pdf 파일/Diffusion/Latent diffusion model(Stable diffusion)_231003_105800.pdf'>Latent Diffusion model Overview </a>
+
+### 최근 관심 분야 이론 정리
 - <a href='./이론 pdf 파일/딥러닝 이론/Score-based-generative-model/Score-based-generative-model.md'>Score-based Generative Model Review</a>
   - <a href='./PPT/Generative-Modeling-by-Estimating-Gradients-of-the-Data-Distribution.pptx'>PPT: Generative Modeling by Estimating Gradients of the Data Distribution, 2019, Neurips, 1825 citation</a>
+- <a href='./이론 pdf 파일/딥러닝 이론/Voice-Conversion/Voice-Conversion.md'>Voice-Conversion</a>
 
 ## Paper Review
 ### Basic 
@@ -307,7 +310,10 @@ Theory for ML.
 - <a href='https://github.com/teddylee777/machine-learning#%ED%86%B5%EA%B3%84-statistics'>Machine Learning Study</a>
 - <a href='https://github.com/boost-devs/ai-tech-interview/tree/main'>AI 면접</a>
 - <a href='https://careerly.co.kr/comments/67573'>인성 면접</a>
-- <a href='https://vsehwag.github.io/blog/2023/2/all_papers_on_diffusion.html'>All papers on Diffusion</a> 
+- <a href='https://vsehwag.github.io/blog/2023/2/all_papers_on_diffusion.html'>Paper List about Diffusion</a> 
+- <a href='https://github.com/jianzhnie/awesome-text-to-video'>Paper List about Video [1]</a>
+- <a href='https://github.com/yzhang2016/video-generation-survey/blob/main/video-generation.md'>Paper List about Video [2]</a>
+- <a href='https://github.com/guan-yuan/Awesome-Singing-Voice-Synthesis-and-Singing-Voice-Conversion'>Paper List about Voice Conversion</a>
 - <a href='https://norman3.github.io/prml'>확률 분포를 공부할 때 참고한 책. [PRML(Pattern Recognition & Machine Learning, Bishop)]</a>
 
 # 8. Failed Project
