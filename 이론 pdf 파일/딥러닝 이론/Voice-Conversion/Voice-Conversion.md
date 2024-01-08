@@ -22,7 +22,7 @@
   - SVC는 음성 변환 (VC)과 유사하며 일반적인 언어에 대한 VC와 달리 SVC는 소스 보컬과 유사한 음성 피치로 노래 부르기에 중점을 둔다. 다른 유사한 분야로는 멜로디 라인과 가사에서 노래 목소리를 생성하는 Singing Voice Synthesis (SVS)이 있다.
 
 - Parallel (one-to-one) SVC: 특정 가수의 노래를 다른 특정 가수로만 변환할 수 있는 시스템을 나타낸다.
-- Nonparallel SVC
+- Non-parallel SVC
   - Any-to-one: 누구의 소스 보컬이든 대상 가수의 것으로 변환
   - Any-to-many: 다양한 대상 가수의 것으로 여러 가수의 보컬을 변환
     - E.g., FastSVC
@@ -56,7 +56,7 @@
   - 따라서, 음성 데이터를 시간 단위로 짧게 쪼개서 FFT 를 해준다.
 
 - Spectrogram
-  - $x$ 축은 시간, $y$ 축은 주파수, 해당 $(x,y)$ point 의 pixel 값은 진폭을 나타낸다.
+  - $x$ 축은 시간, $y$ 축은 주파수, 해당 $(x,y)$ point 의 pixel 값은 진폭을 나타낸다. 즉, $z$ 축이 진폭
 
 - Mel-Spectrogram
   - Spectrogram 에 mel-filter 라는 filter 를 적용해서 얻는다.
@@ -68,4 +68,4 @@ $$ Mel(f) = 2595 \log(1+\frac{f}{700}) $$
 - Pitch: 음의 높낮이, 진동수 HZ 의 크고 작음과는 다르다. 좀 더 추상적인 개념
 
 - Sampling rate
-  - $2400$: $1$ 초에 음성 신호를 $24000$ 번 sampling 했다는 뜻이다.
+  - $2400$: $1$ 초에 음성 신호를 $2400$ 번 sampling 했다는 뜻이다.

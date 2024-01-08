@@ -305,6 +305,8 @@ Theory for ML.
   - <a href='./이론 pdf 파일/딥러닝 논문/CGAN/CGAN.md'>Paper Review</a>
 - <a href='https://arxiv.org/pdf/1512.04150.pdf'>CAM: Learning Deep Features for Discriminative Localization</a>
   - <a href='./이론 pdf 파일/딥러닝 논문/CAM/CAM.md'>Paper Review</a>
+- <a href='https://arxiv.org/pdf/2105.13871.pdf'>DiffSVC: A Diffusion Probabilistic Model for Singing Voice Conversion</a>
+  - <a href='./이론 pdf 파일/딥러닝 논문/DiffSVC/DiffSVC.md'>Paper Review</a>
 
 # 7. Helpful Blog
 - <a href='https://github.com/teddylee777/machine-learning#%ED%86%B5%EA%B3%84-statistics'>Machine Learning Study</a>
