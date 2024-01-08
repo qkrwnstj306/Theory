@@ -13,7 +13,7 @@
 
 > Core Idea
 <div align=center>
-<strong>"test1"</strong></br>
+<strong>"First Adapt Diffusion-based Model on SVC tasks"</strong></br>
 </div>
 
 ***

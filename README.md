@@ -158,6 +158,7 @@ Theory for ML.
 - <a href='./이론 pdf 파일/딥러닝 논문/WGAN-GP_230522_191114.pdf'>WGAN-GP : Improved Training of Wasserstein GANs</a>
 - <a href='./이론 pdf 파일/딥러닝 논문/gigagan_cvpr2023_original_230525_210606.pdf'>GigaGAN : Scaling up GANs for Text-to-Image Synthesis</a>
 - <a href='./이론 pdf 파일/딥러닝 논문/Multimodal Garment Designer_231015_171057.pdf'>Multimodal Garment Designer : Human-Centric Latent Diffusion Models for Fashion Image Editing</a>
+  - <a href='./이론 pdf 파일/딥러닝 논문/Garment-Designer/Garment-Designer.md'>Paper Review</a>
 - <a href='https://arxiv.org/abs/1611.07004'>Pix2Pix : Image-to-Image Translation with Conditional Adversarial Networks</a>
 	- <a href='https://github.com/qkrwnstj306/Style-Similarity/blob/main/pix2pix-paper.ipynb'>Code Practice</a>
 	
@@ -307,6 +308,9 @@ Theory for ML.
   - <a href='./이론 pdf 파일/딥러닝 논문/CAM/CAM.md'>Paper Review</a>
 - <a href='https://arxiv.org/pdf/2105.13871.pdf'>DiffSVC: A Diffusion Probabilistic Model for Singing Voice Conversion</a>
   - <a href='./이론 pdf 파일/딥러닝 논문/DiffSVC/DiffSVC.md'>Paper Review</a>
+- <a href='https://openaccess.thecvf.com/content/CVPR2023/papers/Zhu_TryOnDiffusion_A_Tale_of_Two_UNets_CVPR_2023_paper.pdf'>TryOnDiffusion: A Tale of Two UNets</a>
+  - <a href='./이론 pdf 파일/딥러닝 논문/TryOnDiffusion/TryOnDiffusion.md'>Paper Review</a>
+
 
 # 7. Helpful Blog
 - <a href='https://github.com/teddylee777/machine-learning#%ED%86%B5%EA%B3%84-statistics'>Machine Learning Study</a>
