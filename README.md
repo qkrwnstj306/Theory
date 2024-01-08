@@ -184,6 +184,8 @@ Theory for ML.
 - <a href='https://arxiv.org/pdf/2108.02938.pdf'>ILVR: Conditioning Method for Denoising Diffusion Probabilistic Models</a>
   - <a href='./이론 pdf 파일/딥러닝 논문/ILVR/ILVR.md'>Paper Review</a>
   - <a href='./PPT/SDEdit&ILVR.pptx'>SDEdit&ILVR PPT</a>
+- <a href='https://openaccess.thecvf.com/content/CVPR2023/papers/Yang_Paint_by_Example_Exemplar-Based_Image_Editing_With_Diffusion_Models_CVPR_2023_paper.pdf'>Paint by Example: Exemplar-based Image Editing with Diffusion Models</a>
+  - <a href='./이론 pdf 파일/딥러닝 논문/Paint-by-Example/Paint-by-Example.md'>Paper Review</a>
 
 
 ### Natural Language

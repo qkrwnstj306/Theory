@@ -17,7 +17,7 @@
 
 > Core Idea
 <div align=center>
-<strong>""</strong></br>
+<strong>"Virtual Try-On using Parallel U-Net"</strong></br>
 </div>
 
 ***
