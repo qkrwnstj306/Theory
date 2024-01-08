@@ -2,7 +2,7 @@
 
 
 ## DiffSVC: A Diffusion Probabilistic Model for Singing Voice Conversion
-*2021 IEEE Automatic Speech Recognition and Understanding Workshop (ASRU)(2022), 29 citation*
+*2021 IEEE Automatic Speech Recognition and Understanding Workshop (ASRU)(2021), 29 citation*
 
 [Intro](#intro)</br>
 [Related Work](#related-work)</br>
