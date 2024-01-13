@@ -18,7 +18,6 @@ Theory for ML.
 
 # <strong>0. How to Write paper</strong>
 - <a href='./이론 pdf 파일/딥러닝 논문/paper-write/how-to-write.md'>How to Write Paper</a>
-- <a href='./이론 pdf 파일/딥러닝 논문/paper-write/Generative-AI.md'>Generative AI</a>
 
 # <strong>1. Reinforcement</strong>
 > <a href='https://github.com/qkrwnstj306/Reinforcement'> Code Practice</a>
@@ -109,6 +108,11 @@ Theory for ML.
 ### 최근 관심 분야 이론 정리
 - <a href='./이론 pdf 파일/딥러닝 이론/Score-based-generative-model/Score-based-generative-model.md'>Score-based Generative Model Review</a>
   - <a href='./PPT/Generative-Modeling-by-Estimating-Gradients-of-the-Data-Distribution.pptx'>PPT: Generative Modeling by Estimating Gradients of the Data Distribution, 2019, Neurips, 1825 citation</a>
+- <a href='./이론 pdf 파일/딥러닝 논문/paper-write/Generative-AI.md'>Generative AI</a>
+- <a href='./이론 pdf 파일/딥러닝 이론/VITON/VITON.md'>Virtual Try-On (VITON)</a>
+
+
+### 거쳐 간 관심 분야 이론 정리
 - <a href='./이론 pdf 파일/딥러닝 이론/Voice-Conversion/Voice-Conversion.md'>Voice-Conversion</a>
 
 ## Paper Review
@@ -324,6 +328,7 @@ Theory for ML.
 - <a href='https://github.com/jianzhnie/awesome-text-to-video'>Paper List about Video [1]</a>
 - <a href='https://github.com/yzhang2016/video-generation-survey/blob/main/video-generation.md'>Paper List about Video [2]</a>
 - <a href='https://github.com/guan-yuan/Awesome-Singing-Voice-Synthesis-and-Singing-Voice-Conversion'>Paper List about Voice Conversion</a>
+- <a href='https://github.com/minar09/awesome-virtual-try-on'>Paper List about VITON</a>
 - <a href='https://norman3.github.io/prml'>확률 분포를 공부할 때 참고한 책. [PRML(Pattern Recognition & Machine Learning, Bishop)]</a>
 
 # 8. Failed Project
