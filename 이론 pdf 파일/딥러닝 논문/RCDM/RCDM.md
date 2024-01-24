@@ -91,7 +91,7 @@
 
 - 여기선, self-supervised representation 이 data augmentation 에 정말로 invariant 한지를 알아보자. 
   - Self-supervised representation at backbone: object scale, grayscale vs color, color palette of the background 모두 variant 하다. (supervised representation 과 같이)
-  - Self-supervised representation at projector: object scale 은 encoding 하고 있지만, grayscale-status and background color information 은 제거했다. 
+  - Self-supervised representation at projector: object scale 은 encoding 하고 있지만, grayscale-status and background color information 은 제거했다. 즉, object scale 을 제외한 다른 augmentation 에 대해서는 invarinace 하다.
 
 
 
@@ -168,6 +168,11 @@
 ***
 
 ### <strong>Conclusion</strong>
+
+|               | **Information about Input Image** | **Invariance to Data Augmentation** |
+|:-------------:|:---------------------------------:|:-----------------------------------:|
+|  **Backbone** |       Global + detailed info      |            Not invariance           |
+| **Projector** |            Global info            |              Invariance             |
 
 
 ***
