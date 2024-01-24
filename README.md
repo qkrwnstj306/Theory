@@ -167,6 +167,8 @@ Theory for ML.
   - <a href='./이론 pdf 파일/딥러닝 논문/Garment-Designer/Garment-Designer.md'>Paper Review</a>
 - <a href='https://arxiv.org/abs/1611.07004'>Pix2Pix : Image-to-Image Translation with Conditional Adversarial Networks</a>
 	- <a href='https://github.com/qkrwnstj306/Style-Similarity/blob/main/pix2pix-paper.ipynb'>Code Practice</a>
+- <a href='https://arxiv.org/pdf/2112.09164.pdf'>RCDM: High Fidelity Visualization of What Your Self-Supervised Representation knows About</a>
+  - <a href='./이론 pdf 파일/딥러닝 논문/RCDM/RCDM.md'>Paper Review</a>
 	
 #### Image Editing
 - <a href='./이론 pdf 파일/딥러닝 논문/Prompt to prompt image editing with attention_231004_124613.pdf'>Prompt-to-Prompt Image Editing with Cross Attention Control</a>
@@ -193,6 +195,10 @@ Theory for ML.
 - <a href='https://openaccess.thecvf.com/content/CVPR2023/papers/Yang_Paint_by_Example_Exemplar-Based_Image_Editing_With_Diffusion_Models_CVPR_2023_paper.pdf'>Paint by Example: Exemplar-based Image Editing with Diffusion Models</a>
   - <a href='./이론 pdf 파일/딥러닝 논문/Paint-by-Example/Paint-by-Example.md'>Paper Review</a>
 
+$\textbf{VITON}$
+
+- <a href='https://arxiv.org/pdf/2312.01725.pdf'>StableVITON: Learning Semantic Correspondence with Latent Diffusion Model for Virtual Try-On</a>
+  - <a href='./이론 pdf 파일/딥러닝 논문/stableVITON/stableVITON.md'>Paper Review</a>
 
 ### Natural Language
 - <a href='./이론 pdf 파일/딥러닝 이론/LSTM.pdf'>LSTM : Long Short-Term Memory</a>
