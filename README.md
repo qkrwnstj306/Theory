@@ -130,9 +130,11 @@ Theory for ML.
 	* <a href='PPT/transformer review.pptx'>Transformer PPT</a>
 - <a href='https://browse.arxiv.org/pdf/1409.1556.pdf'>VGG :VERY DEEP CONVOLUTIONAL NETWORKS FOR LARGE-SCALE IMAGE RECOGNITION</a>
 	* <a href='./PPT/VGG.pptx'>VGG PPT</a>
-### Parameter Efficient
+### Optimization
 - <a href='./이론 pdf 파일/딥러닝 논문/LoRA_231007_193848.pdf'>LoRA : Low-Rank Adaptation of Large Language Models</a>
 - <a href='https://www.notion.so/Stable-diffusion-7d853e6b43f14e2ca204f61f475a7653?pvs=4'>Stable Diffusion with Fine Tuning Method like DreamBooth, LoRA, Textual Inversion including code in Notion</a>
+- <a href='https://arxiv.org/pdf/1710.03740.pdf'>MP: Mixed Precision Training</a>
+  - <a href='./이론 pdf 파일/딥러닝 논문/AMP/AMP.md'>Paper Review</a>
 
 ### Generative AI about Image 
 - <a href='./이론 pdf 파일/딥러닝 논문/DDPM_231112_174348.pdf'>DDPM: Denoising Diffusion Probabilistic Models</a>
