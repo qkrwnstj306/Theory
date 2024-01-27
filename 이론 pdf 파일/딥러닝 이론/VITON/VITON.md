@@ -61,8 +61,17 @@
 
 #### <strong>Dataset</strong>
 
-1. VITON-HD
-2. Dress Code
+크게 $2$ 가지 (VITON-HD, Dress Code) 정도가 존재한다. 
+
+1. VITON-HD ($11,647/2,032$) ($1024 \times 765$ resolution)
+2. Dress Code ($1024 \times 765$ resolution)
+
+<p align="center">
+<img src='./img.png'>
+</p>
+
+3. SHHQ-1.0
+4. AI hub in Korea
 
 - <a href='https://openaccess.thecvf.com/content_ECCV_2018/papers/Ke_Gong_Instance-level_Human_Parsing_ECCV_2018_paper.pdf'>Densepose</a>
 
@@ -71,7 +80,7 @@
 VITON-HD, HR-VITON, StableVITON 은 같은 저자라고 보면 된다. 
 
 - Train
-  1. VITON-HD:VITON-HD 
+  1. VITON-HD: VITON-HD 
   2. HR-VITON: VITON-HD 
   3. StableVITON: VITON-HD & Upper body in DressCode
 

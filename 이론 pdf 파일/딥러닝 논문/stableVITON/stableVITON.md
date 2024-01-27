@@ -110,6 +110,7 @@ $\textsf{Comparision method}$
 $\textbf{Dataset}$: VITON-HD, Dress-Code (virtual try-on datasets), SHHQ-1.0 (human image dataset)
 
 - VITON-HD 와 upper-body images in DressCode 로 학습했다.
+  - 근데 두 개를 합쳐서 학습은 하지 않고 독립적으로 학습. 즉, 모델이 $2$ 개
 - Evaluation 은 SHHQ-1.0 으로 했다.
 
 
