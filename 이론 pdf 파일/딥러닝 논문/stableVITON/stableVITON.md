@@ -109,13 +109,13 @@ $\textsf{Comparision method}$
 
 $\textbf{Dataset}$: VITON-HD, Dress-Code (virtual try-on datasets), SHHQ-1.0 (human image dataset)
 
-- VITON-HD 와 upper-bdy images in DressCode 로 학습했다.
+- VITON-HD 와 upper-body images in DressCode 로 학습했다.
 - Evaluation 은 SHHQ-1.0 으로 했다.
 
 
 - Qualitative comparison
-  - Single dataset evaluation: person/clothing 이 같은 dataset source
-  - Cross dataset evaluation: person/clothing 가 다른 dataset source
+  - Single dataset evaluation: same Train/Test dataset source
+  - Cross dataset evaluation: different Train/Test dataset source
 
 <p align="center">
 <img src='./img4.png'>
@@ -126,8 +126,8 @@ $\textbf{Dataset}$: VITON-HD, Dress-Code (virtual try-on datasets), SHHQ-1.0 (hu
 </p>
 
 - Quantitative comparison
-  - Paired setting: same Train/Test 
-  - Unpaired setting: different Train/Test
+  - Paired setting: person/original clothing
+  - Unpaired setting: person/different clothing 
 
 <p align="center">
 <img src='./img6.png'>

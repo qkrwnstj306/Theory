@@ -26,6 +26,7 @@
   - CP VITON
   - LA-VITON
   - CP-VTON+
+  - ACGPN
   - <a href='../../딥러닝 논문/VITON-HD/VITON-HD.md'>VITON-HD</a>
   - Dress Code
   - Single Stage Virtual Try-on via Deformable Attention Flows
@@ -63,6 +64,8 @@
 1. VITON-HD
 2. Dress Code
 
+- <a href='https://openaccess.thecvf.com/content_ECCV_2018/papers/Ke_Gong_Instance-level_Human_Parsing_ECCV_2018_paper.pdf'>Densepose</a>
+
 #### <strong>Comparison Methods</strong>
 
 VITON-HD, HR-VITON, StableVITON 은 같은 저자라고 보면 된다. 
@@ -87,6 +90,11 @@ VITON-HD, HR-VITON, StableVITON 은 같은 저자라고 보면 된다.
 ceptual image patch similarit), FID ( frechet inception distance)
 2. HR-VITON: FID, KID, LPIPS, SSIM
 3. StableVITON: FID, KID, LPIPS, SSIM
+
+- Paired setting: person/original clothing
+  - Use SSIM, LPIPS
+- Unpaired setting: person/different clothing 
+  - Use KID, FID
 
 - Exception
   1. TryOnDiffusion: FID, KID
