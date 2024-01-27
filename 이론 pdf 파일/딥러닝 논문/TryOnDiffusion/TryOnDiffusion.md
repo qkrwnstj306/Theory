@@ -73,6 +73,39 @@
 
 ### <strong>Experiment</strong>
 
+$\textsf{Dataset}$
+- Pre-trained model 을 이용하는 것이 아니기에, train dataset 이 많이 필요하다.
+- $4$ Million sample 을 학습 데이터로 활용 
+  - Pair (same person wearing the same garment in two different poses)
+- Test: $6$ K unpaired samples
+  - Different people wearing different garments under different poses
+
+$\textsf{Implementation details}$
+- Batch size: $256$
+- Iter: $500$ K
+- Adam Optimizer
+- LR: linearly increase from $0$ to $10^{-4}$
+- Classifier-free guidance: $10$ % uncond prob
+- Base diffusion model: $256$ steps using DDPM, 
+- SR diffusion model : $128 \times 128 \rightarrow 256 \times 256$, $128$ steps using DDPM
+- Final SR diffuison model: $256 \times 256 \rightarrow 1024 \times 1024$, $32$ steps using DDIM
+- T: $U([0,1])$
+
+
+$\textsf{Comparison methods}$
+- TryOnGAN, SDAFN, HR-VITON
+- Fair comparison 을 위해, 위의 $3$ 개의 method 들을 $4$ Million sample 로 re-train
+- Resolution 도 다르다. 각 방법들의 resolution 으로 결과를 낸다.
+  - SDAFN: $256 \times 256$
+  - TryOnGAN: $512 \times 512$
+  - HR-VITON $1024 \times 1024$
+
+$\textsf{Metric}$
+- FID, KID
+
+<p align="center">
+<img src='./img3.png'>
+</p>
 
 ***
 

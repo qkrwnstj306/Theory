@@ -26,14 +26,16 @@
   - CP VITON
   - LA-VITON
   - CP-VTON+
-  - VITON-HD
+  - <a href='../../딥러닝 논문/VITON-HD/VITON-HD.md'>VITON-HD</a>
   - Dress Code
   - Single Stage Virtual Try-on via Deformable Attention Flows
   - High-Resolution Virtual Try-On with Misalignment and Occlusion-Handled Conditions
   - C-VTON: Context-Driven Image-Based Virtual Try-On Network
-  - TryOnDiffusion
+  - <a href='../../딥러닝 논문/TryOnDiffusion/TryOnDiffusion.md'>TryOnDiffusion</a>
   - GP-VTON
-  - Stable VITON
+  - DCI-VTON
+  - LADI-VTON
+  - <a href='../../딥러닝 논문/stableVITON/stableVITON.md'>Stable VITON</a>
 - Multi-Pose Guided Virtual Try On
 - Video Virtual Try On
 - Non-clothing Virtual Try On
@@ -134,9 +136,15 @@ $\textbf{Final Method}$
 
 $\textbf{First Experiment}$
 
-1. Stable diffusion model v1.5 + CLIP image encoder 
+1. Stable diffusion model v1.5 + CLIP image encoder + Zero-kernel + classifier-free guidance
 
-2. Stable diffusion model v1.5 + CLIP image encoder + buttleneck + simple NN + Augmentation 
+2. + LR_scheduler, Augmentation, target person info
+
+3. vs full fine-tuning
+
+**고려 사항**
+- Uncond probability: $0.1$ / $0.2$
+
 
 $\textbf{Therefore}$
 
