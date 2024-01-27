@@ -206,6 +206,8 @@ $\textbf{VITON}$
   - <a href='./이론 pdf 파일/딥러닝 논문/VITON-HD/VITON-HD.md'>Paper Review</a>
 - <a href='https://arxiv.org/pdf/2206.14180.pdf'>HR-VITON: High-Resolution Virtual Try-On with Misalighment and Occlusion-Handled Conditions</a>
   - <a href='./이론 pdf 파일/딥러닝 논문/HR-VITON/HR-VITON.md'>Paper Review</a>
+- <a href='https://openaccess.thecvf.com/content/CVPR2023/papers/Zhu_TryOnDiffusion_A_Tale_of_Two_UNets_CVPR_2023_paper.pdf'>TryOnDiffusion: A Tale of Two UNets</a>
+  - <a href='./이론 pdf 파일/딥러닝 논문/TryOnDiffusion/TryOnDiffusion.md'>Paper Review</a>
 
 
 ### Natural Language
@@ -330,8 +332,6 @@ $\textbf{VITON}$
   - <a href='./이론 pdf 파일/딥러닝 논문/CAM/CAM.md'>Paper Review</a>
 - <a href='https://arxiv.org/pdf/2105.13871.pdf'>DiffSVC: A Diffusion Probabilistic Model for Singing Voice Conversion</a>
   - <a href='./이론 pdf 파일/딥러닝 논문/DiffSVC/DiffSVC.md'>Paper Review</a>
-- <a href='https://openaccess.thecvf.com/content/CVPR2023/papers/Zhu_TryOnDiffusion_A_Tale_of_Two_UNets_CVPR_2023_paper.pdf'>TryOnDiffusion: A Tale of Two UNets</a>
-  - <a href='./이론 pdf 파일/딥러닝 논문/TryOnDiffusion/TryOnDiffusion.md'>Paper Review</a>
 
 
 # 7. Helpful Blog
