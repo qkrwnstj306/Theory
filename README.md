@@ -197,6 +197,10 @@ Theory for ML.
   - <a href='./PPT/SDEdit&ILVR.pptx'>SDEdit&ILVR PPT</a>
 - <a href='https://openaccess.thecvf.com/content/CVPR2023/papers/Yang_Paint_by_Example_Exemplar-Based_Image_Editing_With_Diffusion_Models_CVPR_2023_paper.pdf'>Paint by Example: Exemplar-based Image Editing with Diffusion Models</a>
   - <a href='./이론 pdf 파일/딥러닝 논문/Paint-by-Example/Paint-by-Example.md'>Paper Review</a>
+- <a href='https://arxiv.org/pdf/2401.07519.pdf'>InstantID: Zero-shot Identity-Preserving Generation in Seconds</a>
+  - <a href='./이론 pdf 파일/딥러닝 논문/InstantID/InstantID.md'>Paper Review</a>
+- <a href='https://arxiv.org/pdf/2308.06721.pdf'>IP-Adapter: Text Compatible Image Prompt Adapter for Text-to-Image Diffusion Models</a>
+  - <a href='./이론 pdf 파일/딥러닝 논문/IP-Adapter/IP-Adapter.md'>Paper Review</a>
 
 $\textbf{VITON}$
 
