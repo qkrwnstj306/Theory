@@ -27,6 +27,7 @@
   - LA-VITON
   - CP-VTON+
   - ACGPN
+  - PF-AFN
   - <a href='../../딥러닝 논문/VITON-HD/VITON-HD.md'>VITON-HD</a>
   - Dress Code
   - Single Stage Virtual Try-on via Deformable Attention Flows
@@ -46,6 +47,9 @@
 - Etc. (3D Virtual Try On, Mix-and-match Virtual Try On ...)
 
 ### <strong>Image-based (2D) Virtual Try On</strong>
+
+- 소비자가 원하는 contents 를 생성하기 위해선 좋은 text prompt 를 작성하는 것은 복잡한 prompt 엔지니어링이 필요한 경우가 많기 때문에 쉽지 않다. 또한, text 는 복잡한 장면이나 개념을 표현하는 데에는 유익하지 않아 콘텐츠 제작에 방해될 수 있다. 
+- 그에 반해, 이미지는 텍스트에 비해 더 많은 내용과 디테일을 표현할 수 있다. 
 
 #### <strong>Difficulty</strong>
 - 옷을 입혔을 때의 artifacts
@@ -75,6 +79,9 @@
 
 - <a href='https://openaccess.thecvf.com/content_ECCV_2018/papers/Ke_Gong_Instance-level_Human_Parsing_ECCV_2018_paper.pdf'>Densepose</a>
 
+- VITON paper 에서 사용한 dataset set 은 VITON-HD 의 lower resolution 이라고 보면 된다. 
+  - $256 \times 192$
+
 #### <strong>Comparison Methods</strong>
 
 VITON-HD, HR-VITON, StableVITON 은 같은 저자라고 보면 된다. 
@@ -92,6 +99,12 @@ VITON-HD, HR-VITON, StableVITON 은 같은 저자라고 보면 된다.
 - Exception
   1. TryOnDiffusion: train - $4$ Million sample, test - $6$ K sample
 
+- To DO
+  1. PF-AFN
+  2. ACGPN
+  3. CP-VTON
+  4. CP-VTON+
+  5. GP-VTON
 
 #### <strong>Evaluation</strong>
 
@@ -107,6 +120,7 @@ ceptual image patch similarit), FID ( frechet inception distance)
 
 - Exception
   1. TryOnDiffusion: FID, KID
+  2. VITON: IS
 
 #### <strong>My Method</strong>
 

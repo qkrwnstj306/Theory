@@ -212,7 +212,8 @@ $\textbf{VITON}$
   - <a href='./이론 pdf 파일/딥러닝 논문/HR-VITON/HR-VITON.md'>Paper Review</a>
 - <a href='https://openaccess.thecvf.com/content/CVPR2023/papers/Zhu_TryOnDiffusion_A_Tale_of_Two_UNets_CVPR_2023_paper.pdf'>TryOnDiffusion: A Tale of Two UNets</a>
   - <a href='./이론 pdf 파일/딥러닝 논문/TryOnDiffusion/TryOnDiffusion.md'>Paper Review</a>
-
+- <a href='https://openaccess.thecvf.com/content_cvpr_2018/papers/Han_VITON_An_Image-Based_CVPR_2018_paper.pdf'>VITON: An Image-based Virtual Try-on Network</a> 
+  - <a href='./이론 pdf 파일/딥러닝 논문/VITON/VITON.md'>Paper Review</a>
 
 ### Natural Language
 - <a href='./이론 pdf 파일/딥러닝 이론/LSTM.pdf'>LSTM : Long Short-Term Memory</a>
