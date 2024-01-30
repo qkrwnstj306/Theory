@@ -67,8 +67,8 @@
 
 크게 $2$ 가지 (VITON-HD, Dress Code) 정도가 존재한다. 
 
-1. VITON-HD ($11,647/2,032$) ($1024 \times 765$ resolution)
-2. Dress Code ($1024 \times 765$ resolution)
+1. VITON-HD ($11,647/2,032$) ($1024 \times 768$ resolution)
+2. Dress Code ($1024 \times 768$ resolution)
 
 <p align="center">
 <img src='./img.png'>

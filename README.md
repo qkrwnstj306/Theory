@@ -86,6 +86,7 @@ Theory for ML.
 - <a href='./이론 pdf 파일/딥러닝 이론/SDE/SDE.md'>SDE: Stochastic Differential Equation</a>
 - <a href='./이론 pdf 파일/딥러닝 이론/Multivariate Gaussian Distribution in Generative Models/Multivariate Gaussian Distribution in Generative Models.md'>Multivariate Gaussian Distribution in Generative Models</a>
   - <a href='./PPT/pixel-wise independent learning.pptx'>PPT</a>
+- <a href='./이론 pdf 파일/딥러닝 이론/TV/TV.md'>Total Variation Loss in Generative Models</a>
 
 #### Andrew Ang in Coursera
 - <a href='./이론 pdf 파일/딥러닝 이론/Andrew Ang/Lecture1_230101_184831.pdf'>Lecture 1. Supervised Learning</a>
