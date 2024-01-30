@@ -127,7 +127,7 @@
 
 - Setting
   - $2048$ dimensional representation given by a ResNet $50$ 
-  - ImageNet
+  - 모든 model 은 ImageNet 으로 train
   - Dino, SimCLR
 
 - Additional results: Performance of diffusion models (using Backbone representations, Dino, ImageNet) 

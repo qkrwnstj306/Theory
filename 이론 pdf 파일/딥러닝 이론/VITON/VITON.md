@@ -152,10 +152,11 @@ $\textbf{Solution}$
     - 사실 다른 인코더도 사용할 수 있지만, 목표에 따라 다르다. 즉, 제한 조건이 많은 해당 task 의 경우 강력한 인코더가 필요하다.             
       - <a href='https://github.com/lllyasviel/ControlNet/discussions/188'>관련 실험</a>
   - 2. $+$ condition.            
-    - ControlNet 은 Image-based VITON 에 적합한 구조는 아니다.
+    - **ControlNet (prompt-based) 은 Image-based VITON 에 적합한 구조는 아니다.** $\rightarrow$ 하지만 이 구조 자체가 robust architecture 인 것은 맞음.
     - Input 에 간단한 network 추가 (concat 을 처리하는 용도)
+    - **CLIP-Image encoder 는 $224 \times 224$ 라 resolution 에 맞는 condition 을 뽑기가 어려운데 ControlNet 만을 사용해서 condition 을 받을까?**
   - 3. $+$ model architecture
-    - 입력을 줄 때, noise 뿐만 아니라 다른 정보들도 concat 을 하는데 이때 이 정보들을 짧게 처리해서 넣어주는 건 정보를 온전히 받아들일 수 없다.
+    - 입력을 줄 때, noise 뿐만 아니라 다른 정보들도 concat 을 하는데 이때 이 정보들을 짧게 처리해서 넣어주는 건 정보를 온전히 받아들일 수 없다. $\rightarrow$ **Zero-Kernel**
     - 예시로, Stable-VITON 의 경우 initial conv 로 concat 한 정보들을 처리해서 SD Encoder 로 넣어주려면 $4$ channel 로 압축해야하는데 이는 정보 손실이 일어나는 구간 (병목현상)으로 볼 수 있고, 게다가 SD Encoder network 는 freeze 라 concat 한 새로운 정보를 제대로 받지 못할 수 있다. 즉, Condition의 정보를 제대로 흡수해야한다
   - Training Approach: 
     - Fine-tuning vs Parameter-efficient 
