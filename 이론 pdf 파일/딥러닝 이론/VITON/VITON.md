@@ -141,61 +141,74 @@ $\textbf{Problem 및 전개}$
 
 $\textbf{We Want}$
 
-1. 데이터 증강 및 condition 정보를 잘 받아들여서 (강건한 학습), $(1)$ 적은 데이터셋이나 $(2)$ 배경이 복잡, $(3)$ condition 에 옷만 있는 게 아닌 사람도 존재, $(4)$ input 과 condition 이 같은 사람이여도 처리가능한 모델
-2. 상하의 다 적용가능할 뿐만 아니라, full body 여도 처리가능한 모델
+1. 적은 데이터셋에도 학습이 잘 되는 모델 $\rightarrow$ trainable parameter 가 적은 model
+2. 배경이 복잡해도 작동하는 model
+3. 상하의 다 적용가능할 뿐만 아니라, full body 여도 처리가능한 모델
+4. 사람/옷의 detail (시계, 문신, 옷 색깔 조합 등) 이 보존되는 모델 
+   1. target person detail 의 손실 발생 원인: agnostic-v3.2 가 상반신을 다 덮어서 시계나 문신이 가려지기 때문이다. 
+   2. 이 경우, inference 때에는 해당 부분에는 mask 를 칠하지 않고 진행?
 
 $\textbf{Solution}$
 
-- Method.            
+- Method
+  - Zero-Kernel: image-encoder 도 person info 를 받을때에는 해당 부분을 그대로 이용하면 된다. 
+  - Condition
+    - 1. cloth
+    - 2. agnostic_mask: 왜 필요하지
+      - agnoistic_mask 만 다운 샘플링해서 들어간다. 
+    - 3. image-densepose: pose, shape info of target person 
+    - 4. agnostic-v3.2: target clothing region 을 제외한 나머지 정보 제공 (e.g., 배경, 바지에 대한 모든 정보, 얼굴, etc.)
+    - 5. Canny edge: 원본을 보존할 순 없고, 형태를 보존한다. 
+      - Canny edge 는 target person info 보단, target person cloth info 를 더 많이 제공을 한다. Train 시에는 target person cloth 와 cloth 가 같아서 상관 없겠지만, test 에는 target person cloth 와 cloth 가 달라서 잘못된 정보를 받을 가능성이 있다. 따라서 image-densepose 가 적합하다. 
+  - Implicit Warping: person info 가 들어가야 한다.
+  - Image-encoder: ControlNet 구조를 사용하면 CLIP image encoder 를 사용해서 condition 으로 받을 수 있어야 한다. 
+    - 어떤 image 를 ControlNet 에 줄까
+    - 어떤 image 를 CLIP image encoder 에 줄까
+    - 어떤 image 를 ControlNet 과 CLIP image encoder 에 concat 할까
+
+- Component.            
   - 1. Controlnet.
     - ControlNet 은 입력 제어 맵에서 내용을 인식하는 능력이 강력하다. 즉 강력한 인식 능력을 가지고 있어서 어려운 조건 (e.g., image 가 불명확한 것처럼 정보가 부족한 상황)에서도 잘 작동한다. 
     - 사실 다른 인코더도 사용할 수 있지만, 목표에 따라 다르다. 즉, 제한 조건이 많은 해당 task 의 경우 강력한 인코더가 필요하다.             
       - <a href='https://github.com/lllyasviel/ControlNet/discussions/188'>관련 실험</a>
-  - 2. $+$ condition.            
+      - Controlnet 은 SD model 을 copy 하는 거여서 어쨌든 condtion 이 들어가야 한다. 즉, ControlNet 을 사용하려면 ControlNet 말고도 condition 은 무조건 존재해야된다.  
+  - 2. Image-Encoder (CLIP-Image encoder/ControlNet)         
     - **ControlNet (prompt-based) 은 Image-based VITON 에 적합한 구조는 아니다.** $\rightarrow$ 하지만 이 구조 자체가 robust architecture 인 것은 맞음.
-    - Input 에 간단한 network 추가 (concat 을 처리하는 용도)
-    - **CLIP-Image encoder 는 $224 \times 224$ 라 resolution 에 맞는 condition 을 뽑기가 어려운데 ControlNet 만을 사용해서 condition 을 받을까?**
-  - 3. $+$ model architecture
+    - CLIP-Image encoder 는 $224 \times 224$ 라 resolution 에 맞는 detail condition 을 뽑기가 어렵다.
+  - 3. Zero-Kernel
     - 입력을 줄 때, noise 뿐만 아니라 다른 정보들도 concat 을 하는데 이때 이 정보들을 짧게 처리해서 넣어주는 건 정보를 온전히 받아들일 수 없다. $\rightarrow$ **Zero-Kernel**
     - 예시로, Stable-VITON 의 경우 initial conv 로 concat 한 정보들을 처리해서 SD Encoder 로 넣어주려면 $4$ channel 로 압축해야하는데 이는 정보 손실이 일어나는 구간 (병목현상)으로 볼 수 있고, 게다가 SD Encoder network 는 freeze 라 concat 한 새로운 정보를 제대로 받지 못할 수 있다. 즉, Condition의 정보를 제대로 흡수해야한다
-  - Training Approach: 
-    - Fine-tuning vs Parameter-efficient 
-      - Use LoRA
-    - Freeze U-Net vs Unfreeze
-      - Out-of-Distribution data 가 들어오면 U-Net 은 생성 능력이 떨어진다. 따라서 U-Net 도 학습은 해줘야 한다. 
-    - Train Cross-attention/Self-attention
-      - Existing SD model 은 text-encoder 에 대해서 학습되었다. 즉, 적어도 cross attention 은 학습해야 하고자하는 task 에 맞춰서 domain shift 가 될 것이다.
-        - Ref. IP-Adapter: text encoder $\rightarrow$ image encoder 로 바꿈으로써 cross-attention 학습  
-      - Self-attention: 마찬가지로 학습 data 가 fashion image 이므로 fashion domain 에 맞게 학습해야 한다. 
-      - Ref. prompt-to-prompt: spatial layout and geometric 이 cross-attention 에 의존한다. 
-      - Ref. Textual Inversion: text embedding 만 학습하기 때문에, text embeding 을 아무리 최적화 시켜도 diffusion model 이 학습한 distribution 에 없으면 생성하기가 힘들다. 따라서 diffusion model 도 어떤 방식으로든 학습시켜야한다. 
-  - 4. 옷 사진만이 아니라 옷을 입고 있는 사람을 condition으로도 받고 싶음. 즉, 복잡한 배경의 condition. 심지어 input 과 condition 이 같은 사람이여도 처리
-    - Augmentation.(crop/rotate/upsample) for robustness
-      - crop 하고 upsampling 
-      - reference image 에 사람이 있어도 crop 하고 upsampling
-      - reference image rotation 등의 augmentation 
-      - <a href='../../딥러닝 논문/Paint-by-Example/Paint-by-Example.md'>Painting by example 참고</a>
+
+
+- Training Approach: 
+  - Fine-tuning vs Parameter-efficient 
+    - Use LoRA
+  - Freeze U-Net vs Unfreeze
+    - Out-of-Distribution data 가 들어오면 U-Net 은 생성 능력이 떨어진다. 따라서 U-Net 도 학습은 해줘야 한다. 
+  - Train Cross-attention/Self-attention
+    - Existing SD model 은 text-encoder 에 대해서 학습되었다. 즉, 적어도 cross attention 은 학습해야 하고자하는 task 에 맞춰서 domain shift 가 될 것이다.
+      - Ref. IP-Adapter: text encoder $\rightarrow$ image encoder 로 바꿈으로써 cross-attention 학습  
+    - Self-attention: 마찬가지로 학습 data 가 fashion image 이므로 fashion domain 에 맞게 학습해야 한다. 
+    - Ref. prompt-to-prompt: spatial layout and geometric 이 cross-attention 에 의존한다. 
+    - Ref. Textual Inversion: text embedding 만 학습하기 때문에, text embeding 을 아무리 최적화 시켜도 diffusion model 이 학습한 distribution 에 없으면 생성하기가 힘들다. 따라서 diffusion model 도 어떤 방식으로든 학습시켜야한다. 
 
 - Additional method
-  - 1. Loss function 
-  - 2. Image encoder
+  - 1. Loss function: Total Variation Loss, etc.
 
 - Tip
   - One-stage 로 하려면 결국 warped cloth image information 을 implicit 하게 학습해야 한다. 그러기 위해선 사람 이미지 정보를 줘야 한다. 
-  - E.g., StableVITON: ControlNet input 에 사람 정보 더해주기
+    - E.g., StableVITON: ControlNet input 에 사람 정보 더해주기
+  - **Image 장 수가 적으니까 trainable parameter 가 많으면 안된다.** 
 
 $\textbf{Final Method}$
 
-- Input: Noise, agnoistic map, mask, dense pose
-- Controlnet input: 의류 사진 (augmentation)
-- Image encoder?
-- 아니면, CLIP image encoder 만 사용?
+- (?)
 
 $\textbf{First Experiment}$
 
 1. Stable diffusion model v1.5 + CLIP image encoder + Zero-kernel + classifier-free guidance
 
-2. + LR_scheduler, Augmentation, target person info
+2. Augmentation, target person info
 
 3. vs full fine-tuning
 
@@ -209,3 +222,35 @@ $\textbf{Therefore}$
 2. Reasonable (method 전개) 
 3. Generalization (상하의 가능, 복잡한 배경, 풀바디)
 4. Parameter efficient fine-tuning
+5. Clothing detail 과 target person detail (e.g., 시계, 문신 등)
+
+
+
+$\textbf{Reference Architecture}$
+
+<p align="center">
+<img src='./img_com1.png'>
+</p>
+
+
+<p align="center">
+<img src='./img_com2.png'>
+</p>
+
+<p align="center">
+<img src='./img_com3.png'>
+</p>
+
+<p align="center">
+<img src='./img_com4.png'>
+</p>
+
+<p align="center">
+<img src='./img_com5.png'>
+</p>
+
+
+$\textbf{Question}$
+
+- Condition info 는 성능 향상에 도움이 되고 guide 하기 좋다. 하지만 너무 많은 condition 은 제약이 있다는 말과 동일하여 실제 환경에서는 사용하기 어려울 수 있다. Condition 이 얼마나 잘 주어지냐에 따라 성능 변동 요인이 많아질수도 있다. 
+  - Generative model 의 성능이 올라갔다면, 그에 따라 condition 을 real env 에 맞게 간편하게 바꿀 필요가 있지 않을까?

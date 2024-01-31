@@ -167,9 +167,11 @@ $\textbf{Dataset}$: VITON-HD, Dress-Code (virtual try-on datasets), SHHQ-1.0 (hu
 
 ### <strong>Question</strong>
 - CLIP Image encoder 에 똑같이 cloth 를 넣어주는 이유?
-  - Classifier free guidance 를 사용하기 위해서?
+  - Classifier free guidance 를 사용하기 위해서도 맞고
+  - SD 를 copy 했다는 말은 ControlNet 구조에서도 condition 을 받아야한다는 말이 되므로 ControlNet 을 제외한 condition 이 하나 더 있어야 한다. 그게 CLIP Image encoder 
 
 - What is difference from ControlNet?
+  - ControlNet 과는 다르게 더해주지 않고 Cross attention 을 학습시켰다. 
   - Loss term
 
 - Limitation

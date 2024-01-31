@@ -180,6 +180,7 @@ Theory for ML.
 	+ <a href='https://github.com/qkrwnstj306/Prompt-to-Prompt'>Code Practice</a>
 - <a href='./이론 pdf 파일/딥러닝 논문/InstructPix2Pix_231014_141433.pdf'>InstructPix2Pix: Learning to Follow Image Editing Instructions</a>
 - <a href='./이론 pdf 파일/딥러닝 논문/ControlNet_231018_163832.pdf'>ControlNet : Adding Conditional Control to Text-to-Image Diffusion models</a>
+  - <a href='./이론 pdf 파일/딥러닝 논문/ControlNet/ControlNet.md'>Paper Review</a>
 - <a href='./이론 pdf 파일/딥러닝 논문/Repaint/RePaint  Inpainting using Denoising Diffusion Probabilistic Models.pdf'>RePaint: Inpainting using Denoising Diffusion Probabilistic Models</a>
 	* <a href='./이론 pdf 파일/딥러닝 논문/Repaint/RePaint  Inpainting using Denoising Diffusion Probabilistic Models.md'>Paper Review</a>
 	* <a href='./PPT/RePaint.pptx'>RePaint ppt</a>

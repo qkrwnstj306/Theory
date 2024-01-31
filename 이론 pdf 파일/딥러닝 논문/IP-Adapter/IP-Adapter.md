@@ -16,7 +16,7 @@
 
 > Core Idea
 <div align=center>
-<strong>"test1"</strong></br>
+<strong>"All existing SD frameworks are frozen, learning only cross-attention to image embedding"</strong></br>
 </div>
 
 ***
