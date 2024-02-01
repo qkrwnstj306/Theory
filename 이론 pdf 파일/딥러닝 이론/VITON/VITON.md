@@ -165,6 +165,11 @@ $\textbf{Solution}$
     - 어떤 image 를 ControlNet 에 줄까
     - 어떤 image 를 CLIP image encoder 에 줄까
     - 어떤 image 를 ControlNet 과 CLIP image encoder 에 concat 할까
+    - CLIP image encoder 의 경우, self-referencing 을 걱정하지 않아도 된다. 즉, 정보 병목 현상을 제거해도 된다. ([CLS] token 만 사용하는 것이 아닌, 모든 token 을 사용해도 됨)
+      - 1. Paint-by-Example 과는 달리 input 과 reference 가 완전 동일하지 않다. 
+      - 2. 일반적으로 clothing 을 warp 해야 하니, 복사 및 붙여넣기가 안된다. 
+      - 다음과 같이 진행하면, 옷의 대한 정보를 더 잘 추출할 수 있다. 
+  - Augmentation: Paint-by-Example 과 달리 self-referencing 이 아니여서 strong augmentation 이 아닌 rotation/flip 과 같은 간단한 거를 사용해도 된다. (in Diffuse to Choose)
 
 - Component.            
   - 1. Controlnet.
@@ -193,7 +198,7 @@ $\textbf{Solution}$
     - Ref. Textual Inversion: text embedding 만 학습하기 때문에, text embeding 을 아무리 최적화 시켜도 diffusion model 이 학습한 distribution 에 없으면 생성하기가 힘들다. 따라서 diffusion model 도 어떤 방식으로든 학습시켜야한다. 
 
 - Additional method
-  - 1. Loss function: Total Variation Loss, etc.
+  - 1. Loss function: Total Variation Loss, Perceptual Loss etc.
 
 - Tip
   - One-stage 로 하려면 결국 warped cloth image information 을 implicit 하게 학습해야 한다. 그러기 위해선 사람 이미지 정보를 줘야 한다. 
@@ -228,22 +233,33 @@ $\textbf{Therefore}$
 
 $\textbf{Reference Architecture}$
 
+- Instant ID
+
 <p align="center">
 <img src='./img_com1.png'>
 </p>
 
+- StableVITON
+  - Warping clothing 을 만들기 위해 ControlNet input 에 person info 를 concat 한다.
 
 <p align="center">
 <img src='./img_com2.png'>
 </p>
 
+- IP-Adapter
+
 <p align="center">
 <img src='./img_com3.png'>
 </p>
 
+- Diffuse to Choose paper
+  - Warping clothing 을 만들기 위해 pixel-level 의 hint 를 제공한다. 
+
 <p align="center">
 <img src='./img_com4.png'>
 </p>
+
+- Paint-by-Example
 
 <p align="center">
 <img src='./img_com5.png'>
@@ -254,3 +270,27 @@ $\textbf{Question}$
 
 - Condition info 는 성능 향상에 도움이 되고 guide 하기 좋다. 하지만 너무 많은 condition 은 제약이 있다는 말과 동일하여 실제 환경에서는 사용하기 어려울 수 있다. Condition 이 얼마나 잘 주어지냐에 따라 성능 변동 요인이 많아질수도 있다. 
   - Generative model 의 성능이 올라갔다면, 그에 따라 condition 을 real env 에 맞게 간편하게 바꿀 필요가 있지 않을까?
+
+
+
+### Related Work
+
+
+*VITON paper 의 다른 related work 를 보고 추가하자*
+
+- DreamPaint: Dreambooth 를 이용하여 text token 에 subject 를 binding 시키고 inpainting model 을 이용하여 Virtual try-on 을 하는 method 를 제안했다. 
+  - Item 의 detail 을 잘 보존하지만 real-time application 에 최적화되어있지 않다. 
+
+- Paint by Example 은 zero-shot setting 에서 작동하며 in-the-wild image 도 처리할 수 있다. 그러나 reference image 의 [CLS] token 만을 활용하는 conditioning process 에서 information bottleneck 이 발생합니다. 
+  - 이 제약으로 인해, reference image 의 일반화가 지나치게 이루어지며, 필수적인 세밀한 세부 정보를 유지할 수 있는 모델의 능력이 저하됩니다.
+
+- VITON: Two-step (synthesis and refinement process), 초기에 생성된 coarse image 와 desired clothing 을 이용하여 detaile 을 강화시키기 위해 refine 한다. 
+- VITON-HD: higher-resolution image 에 초점을 맞췄고 misaligned parts 를 정렬시키기 위해 alignment-aware segment normaliaation 를 사용한다. 
+- TryOnGAN: pose conditioning 을 사용하지만 purely latent model 에 의존하여 의류를 표현할 때 종종 세세한 세부 사항이 부족하다. 
+- TryOnDiffusion: pixel-level diffusion model 에 dual U-Net 으로 접근했다. 가상 시착에 대해서는 인상적인 성능을 제공하지만 in-the-wild example 에는 어려움을 겪고있다. 상의만 지원하며, 실시간 사용에 적합하지 않다. 
+- 실제 사용 사례에서 실시간 추론을 보장하기 위해서는 latent diffusion approach 가 필요하다.
+- Diffuse to Choose
+  - Pose conditioning 을 도입하여 이를 완화할 수 있지만, 본 논문은 virtual try-all 이기 때문에 더 넓은 적용 가능성을 위해 task-specific auxiliary input 보다 일반적인 목적을 우선시했다.
+  - 더 큰 image encoder 사용 (모든 token 사용)
+  - Perceptual loss 사용
+  - Hint signal: reference image 로부터 pixel-level 의 세밀한 세부 정보를 main U-Net 으로 전달
