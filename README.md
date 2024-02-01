@@ -216,6 +216,8 @@ $\textbf{VITON}$
   - <a href='./이론 pdf 파일/딥러닝 논문/TryOnDiffusion/TryOnDiffusion.md'>Paper Review</a>
 - <a href='https://openaccess.thecvf.com/content_cvpr_2018/papers/Han_VITON_An_Image-Based_CVPR_2018_paper.pdf'>VITON: An Image-based Virtual Try-on Network</a> 
   - <a href='./이론 pdf 파일/딥러닝 논문/VITON/VITON.md'>Paper Review</a>
+- <a href='https://arxiv.org/pdf/2401.13795.pdf'>Diffuse to Choose: Enriching Image Conditioned Inpainting in Latent Diffusion Models for Virtual Try-All</a>
+  - <a href='./이론 pdf 파일/딥러닝 논문/Diffuse-to-choose/Diffuse-to-choose.md'>Paper Review</a>
 
 ### Natural Language
 - <a href='./이론 pdf 파일/딥러닝 이론/LSTM.pdf'>LSTM : Long Short-Term Memory</a>
