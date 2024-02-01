@@ -58,13 +58,13 @@
 
 - Source image $X_s \in R^{H \times W \times 3}$
 - Edit region 은 사각형이나 irregular shape 둘 다 가능
-- Binary mask $m \in$ {$0,1$}$^{H \times W}$
+- Binary mask $m \in$ { $0,1$ } $^{H \times W}$
   - $1$ 이 수정가능한 영역이다. 
 - Reference image $X_r \in R^{H' \times W' \times 3}$
-- 우리의 목적은 {$X_s, X_r, m$} 으로부터, image $Y$ 를 생성하는 것이다.
+- 우리의 목적은 { $X_s, X_r, m$ } 으로부터, image $Y$ 를 생성하는 것이다.
 
 - Training data
-  - {$(\bar m \odot X_s, X_r, m),X_s$}: (원본 이미지에 object 마스킹 된 이미지, 참조 이미지, mask image, ground truth)
+  - { $(\bar m \odot X_s, X_r, m),X_s$ }: (원본 이미지에 object 마스킹 된 이미지, 참조 이미지, mask image, ground truth)
   - 실제 학습에는 $m$ 이 들어가지는 않는다. 
 
 - Text-guided inpainting model 의 경우 condition $c$ 는 text 가 입력으로 들어간 pre-trained CLIP text encoder 의 output ($77$ token) 이다.
