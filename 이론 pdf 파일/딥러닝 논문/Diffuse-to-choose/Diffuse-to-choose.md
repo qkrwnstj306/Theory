@@ -106,7 +106,7 @@ $\textsf{U-Net encoder} \rightarrow \textsf{FiLM} \rightarrow \textsf{U-Net deco
 - Hint Encoder's output 을 main U-Net decoder 에 skip-connection 형태로 직접 추가하는 것은 종종 source image 와 공간적으로 일치하지 않는 Hint signal 로부터 뚜렷한 공간적 영향을 가져와서 부정적인 영향을 끼친다. 
   - 즉, hint signal 이 제대로 된 signal 이 아닐 수 있다. 
 - 따라서, 본 논문에서는 총 $3$ 가지 방법 중에서 고민했다. (Direct addition, Feature-wise Linear Modulation (FiLM), cross attention)
-  - FiLM 이 reference image 의 low-level detail 을 capture 하고 있어서 가장 효과적인 것으로 나타나서  
+  - FiLM 이 reference image 의 low-level detail 을 capture 하고 있어서 가장 효과적인 것으로 나타났다.
 
 $\textsf{Hinting Strategies}$
 
@@ -141,14 +141,14 @@ $\textsf{Refinement Loss}$
 ### <strong>Experiment</strong>
 
 - 내부 데이터셋/VITONHD-NoFace
-- SD V$1.5$
+- SD V $1.5$
 - Image resolution: $512 \times 512$
 - LR: $1e-5$
 - Train using DDPM sampler 
 - Simple Augmentation: rotation and flip (Paint-by-Example 과 같은 strong augmentation 은 사용하지 않음)
   - Self-referencing 이 아니기 때문에 강력한 augmentation 을 사용할 필요가 없다. 
 - Inference: guidance $5$, DDIM sampler
-- Epoch: $40$, $8$ 개의 NVIDIA A$100$ $40$G GPU
+- Epoch: $40$, $8$ 개의 NVIDIA A $100$ $40$ G GPU
 
 
 - VS Paint-by-Example Variants on VITONHD-NoFace

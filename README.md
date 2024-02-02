@@ -218,6 +218,8 @@ $\textbf{VITON}$
   - <a href='./이론 pdf 파일/딥러닝 논문/VITON/VITON.md'>Paper Review</a>
 - <a href='https://arxiv.org/pdf/2401.13795.pdf'>Diffuse to Choose: Enriching Image Conditioned Inpainting in Latent Diffusion Models for Virtual Try-All</a>
   - <a href='./이론 pdf 파일/딥러닝 논문/Diffuse-to-choose/Diffuse-to-choose.md'>Paper Review</a>
+- <a href='https://openaccess.thecvf.com/content_ECCV_2018/papers/Bochao_Wang_Toward_Characteristic-Preserving_Image-based_ECCV_2018_paper.pdf'>CP-VTON: Toward Characteristic-Preserving Image-Based Virtual Try-On Network</a>
+  - <a href='./이론 pdf 파일/딥러닝 논문/CP-VTON/CP-VTON.md'>Paper Review</a>
 
 ### Natural Language
 - <a href='./이론 pdf 파일/딥러닝 이론/LSTM.pdf'>LSTM : Long Short-Term Memory</a>

@@ -33,8 +33,8 @@
 
 ### <strong>Method</strong>
 
-- 본 논문에서는, $3$D 정보 없이, image-based virtual try-on network 를 제안한다. 
-  - $2$-step 으로 나뉘는데
+- 본 논문에서는, $3$ D 정보 없이, image-based virtual try-on network 를 제안한다. 
+  - $2$ -step 으로 나뉘는데
   - $1$ step: 같은 포즈의 같은 사람에 대해 target clothing item 을 overlaid 하는 coarse synthesized image 를 만든다. 
   - $2$ step: Refinement network 로 initial blurry clothing area 를 강화한다. 
 
@@ -47,11 +47,11 @@
   - Pose heatmap
     - 1. State-of-the-art pose estimator 를 사용하여 pose information 을 추출한다.
       - Using *Realtime multi-person 2d pose estimation using part affinity fields. In CVPR,2017*
-    - 2. $18$ keypoints coordinates 를 가지는데, 각 key-point 의 $11 \times 11$ neiborhood 는 $1$ (white) 로 채우고 나머지는 $0$ 으로 채운다. 즉, 최종 차원은 다음과 같다. {$0,1$} $\in R^{h \times w \times 18}$
+    - 2. $18$ keypoints coordinates 를 가지는데, 각 key-point 의 $11 \times 11$ neiborhood 는 $1$ (white) 로 채우고 나머지는 $0$ 으로 채운다. 즉, 최종 차원은 다음과 같다. { $0,1$ } $\in R^{h \times w \times 18}$
   - Human body representation
     - 1. State-of-the-art human parser 를 사용하여 human segmentation map 을 추출한다.
       - 팔이나 다리는 다른 segmentation 으로 표현이 되는데 본 논문에서는 $1$ channel 을 가지는 binary mask 로 만든다. 
-      - Body shape 과 target clothing 이 맞지 않을 때의 artifacts 를 피하기 위해서 $16 \times 12$ 로 downsampling 된다. 즉, {$0,1$} $\in R^{16 \times 12 \times 1}$
+      - Body shape 과 target clothing 이 맞지 않을 때의 artifacts 를 피하기 위해서 $16 \times 12$ 로 downsampling 된다. 즉, { $0,1$ } $\in R^{16 \times 12 \times 1}$
       - Using *Look into person: Self-supervised structure-sensitive learning and a new benchmark for human parsing. In CVPR, 2017.*
   - Face and hair segment 
     - Person 의 identity 를 유지하기 위해 사용된다. (e.g., skin color, hair style, etc.)

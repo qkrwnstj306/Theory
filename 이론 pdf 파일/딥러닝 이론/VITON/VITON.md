@@ -26,6 +26,7 @@
   - CP VITON
   - LA-VITON
   - CP-VTON+
+  - C-VTON
   - ACGPN
   - PF-AFN
   - <a href='../../딥러닝 논문/VITON-HD/VITON-HD.md'>VITON-HD</a>
@@ -105,6 +106,7 @@ VITON-HD, HR-VITON, StableVITON 은 같은 저자라고 보면 된다.
   3. CP-VTON
   4. CP-VTON+
   5. GP-VTON
+  6. C-VTON
 
 #### <strong>Evaluation</strong>
 
@@ -271,6 +273,17 @@ $\textbf{Question}$
 - Condition info 는 성능 향상에 도움이 되고 guide 하기 좋다. 하지만 너무 많은 condition 은 제약이 있다는 말과 동일하여 실제 환경에서는 사용하기 어려울 수 있다. Condition 이 얼마나 잘 주어지냐에 따라 성능 변동 요인이 많아질수도 있다. 
   - Generative model 의 성능이 올라갔다면, 그에 따라 condition 을 real env 에 맞게 간편하게 바꿀 필요가 있지 않을까?
 
+
+### Introduction
+
+- online-shopping 
+  - 이 시장에 대한 얘기, 중요성 강조
+- VITON
+- difficulty
+- 간단한 다른 연구들의 소개
+- 다른 연구들의 한계
+- 우리가 해결하고자 하는 것과 이들과의 다른 점 
+- Our Contribution
 
 
 ### Related Work
