@@ -27,10 +27,10 @@
   - 즉, original cloth 를 묘사하는 key characteristics (e.g., texture, logo, embroidery (자수, 자수품)) 를 잘 보존해야 한다. 
 - 하지만, 이전의 image-conditioned generation works 는 input image 와 target cloth 사이의 spatial misalignment 를 다루지 못해서, 이런 중요한 요구사항들을 만족시키지 못했다.  
 - 이전의 연구들은 shape context matching 을 사용하여 명시적으로 spatial deformation 을 다루고자 했다. 하지만, coarse-to-fine strategy 로 인해 clothing detail 을 보존하는데 실패했다. 
-- 본 연구에서는, real-world challenge 를 다루기 위해 새로운 fully-learable Characteristic-Preserving Virtual Try-On Network (CP-VTON) 을 제안한다. 
+- 본 연구에서는, real-world challenge 를 다루기 위해 새로운 fully-learnable Characteristic-Preserving Virtual Try-On Network (CP-VTON) 을 제안한다. 
   - 1. CP-VTON 은 new Geometric Matching Module (GMM) 을 통해 cloth 를 target person shape 에 맞추기 위해 thin-plate spline transformation 을 학습한다. 
     - 이전의 연구에선, interest point 의 correspondence 를 계산했다. (Hand-crafted shape context matching)
-    - Thin-plate spline transformation 은 full learnable 이다. 
+    - 여기서의 thin-plate spline transformation 은 full learnable 이다. 
   - 2. warped cloth 의 boundary artifacts 를 완화하고, 현실적인 결과물을 위해 warped cloth 와 rendered image 를 통합하는 composition mask 를 학습하는 Try-On Module 을 사용한다. 
 
 ***

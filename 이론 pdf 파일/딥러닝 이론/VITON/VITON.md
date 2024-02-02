@@ -91,11 +91,13 @@ VITON-HD, HR-VITON, StableVITON 은 같은 저자라고 보면 된다.
   1. VITON-HD: VITON-HD 
   2. HR-VITON: VITON-HD 
   3. StableVITON: VITON-HD & Upper body in DressCode
+  4. CP-VTON: VITON
 
 - Test
   1. VITON-HD: VITON-HD
   2. HR-VITON: VITON-HD
   3. StableVITON: VITON-HD & Upper body in DressCode & SHHQ-1.0 & Web-crawled images
+  4. CP-VTOn: VITON
 
 - Exception
   1. TryOnDiffusion: train - $4$ Million sample, test - $6$ K sample
@@ -123,6 +125,7 @@ ceptual image patch similarit), FID ( frechet inception distance)
 - Exception
   1. TryOnDiffusion: FID, KID
   2. VITON: IS
+  3. CP-VTON: IS
 
 #### <strong>My Method</strong>
 
@@ -161,7 +164,8 @@ $\textbf{Solution}$
     - 3. image-densepose: pose, shape info of target person 
     - 4. agnostic-v3.2: target clothing region 을 제외한 나머지 정보 제공 (e.g., 배경, 바지에 대한 모든 정보, 얼굴, etc.)
     - 5. Canny edge: 원본을 보존할 순 없고, 형태를 보존한다. 
-      - Canny edge 는 target person info 보단, target person cloth info 를 더 많이 제공을 한다. Train 시에는 target person cloth 와 cloth 가 같아서 상관 없겠지만, test 에는 target person cloth 와 cloth 가 달라서 잘못된 정보를 받을 가능성이 있다. 따라서 image-densepose 가 적합하다. 
+      - Canny edge 는 target person info 보단, target person cloth info 를 더 많이 제공을 한다. Train 시에는 target person cloth 와 cloth 가 같아서 상관 없겠지만, test 에는 target person cloth 와 cloth 가 달라서 잘못된 정보를 받을 가능성이 있다. 따라서 image-densepose 가 적합하다.
+    - 6. Cloth mask: clothing 에 white region 이 많다면 model 은 해당 부분이 옷의 일부분인지 배경인지 구분하기 어렵다.  
   - Implicit Warping: person info 가 들어가야 한다.
   - Image-encoder: ControlNet 구조를 사용하면 CLIP image encoder 를 사용해서 condition 으로 받을 수 있어야 한다. 
     - 어떤 image 를 ControlNet 에 줄까

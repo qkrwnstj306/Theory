@@ -220,6 +220,8 @@ $\textbf{VITON}$
   - <a href='./이론 pdf 파일/딥러닝 논문/Diffuse-to-choose/Diffuse-to-choose.md'>Paper Review</a>
 - <a href='https://openaccess.thecvf.com/content_ECCV_2018/papers/Bochao_Wang_Toward_Characteristic-Preserving_Image-based_ECCV_2018_paper.pdf'>CP-VTON: Toward Characteristic-Preserving Image-Based Virtual Try-On Network</a>
   - <a href='./이론 pdf 파일/딥러닝 논문/CP-VTON/CP-VTON.md'>Paper Review</a>
+- <a href='https://minar09.github.io/cpvtonplus/cvprw20_cpvtonplus.pdf'>CP-VTON+: Clothing Shape and Texture Preserving Image-Based Virtual Try-On</a>
+  - <a href='./이론 pdf 파일/딥러닝 논문/CP-VTON+/CP-VTON+.md'>Paper Review</a>
 
 ### Natural Language
 - <a href='./이론 pdf 파일/딥러닝 이론/LSTM.pdf'>LSTM : Long Short-Term Memory</a>
