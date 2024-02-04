@@ -97,7 +97,7 @@ VITON-HD, HR-VITON, StableVITON 은 같은 저자라고 보면 된다.
   1. VITON-HD: VITON-HD
   2. HR-VITON: VITON-HD
   3. StableVITON: VITON-HD & Upper body in DressCode & SHHQ-1.0 & Web-crawled images
-  4. CP-VTOn: VITON
+  4. CP-VTON: VITON
 
 - Exception
   1. TryOnDiffusion: train - $4$ Million sample, test - $6$ K sample

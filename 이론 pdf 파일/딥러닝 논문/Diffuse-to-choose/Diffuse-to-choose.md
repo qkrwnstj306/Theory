@@ -122,7 +122,7 @@ $\textsf{Hinting Strategies}$
 
 $\textsf{Image Encoder}$
 
-- DINOV$2$ 를 사용하며 이는 reference image 를 나타내기 위해 $256 \times 1536$ 차원의 임베딩을 출력하고, 이를 학습 가능한 MLP layer 에 의해 $256 \times 768$ 로 축소한다. 
+- DINOV $2$ 를 사용하며 이는 reference image 를 나타내기 위해 $256 \times 1536$ 차원의 임베딩을 출력하고, 이를 학습 가능한 MLP layer 에 의해 $256 \times 768$ 로 축소한다. 
 
 $\textsf{Refinement Loss}$
 
