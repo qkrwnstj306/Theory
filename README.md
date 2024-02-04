@@ -243,6 +243,12 @@ $\textbf{VITON}$
 - <a href='./이론 pdf 파일/딥러닝 논문/CLIP(contrasting language image pre training)_230527_225717.pdf'>CLIP: Learning Transferable Visual Models From Natural Language Supervision</a>
 	* <a href='./PPT/contrastive learning.pptx'>Constrastive Learning PPT</a>
 
+### Self-Supervised Learning
+
+- <a href='https://arxiv.org/abs/2002.05709'>SimCLR: A Simple Framework for Contrastive Learning of Visual Representations</a>
+  - <a href='./이론 pdf 파일/딥러닝 논문/SimCLR/SimCLR.md'>Paper Review</a>
+- <a href='https://arxiv.org/pdf/2104.14294.pdf'>DINO: Emerging Properties in Self-Supervised Vision Transformers</a>
+  - <a href='./이론 pdf 파일/딥러닝 논문/DINO/DINO.md'>Paper Review</a>
 
 ### Anomaly Detection
 - <a href='./이론 pdf 파일/딥러닝 논문/Anomaly detection at microsoft_230810_204913.pdf'>Time-Series Anomaly Detection Service at Microsoft</a>
@@ -318,8 +324,6 @@ $\textbf{VITON}$
 - <a href='./University Lecture/Lee/이기송 논문 리뷰 실습 in colab, ainize_230101_192633.pdf'>UAV-Assisted Wireless-Powered Two-Way communications</a>
 
 # 6. Simple paper review
-- <a href='https://arxiv.org/abs/2002.05709'>SimCLR: A Simple Framework for Contrastive Learning of Visual Representations</a>
-	* <a href='./이론 pdf 파일/딥러닝 논문/SimCLR/SimCLR.md'>Paper Review</a>
 - <a href='https://arxiv.org/pdf/1503.02531.pdf'>Distilling the knowledge in a Neural Network</a>
 	* <a href='./이론 pdf 파일/딥러닝 논문/Distilling/Distilling.md'>Paper Review</a>
 - <a href='https://arxiv.org/pdf/1710.09412.pdf'>Mixup: Beyond Empirical Risk Minimization</a>

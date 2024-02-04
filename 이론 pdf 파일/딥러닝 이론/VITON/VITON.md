@@ -183,9 +183,16 @@ $\textbf{Solution}$
     - 사실 다른 인코더도 사용할 수 있지만, 목표에 따라 다르다. 즉, 제한 조건이 많은 해당 task 의 경우 강력한 인코더가 필요하다.             
       - <a href='https://github.com/lllyasviel/ControlNet/discussions/188'>관련 실험</a>
       - Controlnet 은 SD model 을 copy 하는 거여서 어쨌든 condtion 이 들어가야 한다. 즉, ControlNet 을 사용하려면 ControlNet 말고도 condition 은 무조건 존재해야된다.  
-  - 2. Image-Encoder (CLIP-Image encoder/ControlNet)         
+  - 2. Image-Encoder (CLIP-Image or DINOv2 encoder/ControlNet)         
     - **ControlNet (prompt-based) 은 Image-based VITON 에 적합한 구조는 아니다.** $\rightarrow$ 하지만 이 구조 자체가 robust architecture 인 것은 맞음.
     - CLIP-Image encoder 는 $224 \times 224$ 라 resolution 에 맞는 detail condition 을 뽑기가 어렵다.
+      - Pre-trained CLIP-Image encoder 는 입력을 $224 \times 224$ 로만 받는다. 
+      - CLIP 은 text-image alignment 를 향상시키게끔 학습되었고, 우리의 task 는 text 와는 연관이 없으니 오히려 DINOv2 가 낫다.
+    - DINOv2 image encoder 는 input resolution 을 patch size ( $14$ ) 로 나눌 수 있으면 제한 없이 받을 수 있다. 학습된 데이터 양 ( $400$ M(CLIP) vs $142$ M)은 적지만, parameter CLIP 보다 많고 ImageNet dataset 으로 학습했기 때문에 (realistic style) fashion domain 에서도 적합하다. 
+      - 내가 $512 \times 384$ resolution 을 사용한다면 DINOv2 input 으론 $518 \times 392$ 또는, $518 \times 378$ 이 들어가야 한다. 
+      - CLIP image encoder 보다 parameter 가 많다. 
+        - $427,616,512$ (CLIP) vs $1,136,480,768$ 
+      - DINOv2 를 사용하는 경우, DINO 는 self-supervised learning 으로 학습되었으니 굳이 backbone 을 학습시키지 않고 projector 부분만 학습을 진행해도 된다. (또는, backbone 에서의 attention 부분만)
   - 3. Zero-Kernel
     - 입력을 줄 때, noise 뿐만 아니라 다른 정보들도 concat 을 하는데 이때 이 정보들을 짧게 처리해서 넣어주는 건 정보를 온전히 받아들일 수 없다. $\rightarrow$ **Zero-Kernel**
     - 예시로, Stable-VITON 의 경우 initial conv 로 concat 한 정보들을 처리해서 SD Encoder 로 넣어주려면 $4$ channel 로 압축해야하는데 이는 정보 손실이 일어나는 구간 (병목현상)으로 볼 수 있고, 게다가 SD Encoder network 는 freeze 라 concat 한 새로운 정보를 제대로 받지 못할 수 있다. 즉, Condition의 정보를 제대로 흡수해야한다
