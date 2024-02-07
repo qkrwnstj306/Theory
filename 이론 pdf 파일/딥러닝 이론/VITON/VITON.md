@@ -193,9 +193,21 @@ $\textbf{Solution}$
       - CLIP image encoder 보다 parameter 가 많다. 
         - $427,616,512$ (CLIP) vs $1,136,480,768$ 
       - DINOv2 를 사용하는 경우, DINO 는 self-supervised learning 으로 학습되었으니 굳이 backbone 을 학습시키지 않고 projector 부분만 학습을 진행해도 된다. (또는, backbone 에서의 attention 부분만)
+      - Diffuse to Choose 의 논문에서도 DINOv2 를 사용했다.
+        - $224 \times 224 \times 3$ 의 input image 를 통해 [CLS] + patch token 을 사용하여 $(256 + 1) \times 1536$ 의 output dimension 을 image embedding 으로써 사용했다. 
+        - 하지만, DINOv2 논문의 *Sec.4 Adapting the resolution* 와 *Appendix B.2* 에서 언급했듯이 $224 \times 224$ 로 학습하고 $10$ K 만큼 $512 \times 512$ 학습했기 때문에 $512 \times 384$ 에도 잘 작동할 것이다.  
+        - <a href='https://github.com/facebookresearch/dinov2/issues/211'>Ref. Issue</a>
+        - DINOv2 Visualization: <a href='https://github.com/facebookresearch/dinov2/issues/90'>Ref. Issue</a>, <a href='https://gitlab.com/ziegleto-machine-learning/dino/-/tree/main/'>Ref. Issue 2</a>
   - 3. Zero-Kernel
     - 입력을 줄 때, noise 뿐만 아니라 다른 정보들도 concat 을 하는데 이때 이 정보들을 짧게 처리해서 넣어주는 건 정보를 온전히 받아들일 수 없다. $\rightarrow$ **Zero-Kernel**
     - 예시로, Stable-VITON 의 경우 initial conv 로 concat 한 정보들을 처리해서 SD Encoder 로 넣어주려면 $4$ channel 로 압축해야하는데 이는 정보 손실이 일어나는 구간 (병목현상)으로 볼 수 있고, 게다가 SD Encoder network 는 freeze 라 concat 한 새로운 정보를 제대로 받지 못할 수 있다. 즉, Condition의 정보를 제대로 흡수해야한다
+  - 4. Decoupled-condition
+    - ControlNet 에는 target person info, SD 에는 clothing info 를 준다. 
+    - 즉, cloth agnostic mask (clothing region 이 masking 된) 와 clothing image 가 입력
+    - 이로써 얻을 수 있는 이점은 다음과 같다
+      1. 추가적인 정보를 전달해, Warping process 를 강화시킬 수 있다. 
+      2. SD encoder 에 기본적인 옷의 정보를 전달하여 시작할 수 있다.
+      3. Patch 별로 정보를 전달 할 수 있다. 
 
 
 - Training Approach: 
