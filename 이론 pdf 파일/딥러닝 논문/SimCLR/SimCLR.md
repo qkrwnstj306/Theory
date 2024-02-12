@@ -79,7 +79,12 @@
 ### <strong>Conclusion</strong>
 - 유사도를 측정하는 cosine-similarity 를 사용했지만, 특정 이미지와 얼마나 다른 지는 측정할 수 없다. 
   - 밀어내는 정도를 학습하거나 지정할 수 없기 때문에..!
-- Batch size 를 크게 해서 negative sample 들이 많은 상태가 좋다. 
+- Contrastive Learning 은 유사성을 고려하지 않는다. 즉, 같은 class 여도 negative pair 로 정의되기 때문에 다른 embedding 값을 가질 수 있다. 이 문제는 class 가 아닌 instance 별로 positive / negative sample 을 나눠서 발생한다. 
+- 또한, contrastive learning 은 batch size 가 커야한다. 학습이 진행되면서 target 이 변하는 online 형태로 학습이 진행되기 때문이다.
+  - Instance 별로 학습하기에 여러 예시를 보고 negative 를 학습해야 한다. 그렇지 않고 일부 batch 에 대해서만 학습을 진행한다면 잘못된 embedding 값으로 수렴할 수 있다. 
+  - 여기서의 target 을 학습이 완료된 representation 이라고 가정해보자. 일반적인 classification 에서는 고정된 label 값에 대해서 representation 을 뽑으면 되지만 이 방법론은 정해진게 없이 contrastive learning 으로 서로 밀어내면서 특정 embedding 값으로 수렴을 할텐데 이때 예시를 많이 줘서 negative 를 충분히 고려해야한다.
+  - 따라서 batch 에 따라 얼마든지 학습이 완료된 representation 이 바뀔 수 있다. 즉, batch 에 의존적이다. (일반적인 classification 에서는 학습이 완료된 representation 을 얻을 때 batch 에 의존적이지는 않다)
+
 
 ***
 

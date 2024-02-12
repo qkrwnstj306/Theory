@@ -87,6 +87,7 @@
 
 - Refinement Network
   - **Warped clothing item**: shape context matching 을 활용하는 *thin plate spline (TPS)* transformation 을 예측함으로써, clothing item 을 warp 한다. $c$' 생성.
+    - 이때의 TPS 는 matlab code 로 구현되어 있다. (+ hand-crafted feature)
   - $c$' 과 $I$' 을 입력으로 refinement network 에 넣었을 때, 합성된 이미지 $I$' 에 $c$' 을 clothing region 과 완벽하게 결합하고, 몸 앞에 팔이나 머리가 있는 경우에도 occlusion 을 적절하게 처리하는 것을 기대한다. 
   - Output: $1$ -channel composition mask $\alpha \in (0,1)^{m \times n}$
     - $c$' 과 $I$' 에서 얼마나 많은 정보가 사용되는 지를 나타낸다. 
@@ -131,7 +132,7 @@ $\textsf{Training setup}$
 
 - Adam optimizer with $\beta_1 = 0.5, \beta_2 = 0.999$
 - Fixed LR: $0.0002$
-- Encoder-decoder/Refinement network: $15$ K/$6$ K steps with a batch size $16$
+- Encoder-decoder/Refinement network: $15$ K/ $6$ K steps with a batch size $16$
 - Resolution: $256 \times 192$
 - $\lambda_{warp} = 0.1, \lambda_{TV} = 5e-6$
 

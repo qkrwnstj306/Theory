@@ -22,7 +22,7 @@
 ### <strong>Intro</strong>
 - introduction은 주로 3 paragraph 정도로는 구성
 - 각 문단은 전달하고 싶은 메세지가 명확하게 하나로 있어야 하고 문단 간 연결이 매끄러워야 한다.
-- Method의 기술적인 detail이 포함될 필요는 없다.
+- Method의 기술적인 detail이 포함될 필요는 없다. High-level 로 설명
 - 이 연구가 활발히 진행되고 있고
 - 왜 각광을 받고 있는지
 - 근데 무슨 문제가 있고

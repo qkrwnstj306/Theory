@@ -16,14 +16,14 @@
 
 > Core Idea
 <div align=center>
-<strong>"test1"</strong></br>
+<strong>"Advanced CP-VTON"</strong></br>
 </div>
 
 ***
 
 ### <strong>Intro</strong>
 
-- CP-VTON 과는 다른 저자 (China) 들이다. 
+- CP-VTON (China) 과는 다른 저자들이다. 
 - 최근에 제안된 image-based VTON 접근법들은 몇 가지 어려움이 있다. 
   - 1. Clothing warping networks 는 종종 매우 왜곡되고 align 되지 않은 warped cloth 를 생성하는데, 이는 잘못된 clothing agnostic human representation (의류 영역이 masking 된 사람), clothing-human matching 을 위한 input image 의 불일치, 부적절한 regularization transform parameter 때문이다.
   - 2. 잘못된 human 의 representation 과 composition-mask generation 에 대한 부적절한 training loss 로 인해 blending network 가 remaining clothes 를 보존하지 못한다. 
@@ -118,11 +118,3 @@ $textsf{Metric}$
 ***
 
 ### <strong>Question</strong>
-
-
-
-![](img_path)
-<a href="">link</a>
-
-
-> 인용구

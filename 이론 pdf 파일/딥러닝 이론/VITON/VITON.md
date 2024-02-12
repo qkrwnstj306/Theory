@@ -166,6 +166,7 @@ $\textbf{Solution}$
     - 5. Canny edge: 원본을 보존할 순 없고, 형태를 보존한다. 
       - Canny edge 는 target person info 보단, target person cloth info 를 더 많이 제공을 한다. Train 시에는 target person cloth 와 cloth 가 같아서 상관 없겠지만, test 에는 target person cloth 와 cloth 가 달라서 잘못된 정보를 받을 가능성이 있다. 따라서 image-densepose 가 적합하다.
     - 6. Cloth mask: clothing 에 white region 이 많다면 model 은 해당 부분이 옷의 일부분인지 배경인지 구분하기 어렵다.  
+      - Binary mask 여서 channel 이 $1$ 이다. 근데 채널이 $1$ 이면, Encoder 에 넣을 수 없어서 channel $3$ 으로 확장시켰다. 
   - Implicit Warping: person info 가 들어가야 한다.
   - Image-encoder: ControlNet 구조를 사용하면 CLIP image encoder 를 사용해서 condition 으로 받을 수 있어야 한다. 
     - 어떤 image 를 ControlNet 에 줄까
@@ -201,6 +202,7 @@ $\textbf{Solution}$
   - 3. Zero-Kernel
     - 입력을 줄 때, noise 뿐만 아니라 다른 정보들도 concat 을 하는데 이때 이 정보들을 짧게 처리해서 넣어주는 건 정보를 온전히 받아들일 수 없다. $\rightarrow$ **Zero-Kernel**
     - 예시로, Stable-VITON 의 경우 initial conv 로 concat 한 정보들을 처리해서 SD Encoder 로 넣어주려면 $4$ channel 로 압축해야하는데 이는 정보 손실이 일어나는 구간 (병목현상)으로 볼 수 있고, 게다가 SD Encoder network 는 freeze 라 concat 한 새로운 정보를 제대로 받지 못할 수 있다. 즉, Condition의 정보를 제대로 흡수해야한다
+    - ControlNet 과 SD Encoder 의 zero kernel 수는 다르다. 
   - 4. Decoupled-condition
     - ControlNet 에는 target person info, SD 에는 clothing info 를 준다. 
     - 즉, cloth agnostic mask (clothing region 이 masking 된) 와 clothing image 가 입력
@@ -208,6 +210,17 @@ $\textbf{Solution}$
       1. 추가적인 정보를 전달해, Warping process 를 강화시킬 수 있다. 
       2. SD encoder 에 기본적인 옷의 정보를 전달하여 시작할 수 있다.
       3. Patch 별로 정보를 전달 할 수 있다. 
+  - 5. Image encoder $\rightarrow$ MLP
+    - IP-Adapter 에선 $2$ 개의 linear layer 와 GELU layer Norm 을 사용했다.
+    - Paint by example 에선, linear layer $1024 \rightarrow 768$ 짜리 하나
+  - 6. Classifier-free Guidance
+    - Uncond 가 적용되는 건 지금, Image encoder 에서만이다. 즉, uncond 가 적용되면 ControlNet 과 SD 에 condition 으로 zero 가 들어간다. 
+  - 7. Augmentation
+    - Simple augmentation: flip, rotation, etc.
+
+<p align="center">
+<img src='./img2.png'>
+</p>
 
 
 - Training Approach: 

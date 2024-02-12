@@ -41,7 +41,7 @@
   - GANs: Conditional GAN
     - 종종 blurry image 를 만드는 $L_1, L_2$ loss 와는 다르게 adversarial loss 는 많은 image-to-image task 에서 사용된다. 
     - 하지만 adversarial loss 는 high-resolution image 를 생성할 때 unstable 
-  - VTON: 마찬가지로 thin-plate spline (TPS) transformation 을 계산한다. 하지만, shape context 는 hand-craft feature 이고 time-comsumed
+  - VITON: 마찬가지로 thin-plate spline (TPS) transformation 을 계산한다. 하지만, shape context 는 hand-craft feature 이고 time-comsumed
     - 게다가, 계산된 TPS transformation 은 predicted mask 에 취약하다. 
     - 본 논문에서는 TPS transformation 을 CNN 으로 설계했기 때문에, interest point 의 명시적인 correspondence 가 없다. 
 
@@ -135,11 +135,3 @@ $\textsf{Implementation Details}$
 ***
 
 ### <strong>Question</strong>
-
-
-
-![](img_path)
-<a href="">link</a>
-
-
-> 인용구
