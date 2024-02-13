@@ -39,15 +39,16 @@
 <img src='./img2.png'>
 </p>
 
-- 일반적으로 모델이 예측한 class 값을 마지막 feature map 에 대해 편미분을 진행한다. 
-  - 특정 channel 의 activation value 가 바뀜에 따라 class $y^c$ 의 값이 많이 흔들린다는 얘기는, class $y^c$ 를 결정할 때 해당 channel 이 중요하다는 것과 동일하다. 
-  - 즉, CAM 에서의 weight 와 동일한 역할을 제공한다. 
+- 모델이 예측한 class 값을 feature map 값에 대해 편미분을 진행한다. 
+  - 특정 channel pixel value 의 activation value 가 바뀜에 따라 class $y^c$ 의 값이 많이 흔들린다는 얘기는, class $y^c$ 를 결정할 때 해당 channel 의 영향력이 크다는 얘기이다. (즉, gradient 값의 크기가 크다) 
+  - 이때, gradient 의 값의 부호와는 상관이 없다고 볼 수 있다. Gradient 가 음수인 큰 값이어도 이 값은 class 를 결정하는데 중요하다. (Negative Influence)
+  - CAM 의 구조에선, CAM 에서의 weight 와 동일한 수식으로 볼 수 있다.
 
 <p align="center">
 <img src='./img3.png'>
 </p>
 
-- Class $y^c$ prediction 할 때의 feature (channel) map 에다가, 각 channel 의 중요도와 동일한 의미를 가진 gradient 값들을 곱해줌으로써 중요도를 반영한 class activation map 을 만들 수 있다. 
+- Class $y^c$ prediction 할 때의 feature (channel) map 에다가, 각 channel 의 영향력과 동일한 의미를 가진 gradient 값들을 곱해줌으로써 중요도를 반영한 class activation map 을 만들 수 있다. 
   - ReLU 를 취해서 음의 값은 무시한다. 
 
 <p align="center">
@@ -67,6 +68,19 @@
 
 ### <strong>Conclusion</strong>
 
+- 한 가지 의문점은 CAM 에서의 weight 와 동일한 역할을 하는 gradient 가 모든 case 에 대해서는 적용되지 않는다는 점이다. 
+  - 우리는 앞서, gradient 의 부호와는 상관없이 크기가 그 channel 의 영향력을 정하는 척도임을 알 수 있었다. 
+    - 실제로 어느 방향이로든 update 를 진행하지 않기 때문에, 고정된 지점에서 바라봤을 때 크기로 영향력을 체크해야 한다. 
+  - 하지만, channel 값이 해당 class 에 대해서 중요한 값이라고 가정했을 때
+    1. gradient 는 음수인 큰 값, channel 은 양수인 값이라면 오히려 시각화가 되지 않는다.
+    2. 반대로 gradient 는 양수인 큰 값, channel 은 음수인 값이라면 오히려 시각화가 되지 않는다. 
+    3. 즉, channel 은 중요한데 시각화가 되지 않는다는 말이다. 
+    - 이는 gradient 에 ReLU 를 취한 Grad-CAM++ 이나 임의로 activation fucntion 을 ReLU 로 써도 해결되지 않는 문제이다. 
+
+
+| always gradient is positive | positive | negative | always channel is positive | positive | negative |
+|:-------------------------:|:--------:|:--------:|:--------------------------:|:--------:|:--------:|
+|      gradient * channel     | positive | negative |      gradient * channel      | positive | negative |
 
 ***
 

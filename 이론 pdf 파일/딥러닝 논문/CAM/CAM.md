@@ -118,7 +118,16 @@ $$ S_c = \Sigma_k{w_k^c F_k}$$
 ***
 
 ### <strong>Conclusion</strong>
+- 엄밀히 말하면, weight 값과 특정 channel 의 값의 곱이 양수이고 그 절대값이 커야 class activation map 에서 표시가 된다. 
+  - 각 case 를 살펴보면, 다음과 같다.
+  - 여기서, channel 값이 해당 class 에 중요한 역할을 하는 값인데 weight 가 positive / channel 이 negative 라면 오히려 visualization 이 안된다고 생각할 수 있다.
+  - 하지만, weight 는 학습가능한 대상이기에 중요한 channel 의 부호에 맞게 양수로 전환시켜 줄 수 있게 학습이 진행될 것이다. 
+    - E.g., channel $= -5$ 라면, weight $= -10$ 으로 중요함을 강조하면서 양수로 바꿔준다.
 
+
+| always weight is positive | positive | negative | always channel is positive | positive | negative |
+|:-------------------------:|:--------:|:--------:|:--------------------------:|:--------:|:--------:|
+|      weight * channel     | positive | negative |      weight * channel      | positive | negative |
 
 ***
 
