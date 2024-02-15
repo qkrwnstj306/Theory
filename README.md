@@ -348,9 +348,11 @@ $\textbf{VITON}$
 - <a href='https://arxiv.org/pdf/1512.04150.pdf'>CAM: Learning Deep Features for Discriminative Localization</a>
   - <a href='./이론 pdf 파일/딥러닝 논문/CAM/CAM.md'>Paper Review</a>
   - <a href='https://github.com/qkrwnstj306/CAM'>Code Practice</a>
+  - <a href='/PPT/CAM.pptx'>CAM PPT</a>
 - <a href='https://arxiv.org/abs/1610.02391'>Grad-CAM: Visual Explanations from Deep Networks via Gradient-based Localization</a>
   - <a href='./이론 pdf 파일/딥러닝 논문/Grad_CAM/Grad_CAM.md'>Paper Review</a>
   - <a href='https://github.com/qkrwnstj306/CAM'>Code Practice</a>
+  - <a href='/PPT/CAM.pptx'>Grad-CAM PPT</a>
 - <a href='https://arxiv.org/pdf/2105.13871.pdf'>DiffSVC: A Diffusion Probabilistic Model for Singing Voice Conversion</a>
   - <a href='./이론 pdf 파일/딥러닝 논문/DiffSVC/DiffSVC.md'>Paper Review</a>
 
