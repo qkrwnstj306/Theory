@@ -308,6 +308,9 @@ $\textbf{Question}$
 
 - Condition info 는 성능 향상에 도움이 되고 guide 하기 좋다. 하지만 너무 많은 condition 은 제약이 있다는 말과 동일하여 실제 환경에서는 사용하기 어려울 수 있다. Condition 이 얼마나 잘 주어지냐에 따라 성능 변동 요인이 많아질수도 있다. 
   - Generative model 의 성능이 올라갔다면, 그에 따라 condition 을 real env 에 맞게 간편하게 바꿀 필요가 있지 않을까?
+- FP $32$ 로 train/test 하면 성능이 올라가는가?
+  - 일단 inference 때, $32$ 로 하면 성능이 올라가는 것 처럼 보였다.
+- Inference 때, 이미지가 흐리게 나왔던 이유는 Diffusion model 의 Encdoer weights 를 ControlNet 에 옮겨주지 않았기 때문이다. (LoRA weight 만 옮기고 나머지는 randomly initialize 였다)
 
 
 ### Introduction

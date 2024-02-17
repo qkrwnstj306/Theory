@@ -249,6 +249,8 @@ $\textbf{VITON}$
   - <a href='./이론 pdf 파일/딥러닝 논문/SimCLR/SimCLR.md'>Paper Review</a>
 - <a href='https://arxiv.org/pdf/2104.14294.pdf'>DINO: Emerging Properties in Self-Supervised Vision Transformers</a>
   - <a href='./이론 pdf 파일/딥러닝 논문/DINO/DINO.md'>Paper Review</a>
+- <a href='https://arxiv.org/abs/1911.05722'>MOCO: Momentum Contrast for Unsupervised Visual Representation Learning</a>
+  - <a href='./이론 pdf 파일/딥러닝 논문/MOCO/MOCO.md'>Paper Review</a>
 
 ### Anomaly Detection
 - <a href='./이론 pdf 파일/딥러닝 논문/Anomaly detection at microsoft_230810_204913.pdf'>Time-Series Anomaly Detection Service at Microsoft</a>
