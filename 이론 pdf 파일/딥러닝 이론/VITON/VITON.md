@@ -311,6 +311,13 @@ $\textbf{Question}$
 - FP $32$ 로 train/test 하면 성능이 올라가는가?
   - 일단 inference 때, $32$ 로 하면 성능이 올라가는 것 처럼 보였다.
 - Inference 때, 이미지가 흐리게 나왔던 이유는 Diffusion model 의 Encdoer weights 를 ControlNet 에 옮겨주지 않았기 때문이다. (LoRA weight 만 옮기고 나머지는 randomly initialize 였다)
+- ControlNet 구조에서의 Zero-Conv
+  - Zero-Conv 의 목적은 기존의 SD 의 능력을 유지하려고 하는건데 
+  - 해당 조건을 만족시키기 위해서는 MLP 에서의 condition 을 줄 때 cross-attetion 안에서도 zero-linear 를 추가하여 unconditional diffusion model 처럼 작동시켜야 한다. 
+  - 여기서 두 갈래로 나눠질 수 있는데, 초기에 unconditional diffusion model 처럼 만들건지 / 그냥 초기 output 이 망가지더라도 zero 를 사용하지 않을 건지이다. 
+  - uncoditional model: 초기 output 을 잘 만들어서 loss 방향을 잘 잡자
+  - 그냥: 어차피 domain 자체는 다른 ControlNet 예제처럼 canny edge 나 segmenation map 처럼 다른 domain 이 아닌 cloth 처럼 realistic image 가 들어간다. (이때 다른 condition 은 zero-kernel 로 인해 정보가 안들어가니 상관없다)
+    - 오히려, zero-conv 를 앞단에 두는 느낌?
 
 
 ### Introduction
