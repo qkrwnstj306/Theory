@@ -36,7 +36,7 @@
      1. Self-supervised ViT feature 는 image 의 semantic segmentation (scene layout: object boundaries) 에 대한 명시적인 정보를 가지고있다. (위의 figure 참고)
         1. 이는, convnets 이나 supervised learning 으로 학습된 ViT 에서는 나타나지 않는다. 
      2. 이러한 특성은 훌륭한 KNN classifier 이기도 하다.
-        1. Samll ViT 에서도 ImageNet dataset 에 대해 $78.3$ % top-1 을 달성했다. 
+        1. Small ViT 에서도 ImageNet dataset 에 대해 $78.3$ % top-1 을 달성했다. 
      3. Momentum encoder, multi-crop training, ViT 의 small patch 가 중요하다.
 
 - ViT 에 본 논문의 method 인 DINO 를 적용시켜, ViT-Base 에서 $80.1$ % top-1 on ImageNet in linear evaluation 을 달성했다.
@@ -182,7 +182,7 @@ $\textsf{Evaluation Protocols}$
   - 먼저, ResNet-50 과 ViT-small architecture 에 초점을 맞췄다. 
     - DINO 가 ResNet 에도 잘 작동하는 것을 알 수 있다. 
   - Across architecture
-    - ViT-B/16 DION: 다른 baseline 보다 param 수도 적고 throughput 도 좋은데 성능도 우수하다. 
+    - ViT-B/16 DINO: 다른 baseline 보다 param 수도 적고 throughput 도 좋은데 성능도 우수하다. 
     - 가장 좋은 성능을 낸 건 ViT 의 patch size 가 $8$ 이다. 
 
 <p align="center">

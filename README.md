@@ -203,6 +203,8 @@ Theory for ML.
   - <a href='./이론 pdf 파일/딥러닝 논문/InstantID/InstantID.md'>Paper Review</a>
 - <a href='https://arxiv.org/pdf/2308.06721.pdf'>IP-Adapter: Text Compatible Image Prompt Adapter for Text-to-Image Diffusion Models</a>
   - <a href='./이론 pdf 파일/딥러닝 논문/IP-Adapter/IP-Adapter.md'>Paper Review</a>
+- <a href='https://arxiv.org/pdf/2310.03502.pdf?trk=public_post_comment-text'>Kandinsky: an Improved Text-to-Image Synthesis with Image Prior and Latent Diffusion</a>
+  - <a href='./이론 pdf 파일/딥러닝 논문/Kandinsky/Kandinsky.md'>Paper Review</a>
 
 $\textbf{VITON}$
 

@@ -318,6 +318,21 @@ $\textbf{Question}$
   - uncoditional model: 초기 output 을 잘 만들어서 loss 방향을 잘 잡자
   - 그냥: 어차피 domain 자체는 다른 ControlNet 예제처럼 canny edge 나 segmenation map 처럼 다른 domain 이 아닌 cloth 처럼 realistic image 가 들어간다. (이때 다른 condition 은 zero-kernel 로 인해 정보가 안들어가니 상관없다)
     - 오히려, zero-conv 를 앞단에 두는 느낌?
+- 사람은 그대로 생성해야 하니, data augmentation 을 진행하지 않는다. 따라서 사람에 관련된 condition 은 놔둔다. 옷에 대한 것만 augmentation 을 진행할건데
+  - cloth mask 에 대해서도 augmentation 을 적용?
+    - cloth mask 에 대해서 cloth 와 동일한 augmentation 을 적용?
+    - 적용하되, 같은 augmentation 을 적용한다. 경계선을 지어주려고 mask 를 넣는건데 다른 augmentation 이면 효과가 없을 거 같다. 
+  - Dinov2 에 입력으로 들어가는 cloth 에도 augmentation 을 적용?
+    - ControlNet 에서 augmentation 을 하는 건 warping module 의 향상성을 위해서 하는거다.
+    - 하지만 Dinov2 에서 augmentation 을 안한다고 해서 train/test mismatch 가 발생하는 것도 아니기 때문에 이건 굳이 안해도 될거같다. 
+  - Blur augmentation 사용?
+    - 기대효과: super resolution? 좀 더 선명하게 생성해라. 그러기 위해선 데이터 정보를 더 잘 빼야겠지
+    - 근데 오히려 global info 만 뽑을 거 같아서 하지 않는다. 
+- 얼굴을 잘 못그리는데, 이건 왜 그럴까에 대해 $2$ 가지로 나눠봤다.
+  - 1. SD 의 한계: 사람 얼굴 그리기가 어려운데 full-body 여서 얼굴이 작아서 더 못그린다. 
+  - 2. Full-finetuning 을 하지 않아서 
+  - 3. person 에 맞춰진 cloth mask 를 주지 않아서? masking region 만 그리면 되는데 이 기준을 주지 않아서 모델이 전부 그리는 느낌? 
+  	- 왜냐면, 배경에 대해서도 완벽하게 동일하지 않다. (바지나, 뒤에 색상)
 
 
 ### Introduction
@@ -353,3 +368,8 @@ $\textbf{Question}$
   - 더 큰 image encoder 사용 (모든 token 사용)
   - Perceptual loss 사용
   - Hint signal: reference image 로부터 pixel-level 의 세밀한 세부 정보를 main U-Net 으로 전달
+
+- Image Encoder
+  - DINOv2 vs CLIP encoder 
+- Generative models 
+  - Diffusion 
