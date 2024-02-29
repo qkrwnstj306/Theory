@@ -2,7 +2,7 @@
 
 
 ## [paper]
-*CVPR(2022), 441 citation*
+*CVPR(2022), 441 citation, [Author], Review Data:*
 
 [Intro](#intro)</br>
 [Related Work](#related-work)</br>

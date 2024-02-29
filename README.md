@@ -224,6 +224,8 @@ $\textbf{VITON}$
   - <a href='./이론 pdf 파일/딥러닝 논문/CP-VTON/CP-VTON.md'>Paper Review</a>
 - <a href='https://minar09.github.io/cpvtonplus/cvprw20_cpvtonplus.pdf'>CP-VTON+: Clothing Shape and Texture Preserving Image-Based Virtual Try-On</a>
   - <a href='./이론 pdf 파일/딥러닝 논문/CP-VTON+/CP-VTON+.md'>Paper Review</a>
+- <a href='https://dl.acm.org/doi/pdf/10.1145/3450626.3459884'>TryOnGAN: Body-Aware Try-On via Layered Interpolation</a>
+  - <a href='./이론 pdf 파일/딥러닝 논문/TryOnGAN/TryOnGAN.md'>Paper Review</a>
 
 ### Natural Language
 - <a href='./이론 pdf 파일/딥러닝 이론/LSTM.pdf'>LSTM : Long Short-Term Memory</a>
