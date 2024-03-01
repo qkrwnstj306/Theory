@@ -173,6 +173,8 @@ Theory for ML.
 - <a href='https://arxiv.org/pdf/2112.09164.pdf'>RCDM: High Fidelity Visualization of What Your Self-Supervised Representation knows About</a>
   - <a href='./이론 pdf 파일/딥러닝 논문/RCDM/RCDM.md'>Paper Review</a>
   - <a href='./PPT/SDEdit&ILVR.pptx'>RCDM PPT</a>
+- <a href='https://arxiv.org/pdf/2307.01952.pdf'>SDXL: Improving Latent Diffusion Models for High-Resolution Image Synthesis</a>
+  - <a href='./이론 pdf 파일/딥러닝 논문/SDXL/SDXL.md'>Paper Review</a>
 	
 #### Image Editing
 - <a href='./이론 pdf 파일/딥러닝 논문/Prompt to prompt image editing with attention_231004_124613.pdf'>Prompt-to-Prompt Image Editing with Cross Attention Control</a>
