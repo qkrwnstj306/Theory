@@ -13,6 +13,15 @@
 [Conclusion](#conclusion)</br>
 
 ***
+
+### <strong>Title</strong>
+
+- 제목: 부제
+- 주장: 방법
+- e.g., representation 은 같은 feature space 에 위치하지 않는다: 우리는 tensor metric 으로 그걸 증명하겠다. 
+- e.g., any artistic style 을 text-to-image 로 합성하겠다: 보조적인 binding 으로 
+
+
 ### <strong>Abstract</strong>
 - abstract에는 일반적으로 reference [] 를 포함하진 않는다. (아주 예외적인 경우 제외). 
 

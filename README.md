@@ -207,6 +207,8 @@ Theory for ML.
   - <a href='./이론 pdf 파일/딥러닝 논문/IP-Adapter/IP-Adapter.md'>Paper Review</a>
 - <a href='https://arxiv.org/pdf/2310.03502.pdf?trk=public_post_comment-text'>Kandinsky: an Improved Text-to-Image Synthesis with Image Prior and Latent Diffusion</a>
   - <a href='./이론 pdf 파일/딥러닝 논문/Kandinsky/Kandinsky.md'>Paper Review</a>
+- <a href='https://openaccess.thecvf.com/content/ICCV2021/papers/Wang_Sketch_Your_Own_GAN_ICCV_2021_paper.pdf'>Sketch Your Own GAN</a>
+  - <a href='/이론 pdf 파일/딥러닝 논문/sketch-your-own-gan/sketch-your-own-gan.md'>Paper Review</a>
 
 $\textbf{VITON}$
 
@@ -254,6 +256,7 @@ $\textbf{VITON}$
 - <a href='https://arxiv.org/abs/2002.05709'>SimCLR: A Simple Framework for Contrastive Learning of Visual Representations</a>
   - <a href='./이론 pdf 파일/딥러닝 논문/SimCLR/SimCLR.md'>Paper Review</a>
 - <a href='https://arxiv.org/pdf/2104.14294.pdf'>DINO: Emerging Properties in Self-Supervised Vision Transformers</a>
+  - <a href='./PPT/DINO.pptx'>DINO PPT</a>
   - <a href='./이론 pdf 파일/딥러닝 논문/DINO/DINO.md'>Paper Review</a>
 - <a href='https://arxiv.org/abs/1911.05722'>MOCO: Momentum Contrast for Unsupervised Visual Representation Learning</a>
   - <a href='./이론 pdf 파일/딥러닝 논문/MOCO/MOCO.md'>Paper Review</a>

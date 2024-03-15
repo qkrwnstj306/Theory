@@ -130,6 +130,12 @@ $\textbf{Auto-encoder}$
 
 ### <strong>Conclusion</strong>
 
+- Limitation
+  - CLIP text encoder 는 학습할 당시에, class token 만을 사용했기 때문에 다른 index 의 output vector 는 의미없는 정보라고 볼 수 있다. 
+  - 그래서 LDM 이 생성 할 때, prompt 에 정보를 혼합해서 생성하는 것이다.
+    - E.g., a red car and a white sheep: 양도 빨간색으로 나온다. 
+    - LDM 은 class token 뿐만 아니라 다른 index token 도 사용을 하는데 이때, 다른 token 에는 정보가 무의미하고 class token 만을 사용하는데 class token 에는 모든 단어의 정보에 집중하고 있어서 섞인다. 
+  - CLIP: Attribution 을 caption 에 추가해서 더 자세하게 retrieval 을 시도했더니, 오히려 성능이 떨어진다. CLIP 은 class token 만을 써서 학습했기에 모든 단어에 attention 이 걸려있다. 
 
 ***
 
