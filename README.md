@@ -280,6 +280,11 @@ $\textbf{VITON}$
 - <a href='./이론 pdf 파일/딥러닝 논문/NAS(neural architecture search) with Reinforcement_230819_160802.pdf'>NAS : NEURAL ARCHITECTURE SEARCH WITH REINFORCEMENT LEARNING</a>
 	* <a href='./PPT/NAS with Reinforcement Learning.pptx'>NAS with Reinforcement Learning PPT</a>
 
+### Quantization
+
+- <a href='https://arxiv.org/pdf/2302.04304.pdf'>Q-Diffusion: Quantizing Diffusion Models</a>
+  - <a href='./이론 pdf 파일/딥러닝 논문/Q-Diffusion/Q-Diffusion.md'>Paper Review</a>
+
 # <strong>3. Machine Learning</strong>
 ## Basic Theory
 - <a href='./이론 pdf 파일/머신러닝 이론/Chapter 02~04 머신러닝 군집 & 분류 & 회귀 알고리즘_230122_161047.pdf'>머신러닝 군집 & 분류 & 회귀 알고리즘 </a>
