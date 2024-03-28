@@ -232,6 +232,8 @@ $\textbf{VITON}$
   - <a href='./이론 pdf 파일/딥러닝 논문/CP-VTON+/CP-VTON+.md'>Paper Review</a>
 - <a href='https://dl.acm.org/doi/pdf/10.1145/3450626.3459884'>TryOnGAN: Body-Aware Try-On via Layered Interpolation</a>
   - <a href='./이론 pdf 파일/딥러닝 논문/TryOnGAN/TryOnGAN.md'>Paper Review</a>
+- <a href='https://arxiv.org/pdf/2403.01779.pdf'>OOTDiffusion: Outfitting Fusion based Latent Diffusion for Controllable Virtual Try-on</a>
+  - <a href='./이론 pdf 파일/딥러닝 논문/OOTDiffusion/OOTDiffusion.md'>Paper Review</a>
 
 ### Natural Language
 - <a href='./이론 pdf 파일/딥러닝 이론/LSTM.pdf'>LSTM : Long Short-Term Memory</a>
@@ -385,6 +387,11 @@ $\textbf{VITON}$
 - <a href='https://github.com/guan-yuan/Awesome-Singing-Voice-Synthesis-and-Singing-Voice-Conversion'>Paper List about Voice Conversion</a>
 - <a href='https://github.com/minar09/awesome-virtual-try-on'>Paper List about VITON</a>
 - <a href='https://norman3.github.io/prml'>확률 분포를 공부할 때 참고한 책. [PRML(Pattern Recognition & Machine Learning, Bishop)]</a>
+- <a href='https://quillbot.com/'>QuillBot: 똑같은 의미지만, 다른 단어로 바꿔주는 사이트 for Paper</a>
+- <a href='https://nn.labml.ai/index.html'>LabML: Research Paper Implementations - 주요 논문들 구현 및 설명</a>
+- <a href='https://app.diagrams.net/'>Draw.io: 간단한 논문 Figure 작성</a>
+- <a href='https://scispace.com/'>SCISPACE: AI 를 이용한 논문 해석</a>
+- <a href='https://www.figma.com/'>피그마: 논문 Figure 예쁘게 꾸미기</a>
 
 # 8. Failed Project
 - <a href='https://github.com/qkrwnstj306/Style-Similarity'>Style Similarity</a>
@@ -408,4 +415,3 @@ $\textbf{VITON}$
 - <a href='./이론 pdf 파일/외부강의/[김승룡 교수] Text-to-3D Generation Using 2D Diffusion Model.pdf'>Text-to-3D Generation Using 2D Diffusion Model</a>
 - <a href='./이론 pdf 파일/외부강의/[주재걸 교수] 3D Generative Models.pdf'>3D Generative Models</a>
 - <a href='./이론 pdf 파일/외부강의/알기쉬운 AI 튜토리얼_유영재교수_multimodal.pdf'>multimodal</a>
-
