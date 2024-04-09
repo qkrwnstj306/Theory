@@ -118,3 +118,8 @@ $$ arg\  min_{\theta,\phi} \sum_i - \log{p_{\theta}(x_i|z)} +  D_{KL} (q_{\phi}(
 <img src='./img5.png'>
 </p>
 
+
+### <strong>My Opinion</strong>
+
+- Decoder 에서 베르누이 분포 또는 가우시안 분포를 가정한다. 이때, 베르누이 분포의 결과값은 $0$ or $1$ 이므로, MNIST 숫자 dataset 과 같이 흑백 {$0,255$} data 에 대해서 적용 가능하다.
+  - 반면에 Gaussian distribution 은 color 이미지도 가능.

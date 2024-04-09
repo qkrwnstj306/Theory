@@ -138,6 +138,8 @@ Theory for ML.
   - <a href='./이론 pdf 파일/딥러닝 논문/AMP/AMP.md'>Paper Review</a>
 
 ### Generative AI about Image 
+- <a href='https://arxiv.org/abs/1503.03585'>Deep Unsupervised Learning using Nonequilibrium Thermodynamics</a>
+  - <a href='./이론 pdf 파일/딥러닝 논문/2015-diffusion/2015-diffusion.md'>Paper Review</a>
 - <a href='./이론 pdf 파일/딥러닝 논문/DDPM_231112_174348.pdf'>DDPM: Denoising Diffusion Probabilistic Models</a>
 	* <strong>Loss에 대한 수식 분해 in pdf file</strong>
 	* <a href='https://github.com/qkrwnstj306/Diffusion'>DDPM code practice</a>
@@ -211,6 +213,9 @@ Theory for ML.
   - <a href='./이론 pdf 파일/딥러닝 논문/Kandinsky/Kandinsky.md'>Paper Review</a>
 - <a href='https://openaccess.thecvf.com/content/ICCV2021/papers/Wang_Sketch_Your_Own_GAN_ICCV_2021_paper.pdf'>Sketch Your Own GAN</a>
   - <a href='/이론 pdf 파일/딥러닝 논문/sketch-your-own-gan/sketch-your-own-gan.md'>Paper Review</a>
+- <a href='https://openaccess.thecvf.com/content/CVPR2023/papers/Xie_SmartBrush_Text_and_Shape_Guided_Object_Inpainting_With_Diffusion_Model_CVPR_2023_paper.pdf'>SmartBrush: Text and Shape Guided Object Inpainting with Diffusion Model</a>
+  - <a href='./이론 pdf 파일/딥러닝 논문/SmartBrush/SmartBrush.md'>Paper Review</a>
+
 
 $\textbf{VITON}$
 
