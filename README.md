@@ -158,17 +158,17 @@ Theory for ML.
 	* <a href='./PPT/Conference_styleboost.pptx'>StyleBoost PPT</a>
 	* <a href='./PPT/script_styleboost.pptx'>StyleBoost presentation script</a>
 	- [ ] StyleBoost code practice
-- <a href='./이론 pdf 파일/딥러닝 논문/StyleGAN_230517_095353.pdf'>StyleGAN : A Style-Based Generator Architecture for Generative Adversarial Networks</a>
-- <a href='./이론 pdf 파일/딥러닝 논문/StyleGANv2_230620_160458.pdf'>StyleGAN2 : Analyzing and Improving the Image Quality of StyleGAN</a>
-- <a href='./이론 pdf 파일/딥러닝 논문/VAE_230706_175059.pdf'>VAE : Auto-Encoding Variational Bayes</a>
+- <a href='./이론 pdf 파일/딥러닝 논문/StyleGAN_230517_095353.pdf'>StyleGAN: A Style-Based Generator Architecture for Generative Adversarial Networks</a>
+- <a href='./이론 pdf 파일/딥러닝 논문/StyleGANv2_230620_160458.pdf'>StyleGAN2: Analyzing and Improving the Image Quality of StyleGAN</a>
+- <a href='./이론 pdf 파일/딥러닝 논문/VAE_230706_175059.pdf'>VAE: Auto-Encoding Variational Bayes</a>
     - <a href='./이론 pdf 파일/딥러닝 논문/VAE/VAE.md'>Paper Review</a>
 	+ <a href='https://github.com/qkrwnstj306/VAE'> VAE code practice</a>
-- <a href='./이론 pdf 파일/딥러닝 논문/ViT Vision Transformer_230705_150728.pdf'>ViT : AN IMAGE IS WORTH 16 X 16 WORDS : TRANSFORMERS FOR IMAGE RECOGNITION AT SCALE</a>
+- <a href='./이론 pdf 파일/딥러닝 논문/ViT Vision Transformer_230705_150728.pdf'>ViT: AN IMAGE IS WORTH 16 X 16 WORDS : TRANSFORMERS FOR IMAGE RECOGNITION AT SCALE</a>
   - <a href='./PPT/ViT.pptx'>ViT PPT</a>
-- <a href='./이론 pdf 파일/딥러닝 논문/WGAN_230521_004305.pdf'>WGAN : Wasserstein GAN</a>
-- <a href='./이론 pdf 파일/딥러닝 논문/WGAN-GP_230522_191114.pdf'>WGAN-GP : Improved Training of Wasserstein GANs</a>
-- <a href='./이론 pdf 파일/딥러닝 논문/gigagan_cvpr2023_original_230525_210606.pdf'>GigaGAN : Scaling up GANs for Text-to-Image Synthesis</a>
-- <a href='./이론 pdf 파일/딥러닝 논문/Multimodal Garment Designer_231015_171057.pdf'>Multimodal Garment Designer : Human-Centric Latent Diffusion Models for Fashion Image Editing</a>
+- <a href='./이론 pdf 파일/딥러닝 논문/WGAN_230521_004305.pdf'>WGAN: Wasserstein GAN</a>
+- <a href='./이론 pdf 파일/딥러닝 논문/WGAN-GP_230522_191114.pdf'>WGAN-GP: Improved Training of Wasserstein GANs</a>
+- <a href='./이론 pdf 파일/딥러닝 논문/gigagan_cvpr2023_original_230525_210606.pdf'>GigaGAN: Scaling up GANs for Text-to-Image Synthesis</a>
+- <a href='./이론 pdf 파일/딥러닝 논문/Multimodal Garment Designer_231015_171057.pdf'>Multimodal Garment Designer: Human-Centric Latent Diffusion Models for Fashion Image Editing</a>
   - <a href='./이론 pdf 파일/딥러닝 논문/Garment-Designer/Garment-Designer.md'>Paper Review</a>
 - <a href='https://arxiv.org/abs/1611.07004'>Pix2Pix : Image-to-Image Translation with Conditional Adversarial Networks</a>
 	- <a href='https://github.com/qkrwnstj306/Style-Similarity/blob/main/pix2pix-paper.ipynb'>Code Practice</a>

@@ -44,7 +44,8 @@
 - Diffusion model: guidance 를 줄 수 없어서 원하지 않는 샘플이 나온다.
 - GLIDE 와 Stable Inpainting: 이미지의 일부를 무작위로 지우고 해당 이미지 캡션에 대한 조건부로 masking 된 영역을 복원하기 위해 학습된다. 그러나 무작위로 지우기 때문에, masking 된 영역과 text 설명 간의 의미적 불일치로 인해 모델이 text prompt 를 정확하게 따르지 않고 배경을 채울 수 있다.
   - E.g., 맨 처음 이미지를 보면, GLIDE & Stable Inpainting 모두 masking region 에 대해 text prompt 를 온전히 받아들이지 않고, 일부만 홍학을 그리고 나머지는 배경으로 채움.
-- Blended diffusion: CLIP 을 사용하여 image embedding 과 text embedding 간의 차이를 계산한 다음 sampling 과정 중에 그 차이를 주입한다. 그러나 CLIP model 은 전역 및 고수준의 이미지 특징을 포착하는 경향이 있으므로 **주어진 마스크와 일치하는 객체를 생성할 동기가 없다.**, 즉, CLIP 을 쓴다고 해서 일치하게끔 만드는 원인 제공을 하지는 않는다. 
+- Blended diffusion: CLIP 을 사용하여 image embedding 과 text embedding 간의 차이를 계산한 다음 sampling 과정 중에 그 차이를 주입한다. (CLIP 점수를 사용하여 출력이 text prompt 와 일치하도록 장려한다.) 그러나 CLIP model 은 전역 및 고수준의 이미지 특징을 포착하는 경향이 있으므로 **주어진 마스크와 일치하는 객체를 생성할 동기가 없다.**, 즉, CLIP 을 쓴다고 해서 일치하게끔 만드는 원인 제공을 하지는 않는다. 
+- Repaint: 각 reverse process 에서 다시 sampling 하는 것을 제안하지만 text guidance 를 지원하지 않는다. 
 
 - 본 논문에서는 이러한 도전에 대응하기 위해 mask 에 precision factor 를 도입한다. 즉, mask 뿐만 아니라 inpainting 된 객체가 마스크의 모양을 얼마나 정확하게 따르는지에 대한 정보도 받는다. 
   - 이를 위해, 정확한 instance mask 에 gaussian blur 를 적용하여 세밀한 instance mask 부터 coarse mask 까지 적용시켜 precision factor 와 함께 학습한다. 
@@ -55,7 +56,11 @@
 
 ### <strong>Method</strong>
 
+- Image $x$, text prompt $d$, binary mask $m$ 이 주어졌을 때, 생성된 이미지 $\tilde x$ 가 $x$ 의 background 와 동일하면서 masked region $\tilde x \odot m$ 이 text promtp $d$ 와 mask $m$ 에 잘 정렬되어야 한다. 
 
+- 기존의 inpainting model 들은 random 하게 이미지의 부분을 지우고 복원하도록 학습된다. 이렇게 학습하면, masked region 이 object 의 일부분만 포함하거나 object 주변의 배경을 포함한다. 
+- 따라서, 본 논문은 기존의 instance or panoptic segmentation dataset 으로부터 text 와 shape 정보를 활용하는 것을 제안한다. (아무런 근거없이 masking 하지 말자!)
+- 이런 dataset 은 $N$ 개의 mask 가 존재하고 {$m_i$}$_{i=1}^{N}$
 
 ***
 
