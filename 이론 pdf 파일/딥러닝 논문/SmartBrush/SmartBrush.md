@@ -55,7 +55,7 @@
 ***
 
 ### <strong>Method</strong>
-asd
+
 - Image $x$, text prompt $d$, binary mask $m$ 이 주어졌을 때, 생성된 이미지 $\tilde x$ 가 $x$ 의 background 와 동일하면서 masked region $\tilde x \odot m$ 이 text prompt $d$ 와 mask $m$ 에 잘 정렬되어야 한다. 
 
 - 기존의 inpainting model 들은 random 하게 이미지의 부분을 지우고 복원하도록 학습된다. 이렇게 학습하면, masked region 이 object 의 일부분만 포함하거나 object 주변의 배경을 포함한다. 
