@@ -76,7 +76,7 @@ $$ x_t = \tilde{x_t} \odot m + x_0 \odot (1 - m) $$
 
 $\textsf{Shape Precision Control}$
 
-- 해당 dataset 에 존재하는 mask 를 사용하면 모델은 inference 시에 input mask 에 shape 을 정확하게 따르도록 장려된다. 본 논문은 정확한 마스크 (e.g., 고양이의 모양) 뿐만 아니라 덜 정확한 마스크 (e.g., bounding boxj) 를 제공할 수 있도록 서로 다른 정밀도의 마스크를 생성하기로 제안한다. 
+- 해당 dataset 에 존재하는 mask 를 사용하면 모델은 inference 시에 input mask 에 shape 을 정확하게 따르도록 장려된다. 본 논문은 정확한 마스크 (e.g., 고양이의 모양) 뿐만 아니라 덜 정확한 마스크 (e.g., bounding box) 를 제공할 수 있도록 서로 다른 정밀도의 마스크를 생성하기로 제안한다. 
 - 이를 위해, 훈련 중에 마스크를 무작위로 변형하여 모양을 바꾼다. 
   - 구체적으로 정확한 mask $m$ 이 주어지면 mask precision indicator $s \sim [0,S]$ 를 사용하여 조절한다.
   - $k_s$: Gaussian kernel size

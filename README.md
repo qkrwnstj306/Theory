@@ -215,6 +215,7 @@ Theory for ML.
   - <a href='/이론 pdf 파일/딥러닝 논문/sketch-your-own-gan/sketch-your-own-gan.md'>Paper Review</a>
 - <a href='https://openaccess.thecvf.com/content/CVPR2023/papers/Xie_SmartBrush_Text_and_Shape_Guided_Object_Inpainting_With_Diffusion_Model_CVPR_2023_paper.pdf'>SmartBrush: Text and Shape Guided Object Inpainting with Diffusion Model</a>
   - <a href='./이론 pdf 파일/딥러닝 논문/SmartBrush/SmartBrush.md'>Paper Review</a>
+  - <a href='./PPT/SmartBrush.pptx'>SmartBrush PPT</a>
 
 
 $\textbf{VITON}$
