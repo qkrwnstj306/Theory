@@ -109,6 +109,7 @@ Theory for ML.
 ### 최근 관심 분야 이론 정리
 - <a href='./이론 pdf 파일/딥러닝 이론/Score-based-generative-model/Score-based-generative-model.md'>Score-based Generative Model Review</a>
   - <a href='./PPT/Generative-Modeling-by-Estimating-Gradients-of-the-Data-Distribution.pptx'>PPT: Generative Modeling by Estimating Gradients of the Data Distribution, 2019, Neurips, 1825 citation</a>
+  - <a href='./PPT/NSCN4.3.pdf'>PPT: NCSN 4.3 - inference algorithm 분석</a>
 - <a href='./이론 pdf 파일/딥러닝 논문/paper-write/Generative-AI.md'>Generative AI</a>
 - <a href='./이론 pdf 파일/딥러닝 이론/VITON/VITON.md'>Virtual Try-On (VITON)</a>
 

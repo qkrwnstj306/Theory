@@ -83,12 +83,14 @@ $\textsf{Method}$
 - Augmentation: random shift, horizontal flip, random scale
 
 - Attention total variation loss
-  - Cross-attention 으로 인해 clothing 과 agnostic map 간의 align 은 잘 됐지만 여전히 부정확한 세부 사항이 존재한다.
+  - 옷의 색깔이 맞지 않는데, attention score 가 분산되어 있어서라고 가정했다.
+  - Cross-attention 으로 인해 clothing 과 agnostic map 간의 align 을 일치시키기 위해 사용한다. 
   - E.g., color discrepancies (옷의 색깔이 맞지 않는다)
+  - 값이 툭 튄 score 들을 noise 라고 보고, 그 noise 를 감소시키기 위해 loss 를 사용
   
 - $32 \times 24$ cross-attention in zero cross-attention block
   - Attention totla variation loss 와 augmentation 을 사용하면, Cloth 와 human body 의 align 이 잘 된다.
-  - Cllear visualization 을 위해, generated image 를 $32 \times 24$ 로 먼저 downsampling 하고 다시 $32^2 \times 24^2$ 로 resize 했다.
+  - Clear visualization 을 위해, generated image 를 $32 \times 24$ 로 먼저 downsampling 하고 다시 $32^2 \times 24^2$ 로 resize 했다.
   - 이후에, attention map 에 각 query token 을 overray 했다. 
 
 <p align="center">
