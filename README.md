@@ -399,6 +399,7 @@ $\textbf{VITON}$
 - <a href='https://app.diagrams.net/'>Draw.io: 간단한 논문 Figure 작성</a>
 - <a href='https://scispace.com/'>SCISPACE: AI 를 이용한 논문 해석</a>
 - <a href='https://www.figma.com/'>피그마: 논문 Figure 예쁘게 꾸미기</a>
+- <a href='https://editor.codecogs.com/#google_vignette'>수학 수식 이미지로 변환</a>
 
 # 8. Failed Project
 - <a href='https://github.com/qkrwnstj306/Style-Similarity'>Style Similarity</a>
