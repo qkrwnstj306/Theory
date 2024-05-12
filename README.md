@@ -220,7 +220,7 @@ Theory for ML.
 - <a href='https://arxiv.org/pdf/2305.10973'>Drag Your GAN: Interactive Point-based Manipulation on the Generative Image Manifold</a>
   - <a href='./이론 pdf 파일/딥러닝 논문/DragGAN/DragGAN.md'>Paper Review</a>
 - <a href='https://arxiv.org/pdf/2306.14435'>DragDiffusion: Harnessing Diffusion Models for Interactive Point-based Image Editing</a>
-
+  - <a href='./이론 pdf 파일/딥러닝 논문/DragDiffusion/DragDiffusion.md'>Paper Review</a>
 
 $\textbf{VITON}$
 
