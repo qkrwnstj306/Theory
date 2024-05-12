@@ -16,7 +16,7 @@
 
 > Core Idea
 <div align=center>
-<strong>"test1"</strong></br>
+<strong>"Extend Dragged Image Editing to Diffusion Models"</strong></br>
 </div>
 
 ***
@@ -229,7 +229,7 @@ $\textbf{Evaluation}$
 <img src='./img14.png'>
 </p>
 
-- Fine-tuning step 에 따른 결과
+- Fine-tuning step 에 따른 결과: $80$ 이상이면 artifacts 없이 잘 생성한다. 
 
 <p align="center">
 <img src='./img16.png'>
