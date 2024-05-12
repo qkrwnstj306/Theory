@@ -16,7 +16,7 @@
 
 > Core Idea
 <div align=center>
-<strong>"test1"</strong></br>
+<strong>"Image Manipulation via Optimizing Latent Code"</strong></br>
 </div>
 
 ***
@@ -100,7 +100,7 @@ $\textbf{Interactive Point-based Manipulation}$
 </p>
 
 - Latent code $w$ 와 StyleGAN 에 의해 image $I \in \mathbb{R}^{3 \times H \times W}$ 가 생성된다. 
-- User 가 정한 handle point {$\mathbf{p_i} = (x_{p,i}, y_{p,i} | i=1, 2, ..., n)$} 과 target point {$\mathbf{t_i} = (x_{t,i}, y_{t,i} | i=1, 2, ..., n)$} 가 주어지면, handle point 에서 target point 로 정보가 이동해야 한다. 
+- User 가 정한 handle point { $\mathbf{p_i} = (x_{p,i}, y_{p,i} | i=1, 2, ..., n)$ } 과 target point { $\mathbf{t_i} = (x_{t,i}, y_{t,i} | i=1, 2, ..., n)$ } 가 주어지면, handle point 에서 target point 로 정보가 이동해야 한다. 
 - 이때, option 으로 binary mask $M$ 을 통해 $M$ 영역 밖은 그대로 유지하게 할 수 있다. 
 - 본 논문의 방법은 $2$ 가지 optimization step 으로 이루어져있다.
   1. Motion supervision
