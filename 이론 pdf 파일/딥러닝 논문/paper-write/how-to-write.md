@@ -14,33 +14,130 @@
 
 ***
 
-### <strong>Title</strong>
+### <strong> Beginning </strong>
 
-- 제목: 부제
-- 주장: 방법
-- e.g., representation 은 같은 feature space 에 위치하지 않는다: 우리는 tensor metric 으로 그걸 증명하겠다. 
-- e.g., any artistic style 을 text-to-image 로 합성하겠다: 보조적인 binding 으로 
+- 논문의 시작은 다음과 같은 process 를 거친다.
+  - 관심있는 논문들 읽기 > 이 논문들이 다루는 task 에는 어떤 문제들이 있는지 > 왜 기존의 논문들은 해결을 못했지? > 그 논문들이 제안한 방법들 정리 > 코딩으로 실험할 수 있으면 blueprint 작성 시작 
+
+***
+
+### <strong> Blueprint </strong>
+
+- 논문 작성에 앞서, 설계도를 먼저 만들어야 한다. (내가 어떤 방식으로 글을 전개할지 미리 파악하기 위해)
+  - **Beginning** 에서 작성했던 내용은 결국 Intro 와 related work 의 초안이므로 미리 간략하게 Inkscape 에 글을 써놓는다. 
+  - 그 후에 Figure 단위로, Inkscape 에 흐름을 전개한다. 
+
+- Blueprint 예시
+
+<p align="center">
+<img src='./img1.png'>
+</p>
 
 
-### <strong>Abstract</strong>
-- abstract에는 일반적으로 reference [] 를 포함하진 않는다. (아주 예외적인 경우 제외). 
+- Blueprint 작성을 완료했으면 이제 저널 선정 후에 글을 쓰면 된다. 
+  - Target journal 을 선정하고 그 저널들에 accept 된 논문들이 어떤 section 을 가지는지 살핀다.(E.g., background 가 많고, conclusion 의 유무, figure 의 수, experiment 와 method 의 전체 비율, etc.)
+  - 글은 Introduction (마지막 문단 빼고) > related work > method > experiments > abstract, conclusion, introduction 의 마지막을 같이 작성한다. 
+  - Abstract, conclusion, introduction 를 같이 작성하는 이유는 서로 비슷한 내용을 다루기 때문이다. 
+
+<p align="center">
+<img src='./1000005458.jpg'>
+</p>
+
+***
+
+### <strong>Target Journal</strong>
+
+- 이전에 읽었던 논문들이 어떤 저널들에 주로 다뤄졌는지 list up 한다. 
+  - <a href='https://jcr.clarivate.com/jcr/home'>Journal Citation Reports</a>
+  - 위의 사이트에서 저널을 검색하여 Journal Impact factor 를 확인한다.
+  - Journal Impact Factor 가 높을수록, Rank by Journal Impact Factor 가 높을수록 좋은 저널이다. 
+  - 이때, 카테고리가 여러개라면 가장 높은 점수를 기준으로 생각하자.
+
+- IEEE Access journal 검색
+  - 카테고리가 여러개다.
+
+<p align="center">
+<img src='./img2.png'>
+</p>
+
+- JIF 점수도 낮은데 내려가는 추세임
+
+<p align="center">
+<img src='./img3.png'>
+</p>
+
+- RJIF 는 $63.8$ % 로 보면된다. 
+  - Q2 로 확정 
+
+<p align="center">
+<img src='./img4.png'>
+</p>
 
 
 ***
 
+### <strong>공통 사항</strong>
+
+- 글을 작성할 땐, **word** 에 먼저 작성해보자 
+  - Double-lined page 로 작성하는데 다음과 같이 설정하여 글을 번갈아가면서 볼 수 있게 한다. 
+
+
+<p align="center">
+<img src='./1000005456.jpg'>
+</p>
+
+
+- 모든 문단은 한 주제 내용에 대해서만 다뤄야한다. 
+  - 이때, 논문은 두괄식으로 주제 내용이 첫 줄에 작성되어서 글을 읽을때 이 문단의 내용을 짐작할 수 있어야 한다. 
+  - 이후의 내용은 주제 내용을 뒷받침하는 내용이 들어가야한다. 
+  - 또한, 이전 문단의 꼬리와 다음 문단의 머리가 연결되도록 글을 쓴다. 
+
+- Figure 는 중요한 figure 일수록 크기가 커야하고 figure_collection 을 참고하자
+  - 수치적 Graph 를 표현할때는 대체적으로 테두리의 굵기가 보여야 깔끔하다. 
+  - Figure 만 놓고 봐도 논문을 이해할 수 있어야한다.
+  - Font 는 기본적으로 *Times new(er) roman* 을 사용한다. 
+  - Notion > Adobe Illustration 에 다운받는 방법이 적혀있다. 
+
+<p align="center">
+<img src='./1000005462.jpg'>
+</p>
+
+<p align="center">
+<img src='./1000005461.jpg'>
+</p>
+
+<p align="center">
+<img src='./1000005460.jpg'>
+</p>
+
+- 문장 단위로 Papago 로 번역 > Quillbot 로 문장 고치기 > 문단 별로 모아서 Grammarly 로 검사
+
+<p align="center">
+<img src='./1000005459.jpg'>
+</p>
+
+<p align="center">
+<img src='./1000005457.jpg'>
+</p>
+
+***
+
 ### <strong>Intro</strong>
-- introduction은 주로 3 paragraph 정도로는 구성
-- 각 문단은 전달하고 싶은 메세지가 명확하게 하나로 있어야 하고 문단 간 연결이 매끄러워야 한다.
-- Method의 기술적인 detail이 포함될 필요는 없다. High-level 로 설명
-- 이 연구가 활발히 진행되고 있고
-- 왜 각광을 받고 있는지
-- 근데 무슨 문제가 있고
-- 다른 논문에서는 어떤 방식으로 해결하고자 했는지(간단)
-- 우리가 해결하고자 하는 문제에 대한 설명
-- 그 문제가 왜 어렵고
-- 우리는 어떻게 해결할 것이며
-- 해당 방법들을 통해 우리의 실험에서는 어떤 점들을 보여줄거다
-- 요약하자면, 우리가 제공하고자 하는 것들은 ~~~이다.
+
+- Introduction 은 기술적으로 구체적으로 적는 것이 아니라 high-level 로 적는다. 
+
+- $3$ 또는 $5$ 문단으로 구성
+  - $1$ 문단: 이 task 및 주제의 개념 및 요구사항과 왜 중요한지
+    - E.g., VITON task 는 옷을 가상으로 입히는 task 이고 사람의 pose, shape 및 clothing detail 을 보존해야 한다. 
+  - $2$ 문단: 이 task 의 문제와 기존의 노력 (기존 논문들의 문제점도 같이 언급)
+    - E.g., Logo 등의 clothing detail 을 보존하기가 어려운데 이를 위해 기존의 GAN-based model 들은 explicit warping module 을 사용했다. 하지만 이도 완벽하지 않음
+  - $3$ 문단: 최근의 접근법 소개 및 여전한 문제점 
+    - E.g., StableVITON 의 등장으로 많이 개선됐지만, 여전히 logo 나 text 의 손실이 발생한다. 
+  - $4$ 문단 (마지막 문단): 따라서 우리는 어떤 문제를 해결하기위해 무엇을 하겠다.
+    - 각각의 문제들을 해결하기 위해 어떤 방법들을 제안하고
+    - 어떤 실험들로 ~ 를 확인했으며
+    - 마지막으로 ~ 를 검증하여 제안된 연구가 ~ 하다는 것을 보였다. 
+  - $5$ 문단 (option): 본 연구의 main contribution 요약
 
 ***
 
@@ -51,7 +148,6 @@
 - 1. Related work 를 철저히 조사한 상태에서 기존에 존재하던 연구 중 어떤 방법론이 우리가 제안한 방법과 비교되어야 하는지 명확히 구분해야 한다. (Positioning)
 - 2. 기존 연구들 중 정말로 내가 제안하고자 하는 아이디어가 다른 연구자들이 하지 않았는가를 확인
   - 만일 똑같은 주제에 같은 방법론을 제안한 논문이 있다면, 약간 방향을 틀어서 방법론의 novelty 를 주장하기보다는 해당 방법론을 심층 깊게 다뤄서 (ControlNet + Image encoder - Text encoder 면 어떤 성능이 나올까?, etc.) 기존 연구와 구분지어야 한다.
-
 
 ***
 
@@ -65,6 +161,20 @@
 ***
 
 ### <strong>Experiment</strong>
+
+
+***
+
+### <strong>Title</strong>
+
+- 제목: 부제
+- 주장: 방법
+- e.g., representation 은 같은 feature space 에 위치하지 않는다: 우리는 tensor metric 으로 그걸 증명하겠다. 
+- e.g., any artistic style 을 text-to-image 로 합성하겠다: 보조적인 binding 으로 
+
+
+### <strong>Abstract</strong>
+- abstract에는 일반적으로 reference [] 를 포함하진 않는다. (아주 예외적인 경우 제외). 
 
 
 ***
