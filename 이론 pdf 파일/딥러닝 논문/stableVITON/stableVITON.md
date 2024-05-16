@@ -84,9 +84,11 @@ $\textsf{Method}$
 
 - Attention total variation loss
   - 옷의 색깔이 맞지 않는데, attention score 가 분산되어 있어서라고 가정했다.
-  - Cross-attention 으로 인해 clothing 과 agnostic map 간의 align 을 일치시키기 위해 사용한다. 
+  - 잘 학습된 모델을 대상으로 (어느 정도의 location align 이 되어있어야 한다) attentio map 의 center coordinate 의 variation 을 최소화하면, 중심 좌표들간의 변동이 최소화되면서 일관된 위치에 주의를 집중하게 된다. 
+  - 또한, Cross-attention 에서의 clothing 과 warped clothing 간의 location align 을 일치시키는 효과가 있다. (중심 좌표들간에 충돌을 막아주는 효과)
   - E.g., color discrepancies (옷의 색깔이 맞지 않는다)
-  - 값이 툭 튄 score 들을 noise 라고 보고, 그 noise 를 감소시키기 위해 loss 를 사용
+  - 여기서 center coordinate map 이란, generated patch $i$ 에 영향을 주는 reference attribution map (clothing) 의 **high attention score 들의 average location** 이자 **map 에서 가장 중요한 위치** 라고 볼 수 있다. 
+  - **일반적인 무게 중심을 구하는 식에서 각 위치에서의 attention score 를 곱해준 꼴인데, 이건 attention score 를 weight 로써 일반적인 무게중심이 아니라 high attention score 를 더 고려한 무게 중심이다.**
   
 - $32 \times 24$ cross-attention in zero cross-attention block
   - Attention totla variation loss 와 augmentation 을 사용하면, Cloth 와 human body 의 align 이 잘 된다.
