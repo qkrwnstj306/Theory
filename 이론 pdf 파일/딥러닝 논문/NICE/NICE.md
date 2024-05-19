@@ -16,7 +16,7 @@
 
 > Core Idea
 <div align=center>
-<strong>"test1"</strong></br>
+<strong>"Represent Non-Linear Transformation with Coupling Layer"</strong></br>
 </div>
 
 ***
@@ -48,12 +48,6 @@ $\textbf{본 논문에서 해결하고자 하는 문제와 어떻게 해결하�
   - 본 논문에서는 Jacobian 과 역 Jacobian 의 determinant 계산이 쉬우면서도 복잡한 non-linear transformation 을 학습할 수 있도록 이 transformation 을 parameterize 했다. 
   - 학습은 정확한 log-likelihood (=tractable) 이다.
   - Generative model: $4$ 가지 image dataset (can be used for inpainting)
-
-$\textbf{본 논문의 주요 기여점}$
-
-***
-
-### <strong>Related Work</strong>
 
 
 ***
@@ -104,20 +98,7 @@ $$ dh = \det{(\frac{dh}{dx})} dx = \det(\frac{df(x)}{dx})dx$$
 <img src='./img3.png'>
 </p>
 
-$$
-p_X(x) = p_{H_1}(h_1) \det(\frac{dh_1}{dx}) \\
-
-p_{H_1}(h_1) = p_{H_2}(h_2) \det(\frac{dh_2}{dh_1}) \\
-
-p_{H_2}(h_2) = p_{H_3}(h_3) \det(\frac{dh_3}{dh_2}) \\
-
-. \\ 
-. \\
-. \\ 
-
-p_{H_{N-1}}(h_{N-1}) = p_{H_N}(h_N) \det(\frac{dh_N}{dh_{N-1}}) \\
-
-$$
+$$ p_X(x) = p_{H_1}(h_1) \det(\frac{dh_1}{dx}) \\ p_{H_1}(h_1) = p_{H_2}(h_2) \det(\frac{dh_2}{dh_1}) \\ p_{H_2}(h_2) = p_{H_3}(h_3) \det(\frac{dh_3}{dh_2}) \\ . \\ . \\ . \\ p_{H_{N-1}}(h_{N-1}) = p_{H_N}(h_N) \det(\frac{dh_N}{dh_{N-1}}) \\ $$
 
 - So, 
 
@@ -134,7 +115,8 @@ $$ \log p_X(x) = \log p_{H_N}(h_N) + \sum_{i=1}^N\log \det(\frac{dh_i}{dh_{i-1}}
 $\textbf{Coupling Layer}$
 
 - 본 논문의 핵심은 Jacobian 의 determinant 와 inverse $f^{-1}$ 을 쉽게 구할 수 있게 설계하는 것이다. 
-  - 그 첫번째가 coupling layer 를 사용하여 $f$ 를 구성하는 것이다. 
+  - Coupling layer 를 사용하여 $f$ 를 다음과 같이 구성하여 조건을 만족시킨다.
+    - 이때, $f$ 와 $m$ 은 서로 다르고 $f$ 안에 network $m$ 이 있음을 상기해야한다.
 
 - $x$ 를 $(x_1, x_2)$ 로 나누고 $(y_1, y_2)$ 의 form 으로 변환한다. 
   - $m$: 임의의 복잡한 함수 (E.g., ReLU MLP)
