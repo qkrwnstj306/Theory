@@ -99,7 +99,31 @@ $$ dh = \det{(\frac{dh}{dx})} dx = \det(\frac{df(x)}{dx})dx$$
 </p>
 
 $$ 
-p_X(x) = p_{H_1}(h_1) \det(\frac{dh_1}{dx}) \\ p_{H_1}(h_1) = p_{H_2}(h_2) \det(\frac{dh_2}{dh_1}) \\ p_{H_2}(h_2) = p_{H_3}(h_3) \det(\frac{dh_3}{dh_2}) \\ . \\ . \\ . \\ p_{H_{N-1}}(h_{N-1}) = p_{H_N}(h_N) \det(\frac{dh_N}{dh_{N-1}}) 
+p_X(x) = p_{H_1}(h_1) \det(\frac{dh_1}{dx}) 
+$$
+
+$$
+p_{H_1}(h_1) = p_{H_2}(h_2) \det(\frac{dh_2}{dh_1}) 
+$$
+
+$$
+p_{H_2}(h_2) = p_{H_3}(h_3) \det(\frac{dh_3}{dh_2}) 
+$$
+
+$$
+.
+$$
+
+$$
+.
+$$
+ 
+$$
+.
+$$
+
+$$
+p_{H_{N-1}}(h_{N-1}) = p_{H_N}(h_N) \det(\frac{dh_N}{dh_{N-1}}) 
 $$
 
 - So, 
