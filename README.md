@@ -180,6 +180,8 @@ Theory for ML.
   - <a href='./이론 pdf 파일/딥러닝 논문/SDXL/SDXL.md'>Paper Review</a>
 - <a href='http://proceedings.mlr.press/v119/jun20a/jun20a.pdf'>Distribution Augmentation for Generative Modeling</a>
   - <a href='./이론 pdf 파일/딥러닝 논문/Distribution-Augmentation/Distribution-Augmentation.md'>Paper Review</a>
+- <a href='https://arxiv.org/pdf/1410.8516'>NICE: Non-Linear Independent Components Estimation</a>
+  - <a href='./이론 pdf 파일/딥러닝 논문/NICE/NICE.md'>Paper Review</a>
 	
 #### Image Editing
 - <a href='./이론 pdf 파일/딥러닝 논문/Prompt to prompt image editing with attention_231004_124613.pdf'>Prompt-to-Prompt Image Editing with Cross Attention Control</a>
