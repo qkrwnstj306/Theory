@@ -259,7 +259,7 @@ $\textbf{Additional Paper Review}$
 
 2. GLOW 
 
-- Flow 는 *Actnorm, Invertible $1\times1$ Conv, Affine coupling layer* 로 구성되어 있다. 
+- Flow 는 *Actnorm, Invertible 1 by 1 Conv, Affine coupling layer* 로 구성되어 있다. 
   - Actnorm: Activation output 에 affine transformation 을 적용하는 것이다. 
   - Invertivel $1 \times 1$ Conv: Coupling layer 의 input 을 split 하는 용도로 사용된다. 
     - 이는 coupling layer 의 input 의 split 할 때 항상 $y_1$ 에 대해선 어떠한 변환도 이루어지지 않기에 제안됐다. 
