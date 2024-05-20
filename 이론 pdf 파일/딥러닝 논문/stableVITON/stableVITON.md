@@ -83,6 +83,10 @@ $\textsf{Method}$
 - Augmentation: random shift, horizontal flip, random scale
 
 - Attention total variation loss
+  - UNet decoder 에서 ControlNet 과 연결된 cross-attention module 은 $9$ 개이다. 
+    - $[0, 1, 2, 3, 4, 5, 6, 7, 8]$: $3$ 개씩 같은 resol 이다. 차례대로 $16, 32, 64$ resolution. 
+    - 실제 코드에선, $4$ index 즉, $32$ resolution 에 대해서 이 loss 가 적용되었다. 제안된 loss 는 학습된 모델이 어느정도의 location mapping 이 잘 aligin 되어있어야 효과적으로 쓸 수 있는 거 같다. 
+    - 극단적으로 양 극단의 중심좌표가 다를텐데, 이 사이의 값들의 total variation 을 줄여야 하므로 한 극단으로 갈수록 중심 좌표의 값들이 천천히 변화하여 도달할 것이다. 
   - 옷의 색깔이 맞지 않는데, attention score 가 분산되어 있어서라고 가정했다.
   - 잘 학습된 모델을 대상으로 (어느 정도의 location align 이 되어있어야 한다) attentio map 의 center coordinate 의 variation 을 최소화하면, 중심 좌표들간의 변동이 최소화되면서 일관된 위치에 주의를 집중하게 된다. 
   - 또한, Cross-attention 에서의 clothing 과 warped clothing 간의 location align 을 일치시키는 효과가 있다. (중심 좌표들간에 충돌을 막아주는 효과)

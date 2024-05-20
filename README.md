@@ -315,7 +315,7 @@ $\textbf{VITON}$
 
 # <strong>4. Math</strong>
 - <a href='./이론 pdf 파일/수학/Expectation 성질_230504_000715.pdf'>Expectation Property</a>
-- <a href='./이론 pdf 파일/수학/Jacobian_230516_013721.pdf'>Jacobian Matrix </a>
+- <a href='./이론 pdf 파일/수학/Jacobian.pdf'>Jacobian Matrix</a>
 - <a href='./이론 pdf 파일/수학/결합, 주변, 조건부_230925_122308.pdf'>Joint/Margin/Conditional (결합/주변/조건부) Probability </a>
   - <a href='./이론 pdf 파일/딥러닝 이론/확률.md'>Add Infro: 조건부 확률, 결합 확률</a>
 - <a href='./이론 pdf 파일/수학/라그랑주_230503_233936.pdf'>라그랑주 </a>
