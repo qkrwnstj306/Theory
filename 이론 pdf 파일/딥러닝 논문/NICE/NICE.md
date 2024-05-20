@@ -131,6 +131,7 @@ $$
 $$ p_X(x) = p_{H_N}(h_N) \prod_{i=1}^N\det(\frac{dh_i}{dh_{i-1}}) \ , \text{if} \ \ i=1, \ h_0 = x $$
 
 - $\log$ (최종적인 목적 함수)
+  - Data $x$ 를 input 으로 $h$ 를 만들어서 아래의 함수를 maximize 하면, likelihood 를 maximize 하는 것이다. 
 
 $$ \log p_X(x) = \log p_{H_N}(h_N) + \sum_{i=1}^N\log \det(\frac{dh_i}{dh_{i-1}}) \ , \text{if} \ \ i=1, \ h_0 = x $$
 
@@ -233,6 +234,42 @@ $\textbf{Code Reivew}$
 
 <p align="center">
 <img src='./img20.png'>
+</p>
+
+$\textbf{Additional Paper Review}$
+
+1. RealNVP
+
+- Affine coupling layers 
+  - NICE 에서는 coupling layer 를 사용하여 $f$ 의 역함수를 구하기 쉽고, Jacobian 의 determinant 를 쉽게 계산할수 있도록 구성했다. 
+  - 하지만, NICE 에서는 내부의 $g$ function 으로 단순하게 additive function 을 사용했다. 이는 다양한 장점이 있지만 단순하게 $+$ 를 사용했기에 복잡한 데이터를 표현하기 어렵다. 
+  - 따라서 Affine coupling layers 를 제안한다. ($Ax+b$)
+
+<p align="center">
+<img src='./img23.png'>
+</p>
+
+- Affine coupling layer 로 구성해도 역함수를 구하기 쉽고, determinant 도 구하기 쉽다. 
+  - $s, t$: DNN
+
+<p align="center">
+<img src='./img24.png'>
+</p>
+
+
+2. GLOW 
+
+- Flow 는 *Actnorm, Invertible $1\times1$ Conv, Affine coupling layer* 로 구성되어 있다. 
+  - Actnorm: Activation output 에 affine transformation 을 적용하는 것이다. 
+  - Invertivel $1 \times 1$ Conv: Coupling layer 의 input 을 split 하는 용도로 사용된다. 
+    - 이는 coupling layer 의 input 의 split 할 때 항상 $y_1$ 에 대해선 어떠한 변환도 이루어지지 않기에 제안됐다. 
+    - 극단적으로, 한 이미지의 반절이 그대로 남아있는데 $x \rightarrow h$ 로 mapping 했다는 것이다. 
+    - 따라서 $x_1$ 이 고정된 channel 의 반절이 아니라 적절하게 섞어주는데 이전의 모델들은 (NICE, realNVP) 사용자가 임의로 설정했다. (e.g., 'even', 'odd' in NICE)
+    - GLOW 에서는 이 섞는 과정조차 학습 대상으로 보고 $1 \times 1$ conv 로 channel 들을 섞어준 것이다. 
+  - Affine coupling layer: 이는 batch normalization 과 유사하지만 batch size 1 에서 작동한다. 
+
+<p align="center">
+<img src='./img25.png'>
 </p>
 
 
