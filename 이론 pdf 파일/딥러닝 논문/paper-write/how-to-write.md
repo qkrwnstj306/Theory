@@ -80,6 +80,7 @@
 
 - 글을 작성할 땐, **word** 에 먼저 작성해보자 
   - Double-lined page 로 작성하는데 다음과 같이 설정하여 글을 번갈아가면서 볼 수 있게 한다. 
+  - Download in Ubuntu: <a href='https://ubunlog.com/ko/%EC%99%80%EC%9D%B8%EC%97%86%EC%9D%B4-%EC%9A%B0%EB%B6%84%ED%88%AC%EC%97%90-Microsoft-Office-%EC%84%A4%EC%B9%98/'>ref.</a>
 
 
 <p align="center">
