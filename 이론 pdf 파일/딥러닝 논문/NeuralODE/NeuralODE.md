@@ -11,12 +11,12 @@
 [Conclusion](#conclusion)</br>
 
 <p align="center">
-<img src='./img0.png'>
+<img src='./img3.png'>
 </p>
 
 > Core Idea
 <div align=center>
-<strong>"test1"</strong></br>
+<strong>"Continuous Skip Connection"</strong></br>
 </div>
 
 ***
@@ -168,7 +168,7 @@ $$ h_i = h_1 + f(h_1, \theta_1) + f(h_2, \theta_2) + ... + f(h_{i-1}, \theta) $$
 $\textbf{Custom forward}$
 
 - Forward 과정을 다음과 같이 표현할 수 있다. 
-  - $f(z(t), t; \theta):$ $t$ 시점에서 $z(t)$ 를 미분한 값이라고 볼 수 있다. 이는 본 논문에서, $z(t)$ 를 network $f(.)$ 에 입력으로 넣어서 나온 output 으로 봐도 된다. 
+  - $f(z(t), t; \theta):$ $t$ 시점에서 $z(t)$ 를 미분한 값이라고 볼 수 있다. 따라서 skip connection과 동일하게, $z(t+1)$ 를 $f(z(t), t; \theta) + z(t)$ 로 봐야한다. 여기서의 $f$ 는 각 network block 이다. 
 
 $$ Z(1) = Z(0) + \int_0^1 f(z(t), t; \theta) dt  $$
 
@@ -181,6 +181,11 @@ $\textbf{Custom backward}$
 <p align="center">
 <img src='./img8.png'>
 </p>
+
+- $L()$ 을 $\theta$ 에 대해서 편미분 하기전에, chain rule 에서의 전 단계인 $z$ 에 대해서 미분을 먼저 해보자 
+  - $\frac{\partial L}{\partial \theta_t} = \frac{\partial L}{\partial z(t)} \frac{\partial z(t)}{\partial \theta_t}$
+
+----
 
 - 각 state 별 gradient 를 *Adjoint state* $a(t)$ 로 정의 
 
@@ -235,22 +240,35 @@ $$ = -a(t)^\textsf{T}( \frac{\partial f(z(t), t, \theta)}{\partial z(t)} ) $$
 $$ \textbf{So, } \ \frac{da(t)}{dt} = -a(t)^\textsf{T}( \frac{\partial f(z(t), t, \theta)}{\partial z(t)} ) $$
 
 
-- Gradients wrt (with respect to: ~에 대해) $\theta$ and $t$
-  - Appendix B
-  - 위에서 구한 $\frac{da(t)}{dt}$ 를 일반화하여 $\theta, t$ 에 대한 gradient 도 구할 수 있다. 
+----
 
-<!-- $$ \frac{\partial \theta(t)}{\partial t} = \mathbf{0}, \frac{dt(t)}{dt} = 1 $$
+다시 돌아와서 $L$ 을 $\theta$ 에 대해서 미분해보면, 
 
-$$ \frac{\partial Loss}{\partial \theta_0} = \frac{\partial Loss}{\partial \theta_1} + \int_1^0 \frac{\partial L}{\partial \theta_t}  dt $$
+$$ \frac{da(t)}{dt} = \frac{d}{dt}(\frac{\partial L}{\partial z(t)})  = -a(t)^\textsf{T}( \frac{\partial f(z(t), t, \theta)}{\partial z(t)}) $$
 
-$$ \frac{\partial L}{\partial \theta_t} = \frac{\partial L}{\partial z(t)} \frac{\partial z(t)}{\partial \theta_t} = a(t)\frac{\partial f}{\partial \theta} $$
+- 양변에 $\frac{\partial z(t)}{\partial \theta_t}$
 
-$$ \frac{\partial Loss}{\partial \theta_0} =\mathbf{0} - \int_1^0 a(t)\frac{\partial f}{\partial \theta} dt $$ -->
+$$ \frac{d}{dt}(\frac{\partial L}{\partial \theta_t}) = -a(t)^\textsf{T}( \frac{\partial f(z(t), t, \theta)}{\partial \theta_t}) $$
 
+- $0$ 시점의 값은 
 
-$$ \frac{dL}{d\theta} = - \int_{t_1}^{t_0} a(t)^\textsf{T} \frac{\partial f(z(t), t, \theta)}{\partial \theta}dt $$
+$$ \frac{\partial Loss}{\partial \theta(0)} = \frac{\partial Loss}{\partial \theta(1)} + \int_1^0 \frac{d}{d t}(\frac{\partial L}{\partial \theta_t})  dt $$
 
-<a href='https://vaipatel.com/posts/deriving-the-adjoint-equation-for-neural-odes-using-lagrange-multipliers/'>Proof</a>
+- 이때, $1$ 시점의 값은 $\frac{d}{dt}(\frac{\partial L}{\partial \theta_t})$ 를 $t$ 에 대해서 적분하고 $t=t_1$ 으로 대입하여 풀 수 있는데, 이 값은 $0$이 된다. 
+
+$$ \frac{dL}{d\theta_t} = - \int_{t_1}^{t} a(t)^\textsf{T} \frac{\partial f(z(t), t, \theta)}{\partial \theta}dt $$
+
+- 따라서, 최종적인 수식은 다음과 같이 정리된다. 
+  - 결국 $a(t) = \frac{\partial L}{\partial z(t)}$ 를 구해야 풀 수 있다. 
+
+$$ \frac{\partial Loss}{\partial \theta(0)} = \int_1^0 \frac{d}{d t}(\frac{\partial L}{\partial \theta_t})  dt = - \int_1^0   a(t)^\textsf{T} \frac{\partial f(z(t), t, \theta)}{\partial \theta} dt $$
+
+- 또 다른 증명들 
+  1. Appendix B
+     - 위에서 구한 $\frac{da(t)}{dt}$ 를 일반화하여 $\theta, t$ 에 대한 gradient 도 구할 수 있다. 
+  2. 라그랑주를 이용한 풀이 (+ 그적미적 등등)
+     - <a href='https://vaipatel.com/posts/deriving-the-adjoint-equation-for-neural-odes-using-lagrange-multipliers/'>Proof</a>
+
 
 
 - 이렇게 얻은 gradient 를 활용하여 optimization 을 진행한다. 
@@ -262,16 +280,62 @@ $$ \frac{dL}{d\theta} = - \int_{t_1}^{t_0} a(t)^\textsf{T} \frac{\partial f(z(t)
 
 - $a(t)^\textsf{T} \frac{\partial f(z(t), t, \theta)}{\partial z(t)}$ 와 $a(t)^\textsf{T} \frac{\partial f(z(t), t, \theta)}{\partial \theta}$ 는 자동 미분으로 계산이 가능하다. 
 
+- 알고리즘은 다음과 같다. 
+  - Backpropagation 을 통해 stop time $t_1$ 에서의 final state 는 구할 수 있다. 
+  - 그 시점까지의 loss gradient도 마찬가지로 구할 수 있다. 
+  - 여기서부터 시작해서 ODE solver로 start time $t_0$ 까지의 graident 도 계산 가능하다. 
+
+<p align="center">
+<img src='./img10.png'>
+</p>
 
 - Continuous Normalizaing Flows
   - $f$ 가 $z$ 에서 균일하게 Lipschitz 연속이고 $t$ 에서 연속이라고 가정하면 로그 확률의 변화는 다음과 같은 미분 방정식을 따른다. 
   - Jacobian 의 determinant 를 계산하는 대신 trace(대각합) 연산만 하면된다. 
+  - Appendix A
+  - $p(z_0)$ : 초기 데이터 분포 
+  - Trace 함수는 determinant 와 다르게 선형 함수이다. 
 
 $$ \frac{\partial \log p(z(t))}{\partial t} = -tr(\frac{df}{dz(t)}) $$
+
+$$ \log p(z(t+1)) = \log p(z(t)) + \frac{\partial \log p(z(t))}{\partial t} $$
 
 ***
 
 ### <strong>Experiment</strong>
+
+$\textbf{Replacing residual networks with ODEs for supervised learning}$
+
+- 수치적으로 초기값 문제를 가지는 ODE(Ordinary Differential Equation, 상미분방정식)를 해결하기 위해 LSODE와 VODE에 구현된 암시적 Adams 방법을 사용한다.
+
+- 모델: 입력을 $2$ 번 다운샘플링한 다음 $6$ 개의 표준 residual block을 적용하는 작은 ResNet (ODE-Net)
+- MNIST 에서의 성능을 비교한다. 
+- RK-Net 은 동일한 구조를 사용하지만 Runge-Kutta 를 통해 기울기가 직접 역전파된다. $L$ 은 레이어 수이고, $\tilde L$ 은 ODE solver 가 한 번의 forward pass 에서 요청한 함수 평가 횟수이다. ODE-Net과 RK-Net 모두 ResNet 과 비슷한 성능을 달성했다. 
+
+<p align="center">
+<img src='./img11.png'>
+</p>
+
+- CNF (Continuous Normalizing Flow) 가 NF 대비 더 낮은 loss 를 달성한다. 
+  - 심지어 더 적은 iteration 으로 달성함
+  - 더 target representation 에 가까운 구현을 달성
+
+<p align="center">
+<img src='./img12.png'>
+</p>
+
+
+- 불규칙적인 데이터를 신경망에 적용하는 것은 어렵다. 일반적인 RNN 은 고정된 기간에서 발생한 관측값을 사용한다. 
+  - 연속적으로 보면 이런 경우도 잘 대처한다. 
+  - 심지어 extrapolation 도 잘 수행한다. 
+
+<p align="center">
+<img src='./img13.png'>
+</p>
+
+<p align="center">
+<img src='./img14.png'>
+</p>
 
 
 ***

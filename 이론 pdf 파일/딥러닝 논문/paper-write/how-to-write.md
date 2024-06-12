@@ -121,6 +121,26 @@
 <img src='./1000005457.jpg'>
 </p>
 
+- 수량: numerous, various, multiple, Countless, Abundant, Several, Plentiful
+
+- 강조: Amazingly, Impressively, Surprisingly, Notably, Especially, Remarkably, Indeed (사실은), Specifically (=Namely), 
+
+- Additionally: 게다가, Furthermore: 그 외에도, Moreover: 게다가, In addtion: 게다가, Besides: 그 외에도, Alongside: 동시에, 
+
+incorporate: 포함하다, 통합하다.
+leverage: 이용하다
+facilitate: 촉진하다, 도와주다, 가능하게 하다
+leverage, utilize: 활용하다 
+To elaborate: 자세히 설명하자면 (이전에 제시한 주장을 확장하는 표현)
+intricate: 복잡한(=complex)
+
+-  While numerous studies have focused on
+
+연구 논문의 문제 진술과 함께 많이 사용하며, 주제에 대한 기존의 연구 내용을 소개하고 특정 측면의 결점을 지적함으로써 독자가 “이 주제에 대해 우리가 무엇을 놓치고 있는가?”와 같은 질문에 집중하게 만들어주는 표현
+
+<a href='https://wordvice.ai/ko/blog/best-academic-words-for-research'>Ref.</a>
+
+
 ***
 
 ### <strong>Intro</strong>

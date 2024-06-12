@@ -249,6 +249,8 @@ $\textbf{VITON}$
   - <a href='./이론 pdf 파일/딥러닝 논문/TryOnGAN/TryOnGAN.md'>Paper Review</a>
 - <a href='https://arxiv.org/pdf/2403.01779.pdf'>OOTDiffusion: Outfitting Fusion based Latent Diffusion for Controllable Virtual Try-on</a>
   - <a href='./이론 pdf 파일/딥러닝 논문/OOTDiffusion/OOTDiffusion.md'>Paper Review</a>
+- <a href='https://arxiv.org/pdf/2404.14162'>FLDM-VTON: Faithful Latent Diffusion Model for Virtual Try-on</a>
+  - <a href='./이론 pdf 파일/딥러닝 논문/FLDM-VTON/FLDM-VTON.md'>Paper Review</a>
 
 ### Natural Language
 - <a href='./이론 pdf 파일/딥러닝 이론/LSTM.pdf'>LSTM : Long Short-Term Memory</a>
