@@ -16,7 +16,7 @@
 
 > Core Idea
 <div align=center>
-<strong>"test1"</strong></br>
+<strong>"Provide Cloth Prior and Preserve Cloth Detail using Flattening Network"</strong></br>
 </div>
 
 ***
@@ -208,10 +208,5 @@ $\textbf{Implementation details}$
 
 ### <strong>Question</strong>
 
-
-
-![](img_path)
-<a href="">link</a>
-
-
-> 인용구
+- Limitation
+  - Inference 과정에도 warped clothing 이 필요해진다. 
