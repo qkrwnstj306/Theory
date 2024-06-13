@@ -226,6 +226,8 @@ Theory for ML.
 - <a href='https://arxiv.org/pdf/2306.14435'>DragDiffusion: Harnessing Diffusion Models for Interactive Point-based Image Editing</a>
   - <a href='./이론 pdf 파일/딥러닝 논문/DragDiffusion/DragDiffusion.md'>Paper Review</a>
   - <a href='./PPT/DragDiffusion.pdf'>DragDiffusion PDF</a>
+- <a href='https://arxiv.org/pdf/2304.09748'>Reference-based Image Composition with Sketch via Structure-aware Diffusion Model</a>
+  - <a href='./이론 pdf 파일/딥러닝 논문/RIC/RIC.md'>Paper Review</a>
 
 $\textbf{VITON}$
 

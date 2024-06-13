@@ -1,7 +1,7 @@
 <img src="https://capsule-render.vercel.app/api?type=waving&color=auto&height=80&section=header&text=Welcome%20Paper%20Review&fontSize=50" width="100%">
 
 
-## [paper]
+## FLDM-VTON: Faithful Latent Diffusion Model for Virtual Try-on
 *IJCAI(2024), 0 citation, Fudan University(China), Review Data: 2024.06.12*
 
 [Intro](#intro)</br>
