@@ -121,7 +121,7 @@
 <img src='./1000005457.jpg'>
 </p>
 
-- 수량: numerous, various, multiple, Countless, Abundant, Several, Plentiful
+- 수량: numerous, various, multiple, Countless, Abundant, Several, Plentiful, massive amount, tremendous(엄청난)
 
 - 강조: Amazingly, Impressively, Surprisingly, Notably, Especially, Remarkably, Indeed (사실은), Specifically (=Namely), 
 
@@ -133,6 +133,9 @@ facilitate: 촉진하다, 도와주다, 가능하게 하다
 leverage, utilize: 활용하다 
 To elaborate: 자세히 설명하자면 (이전에 제시한 주장을 확장하는 표현)
 intricate: 복잡한(=complex)
+comply: 준수하다, 따르다.
+versatile: 다재다능한 
+devise: 구상하다. 발명하다. 고안하다.
 
 -  While numerous studies have focused on
 
