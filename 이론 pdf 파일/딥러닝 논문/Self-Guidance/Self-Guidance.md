@@ -114,20 +114,20 @@ $\textbf{Self-Guidance}$
 1. Object position
    1. 물체의 위치를 표현하기 위해 각 attention channel의 질량 중심 (=중심 좌표)을 찾는다. 이 중심 좌표가 의미하는 바는 token $k$가 의미하는 물체의 attention score의 중심 좌표이다.
    2. 예를 들어, "a burger" 에 해당하는 cross attention map들만 가지고 와서: 각 좌표 $\times$ 그 좌표의 attention score 의 합을 구하면 "a burger"가 표현하고 있는 attention score들의 중심 좌표 $=$ "a burger"가 생성한 물체의 중심이 된다. 
-   3. 여기서, burger의 위치를 $(0.3, 0.5)$ 로 옮기고 싶다면 $(1)$ 의 수식을 
+   3. 여기서, burger의 무게 중심을 $(0.3, 0.5)$ 로 옮기고 싶다면 $(1)$ 의 수식을 
    4. Burger의 위치를 오른쪽으로 $(0.1, 0.0)$ 만큼 옮기고 싶다면 $(2)$ 의 수식을 수행하면 된다. 
 
 <p align="center">
 <img src='./img4.png'>
 </p>
 
-$$ \begin{align} 
+$$\begin{align} 
 
 \parallel (0.3, 0.5) - centroid(k) \parallel_1
 \\
 \parallel centrolid_{original}(k) + (0.1, 0.0) - centroid(k) \parallel_1
 
-\end{align} $$
+\end{align}$$
 
 
 
