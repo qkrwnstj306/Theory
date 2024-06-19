@@ -124,7 +124,9 @@ $\textbf{Self-Guidance}$
 $$
 
 \parallel (0.3, 0.5) - centroid(k) \parallel_1 -(1)
+
 \\
+
 \parallel centrolid_{original}(k) + (0.1, 0.0) - centroid(k) \parallel_1 (2)
 
 $$
