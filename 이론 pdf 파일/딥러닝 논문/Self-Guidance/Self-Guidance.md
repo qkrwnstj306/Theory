@@ -127,7 +127,7 @@ $$
 
 \\
 
-\parallel centrolid_{original}(k) + (0.1, 0.0) - centroid(k) \parallel_1 (2)
+\parallel centrolid_{original}(k) + (0.1, 0.0) - centroid(k) \parallel_1 -(2)
 
 $$
 
