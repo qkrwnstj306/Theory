@@ -90,6 +90,8 @@ $\textbf{Try-on Diffusion with Clothes Priors}$
 
 - Clothes faithful priors: diffusion stochastic process 에서의 확률적인 요소를 줄이기 위해 cloth 정보를 prior 로 제공한다. 
   - 중요한 점은 main starting point $T$ 와 prior starting point $C^\omega$ 가 동시에 들어가는 것이 아니라, 둘 중 하나만 입력으로 사용되는 것이다. 
+  - Main starting point: photo-realistic quality를 보존하는 데 기여한다.
+  - Prior starting point: 생성된 옷의 faithfulness를 강화시키는 데 기여한다. 
   - $m^r$ : down-sampled inpainting (agnostic) mask 
 
 - Self-supervised visual encoder 로써, DINOv2 를 사용한다. 

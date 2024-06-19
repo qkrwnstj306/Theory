@@ -192,7 +192,6 @@ $\textbf{Negative-prompting}$
 
 ### <strong>Experiment</strong>
 
-- 
 
 $\textbf{Datasets}$
 

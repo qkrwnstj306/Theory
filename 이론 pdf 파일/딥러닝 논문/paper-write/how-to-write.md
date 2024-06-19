@@ -136,6 +136,8 @@ intricate: 복잡한(=complex)
 comply: 준수하다, 따르다.
 versatile: 다재다능한 
 devise: 구상하다. 발명하다. 고안하다.
+steer: 조종하다. 
+By consequence: 결과적으로
 
 -  While numerous studies have focused on
 
