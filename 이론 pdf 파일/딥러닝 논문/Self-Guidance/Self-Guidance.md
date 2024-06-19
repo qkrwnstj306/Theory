@@ -121,13 +121,13 @@ $\textbf{Self-Guidance}$
 <img src='./img4.png'>
 </p>
 
-$$ \begin{align*} 
+$$
 
-\parallel (0.3, 0.5) - centroid(k) \parallel_1
+\parallel (0.3, 0.5) - centroid(k) \parallel_1 -(1)
 \\
-\parallel centrolid_{original}(k) + (0.1, 0.0) - centroid(k) \parallel_1
+\parallel centrolid_{original}(k) + (0.1, 0.0) - centroid(k) \parallel_1 (2)
 
-\end{align*} $$
+$$
 
 
 
