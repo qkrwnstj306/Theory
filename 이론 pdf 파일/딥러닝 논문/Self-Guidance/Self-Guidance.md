@@ -78,7 +78,7 @@ $\textbf{본 논문에서 해결하고자 하는 문제와 어떻게 해결하�
 $\textbf{Guidance}$
 
 - 앞의 두 항은 classifier-free guidance를 나타낸다.
-  - 마지막 항의 $g(z_t,;t, y)$는 energy function
+  - 마지막 항의 $g(z_t,;t, y)$:는 energy function
 
 <p align="center">
 <img src='./img2.png'>
