@@ -121,7 +121,10 @@ $\textbf{Self-Guidance}$
 <img src='./img4.png'>
 </p>
 
-$$ \parallel (0.3, 0.5) - centroid(k) \parallel_1 -(1) \\ \parallel centroid_{original}(k) + (0.1, 0.0) - centroid(k) \parallel_1 -(2) $$
+$$ \parallel (0.3, 0.5) - centroid(k) \parallel_1 -(1)   $$
+
+
+$$ \parallel centroid_{original}(k) + (0.1, 0.0) - centroid(k) \parallel_1 -(2) $$
 
 
 
