@@ -230,6 +230,8 @@ Theory for ML.
   - <a href='./이론 pdf 파일/딥러닝 논문/RIC/RIC.md'>Paper Review</a>
 - <a href='https://arxiv.org/pdf/2211.12572'>Plug-and-Play Diffusion Features for Text-Driven Image-to-Image Translation</a>
   - <a href='./이론 pdf 파일/딥러닝 논문/Plug-and-Play/Plug-and-Play.md'>Paper Review</a>
+- <a href='https://proceedings.neurips.cc/paper_files/paper/2023/file/3469b211b829b39d2b0cfd3b880a869c-Paper-Conference.pdf'>Diffusion Self-Guidance for Controllable Image Generation</a>
+  - <a href='./이론 pdf 파일/딥러닝 논문/Self-Guidance/Self-Guidance.md'>Paper Review</a>
 
 $\textbf{VITON}$
 
