@@ -77,12 +77,61 @@ $\textbf{본 논문에서 해결하고자 하는 문제와 어떻게 해결하�
 
 $\textbf{Guidance}$
 
+- 먼저, guidance 할 수 있는 방법을 알아보자 
+
 - 앞의 두 항은 classifier-free guidance를 나타낸다.
-  - 마지막 항의 $g(z_t,;t, y)$:는 energy function
+  - 마지막 항의 $g(z_t,;t, y)$는 energy function이다. Classifier 뿐만 아니라 diffusion sampling process를 guide할 수 있는 값이기만 하면 된다. (다른 model로부터의 energy function이어도 된다)
+  - CLIP model로부터 나온 similarity score
+  - Arbitrary time-independent energy as in universal guidance
+  - Attention의 bounding box penalties 
+  - Any attributes of the noisy images
+  - $s$: classifier-free guidance strength
+  - $v$: additional guidance weight for $g$
+  - $\sigma_t$: score function을 $\epsilon_t$ 예측으로 변환하기 위한 scaling factor
 
 <p align="center">
 <img src='./img2.png'>
 </p>
+
+- 그렇다면, diffusion model을 조절할 수 있는 signal은 어디에서 찾을 수 있을까
+  - 최근 논문에서 U-Net의 중간 output이 생성되는 이미지의 구조나 content에 대한 가치있는 정보를 encoding함을 발견했다. 
+  - 특히, Prompt-to-Prompt에서 **self-attention & cross-attention map이 종종 object position과 shape에 대한 구조적인 정보를 가지고 있음을 발견했다.**
+  - 더불어서, Plug-and-Play 에서 **적절한 layer에서 추출된 network activation이 coarse appearance를 유지함을 발견했다.** (+ 구조적인 정보: layout도 가지고 있다)
+
+<p align="center">
+<img src='./img3.png'>
+</p>
+
+$\textbf{Self-Guidance}$
+
+- Diffusion model에 의해 학습된 rich representation에 영감을 받아, 중간 activation과 ttention map을 교체하여 sampling process를 조종하는 self-guidance를 제안한다. 
+
+- 우리는 지금까지 forward process에서 추출된 activations $\Psi_{i,t} \in \mathbb{R}^{H_i \times W_i \times D_i}$ 와 softmax-normalized attention matrices $A_{i,t} \in \mathbb{R}^{H_i \times W_i \times K}$ 가 생성된 이미지를 조절하는데 유의미한 특성을 가지고 있음을 확인했다. 
+  - Attention map $A_{i,t} \in \mathbb{R}^{H_i \times W_i \times K}$: time $t$, $i$ 번째 layer의 attention map인데, 사실상 $\mathbb{R}^{H_iW_i \times K}$ 인데 reshape해서 표현한 거 같다. $K$는 key (=text)의 sequence length
+  - $D_i$: the number of channle at time $t$, layer $i$
+
+
+1. Object position
+   1. 물체의 위치를 표현하기 위해 각 attention channel의 질량 중심 (=중심 좌표)을 찾는다. 이 중심 좌표가 의미하는 바는 token $k$가 의미하는 물체의 attention score의 중심 좌표이다.
+   2. 예를 들어, "a burger" 에 해당하는 cross attention map들만 가지고 와서: 각 좌표 $\times$ 그 좌표의 attention score 의 합을 구하면 "a burger"가 표현하고 있는 attention score들의 중심 좌표 $=$ "a burger"가 생성한 물체의 중심이 된다. 
+   3. 여기서, burger의 위치를 $(0.3, 0.5)$ 로 옮기고 싶다면 $(1)$ 의 수식을 
+   4. Burger의 위치를 오른쪽으로 $(0.1, 0.0)$ 만큼 옮기고 싶다면 $(2)$ 의 수식을 수행하면 된다. 
+
+<p align="center">
+<img src='./img4.png'>
+</p>
+
+$$ \begin{align} 
+
+\parallel (0.3, 0.5) - centroid(k) \parallel_1
+\\
+\parallel centrolid_{original}(k) + (0.1, 0.0) - centroid(k) \parallel_1
+
+\end{align} $$
+
+
+
+
 
 
 ***

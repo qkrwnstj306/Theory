@@ -138,6 +138,8 @@ versatile: 다재다능한
 devise: 구상하다. 발명하다. 고안하다.
 steer: 조종하다. 
 By consequence: 결과적으로
+valuable: 소중한, 가치가 있는
+identify: 확인하다.
 
 -  While numerous studies have focused on
 
