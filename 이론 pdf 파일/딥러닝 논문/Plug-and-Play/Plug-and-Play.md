@@ -45,10 +45,10 @@ $\textbf{본 논문에서 해결하고자 하는 문제와 어떻게 해결하�
 - Guidance image 와 target text prompt 를 입력으로, pre-trained text-to-image diffusion model 이 guidance image 의 semantic layout 을 보존하면서 target text 를 준수한다. 
   - 특히, 모델 내부의 spatial feature 와 self-attention 을 조작함으로써 생성된 구조에 대한 세밀한 제어를 달성할 수 있다고 경험적으로 입증했다.
   - 학습이나 fine-tuning 이 전혀 필요하지 않다. 
-  - Realistic image 를 sketche 로 변환하거나 대충 그린 그림, animation 으로 변환 할 수 있다.
+  - Realistic image 를 sketch 로 변환하거나 대충 그린 그림, animation 으로 변환 할 수 있다.
   - 심지어는 class, object 의 변형, lighting 이나 색깔도 수정할 수 있는 다재다능한 text-guided image translation task 를 할 수 있다.
 
-- 구체적으로 근본적인 질문은 "모델 내부에서 구조적 정보가 어떻게 인코딩되는지" 입니다. 
+- 구체적으로 근본적인 질문은 "모델 내부에서 구조적 정보가 어떻게 인코딩되는지" 이다. 
   - 이를 위해, 생성 과정 중에 형성되는 intermediate spatial feature 를 탐구하고, 이를 경험적으로 분석한 후, 모델 내부의 공간적 특성에 간단한 조작을 적용하여 생성된 구조를 세밀하게 제어할 수 있는 새로운 framework 를 개발했다. 
   - Guidance image 에서 공간적 특성과 self-attention 을 추출하고, 이를 target image 의 text-guided generation process 에 직접 주입했다. 
 
@@ -107,7 +107,7 @@ $\textbf{본 논문의 주요 기여점}$
 </p>
 
 - 저자는 경험적으로 generation process 에서 decoder layer 를 시각화하여 다음을 알아냈다. 
-  1. 중간 decoder layer 에서 추출된 공간적 feature 는 semantic information 을 encoding 하며 외형 정보에 덜 영향을 받는다. 
+  1. 중간 decoder layer 에서 추출된 공간적 feature 는 semantic information 을 encoding 하며 외형 정보에 영향을 덜 받는다. 
   2. 공간적 특성 간의 유사성을 나타내는 self-attention 은 정교한 layout 과 shape detail 을 보존할 수 있다. 
 
 
@@ -115,7 +115,7 @@ $\textbf{Spatial features}$
 
 - 인간형 이미지 $20$ 장 (generated & real images) 를 사용했고, 전체 생성 과정의 약 $50$ % ($t= 540$) 에서 서로 다른 decoder layer 에서 spatial feature 를 시각화했다. 
   - $t=540$ 이니 학습 과정에서 (DDPM 은 $T=1000$ 이니까) 시각화 한 거 같다. 
-  - 각 block 에서 추출된 feature vector ($f_t^l$) 에 대해서 PCA 를 적용하고 상위 $3$ 가지 주요 구성 요소를 시각화했다. (색깔이 있는 거 보니까 $H \times W \times 3$ 로 시각화 한 거 같다)
+  - 각 block 에서 추출된 feature vector ($f_t^l$) 에 대해서 PCA 를 적용하고 상위 $3$ 가지 주요 구성 요소를 시각화했다. (색깔이 있는 거 보니까 $H \times W \times 3$ 인데, channel 별로 $3$ 개씩 골라서 시각화 한 거 같다)
   - Layer $4$ : 객체 외관의 큰 변동과 이미지 도메인 내에서 모든 이미지에 공유되는 의미 있는 영역 (e.g., 다리, 머리가 구분됨)을 보여준다. 
   - Layer $7$ : 여기서부터는 외형 정보도 포함되고 있다. 
 
@@ -124,7 +124,7 @@ $\textbf{Spatial features}$
 </p>
 
 - 각 시간 단계에서 이미지들 간에 의미 있는 부분들이 (유사한 색상을 가진) 공유된다. 
-  - 다리, 허리, 머리가 모든 이미지에서 비슷한 색상으로 묘사된다. 
+  - 다리, 허리, 머리가 모든 이미지에서 각각 비슷한 색상으로 묘사된다. 
   - 네트워크가 더 깊을수록, 점점 더 높은 주파수의 저수준 정보를 캡처하게 된다. 
 
 <p align="center">
@@ -146,6 +146,10 @@ $\textbf{Feature injection}$
 
 <p align="center">
 <img src='./img8.png'>
+</p>
+
+<p align="center">
+<img src='./img19.png'>
 </p>
 
 $\textbf{Self-attention}$
@@ -175,10 +179,64 @@ $\textbf{Negative-prompting}$
 <img src='./img11.png'>
 </p>
 
+- Plug-and-Play Algorithm
+  - Time step $T$ 에서부터 $1$ 까지 denoising 을 한다. 
+  - 이때, $\tau_f$ 는 feature injection 을 언제까지 할건지, $\tau_A$ 는 self-attention 의 query, key 를 언제까지 injection 할 것인지를 나타낸다. 
+  - DDIM $50$ step: $\tau_f=40, \tau_A=25$
+
+<p align="center">
+<img src='./img18.png'>
+</p>
+
 ***
 
 ### <strong>Experiment</strong>
 
+- 
+
+$\textbf{Datasets}$
+
+- 본 논문의 방법 (text-guided image-to-image translation) 은 arbitrary image domain 에 적용 가능하다. 
+- 이렇게 다양한 setting 에 대한 benchmark 가 존재하지 않기에, $2$ 가지 새로운 dataset 을 만들었다. 
+  - Wild-TI2I: web 에서 구한, $148$ 개의 다양한 text-image pairs
+  - ImageNet-R-TI2I: ImageNet-R dataset 으로부터 구성한 ImageNet object calss 의 다양한 공연 (e.g., 그림, 자수 등)
+  - $10$ 개의 다양한 class 로부터 $3$ 개의 high-quality image 를 선택했다. 
+
+
+<p align="center">
+<img src='./img13.png'>
+</p>
+
+$\textbf{Baselines}
+
+- SDEdit: $3$ 개의 서로 다른 noise level 
+- Prompt-to-Prompt 
+- DiffuseIT
+- VQGAN-CLIP
+- Text2LIVE
+- FlexIT
+- DiffusionCLIP
+
+<p align="center">
+<img src='./img14.png'>
+</p>
+
+- P2P 와의 비교: semantic layout 을 더 잘 보존한다. 
+
+<p align="center">
+<img src='./img15.png'>
+</p>
+
+
+
+<p align="center">
+<img src='./img16.png'>
+</p>
+
+
+<p align="center">
+<img src='./img17.png'>
+</p>
 
 ***
 
