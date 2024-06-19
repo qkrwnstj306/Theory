@@ -228,6 +228,8 @@ Theory for ML.
   - <a href='./PPT/DragDiffusion.pdf'>DragDiffusion PDF</a>
 - <a href='https://arxiv.org/pdf/2304.09748'>Reference-based Image Composition with Sketch via Structure-aware Diffusion Model</a>
   - <a href='./이론 pdf 파일/딥러닝 논문/RIC/RIC.md'>Paper Review</a>
+- <a href='https://arxiv.org/pdf/2211.12572'>Plug-and-Play Diffusion Features for Text-Driven Image-to-Image Translation</a>
+  - <a href='./이론 pdf 파일/딥러닝 논문/Plug-and-Play/Plug-and-Play.md'>Paper Review</a>
 
 $\textbf{VITON}$
 
