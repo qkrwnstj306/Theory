@@ -99,8 +99,8 @@ $\textbf{본 논문의 주요 기여점}$
 ### <strong>Method</strong>
 
 - SD v1.4 를 사용했다. 
-  - Guidance image 를 DDIM Inversion 을 통해 noise 화 시킨다. 그 후, U-Net 에 통과시켜 spatial layout 을 추출. 
-  - Random noise 로부터 text-guided generation 하고 있는 U-Net 에 공간적 정보를 전달한다. 
+  1. Guidance image 를 DDIM Inversion 을 통해 noise 화 시킨다. 그 후, U-Net 에 통과시켜 spatial layout 을 추출. 이때의 text 는 null 값이다. Text-guided generation 하고 있는 U-Net 에 공간적 정보를 전달한다. 
+  2. DDIM Inversion 으로부터 구한 noise 를 그대로 물려받는다. 특정 time-step 이후에 $i.$ 에서 수행한 결과들을 받아서 최종 결과를 도출한다.
 
 <p align="center">
 <img src='./img4.png'>
@@ -116,7 +116,7 @@ $\textbf{Spatial features}$
 - 인간형 이미지 $20$ 장 (generated & real images) 를 사용했고, 전체 생성 과정의 약 $50$ % ($t= 540$) 에서 서로 다른 decoder layer 에서 spatial feature 를 시각화했다. 
   - $t=540$ 이니 학습 과정에서 (DDPM 은 $T=1000$ 이니까) 시각화 한 거 같다. 
   - 각 block 에서 추출된 feature vector ($f_t^l$) 에 대해서 PCA 를 적용하고 상위 $3$ 가지 주요 구성 요소를 시각화했다. (색깔이 있는 거 보니까 $H \times W \times 3$ 로 시각화 한 거 같다)
-  - Layer $4$ : 객체 외관의 큰 변동과 이미지 도메인 내에서 모든 이미지에 공유되는 의미 있는 영역 (e.g., 다리 또는 상체)을 보여준다. 
+  - Layer $4$ : 객체 외관의 큰 변동과 이미지 도메인 내에서 모든 이미지에 공유되는 의미 있는 영역 (e.g., 다리, 머리가 구분됨)을 보여준다. 
   - Layer $7$ : 여기서부터는 외형 정보도 포함되고 있다. 
 
 <p align="center">
@@ -131,8 +131,49 @@ $\textbf{Spatial features}$
 <img src='./img7.png'>
 </p>
 
+
+
+
 $\textbf{Feature injection}$
 
+- $x_T^G = x_T^*$
+
+- Ablation study
+  - (a): Feature injection 을 각 layer 에 대해서 수행 
+    - Figure $3$ 에서도 볼 수 있듯이 layer $11$ 은 appearance 가 같이 표현되기에 layers $4-11$ 에서는 source image 의 외형 정보가 표현된다. 
+  - (b): Feature injection 은 $4$ 에서만, attention injection 은 각 열에 표시된대로 수행된다.
+    - Feature vector 는 layer $4$ 가 semactic layout 정보만을 가지고 있었고, self-attention 은 $4-11$ 까지 모두 semantic layout 을 가지고 있기에 가장 효과가 좋다.
+
+<p align="center">
+<img src='./img8.png'>
+</p>
+
+$\textbf{Self-attention}$
+
+- Self-attention visualization 
+  - self-attention matrix $A_t^l$ : time step $t$ 에서 $l$ 번째 self-attention layer 의 query, key 의 내적 및 softmax 한 결과 
+  - $A_t^l$ 에 대해서 마찬가지로 PCA 로 $3$ 가지 주요 요소를 시각화했다. 
+  - 비슷한 영역이면 비슷한 색을 공유한다. e.g., 바지, 머리, 머리카락, 눈사람
+
+<p align="center">
+<img src='./img9.png'>
+</p>
+
+$\textbf{Negative-prompting}$
+
+- Classifier-free guidance 를 사용하여 original prompt 를 더 반영하지 않는 결과를 유도한다. 
+  - $\omega$: $1$ 보다 크면, conditional prediction 방향으로 보외법을 한다. 즉, unconditional prediction 방향으로부터 멀어지는 방향으로 shift 되는데, 이때의 unconditional 의 text 를 null 값이 아니라 original prompt (guidance image 를 설명하는)로 설정하면 original content 로부터 멀어진다. 
+  - 근데 온전히 negative prompt 로 unconditional prediction 을 구성하는 게 아니라 $\alpha$ 로 값을 조정한다. 
+
+
+<p align="center">
+<img src='./img12.png'>
+</p>
+
+
+<p align="center">
+<img src='./img11.png'>
+</p>
 
 ***
 
