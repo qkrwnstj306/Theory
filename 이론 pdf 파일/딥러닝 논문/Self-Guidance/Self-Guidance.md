@@ -127,8 +127,14 @@ $$ \parallel (0.3, 0.5) - centroid(k) \parallel_1 -(1)   $$
 $$ \parallel centroid_{original}(k) + (0.1, 0.0) - centroid(k) \parallel_1 -(2) $$
 
 
+2. Object size
+   1. 실제로, attention map의 크기를 계산하기 전에 차별적으로 임계값을 적용하여 배경의 노이즈 영향을 제거하는 것이 유익하다.
+   2. 각 채널의 최소값과 최대값의 중간값에서 소프트 임계값을 설정하여 이를 수행했다. 
+   3. 위치 조절과 마찬가지로, 절대적인 크기 (e.g., 캔버스의 절반) 또는 상대적인 크기 (e.g., $10$ % 더 크게)를 지정할 수 있다. 
 
-
+<p align="center">
+<img src='./img5.png'>
+</p>
 
 
 ***

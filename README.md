@@ -343,6 +343,7 @@ $\textbf{VITON}$
 - <a href='./이론 pdf 파일/수학/기초수학.pdf'>기초 수학(산업 수학, 공학선형대수학, 신호와 시스템)</a>
 - <a href='./이론 pdf 파일/딥러닝 이론/Gaussian-Distribution/Gaussian-Distribution.md'>Gaussian Distribution</a>
 - <a href='./이론 pdf 파일/딥러닝 이론/Taylor/Taylor.md'>Taylor</a>
+- <a href='./이론 pdf 파일/수학/편미분, 전미분, 델타/편미분, 전미분, 델타.md'> partial, Delta, 편미분, 전미분</a>
 
 
 # <strong>5. University Lecture</strong>
