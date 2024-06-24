@@ -102,7 +102,7 @@ $\textbf{Guidance}$
 <img src='./img3.png'>
 </p>
 
-$\textbf{Self-Guidance}$
+$\textbf{Small set of properties}$
 
 - Diffusion model에 의해 학습된 rich representation에 영감을 받아, 중간 activation과 ttention map을 교체하여 sampling process를 조종하는 self-guidance를 제안한다. 
 
@@ -136,6 +136,31 @@ $$ \parallel centroid_{original}(k) + (0.1, 0.0) - centroid(k) \parallel_1 -(2) 
 <img src='./img5.png'>
 </p>
 
+3. Object shape
+   1. 위치와 크기보다 더 세분화된 제어를 위해, 물체의 정확한 모양을 attention map을 통해서 표현할 수 있다. (이때, threshold 값으로 작은 값은 제거)
+   2. Binary mask (user나 다른 이미지의 attention map으로부터 추출된 것도 가능)와 일치하게끔 guide를 줄 수 있다.
+   3. 어떤 임의의 변환 (scale, rotation, translation)을 이 shape에 적용할 수 있다. 
+
+<p align="center">
+<img src='./img6.png'>
+</p>
+
+
+$$ \parallel \text{target shape} - \text{shape(k)} \parallel_1 $$
+
+4. Object appearance
+   1. Thresholded attention을 대략적인 object 범위로, activation map을 local appearance라고 고려했을 때, 이 둘을 결합하여 object-level의 appearance 개념에 도달할 수 있다. 
+
+<p align="center">
+<img src='./img7.png'>
+</p>
+
+$\textbf{Self-Guidance}$
+
+- 이전에 설명한 "small set of properties"를 다양한 image manipulation에 수행할 수 있다. 
+- $1024 \times 1024$ 를 생성하는 Imagen에 대해서 실험했다. 
+
+More ...
 
 ***
 
