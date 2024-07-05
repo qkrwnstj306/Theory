@@ -140,6 +140,7 @@ steer: 조종하다.
 By consequence: 결과적으로
 valuable: 소중한, 가치가 있는
 identify: 확인하다.
+depict: 그리다, 묘사하다. e.g., images depicting different appearance
 
 -  While numerous studies have focused on
 

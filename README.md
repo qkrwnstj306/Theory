@@ -232,6 +232,8 @@ Theory for ML.
   - <a href='./이론 pdf 파일/딥러닝 논문/Plug-and-Play/Plug-and-Play.md'>Paper Review</a>
 - <a href='https://proceedings.neurips.cc/paper_files/paper/2023/file/3469b211b829b39d2b0cfd3b880a869c-Paper-Conference.pdf'>Diffusion Self-Guidance for Controllable Image Generation</a>
   - <a href='./이론 pdf 파일/딥러닝 논문/Self-Guidance/Self-Guidance.md'>Paper Review</a>
+- <a href='https://arxiv.org/pdf/2110.02711'>DiffusionCLIP: Text-Guided Diffusion Models for Robust Image Manipulation</a>
+  - <a href='./이론 pdf 파일/딥러닝 논문/DiffusionCLIP/DiffusionCLIP.md'>Paper Review</a>
 
 $\textbf{VITON}$
 
@@ -258,6 +260,13 @@ $\textbf{VITON}$
 - <a href='https://arxiv.org/pdf/2404.14162'>FLDM-VTON: Faithful Latent Diffusion Model for Virtual Try-on</a>
   - <a href='./이론 pdf 파일/딥러닝 논문/FLDM-VTON/FLDM-VTON.md'>Paper Review</a>
   - <a href='./PPT/FLDM-VTON.pdf'>FLDM-VTON PDF</a>
+
+$\textbf{Semantic Correspondence}$
+
+- <a href='https://openaccess.thecvf.com/content_ICCV_2017/papers/Han_SCNet_Learning_Semantic_ICCV_2017_paper.pdf'>SCNet: Learning Semantic Correspondence</a>
+  - <a href='./이론 pdf 파일/딥러닝 논문/SCNet/SCNet.md'>Paper Review</a>
+- <a href='https://proceedings.neurips.cc/paper_files/paper/2023/file/1a074a28c3a6f2056562d00649ae6416-Paper-Conference.pdf'>Unsupervised Semantic Correspondence Using Stable Diffusion</a>
+  - <a href='./이론 pdf 파일/딥러닝 논문/LDMCorrespondences/LDMCorrespondences.md'>Paper Review</a>
 
 ### Natural Language
 - <a href='./이론 pdf 파일/딥러닝 이론/LSTM.pdf'>LSTM : Long Short-Term Memory</a>
