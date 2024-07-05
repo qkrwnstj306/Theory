@@ -119,7 +119,10 @@ $\textbf{Attention masks}$
 - U-Net의 서로 다른 layer는 다른 수준의 semantic knowledge를 가진다. 
   - 따라서, 각 layer의 특성을 이용하기 위해 본 논문은 head 및 layer에 대해서 average한다. 
   - Layer는 $7 - 10$을 이용하고, 각 layer에서의 attention map의 크기가 다르기 때문에 bilinear interpolation을 이용한다. $P$ 는 고정이니 $h, w$에 대해서 한다.
-  - $M(u; e, I)$: 
+  - $M^{''} \in \mathbb{E}^{(h \times w) \times P} = average_{c=1...C, l=7...10}(M'_l)$: head와 layer에 대해서 평균낸 attention map
+  - $M(u; e, I) \in \mathbb{E}^{(h\times w)}$: 평균낸 attention map $M^{''}[1]$에서 pixel $u$를 indexing
+    - $M^{''}[1]$은 $P$의 첫 번째 token. 즉, CLS token을 의미한다.
+    - $u \in [0,1]^2$: $u$는 2차원 벡터 $(u_1, u_2)$ 인데 각각의 성분이 $[0,1]$ 구간에 있다. 즉, $h,w$ 에서의 좌표를 의미한다. $[0,1]$로 normalize한 이유는 추후에 attention score랑 비교하기 위함이다. 
 
 <p align="center">
 <img src='./img6.png'>
@@ -127,15 +130,46 @@ $\textbf{Attention masks}$
 
 $\textbf{Optimization}$
 
+- Source image $I_i$와 query pixel location $u_i$가 주어졌을 때, 우리는 $u_i$와 일치하는 target image $I_j$의 pixel $u_j$를 찾아야 한다. 
+  - Query location $u_i$: 원하는 point를 지정한다.
+  - $M_s(u) \in \mathbb{E}^{(h \times w)}$: 지정한 point $u_i$를 중심으로 하고, 표준편차는 $\sigma$인 가우시안 분포를 만든다. 
+  - 해당 point에서의 attention score가 높은 text embedding값을 찾는다. 당연하게도 $M_s(u)$는 query point의 위치가 가장 높은 값 $1$을 가지기 때문에, attention score도 query point에 모이는 text embedding을 찾을 것이다. 마치, $M_s(u)$와 비슷한 attention score 분포를 가지는 text embedding을 찾는 것이다.
+
+<p align="center">
+<img src='./img7.png'>
+</p>
+
 $\textbf{Inference}$
 
+- 이번엔 input을 target image로 넣고, optimization section에서 찾은 text embedding과 같이 넣은 후, attention score가 가장 높은 point를 고르면 된다. 
 
-$\tau_{\mathbf{\theta}}$
+<p align="center">
+<img src='./img8.png'>
+</p>
+
+**Regularizations**
+
+Single image에 대해서 text embedding을 optimization하는 것은 overfitting을 초래할 수 있기 때문에 여러가지 형태의 정규화 방법을 적용한다. 
+
+$\textbf{Averaging across crops}$
+
+$\textbf{Averaging across optimization rounds}$
 
 ***
 
 ### <strong>Experiment</strong>
 
+- 주황색은 잘못된 위치와의 대응점인데, human annotation에 대해서 틀린 거지 실제로는 그럴듯한 위치에 존재한다. 
+  - 코끼리 source image를 보면 다른 class인데도 대응하고 있다. 
+  - Style이 달라도 적용이 된다. 
+
+<p align="center">
+<img src='./img9.png'>
+</p>
+
+<p align="center">
+<img src='./img10.png'>
+</p>
 
 ***
 
