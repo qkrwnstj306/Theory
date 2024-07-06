@@ -267,6 +267,8 @@ $\textbf{Semantic Correspondence}$
   - <a href='./이론 pdf 파일/딥러닝 논문/SCNet/SCNet.md'>Paper Review</a>
 - <a href='https://proceedings.neurips.cc/paper_files/paper/2023/file/1a074a28c3a6f2056562d00649ae6416-Paper-Conference.pdf'>Unsupervised Semantic Correspondence Using Stable Diffusion</a>
   - <a href='./이론 pdf 파일/딥러닝 논문/LDMCorrespondences/LDMCorrespondences.md'>Paper Review</a>
+- <a href='https://arxiv.org/pdf/2311.17034v2'>Telling Left from Right: Identifying Geometry-Aware Semantic Correspondence</a>
+  - <a href='./이론 pdf 파일/딥러닝 논문/Telling-Left-from-Right/Telling-Left-from-Right.md'>Paper Review</a>
 
 ### Natural Language
 - <a href='./이론 pdf 파일/딥러닝 이론/LSTM.pdf'>LSTM : Long Short-Term Memory</a>
