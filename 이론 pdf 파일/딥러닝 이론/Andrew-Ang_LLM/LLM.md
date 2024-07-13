@@ -92,11 +92,28 @@ $\textbf{Transformer Architecture}$
 
 - Generative AI project lifecycle: 개발할 때 내려야 하는 개별 단계와 결정을 안내한다.
   - 프로젝트 구상부터 출시까지 진행하는 데 필요한 작업을 계획한다. 
-  - 
 
 
 <p align="center">
 <img src='./img7.png'>
 </p>
 
-> 인용구
+- CUDA out of memory: Computational challenges
+  - 대부분의 LLM은 대용량 모델이고 대용량 데이터 셋으로 학습하기 때문에 고려해야한다.
+  - $1$ parameter $= 4$ bytes ($32$-bit float)
+  - 즉, 한 모델을 학습시키려면 모델의 크기 $\times 6$의 memory가 필요하다
+  - 밀리언: 백만, 빌리언: $10$억
+  - 기가바이트: $10^9$
+
+<p align="center">
+<img src='./img8.png'>
+</p>
+
+$$ \text{Model Size (bytes)} = \text{Number of parameters} \times 4 \text{bytes}  $$
+
+$$ \text{Model Size (bytes)}  \times 6 = \text{Memory needed to train model} $$
+
+
+- Memory를 줄이기 위한 방법
+  - Quantization: $32$ bit floating을 $16$ bit floating으로 바꿔서 학습한다. 
+  - Multi-GPU

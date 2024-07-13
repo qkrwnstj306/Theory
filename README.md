@@ -434,6 +434,7 @@ $\textbf{Semantic Correspondence}$
 - <a href='https://www.figma.com/'>피그마: 논문 Figure 예쁘게 꾸미기</a>
 - <a href='https://editor.codecogs.com/#google_vignette'>수학 수식 이미지로 변환</a>
 - <a href='https://www.adobe.com/kr/acrobat/online/ppt-to-pdf.html'>PPT to PDF 깨짐없이</a>
+- <a href='https://wikidocs.net/book/8808'>Deep Learning Bible 한글판</a>
 
 # 8. Failed Project
 - <a href='https://github.com/qkrwnstj306/Style-Similarity'>Style Similarity</a>
