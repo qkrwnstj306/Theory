@@ -142,6 +142,8 @@ valuable: 소중한, 가치가 있는
 identify: 확인하다.
 depict: 그리다, 묘사하다. e.g., images depicting different appearance
 reveal: 밝히다, 드러내다. e.g., this paper reveals a limitation of the current model
+sufficient: 충분한
+
 
 -  While numerous studies have focused on
 

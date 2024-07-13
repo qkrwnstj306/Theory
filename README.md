@@ -94,6 +94,8 @@ Theory for ML.
 - <a href='./이론 pdf 파일/딥러닝 이론/Andrew Ang/Lecture3_230524_102723.pdf'>Lecture 3. Unsupervised Learning </a>
 - <a href='./이론 pdf 파일/딥러닝 이론/Andrew Ang/Recommender System_230101_190105.pdf'>Lecture 4. Recommender System</a>
 
+- <a href='./이론 pdf 파일/딥러닝 이론/Andrew-Ang_LLM/LLM.md'>Generative AI with Large Language Models in Coursera</a>
+
 ### Diffusion 
 - <a href='./이론 pdf 파일/Diffusion/1주차_gan (수정)_230517_095040.pdf'>Lecture 1. GAN Description</a>
 - <a href='./이론 pdf 파일/Diffusion/2주차_diffusion_230509_124724.pdf'>Lecture 2. Grooming the Diffusion</a>
@@ -234,6 +236,8 @@ Theory for ML.
   - <a href='./이론 pdf 파일/딥러닝 논문/Self-Guidance/Self-Guidance.md'>Paper Review</a>
 - <a href='https://arxiv.org/pdf/2110.02711'>DiffusionCLIP: Text-Guided Diffusion Models for Robust Image Manipulation</a>
   - <a href='./이론 pdf 파일/딥러닝 논문/DiffusionCLIP/DiffusionCLIP.md'>Paper Review</a>
+- <a href='https://arxiv.org/pdf/2303.15649'>StyleDiffusion: Prompt-Embedding Inversion for Text-Based Editing</a>
+- <a href='./이론 pdf 파일/딥러닝 논문/StyleDiffusion2/StyleDiffusion2.md'>Paper Review</a>
 
 $\textbf{VITON}$
 
