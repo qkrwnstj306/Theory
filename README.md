@@ -186,7 +186,10 @@ Theory for ML.
   - <a href='./이론 pdf 파일/딥러닝 논문/NICE/NICE.md'>Paper Review</a>
 - <a href='https://arxiv.org/pdf/1806.07366'>Neural OED: Neural Ordinary Differential Equation</a>
   - <a href='./이론 pdf 파일/딥러닝 논문/NeuralODE/NeuralODE.md'>Paper Review</a>
-	
+- <a href='https://arxiv.org/pdf/2305.08891'>Common Diffusion Noise Schedules and Sample Steps are Flawed</a>
+  - <a href='./이론 pdf 파일/딥러닝 논문/common-diffusion/common-diffusion.md'>Paper Review</a>
+
+
 #### Image Editing
 - <a href='./이론 pdf 파일/딥러닝 논문/Prompt to prompt image editing with attention_231004_124613.pdf'>Prompt-to-Prompt Image Editing with Cross Attention Control</a>
 	* <a href='./PPT/Prompt to prompt image editing with cross attention control.pptx'>Prompt to prompt image editing with cross attention control PPT</a>
@@ -238,6 +241,8 @@ Theory for ML.
   - <a href='./이론 pdf 파일/딥러닝 논문/DiffusionCLIP/DiffusionCLIP.md'>Paper Review</a>
 - <a href='https://arxiv.org/pdf/2303.15649'>StyleDiffusion: Prompt-Embedding Inversion for Text-Based Editing</a>
 - <a href='./이론 pdf 파일/딥러닝 논문/StyleDiffusion2/StyleDiffusion2.md'>Paper Review</a>
+- <a href='https://arxiv.org/pdf/2210.10960'>Asyrp: Diffusion Models Already Have A Semantic Latent Space</a>
+  - <a href='./이론 pdf 파일/딥러닝 논문/Asyrp/Asyrp.md'>Paper Review</a>
 
 $\textbf{VITON}$
 

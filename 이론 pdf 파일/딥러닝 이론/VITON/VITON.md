@@ -373,3 +373,17 @@ $\textbf{Question}$
   - DINOv2 vs CLIP encoder 
 - Generative models 
   - Diffusion 
+
+
+\begin{table}[]
+\begin{tabular}{lllll}
+\hline
+\textbf{Method} & \multicolumn{1}{c}{\textbf{FID}} & \multicolumn{1}{c}{\textbf{KID}} & \multicolumn{1}{c}{\textbf{SSIM}} & \multicolumn{1}{c}{\textbf{LPIPS}} \\ \hline
+\textbf{W/ CLS}       &  &  &  &  \\
+\textbf{- CLS}        &  &  &  &  \\
+\textbf{+ Pixel loss}  &  &  &  &  \\
+\textbf{+ Latent loss}       &  &  &  &  \\ \hline
+\textbf{+ ControlNet} &  &  &  &  \\
+\textbf{+ Pixel loss} &  &  &  &  \\ \hline
+\end{tabular}
+\end{table}

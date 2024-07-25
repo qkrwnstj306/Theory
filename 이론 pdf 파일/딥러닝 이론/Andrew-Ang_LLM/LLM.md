@@ -3,10 +3,6 @@
 
 ## Generative AI with Large Language Models in Coursera
 
-$\textbf{Transformer Architecture}$
-
-- 
-
 ***
 
 ### <strong>1주차: Introduction to LLMs and the generative AI project lifecycle</strong>
@@ -117,3 +113,57 @@ $$ \text{Model Size (bytes)}  \times 6 = \text{Memory needed to train model} $$
 - Memory를 줄이기 위한 방법
   - Quantization: $32$ bit floating을 $16$ bit floating으로 바꿔서 학습한다. 
   - Multi-GPU
+
+
+### <strong>2주차: Fine-tuning and evaluating large language models</strong>
+
+- Limitation of in-context learning
+  - 예제가 많이 제공되더라도, 성능이 비례해서 오르지 않는다. 
+  - 예제가 포함된다는 것은 context window의 공간을 차지한다는 말이므로, 다른 정보를 포함시키지 못할 수 있다.
+  - 따라서, finetuning을 통해 모델을 추가로 학습시킬 수 있다.
+
+- Instruction finetuning
+  - 특정 명령에 어떻게 반응해야 하는지를 보여주는 예제를 사용하여 학습시킨다.
+  - 학습하려면 첫 번째로 데이터 셋을 준비해야 한다. 
+  - 하지만, 대부분의 데이터 셋은 instruction을 포함하지 않는다.
+  - 다행히, instruction template가 존재한다. 
+
+- 여기서의 instruction은 "classify this review"이다.
+
+<p align="center">
+<img src='./img9.png'>
+</p>
+
+- Full finetuning vs Parameter efficient finetuning
+  - 충분한 메모리와 컴퓨팅 자원을 고려해야한다.
+
+- 이때, finetuning을 진행하면서 다음과 같은 문제가 발생할 수 있다.
+  - Catastrophic forgetting: 치명적인 망각
+  - Model weight를 수정하기에 발생한다. 
+  - Single finetuning task에서는 성능이 향상되지만, 다른 task에서는 성능이 저하될 수 있다.
+
+- Catastrophic forgetting을 피하는 방법을 알아보자
+  - 먼저, catastrophic forgetting이 실제로 영향을 미치는지 여부를 결정해야 한다.
+  - Finetuning on multiple tasks at the same time
+  - Condider Parameter Efficient Fine-tuning (PEFT)
+
+$\textbf{Multi-task, instruction fine-tuning}$
+
+- It is extension of single-task finetuning
+- 많은 데이터 셋이 필요하다
+- 대표적으로 FLAN-T5가 있다. (Fine-tuned LAnguage Net)
+  - Foundation model T5의 instruction version: $473$ dataset에 대해서 학습됨
+  - FLAN-PALM: PALM이라는 foundation model의 instruction version 
+
+$\textbf{Model Evaluation}$
+
+- 일반적으로는 다음과 같은 metric을 사용하겠지만, language에는 적용할 수 없다.
+  - None deterministic
+
+<p align="center">
+<img src='./img10.png'>
+</p>
+
+- ROUGE, BLEU Score는 널리 사용되는 $2$ 가지 지표이다. 
+  - ROUGE: used for text summarization 
+  - BLEU: used for text translation 
