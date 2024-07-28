@@ -154,6 +154,15 @@ $\textbf{본 논문의 주요 기여점}$
 <img src='./img13.png'>
 </p>
 
+
+
+$\textbf{Implementation}$
+
+- 실제 구현에서는 time step이 $[1,1000]$가 아니라 $[0,999]$에서 uniform하게 sampling 한 후에, DDPM으로 학습을 진행한다. 
+- 즉, 수식으로 보면 $x_0$가 처음 step의 이미지가 아니라 $x_{-1}$이 처음 step에서의 이미지 (clean image)라고 볼 수 있다. 
+- 모델은 $t=0$부터 $t=999$까지 조건으로 받으면서 학습이 되는 꼴이고, sampling할 때에는 마지막에 모델이 $t=0$을 받고 $\epsilon$이나 $v$를 예측함으로써 그 값을 가지고 $x_{-1}$을 예측하게 된다.
+- 그리고, DDIM code에서 논문과는 다르게 pred $x_0$를 return하지 않는데, 그 이유는 $\bar \alpha_0 = 1$로 setting을 해주면서 결국 $x_{t-1}$과 pred $x_0$가 동일하게 되기 때문이다. 
+
 ***
 
 ### <strong>Experiment</strong>
