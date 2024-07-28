@@ -188,7 +188,8 @@ Theory for ML.
   - <a href='./이론 pdf 파일/딥러닝 논문/NeuralODE/NeuralODE.md'>Paper Review</a>
 - <a href='https://arxiv.org/pdf/2305.08891'>Common Diffusion Noise Schedules and Sample Steps are Flawed</a>
   - <a href='./이론 pdf 파일/딥러닝 논문/common-diffusion/common-diffusion.md'>Paper Review</a>
-
+- <a href='./PPT/I2AM.pdf'>I2AM presentaion in IJCAI XAI workshop</a>
+  - <a href='./PPT/I2AM_workshop.txt'>Presentation Script</a>
 
 #### Image Editing
 - <a href='./이론 pdf 파일/딥러닝 논문/Prompt to prompt image editing with attention_231004_124613.pdf'>Prompt-to-Prompt Image Editing with Cross Attention Control</a>

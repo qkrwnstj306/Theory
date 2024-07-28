@@ -1,0 +1,85 @@
+#1 
+Hi, my name is Junseo Park and i am a graduate student in Department of Artificial Intelligence at Dongguk University.
+Today, i will present my reserach findings I2AM: interpreting image-to-image latent diffusion models via attribution maps
+
+#2
+Explainability in deep learning is essential for making decisions by humans.
+Among XAI methods, we will handle the topic of interpreting models using an attribution map.
+Previous works leveraged CNN-based image classifiers to highlight areas of interest.
+Recently, the emergence of transformers has shifted the focus towards using attention.
+The left figure shows the class activation map in CNN-based methods. 
+The right figure shows the attention map in Transformer-based methods 
+
+#3
+As text-to-image diffusion models have been developed, analysis of text-to-image diffusion models using attribution map has advanced recently.
+In the figures, we can confirm how diffusion models generate images over time steps and where each word is focused.
+In contrast, studies analyzing image-to-image diffusion models are lacking.
+
+#4
+The operation methods between text-to-image and image-to-image seems to be similar. 
+However, there are some differences between them.
+For instance, text-conditioned models generate images that visually interpret provided text descriptions, whereas image-conditioned models transform a reference image into a different visual form of the image. 
+And Token-wise interpretation is practical in text-conditioned, but it is less practical in image-conditioned
+
+#5 
+So, we studied interpreting image-to-image latent diffusion models.
+Among them, we experimented with the models performing the inpainting task and the VITON task. 
+The VITON task is a task that virtually dresses a masked region. 
+The basic image-to-image latent diffusion models performing VITON task work as follows. 
+The input clothing, called reference image, is conditioned on cross-attention.
+Various conditions, including mask and dense-pose, are input in the model, and the model generates a clearer image by prediting the noise.
+
+#6
+This is our method, called I2AM.
+We use a cross-attention map to visualize and analyze the generation process in diffusion model.
+We analyze across time steps and attention heads.
+Here, There is one more thing that is different between text-conditioned and image-conditioned. 
+Unlike text, images maintain spatial information in latent space.
+This allows us to facilitate clear visualization of the reference image.
+Ultimately, we visualize and analyze the attribution maps for generated and reference images, and then verify that the information in the reference image is being used in the appropriate regions during the generation process and that useful information in the reference image is actually being extracted. 
+
+#7
+First, we must decide whether to view the attribution maps for the generated image or the attribution map for the reference image.
+The formula that separates the two is softmax in the right figure.
+
+And then, determines whether the time step and the attention head are integrated or not. 
+In this paper, the time step is 1 to T, and the head is 8.
+
+This one is the attribution map that is integrated for the time steps and heads.
+This one is the attribution map that is integrated for the time steps or heads. 
+Specific-reference attribution map is a map that shows which area of the reference image was referenced when a patch of the generated image was generated.
+
+#8
+Now let's look at the experimental results. We're going to look at attribution maps for generated and reference images. 
+We use the three models performing the VITON task: Paint-by-example, DCI-VTON, and StableVITON.
+We employ the DDIM sampler.
+This figure is example showing the time-and-head integrated attribution maps for generated images. 
+This is the result of receiving the koala reference image conditioned on this inpainting mask and generating the image as follows.
+We can see the allocation area of the attention score based on the presence or absence of the classifier free guidance.
+
+#9
+Next are the time integrated and head integrated attribution maps for generated images.
+Here, we can see where information on the reference image is utilized during the generation process.
+Although each head has various distributions in time integrated attribution maps, such as focusing on a person or a background, it can be seen that a high attention score is given to important feature in common.
+Also, through visualization in head integrated attribution maps, we can find that the model gradually forms the object's structure, consistently assigning high attention scores to important features such as facial details and clothing logos.
+
+#10
+Next are the time integrated and head integrated attribution maps for reference image.
+Here, we can see whether useful information on the reference image is actually extracted.
+Time integrated attribution maps are similar to attribution maps for the generated image.
+However, head integrated attribution maps show that, in contrast the attribution maps for the generated image, high attention scores are always assigned to the Logos regarless of the time steps 
+
+The right figure is specific-reference attribution maps. 
+In the right figure, we can see what information a patch in the generated image extracted from the reference image. 
+
+#11
+In conclusion, our contributions are as follows.
+We propose analysis and visualization methods for image-to-image latent diffusion models.
+We provide insights into the generation process of image-to-image latent diffusion models by analyzing attribution maps at each time steps and attention heads.
+We present attribution maps for the generated and reference images using characteristics of image-to-image LDMs
+
+#12
+These are the reference papers in this presentation.
+
+#13 
+Thank you.
