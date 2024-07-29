@@ -21,6 +21,8 @@
 
 <a href='https://github.com/Max-We/sf-zero-signal-to-noise/blob/main/common_diffusion_noise_schedulers_are_flawed.ipynb'>Implementation Code</a>
 
+<a href='https://www.crosslabs.org/blog/diffusion-with-offset-noise'>Offset Noise: medium brightness에 대한 고찰</a>
+
 ***
 
 ### <strong>Intro</strong>

@@ -167,3 +167,97 @@ $\textbf{Model Evaluation}$
 - ROUGE, BLEU Score는 널리 사용되는 $2$ 가지 지표이다. 
   - ROUGE: used for text summarization 
   - BLEU: used for text translation 
+
+
+### <strong>3주차: Reinforcement Learning from Human Feedback</strong>
+
+- Models behaving badly 
+  - Toxic language (해로운 언어)
+  - Aggressive responses  (공격적인 반응)
+  - 대형 모델을 대상으로 이러한 언어가 자주 등장하는 인터넷에서 데이터를 수집했기 때문이다. 
+
+<p align="center">
+<img src='./img11.png'>
+</p>
+
+- RLHF
+  - 모델을 인간의 가치에 맞추는 데 도움이 된다. 
+  - 유해성을 줄이고 잘못된 정보의 생성을 방지할 수 있다. 
+
+<p align="center">
+<img src='./im12.png'>
+</p>
+
+
+
+- 학습 방법
+  - 원하는 데이터 셋을 찾고 모델을 통해 여러가지 output을 뽑는다.
+  - Output 중 사람이 원하는 기준에 따라 등수를 매긴다. (라벨러를 여러명 고용해서 bias가 없도록 할 수도 있다.)
+  - 이를 통해, reward model을 학습시킨다. 
+
+<p align="center">
+<img src='./img13.png'>
+</p>
+
+<p align="center">
+<img src='./img14.png'>
+</p>
+
+<p align="center">
+<img src='./img15.png'>
+</p>
+
+<p align="center">
+<img src='./img16.png'>
+</p>
+
+<p align="center">
+<img src='./img17.png'>
+</p>
+
+- 해로운 단어의 생성을 막기 위해 RLHF를 사용한다고 가정. 가중치 업데이트를 통해 model이 점점 바뀌는데, 보상을 극대화하기 위해 무의미하고 문법적으로 잘못된 텍스트를 생성할 수 있는 문제가 존재한다. 
+  - E.g., Output에 awesome이 무조건 들어가는 현상 등
+  - 이떄, reference model을 통해 KL divergence shift penalty로 분포의 이동을 막을 수 있다. 
+
+<p align="center">
+<img src='./img18.png'>
+</p>
+
+<p align="center">
+<img src='./img19.png'>
+</p>
+
+<p align="center">
+<img src='./img20.png'>
+</p>
+
+<p align="center">
+<img src='./img21.png'>
+</p>
+
+- 학습 초기에, 훈련된 보상 모델을 구축하는 것은 많은 인적 노력을 필요로 한다.
+ 
+
+
+<p align="center">
+<img src='./img22.png'>
+</p>
+
+- Consistutional AI: 헌법적 AI (법을 준수하는?)
+  - Helpful AI는 일반적으로 유용한 정보를 사용자에게 주기 위해 학습됐는데, wifi 해킹과 같이 피해를 줄 수 있는 방법도 알려줄 수 있다.
+
+<p align="center">
+<img src='./img23.png'>
+</p>
+
+- 헌법적 AI를 만드는 방법
+  - 먼저, LLM을 공격하여 유해한 정보를 내뿜게 한다. 
+  - 이를 막기 위해 instruction을 자체적으로 항상 포함시켜서 생성한다. 
+  - 잘 생성된 output을 가지고 이를 학습용 데이터셋으로 다시 구축 후 fine-tuning한다.
+  - Fine-tuning된 LLM을 다시 공격하여 output을 생성한다. 
+  - 생성된 output에 rank를 달아 reward model을 학습시킬 수 있는 dataset을 구축한다.
+  - 학습된 reward model을 가지고 다시 LLM을 학습시켜서 최종적으로 헌법적 AI를 구축한다. 
+
+<p align="center">
+<img src='./img24.png'>
+</p>

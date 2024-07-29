@@ -95,6 +95,9 @@ Theory for ML.
 - <a href='./이론 pdf 파일/딥러닝 이론/Andrew Ang/Recommender System_230101_190105.pdf'>Lecture 4. Recommender System</a>
 
 - <a href='./이론 pdf 파일/딥러닝 이론/Andrew-Ang_LLM/LLM.md'>Generative AI with Large Language Models in Coursera</a>
+  - <a href='./이론 pdf 파일/딥러닝 이론/Andrew-Ang_LLM/Lab_1_summarize_dialogue.ipynb'>1주차 실습: text summarization inference</a>
+  - <a href='./이론 pdf 파일/딥러닝 이론/Andrew-Ang_LLM/Lab_2_fine_tune_generative_ai_model.ipynb'>2주차 실습: model finetuning</a>
+  - <a href='./이론 pdf 파일/딥러닝 이론/Andrew-Ang_LLM/Lab_3_fine_tune_model_to_detoxify_summaries.ipynb'>3주차 실습: RLHF</a>
 
 ### Diffusion 
 - <a href='./이론 pdf 파일/Diffusion/1주차_gan (수정)_230517_095040.pdf'>Lecture 1. GAN Description</a>
