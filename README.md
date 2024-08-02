@@ -137,6 +137,10 @@ Theory for ML.
 	* <a href='PPT/transformer review.pptx'>Transformer PPT</a>
 - <a href='https://browse.arxiv.org/pdf/1409.1556.pdf'>VGG :VERY DEEP CONVOLUTIONAL NETWORKS FOR LARGE-SCALE IMAGE RECOGNITION</a>
 	* <a href='./PPT/VGG.pptx'>VGG PPT</a>
+- <a href='https://arxiv.org/pdf/2405.08586'>XDomainMix: Cross-Domain Feature Augmentation for Domain Generalization</a>
+  - <a href='./이론 pdf 파일/딥러닝 논문/xdomainmix/xdomainmix.md'>Paper Review</a>
+
+
 ### Optimization
 - <a href='./이론 pdf 파일/딥러닝 논문/LoRA_231007_193848.pdf'>LoRA : Low-Rank Adaptation of Large Language Models</a>
 - <a href='https://www.notion.so/Stable-diffusion-7d853e6b43f14e2ca204f61f475a7653?pvs=4'>Stable Diffusion with Fine Tuning Method like DreamBooth, LoRA, Textual Inversion including code in Notion</a>
