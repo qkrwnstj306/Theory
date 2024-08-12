@@ -98,6 +98,7 @@ Theory for ML.
   - <a href='./이론 pdf 파일/딥러닝 이론/Andrew-Ang_LLM/Lab_1_summarize_dialogue.ipynb'>1주차 실습: text summarization inference</a>
   - <a href='./이론 pdf 파일/딥러닝 이론/Andrew-Ang_LLM/Lab_2_fine_tune_generative_ai_model.ipynb'>2주차 실습: model finetuning</a>
   - <a href='./이론 pdf 파일/딥러닝 이론/Andrew-Ang_LLM/Lab_3_fine_tune_model_to_detoxify_summaries.ipynb'>3주차 실습: RLHF</a>
+  - <a href='./PPT/LLM_applications.pptx'>3-2주차: LLM 기반 어플리케이션 발표 자료</a>
 
 ### Diffusion 
 - <a href='./이론 pdf 파일/Diffusion/1주차_gan (수정)_230517_095040.pdf'>Lecture 1. GAN Description</a>
@@ -471,3 +472,4 @@ $\textbf{Semantic Correspondence}$
 - <a href='./이론 pdf 파일/외부강의/[김승룡 교수] Text-to-3D Generation Using 2D Diffusion Model.pdf'>Text-to-3D Generation Using 2D Diffusion Model</a>
 - <a href='./이론 pdf 파일/외부강의/[주재걸 교수] 3D Generative Models.pdf'>3D Generative Models</a>
 - <a href='./이론 pdf 파일/외부강의/알기쉬운 AI 튜토리얼_유영재교수_multimodal.pdf'>multimodal</a>
+- <a href='./이론 pdf 파일/외부강의/BrainAI 랭커특강.pdf'>Daycon 특강</a>
