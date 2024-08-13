@@ -198,6 +198,9 @@ Theory for ML.
   - <a href='./이론 pdf 파일/딥러닝 논문/common-diffusion/common-diffusion.md'>Paper Review</a>
 - <a href='./PPT/I2AM.pdf'>I2AM presentaion in IJCAI XAI workshop</a>
   - <a href='./PPT/I2AM_workshop.txt'>Presentation Script</a>
+- <a href='https://openaccess.thecvf.com/content/ICCV2023/papers/Peebles_Scalable_Diffusion_Models_with_Transformers_ICCV_2023_paper.pdf'>Scalable Diffusion Models with Transformers</a>
+  - <a href='./이론 pdf 파일/딥러닝 논문/DiT/DiT.md'>Paper Review</a>
+
 
 #### Image Editing
 - <a href='./이론 pdf 파일/딥러닝 논문/Prompt to prompt image editing with attention_231004_124613.pdf'>Prompt-to-Prompt Image Editing with Cross Attention Control</a>
