@@ -281,6 +281,8 @@ $\textbf{VITON}$
 - <a href='https://arxiv.org/pdf/2404.14162'>FLDM-VTON: Faithful Latent Diffusion Model for Virtual Try-on</a>
   - <a href='./이론 pdf 파일/딥러닝 논문/FLDM-VTON/FLDM-VTON.md'>Paper Review</a>
   - <a href='./PPT/FLDM-VTON.pdf'>FLDM-VTON PDF</a>
+- <a href='https://arxiv.org/pdf/2408.06047'>BooW-VTON: Boosting In-the-Wild Virtual Try-On via Mask-Free Pseudo Data Training</a>
+  - <a href='./이론 pdf 파일/딥러닝 논문/BooW-VTON/BooW-VTON.md'>Paper Review</a>
 
 $\textbf{Semantic Correspondence}$
 

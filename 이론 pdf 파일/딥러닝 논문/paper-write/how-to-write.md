@@ -49,8 +49,8 @@
 
 - 이전에 읽었던 논문들이 어떤 저널들에 주로 다뤄졌는지 list up 한다. 
   - <a href='https://jcr.clarivate.com/jcr/home'>Journal Citation Reports</a>
-  - 위의 사이트에서 저널을 검색하여 Journal Impact factor 를 확인한다.
-  - Journal Impact Factor 가 높을수록, Rank by Journal Impact Factor 가 높을수록 좋은 저널이다. 
+  - 위의 사이트에서 저널을 검색하여 Journal Impact factor 를 확인한다. (학교 ip로 들어가면 로그인을 안해도 된다)
+  - Journal Impact Factor 가 높을수록, Rank by Journal Impact Factor 의 등수가 (e.g., 1/100)높을수록 좋은 저널이다. 
   - 이때, 카테고리가 여러개라면 가장 높은 점수를 기준으로 생각하자.
 
 - IEEE Access journal 검색

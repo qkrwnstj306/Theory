@@ -136,6 +136,8 @@ $\textbf{본 논문의 주요 기여점}$
 
 4. Over-exposure (값의 범위를 벗어나서 나중에 clip할 때 흑백이 되거나 흰색으로만 구성됨)를 방지하기 위해 CFG rescale을 제안한다. 
 
+- $w$가 큰 경우에, $x_{cfg}$의 scale이 너무 거져서 image over-exposure problem이 발생한다. 
+
 - Over-exposure의 예시 from Imagen
   - (a)가 예시이다.
   - Imagen에서는 dynamic thresholding으로 완화했지만, 이 방법은 latent space가 아닌 pixel-space에서 적용가능한 방법이다. 
