@@ -153,10 +153,3 @@ $\textbf{Evaluation Protocol}$
 
 ### <strong>Question</strong>
 
-
-
-![](img_path)
-<a href="">link</a>
-
-
-> 인용구
