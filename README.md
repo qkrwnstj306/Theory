@@ -140,6 +140,7 @@ Theory for ML.
 	* <a href='./PPT/VGG.pptx'>VGG PPT</a>
 - <a href='https://arxiv.org/pdf/2405.08586'>XDomainMix: Cross-Domain Feature Augmentation for Domain Generalization</a>
   - <a href='./이론 pdf 파일/딥러닝 논문/xdomainmix/xdomainmix.md'>Paper Review</a>
+  - <a href='./PPT/XDomainMix.pdf'>XDomainMix PPT</a>
 
 
 ### Optimization
