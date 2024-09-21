@@ -121,7 +121,7 @@
 <img src='./1000005457.jpg'>
 </p>
 
-- 수량: numerous, various, multiple, Countless, Abundant, Several, Plentiful, massive amount, tremendous(엄청난)
+- 수량: numerous, various, multiple, Countless, Abundant, Several, Plentiful, massive amount, tremendous(엄청난), diverse, 
 
 - 강조: Amazingly, Impressively, Surprisingly, Notably, Especially, Remarkably, Indeed (사실은), Specifically (=Namely), 
 
@@ -152,6 +152,33 @@ As in ~,: ~처럼, ~와 같이
 
 <a href='https://wordvice.ai/ko/blog/best-academic-words-for-research'>Ref.</a>
 
+- Paraphrasing words
+
+> demonstrate, revealing, emphasizing, highlighting, showing, displaying, depicting, spotlighting, introducing
+
+
+> information, details, specifics, describes, data, knowledge, explains, outlines, characteristics, statistics, attribute, feature, insight, content
+
+
+> enhance, improve, boost, strengthen, optimize, advance, elevate, develop, increase, raise, foster, streamline, promote, expand, extend, refine, sharpen, aid, Adjusted, Polished
+
+
+> limited, restricted, prohibited, constrained, confined, bounded, hindered, dictated, closed, banned, excluded
+
+
+> significant, noteworthy, interesting, important, significant, special, valuable, intriguing, noticeable, fascinating, remarkable, relevant, unique, useful, striking, exciting, attractive, worthwhile, distinctive, worthwhile
+
+
+> additionally, furthermore, in addition, moreover, also, likewise, besides, Meanwhile 
+
+> overall, holistic, whole, comprehensive, extensive, entire, vast, global, broad
+
+> extract, portion, excerpt, take, obtain, Derived, retrieved, captured, acquired
+
+> various, differenct, distinct, unique, novel,absent, apart, varying, exclusive, diverse
+
+> potential, feasible, attainable, achievable, probable, viable, conceivable, accessible, acceptable, practical, ideal, suitable, plausible, sensible, effective 
+
 
 ***
 
@@ -171,6 +198,11 @@ As in ~,: ~처럼, ~와 같이
     - 어떤 실험들로 ~ 를 확인했으며
     - 마지막으로 ~ 를 검증하여 제안된 연구가 ~ 하다는 것을 보였다. 
   - $5$ 문단 (option): 본 연구의 main contribution 요약
+
+- $3$문단으로 적는 경우는 conference 논문 중, 장수가 적은 논문이 해당한다. (e.g., ICLR: 9장)
+  - $1$ 문단: 배경 설명 및 왜 중요한지, 문제점
+  - $2$ 문단: 우리의 방법론에 대한 high-level 설명
+  - $3$ 문단: 실험결과 및 요약
 
 ***
 
