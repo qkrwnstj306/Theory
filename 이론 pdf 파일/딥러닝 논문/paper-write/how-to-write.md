@@ -157,7 +157,7 @@ As in ~,: ~처럼, ~와 같이
 > demonstrate, revealing, emphasizing, highlighting, showing, displaying, depicting, spotlighting, introducing
 
 
-> information, details, specifics, describes, data, knowledge, explains, outlines, characteristics, statistics, attribute, feature, insight, content
+> information, details, specifics, describes, data, knowledge, explains, outlines, characteristics, statistics, attribute, feature, insight, content, traits, properties, nature, quality
 
 
 > enhance, improve, boost, strengthen, optimize, advance, elevate, develop, increase, raise, foster, streamline, promote, expand, extend, refine, sharpen, aid, Adjusted, Polished
@@ -175,10 +175,29 @@ As in ~,: ~처럼, ~와 같이
 
 > extract, portion, excerpt, take, obtain, Derived, retrieved, captured, acquired
 
-> various, differenct, distinct, unique, novel,absent, apart, varying, exclusive, diverse
+> various, differenct, distinct, unique, novel,absent, apart, varying, exclusive, diverse, Disparate
 
 > potential, feasible, attainable, achievable, probable, viable, conceivable, accessible, acceptable, practical, ideal, suitable, plausible, sensible, effective 
 
+
+- 자주 중복되는 단어 
+  - reveal
+  - demonstrate
+  - validate
+  - extract
+  - information 
+  - various
+  - particular 
+  - suggest
+  - improve
+  - addition
+  - while
+  - different 
+  - enhance
+  - however 
+  - illustrate
+  - obtain 
+  - distinct 
 
 ***
 
