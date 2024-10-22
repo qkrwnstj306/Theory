@@ -256,6 +256,9 @@ Theory for ML.
 - <a href='./이론 pdf 파일/딥러닝 논문/StyleDiffusion2/StyleDiffusion2.md'>Paper Review</a>
 - <a href='https://arxiv.org/pdf/2210.10960'>Asyrp: Diffusion Models Already Have A Semantic Latent Space</a>
   - <a href='./이론 pdf 파일/딥러닝 논문/Asyrp/Asyrp.md'>Paper Review</a>
+- <a href='https://arxiv.org/pdf/2410.04932'>OmniBooth: Learning Latent Control For Image Synthesis with Multi-Modal Instruction</a>
+  - <a href='./이론 pdf 파일/딥러닝 논문/omnibooth/omnibooth.md'>Paper Review</a>
+
 
 $\textbf{VITON}$
 
@@ -316,6 +319,9 @@ $\textbf{Semantic Correspondence}$
 - <a href='./이론 pdf 파일/딥러닝 논문/GPT2_230916_202552.pdf'>GPTv2</a>
 - <a href='./이론 pdf 파일/딥러닝 논문/CLIP(contrasting language image pre training)_230527_225717.pdf'>CLIP: Learning Transferable Visual Models From Natural Language Supervision</a>
 	* <a href='./PPT/contrastive learning.pptx'>Constrastive Learning PPT</a>
+- <a href='https://arxiv.org/pdf/2302.13971'>LLaMA: Open and Efficient Foundation Language Models</a>
+  - <a href='./이론 pdf 파일/딥러닝 논문/llama/llama.md'>Paper Review</a>
+
 
 ### Self-Supervised Learning
 
