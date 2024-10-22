@@ -226,9 +226,10 @@ $\textsf{Rotary Positional Embeddings (RoPE)}$
 </p>
 
 - 2D rotary matrix를 확장시켜 일반화하면, 다음과 같다. 
-  - 2D를 확장시켰지만, 위와 동일하게 $2$차원의 벡터씩 분할하여 rotate한다.
+  - 2D를 확장시켰지만, 위와 동일하게 $2$차원의 벡터로 분할하여 rotate한다.
   - $d/2$로 분할하여 $2$차원의 vector에 대해서 각각 계산한 후 더해도 된다.
     - $\sum$ rotate한 $2$ 차원의 vector 내적 = $d$ 차원의 rotate한 벡터 내적
+    - $3$ 차원의 벡터로 분할한 논문도 존재한다. <a href='https://arxiv.org/pdf/2406.09897'>3D-RPE: Enhancing Long-Context Modeling Through 3D Rotary Position Encoding (2024)</a>
   - 하지만 이 matrix는 sparse (대부분의 요소값이 $0$)하다.
   - 실제로 $\theta_i$값은 transformer에서 제안한대로 $\theta_i = 10000^{(-2i)/d}$를 사용했다.
 
@@ -250,9 +251,23 @@ $\textsf{Rotary Positional Embeddings (RoPE)}$
 <img src='./img21.png'>
 </p>
 
+- 직관적으로는 다음과 같다.
+  - 같은 단어여도 문장내에서의 위치에 따라 멀어진다.
+  - 문장 내에서의 위치가 달라져도 상대적인 위치는 동일하다.
+  - 
+
 <p align="center">
-<img src='./img22.png'>
+<img src='./img27.png'>
 </p>
+
+<p align="center">
+<img src='./img28.png'>
+</p>
+
+<p align="center">
+<img src='./img29.png'>
+</p>
+
 
 $\textsf{KV-Cache}$
 
