@@ -10,24 +10,42 @@
 [Experiment](#experiment)</br>
 [Conclusion](#conclusion)</br>
 
+
 <p align="center">
-<img src='./img1.png'>
+<img src='./img2.png'>
 </p>
 
 > Core Idea
 <div align=center>
-<strong>"test1"</strong></br>
+<strong>"Apply Pre-Normalization, SwiGLU, and Rotary Embeddings in Transformer Block"</strong></br>
 </div>
 
 ***
 
 ### <strong>Intro</strong>
 
+- 방대한 말뭉치로 학습된 LLM은 textual instructions이나 few example로부터 새로운 task를 수행할 수 있다. 
+- 위와 같은 few-shot 능력은 모델이 충분한 크기에 도달할 때 발현된다 (<a href='https://arxiv.org/pdf/2001.08361'>Scaling Laws for Neural Language Model (2020, OpenAI)</a>). 그래서 PaLM (2022)이나 Gopher (2021)와 같이 모델의 크기를 키우는 연구들이 이뤄졌다. 
+- 이러한 노력들은 더 많은 parameter가 더 나은 성능을 이끈다는 가정을 기반으로 한다. 
+- 하지만 최근 연구 <a href='https://arxiv.org/pdf/2203.15556'>Training Compute-Optimal Large Language Models (2022, DeepMind)</a> 에서 compute budget이 주어졌을 때의 최고의 성능은 모델의 크기를 키우는 게 아닌, 작은 모델을 더 많은 데이터로 학습시키는 것이라는 걸 보여줬다. 
+- <a href='https://arxiv.org/pdf/2203.15556'>Training Compute-Optimal Large Language Models (2022, DeepMind)</a> 는 사실 training compute budget에 대한 dataset 및 model size를 고려하는 것이지 inference budget은 고려하지 않았다. 
+- Inference compute budget 관점에서 목표 성능 수준이 주어졌을 때, 선호되는 모델이 학습이 빠른 게 아니라 추론이 빠른 것이다. 
+- 본 논문의 초점은 다양한 inference budget에서 최상의 성능을 달성할 수 있는 언어 모델을 학습시키는 데 있으며, 이는 보통보다 더 많은 token으로 학습하여 이루어진다. 즉, 학습 시간이 오래걸려도 추론 관점에서 cost를 싸게 가져가겠다. 
+  - Chinchilla(2022)에서는 10B 모델을 학습하기 위해 200B token를 사용하길 권장한다. 
+  - 본 논문은 7B에 1T token을 사용
+
+
+<p align="center">
+<img src='./img50.png'>
+</p>
+
 - Meta AI에서 공개한 LLM model
   - 7B ~ 65B 규모의 foundation language model이다. 
+  - Trillions of tokens (수조개의 토큰)을 사용하여 학습
   - 저작권이 있거나 접근 불가능한 데이터 사용 없이, public data만으로도 SoTA를 달성할 수 있다는 것을 보였다. 
-  - 성능 측면에서 LLaMA-13B가 GPT-3 (175B)보다 성능이 좋다. 
+  - 성능 측면에서 LLaMA-13B가 GPT-3 (175B)보다 대부분의 benchmark에서 우수했다. 
     - LLaMA-13B는 single GPU로 inference가 가능하다. 
+  - LLaMA 65B은 CHinchilla-70B와 PaLM-540B와 비슷한 성능을 거두었다. 
 
 ***
 
@@ -38,7 +56,34 @@
 
 ### <strong>Method</strong>
 
+**Pre-training Data**
+
+- 공개된 데이터를 조합하여 사용했다. 
+  - English CommonCrawl: 2017 ~ 2020의 범위에 있는 내용을 CCNet pipeline으로 전처리했다. 
+  - C4: T5에서 사용한 C4를 사용했다. 
+  - Github: 사용 가능한 공개 깃허브 데이터셋 사용
+  - Wikipedia: 2022년 6-8월의 위키피디아 뭉치, 20개의 언어, 하이퍼링크와 주석 등을 제거
+  - Books (Gutenberg and Books3): 두 개의 책을 사용. 책 단위로 내용이 90% 이상 겹치는 책은 제거한다. 
+  - ArXiv: 과학 데이터를 추가하기 위해 LaTeX 파일 처리, 첫 번째 Section 앞에 있는 모든 것을 제거, 참고 문헌 제거
+  - Stack Exchange: 질의 응답사이트의 QA 데이터 사용
+
+<p align="center">
+<img src='./img39.png'>
+</p>
+
+**Tokenizer**
+
+- Byte-pair encoding (BPE) algorithm을 사용하여 토큰화 한 후, SentencePiece를 이용해 단어 사전을 완성시켰다. 
+- 숫자는 모두 개별 분리했고, 이모지와 같이 알 수 없는 문자는 UTF-8로 인코딩된 문자를 바이트 단위로 분해했다. 
+- 전체 학습 데이터를 토큰화하면 약 1.4T token이 나온다. 
+
+<p align="center">
+<img src='./img40.png'>
+</p>
+
 **Implementation detail**
+
+- "Attention is all you need"의 transformer 구조를 기반으로 한다.
 
 <a href='https://www.youtube.com/watch?v=Mn_9W1nCFLo'>Youtube Link</a>
 
@@ -53,11 +98,28 @@ $\textsf{Architectural differences between the vanilla Transformer and LLaMA}$
 <img src='./img2.png'>
 </p>
 
+- Hyper-parameters
+  - Dimension: the size of the embedding vector
+  - Heads: attention heads
+  - Layers: the number of the block
+
+<p align="center">
+<img src='./img3.png'>
+</p>
+
+- Versus LLaMA 2
+
+<p align="center">
+<img src='./img4.png'>
+</p>
+
+
 - 기존의 (a) Post-LN Transformer layer와 다르게 (b) Pre-LN Transformer layer를 사용하는 이유는 아래와 같다. 
   - 참조 논문: <a href='https://arxiv.org/pdf/2002.04745'>On Layer Normalization in the Transformer Architecture (2020)</a>
   - 간략하게 말하자면, (a) Post-LN는 일반적으로 사용하며 SoTA 성능을 달성했다. 하지만 그러한 성공에도 불구하고 Post-LN Transformer의 최적화는 Conv layer나 다른 sequence-to-sequence 모델보다 더 신중하게 다뤄야한다. 
   - 특히 모델을 처음부터 훈련시키기 위해서는 learning rate warm-up이 필요하다. Warm-up 단계는 최적화 과정을 느리게 만들 뿐만 아니라, hyper-parameter의 수고를 더하게 된다. 최종 모델 성능이 최대 학습률 값 (maximum learning rate)과 warmup step에 상당히 민감하다는 것을 <a href='https://arxiv.org/pdf/1804.00247'>Training Tips for the Transformer Model (2018)</a> 에서 보여주었다. 
   - 참조 논문에서는 warmup step을 제거하여 대체하는 방법을 제안한다. Layer normalization이 gradient 척도를 제어하는데 결정적인 역할을 하는 것을 확인했고, 이를 (b)의 구조에 적용시켜 학습을 안정적으로 제어했다. 이를 통해 warmup step을 제거할 수 있었고 결과적으로 hyper-parameter 수가 감소한다. 
+  - LLaMA1 논문에서는 warmup (2000 step)을 사용하긴 한다.
 
 > Warmup: 천천히 learning rate를 올리는 작업을 뜻한다. lr을 2로, warmup step을 10,000로 설정했다면 lr은 10,000 step동안 2까지 증가하게 된다. 이 기법은 학습 초기에 모델의 가중치를 서서히 조정하여 안정적으로 학습을 시작할 수 있도록 돕는 기법이다. 이는 학습 초기에 큰 학습률로 인해 발생할 수 있는 가중치의 급격한 변화와 그로 인한 학습의 불안정성을 방지한다. 
 
@@ -90,20 +152,6 @@ $\textsf{Architectural differences between the vanilla Transformer and LLaMA}$
 <img src='./img11.png'>
 </p>
 
-- Hyper-parameters
-  - Dimension: the size of the embedding vector
-  - Heads: attention heads
-  - Layers: the number of the block
-
-<p align="center">
-<img src='./img3.png'>
-</p>
-
-- Versus LLaMA 2
-
-<p align="center">
-<img src='./img4.png'>
-</p>
 
 $\textsf{Input Embedding}$
 
@@ -319,6 +367,7 @@ $\textsf{Multi-Query Attention}$
 
 $\textsf{Grouped Multi-Query Attention}$
 
+- LLaMA2에서 추가로 도입된 방법이다.
 - Multi-head의 높은 성능과 Multi-Query의 빠른 계산량의 장점을 통합한 방법이다.
 - $H$개 있던 $KV$ 헤드를 $1$개로 줄이는 대신 적절한 $G$개의 그룹으로 줄인다.
 - $G$가 $1$이 되면 MQA가 되고 $H$가 되면 MHA가 되니까 GQA는 MHA와 MQA를 포함한 일반화라고 볼 수 있다.
@@ -331,10 +380,128 @@ $\textsf{Grouped Multi-Query Attention}$
 
 $\textsf{SwiGLU Activation Function}$
 
+- Transformer block의 feedforward network의 activation function으로 사용한다. 
+- <a href='https://arxiv.org/pdf/2002.05202'>SwiGLU: GLU Variants Improve Transformer</a>
+  - 특이한 점은 이 논문에서 제안한 SwiGLU의 성공에 대한 설명을 제공하지 않는데, 이는 신의 자비 덕분이라고 언급한다. (deep learning의 black box 특성?)
+
+- Feedforward network in "Attention is all you need"
+
+<p align="center">
+<img src='./img32.png'>
+</p>
+
+- Feedforward netowork in "LLaMA"
+  - SwiGLU activation function은 Swish와 GLU를 결합한 함수이다.
+
+<p align="center">
+<img src='./img33.png'>
+</p>
+
+<p align="center">
+<img src='./img34.png'>
+</p>
+
+<p align="center">
+<img src='./img35.png'>
+</p>
+
+<p align="center">
+<img src='./img36.png'>
+</p>
+
+
+<p align="center">
+<img src='./img30.png'>
+</p>
+
+<p align="center">
+<img src='./img31.png'>
+</p>
+
+- SwiGLU의 성능
+
+<p align="center">
+<img src='./img37.png'>
+</p>
+
+<p align="center">
+<img src='./img38.png'>
+</p>
 
 ***
 
 ### <strong>Experiment</strong>
+
+- Zero-shot: task에 대한 텍스트 설명만 주어짐
+- Few-shot: task에 대한 텍스트 설명과 몇 가지 예시가 주어짐
+
+- Zero-shot 성능 on 일반 상식 추론 (객관식이여서 eval metric은 accuracy이다.)
+  - GPT-3가 175B, LLaMA가 13B인데도 대부분의 benchmark에서 성능이 더 잘나온다.
+  - PaLM 540B의 경우에도 LLaMA 65B이 더 잘하는 task가 존재한다.
+
+<p align="center">
+<img src='./img41.png'>
+</p>
+
+- Closed-book Question Answering: Natural Questions, TriviaQA
+  - 모델이 더 작은데도 불구하고 성능이 우수하다.
+
+<p align="center">
+<img src='./img42.png'>
+</p>
+
+<p align="center">
+<img src='./img43.png'>
+</p>
+
+- Reading Comprehension
+  - RACS: 중고등학교 영어 독해 이해력 평가
+
+<p align="center">
+<img src='./img44.png'>
+</p>
+
+- Mathemetical reasoning
+  - MATH, GSM8K: LaTEX로 작성된 중고등학교 수학 문제
+  - maj1@k: 문제에 대해 k개의 sample을 생성한 다음에 다수결 투표를 통해 정답을 고르는 방식
+
+<p align="center">
+<img src='./img45.png'>
+</p>
+
+- Code generation
+  - 자연어 설명이 주어지면 이에 맞는 python code를 작성하고 test case를 만족해야된다.
+  - pass@n score: n개의 코드를 만들어냈을 때, test case를 통과한다면 문제가 해결된 것으로 간주하고, 전체 문제에 대해 해결된 문제의 비율
+
+<p align="center">
+<img src='./img46.png'>
+</p>
+
+- Massive Multitask Language Understanding
+  - STEM (과학, 기술, 공학, 수학), Social Sciences
+  - 5-shot에 대해서 진행
+  - Pre-training 단계에서 사용된 책, 학술 논문 데이터가 제한되기에 PaLM과 Chinchilla에 비해 조금 부족하다.
+
+<p align="center">
+<img src='./img47.png'>
+</p>
+
+
+- Pre-training model
+  - 각 model size에 대해서 성능 비교이다. 
+  - 33, 65B는 1.4T token을 사용하고 나머지는 1.0T token이다.
+  - Batch isze는 4M tokens
+
+<p align="center">
+<img src='./img48.png'>
+</p>
+
+- Pre-training model의 학습 curve에 대한 전반적인 benchmark 성능
+  - Task에 대해서 fine-tuning한 것이 아니다. 
+
+<p align="center">
+<img src='./img49.png'>
+</p>
 
 
 ***
@@ -345,11 +512,3 @@ $\textsf{SwiGLU Activation Function}$
 ***
 
 ### <strong>Question</strong>
-
-
-
-![](img_path)
-<a href="">link</a>
-
-
-> 인용구
