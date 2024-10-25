@@ -128,6 +128,11 @@ $\textsf{Architectural differences between the vanilla Transformer and LLaMA}$
 <img src='./img9.png'>
 </p>
 
+- Pre-LN의 성능이 더 좋고, warmup step을 없애도 학습이 안정적이라는 것을 보여준다.
+
+<p align="center">
+<img src='./img51.png'>
+</p>
 
 <a href='https://arxiv.org/pdf/1804.00247'>Training Tips for the Transformer Model (2018)</a>
 
@@ -168,6 +173,7 @@ $\textsf{RMS Normalization (with review of Layer Normalization)}$
 
 - 하지만, <a href='https://arxiv.org/pdf/1910.07467'>RMS LayerNorm (2019)</a> 에서는 re-centering invariance보다 re-scaling invariance가 더 긍정적인 영향을 가지고 있다고 가정했다.
   - 따라서 re-scaling만을 진행
+  - RMSNorm은 일반적으로 shift parameter를 사용하지 않고 scaling parameter $g_i$를 사용한다.
 
 <p align="center">
 <img src='./img6.png'>
@@ -231,6 +237,10 @@ $\textsf{Rotary Positional Embeddings (RoPE)}$
 <img src='./img8.png'>
 </p>
 
+<p align="center">
+<img src='./img53.png'>
+</p>
+
 <a href='https://arxiv.org/pdf/2104.09864'>RoFormer: Rotary Position Embedding (2023)</a> 
 
 - RoPE의 기여점은 크게 $3$가지이다. 
@@ -239,7 +249,7 @@ $\textsf{Rotary Positional Embeddings (RoPE)}$
   - Decaying inter-token dependency with increasing relative distances
     - RoPE 는 상대적 거리가 증가함에 따라 토큰 간의 의존성을 자연스럽게 감소시키는 특성을 가지고 있다.
     - 이는 모델이 멀리 떨어진 토큰 간의 상관관계를 적절히 줄여줌으로써, 더 효율적이고 정확한 처리를 가능하게 한다.
-    - Capability of equipping the linear self-attention with relative position encoding
+  - Capability of equipping the linear self-attention with relative position encoding
       - Linear self-attention 을 통해 입력 데이터 내에서 토큰들의 상대적 위치 정보를 효과적으로 활용할 수 있다.
 
 - Related work for relative position embedding
@@ -261,6 +271,8 @@ $\textsf{Rotary Positional Embeddings (RoPE)}$
 - Rotary (회전하는) position embedding
   - 기존의 Query, Key를 구하는 공식에서 complex form (rotation matrix in two dimensions)을 도입하여 기하학적으로 회전시켰다. 
   - 이는 기존의 additive한 방식으로 위치 정보를 더하는 방식과 비교하여 dot-product에 더 적합하다. (additive는 값의 크기를 변화시킨다.)
+  - $<a, b> = ||a|| \cdot ||b|| cos\theta$ 에서 벡터의 크기를 변화시키는 것보다 각도를 변화시키는 게 자연스럽다?
+  - 예를 들어, 덧셈 방식이 상대적 거리를 어느정도 반영할 수는 있지만 명시적으로 표현이 어려울 수 있다. 하지만 각도를 변형시키는 것은 명시적이다.
  
 - 2D case 즉, vector의 dimension이 $2$인 경우를 고려해보자 
   - 아래의 수식에서 각각의 $f_{q,k}$를 (Query and Key) $m\theta$만큼 회전시킨다. (**직교 좌표계와 극 좌표계는 동일한 점이고 표현 방식만 다른것이다.**)
@@ -300,9 +312,10 @@ $\textsf{Rotary Positional Embeddings (RoPE)}$
 </p>
 
 - 직관적으로는 다음과 같다.
+  - Dog에 대한 embedding은 relative positional embedding을 추가하기 전까진 동일하지만, 위치 정보가 추가되면 다음과 같이 된다.
   - 같은 단어여도 문장내에서의 위치에 따라 멀어진다.
   - 문장 내에서의 위치가 달라져도 상대적인 위치는 동일하다.
-  - 
+
 
 <p align="center">
 <img src='./img27.png'>
@@ -381,7 +394,7 @@ $\textsf{Grouped Multi-Query Attention}$
 $\textsf{SwiGLU Activation Function}$
 
 - Transformer block의 feedforward network의 activation function으로 사용한다. 
-- <a href='https://arxiv.org/pdf/2002.05202'>SwiGLU: GLU Variants Improve Transformer</a>
+- <a href='https://arxiv.org/pdf/2002.05202'>SwiGLU: GLU Variants Improve Transformer (2020)</a>
   - 특이한 점은 이 논문에서 제안한 SwiGLU의 성공에 대한 설명을 제공하지 않는데, 이는 신의 자비 덕분이라고 언급한다. (deep learning의 black box 특성?)
 
 - Feedforward network in "Attention is all you need"
@@ -392,6 +405,8 @@ $\textsf{SwiGLU Activation Function}$
 
 - Feedforward netowork in "LLaMA"
   - SwiGLU activation function은 Swish와 GLU를 결합한 함수이다.
+  - 결합한 두 함수가 모두 입력의 정보량을 조절하는 함수이다.
+
 
 <p align="center">
 <img src='./img33.png'>
