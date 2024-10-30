@@ -201,6 +201,8 @@ Theory for ML.
   - <a href='./PPT/I2AM_workshop.txt'>Presentation Script</a>
 - <a href='https://openaccess.thecvf.com/content/ICCV2023/papers/Peebles_Scalable_Diffusion_Models_with_Transformers_ICCV_2023_paper.pdf'>Scalable Diffusion Models with Transformers</a>
   - <a href='./이론 pdf 파일/딥러닝 논문/DiT/DiT.md'>Paper Review</a>
+- <a href='https://arxiv.org/pdf/2403.13298'>Rotary Position Embedding for Vision Transformer</a>
+  - <a href='./이론 pdf 파일/딥러닝 논문/RoPEViT/RoPEViT.md'>Paper Review</a>
 
 
 #### Image Editing
