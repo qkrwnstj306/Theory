@@ -147,10 +147,21 @@ $$ X_{t-1} = \frac{X_t - \sqrt{1-\bar\alpha_t}\epsilon_\theta (X_t)}{\sqrt{\bar\
 - Inversion 수식
   - $t$ 와 $t+1$ 이 굉장히 가까우면 위의 수식은 동일하다.
   - 따라서, DDPM sampling 방식으로 $x_t$ 만 남기고 우항으로 보내고 계산하면 된다.
-  - $\Delta t$ 는 무시
+  - $\Delta t$ (시간사이의 간격)을 $1$로 생각하면 된다.
+
+- DDIM 에서 제시한 sampling 수식, $x_t$에서 $x_{t-1}$을 구하는 수식에서 randomness $\sigma$를 삭제하여 deterministic form으로 만들면 다음과 같은 수식을 만들 수 있다. 
+  - 여기서 $x_t$만 남기고 넘기면 된다.
+
 <p align="center">
 <img src='imgg.png'>
 </p>
+
+- 최종적인 $x_t$에서 다음 step에서의 $x_{t+1}$을 만드는 수식은 다음과 같다.
+  - 이 수식을 사용해서 image (or latent)를 $t$ 시점의 noisy input으로 만든 후, 여기서부터 동일한 seed & conditioning으로 generation하면 된다.
+  - <a href='https://huggingface.co/learn/diffusion-course/unit4/2'>Reference cite</a>
+
+
+$$ x_{t+1} = \frac{\sqrt{\bar \alpha_{t+1}}}{\sqrt{\bar \alpha_t}} x_t + \epsilon_{\theta}(X_t)(\sqrt{1-\bar \alpha_{t+1}} - \frac{\sqrt{\bar \alpha_{t+1}}\sqrt{1-\bar \alpha_t}}{\sqrt{\bar \alpha_t}}) $$
 
 
 ***
