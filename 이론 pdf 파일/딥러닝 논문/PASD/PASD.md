@@ -97,6 +97,28 @@ $\textbf{Word}$
 
 - ANS
 
+- 이전 연구에서 [1, 2] 언급됐듯이 Stable Diffusion에서 사용하는 noise schedule은 train-test discrepancy가 존재하기 때문이다. 이는 학습 단계에선, 최종 time step에서의 SNR (signal-to-noise)이 0이 되지 않아 잔여 신호가 남아있는 반면 inference에선 pure noise를 사용하기에 문제가 된다. 이 문제를 완화하기 위해 SeeSR [3]은 inference에서 LQ latent를 pure noise에 추가시킨다. 마찬가지로 PASD [4]도 LQ latent를 pure noise에 추가하여 불일치 문제를 해결하고자 했다. 따라서, SR task에서는 low-resolution signal을 제공하므로 early layers가 coarse feature에 크게 얽매이지 않는다. 
+  - SeeSR과 PASD는 같은 저자가 있는데 PASD가 더 최근의 sampling방식을 사용했다.
+  - PASD에서의 sampling 방식은 SeeSR의 개선된 버전이다. SeeSR이 inference시에, 제공한 signal은 LQ이다. 하지만 학습 시에 사용하는 signal은 HQ로, 사실 잔여 신호의 출처가 다르다. (train: HQ signal, inference: LQ signal) 이때, LQ가 심각한 열화를 겪을 때 복원 결과에 악영향을 끼칠 수 있다. 따라서 PASD에서는 LQ 데이터에서 발생하는 잔여 신호의 부작용을 억제하기 위해, 추가 가우시안 잡음을 도입했다. LQ 잔여 신호를 조절함으로써  flexible perception-fidelity trade-off를 맞출 수 있다.
+
+<p align="center">
+<img src='./img3.png'>
+</p>
+
+- $\bar \alpha_a$는 $a = t =900$인 $0.1189$를 썼다. Trade-off를 가장 잘 반영하는 값임.
+
+<p align="center">
+<img src='./img4.png'>
+</p>
+
+
+[1] Choi, Jooyoung, et al. "Perception prioritized training of diffusion models." *Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition*. 2022.
+
+[2] Lin, Shanchuan, et al. "Common diffusion noise schedules and sample steps are flawed." *Proceedings of the IEEE/CVF winter conference on applications of computer vision*. 2024.
+
+[3] Wu, Rongyuan, et al. "Seesr: Towards semantics-aware real-world image super-resolution." *Proceedings of the IEEE/CVF conference on computer vision and pattern recognition*. 2024.
+
+[4] Yang, Tao, et al. "Pixel-aware stable diffusion for realistic image super-resolution and personalized stylization." *arXiv preprint arXiv:2308.14469* (2023).
 
 
 ***

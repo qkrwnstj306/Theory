@@ -262,6 +262,9 @@ Theory for ML.
   - <a href='./이론 pdf 파일/딥러닝 논문/omnibooth/omnibooth.md'>Paper Review</a>
 - <a href='http://www.arxiv.org/pdf/2409.06355'>DiffQRCoder: Diffusion-based Aesthetic QR Code Generation with Scanning Robustness Guided Iterative Refinement</a>
   - <a href='./이론 pdf 파일/딥러닝 논문/DiffQRCoder/DiffQRCoder.md'>Paper Review</a>
+- <a href='https://arxiv.org/pdf/2308.14469'>PASD: Pixel-Aware Stable Diffusion for Realistic Image Super-Resolution and Personalized Stylization</a>
+  - <a href='./이론 pdf 파일/딥러닝 논문/PASD/PASD.md'>Paper Review</a>
+
 
 $\textbf{VITON}$
 
