@@ -270,6 +270,7 @@ $\textbf{VITON}$
 
 - <a href='https://arxiv.org/pdf/2312.01725.pdf'>StableVITON: Learning Semantic Correspondence with Latent Diffusion Model for Virtual Try-On</a>
   - <a href='./이론 pdf 파일/딥러닝 논문/stableVITON/stableVITON.md'>Paper Review</a>
+  - <a href='./PPT/ATV_loss.pdf'>ATV loss에 대한 분석</a>
 - <a href='https://openaccess.thecvf.com/content/CVPR2021/papers/Choi_VITON-HD_High-Resolution_Virtual_Try-On_via_Misalignment-Aware_Normalization_CVPR_2021_paper.pdf'>VITON-HD: High-Resolution Virtual Try-On via Misalignment-Aware Normalization</a>
   - <a href='./이론 pdf 파일/딥러닝 논문/VITON-HD/VITON-HD.md'>Paper Review</a>
 - <a href='https://arxiv.org/pdf/2206.14180.pdf'>HR-VITON: High-Resolution Virtual Try-On with Misalighment and Occlusion-Handled Conditions</a>
