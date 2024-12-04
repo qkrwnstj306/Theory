@@ -3,6 +3,8 @@ Theory for ML.
 - [ ] StyleBoost code practice
 - [ ] Pytorch/Python basic code practice
 
+<a href='https://qkrwnstj306.github.io/'>PORTFOLIO</a>
+
 [How to Write Paper](#0-how-to-write-paper)</br>
 [Reinforcement](#1-reinforcement)</br>
 [Deep Learning](#2-deep-learning)</br>
@@ -330,6 +332,9 @@ $\textbf{Semantic Correspondence}$
   - <a href='./이론 pdf 파일/딥러닝 논문/llama/llama.md'>Paper Review</a>
   - <a href='./PPT/LLaMA.pdf'>LLaMA PPT</a>
   - <a href='https://github.com/qkrwnstj306/LLaMA'>LLaMA Implementation</a>
+- <a href='https://arxiv.org/abs/2305.06983'>FLARE: Active Retrieval Augmented Generation</a>
+  - <a href='./이론 pdf 파일/딥러닝 논문/FLARE/FLARE.md'>Paper Review</a>
+
 
 ### Self-Supervised Learning
 
