@@ -159,7 +159,6 @@ $\textbf{Notations and Definitions}$
   - $t >=1$
   - $y_{<t} = [y_0, ..., y_{t-1}]$
   - $q_1 = x (y_{t<1} = \emptyset)$
-  - $y_t =\text{LM} ([ \mathcal{D}_{q_{t}}, x, y_{<t} ])$
 
 $$ y_t = \text{LM} \mathcal{D}_{q_{t}} $$
 
