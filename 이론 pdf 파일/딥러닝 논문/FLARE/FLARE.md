@@ -11,7 +11,7 @@
 [Conclusion](#conclusion)</br>
 
 <p align="center">
-<img src='./img1.png'>
+<img src='./img4.png'>
 </p>
 
 > Core Idea
@@ -158,7 +158,7 @@ $\textbf{Notations and Definitions}$
 - Retrieval query at time $t$: $q_t = qry(x, y_{<t})$
   - $t >=1$
   - $y_{<t} = [y_0, ..., y_{t-1}]$
-  - $q_1 = x (y_{<1} = \empty)$
+  - $q_1 = x (y_{t<1} = \emptyset)$
   - $y_t =\text{LM}([\mathcal{D}_{q_t}, x, y_{<t}])$
 - 이전에 검색된 documents는 버리고 오직 $t$에서 검색된 document만을 사용한다. 이는 LM의 input length limit에 도달하지 않기 위해서다.
 
