@@ -159,8 +159,8 @@ $\textbf{Notations and Definitions}$
   - $t >=1$
   - $y_{<t} = [y_0, ..., y_{t-1}]$
   - $q_1 = x (y_{t<1} = \emptyset)$
-  - $y_t =\text{LM} ( [ \mathcal{D}_{ q_{t} }$ $, x, y_{<t} ] )$
-  - $y_t =\text{LM} \mathcal{D}_{ q }$
+  - $y_t =\text{LM} ([ \mathcal{D}_{q_{t}}, x, y_{<t} ])$
+  - $y_t =\text{LM} \mathcal{D}_{q_{t}}$
 - 이전에 검색된 documents는 버리고 오직 $t$에서 검색된 document만을 사용한다. 이는 LM의 input length limit에 도달하지 않기 위해서다.
 
 $\textbf{FLARE: Forward-Looking Active Retreival Augmented Generation}$
