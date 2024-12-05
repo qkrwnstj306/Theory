@@ -59,7 +59,7 @@ $\textbf{최근 노력들과 여전히 남아있는 문제들}$
 
 - Limitation of Multi-time retrieval
   - Previous methods
-    - LM이 미래에 생성할 내용이나 검색할 내용을 정확하게 반영하지 못할거나 부적절한 시점에 검색을 수행할 수 있다. 
+    - LM이 미래에 생성할 내용이나 검색할 내용을 정확하게 반영하지 못하거나 부적절한 시점에 검색을 수행할 수 있다. 
     - 고정된 간격으로 정보를 검색하는 것은 부적절한 시점에 발생할 수 있어 비효율적일 수  있다.
   - Question decomposition: task별 prompt engineering이 필요하므로 새로운 task에서 일반화가 힘들다.
 
@@ -160,7 +160,9 @@ $\textbf{Notations and Definitions}$
   - $y_{<t} = [y_0, ..., y_{t-1}]$
   - $q_1 = x (y_{t<1} = \emptyset)$
 
-$$ y_t = \text{LM} \mathcal{D}_{q_{t}} $$
+<p align="center">
+<img src='./img44.png'>
+</p>
 
 - 이전에 검색된 documents는 버리고 오직 $t$에서 검색된 document만을 사용한다. 이는 LM의 input length limit에 도달하지 않기 위해서다.
 
