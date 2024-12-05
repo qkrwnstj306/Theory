@@ -334,6 +334,7 @@ $\textbf{Semantic Correspondence}$
   - <a href='https://github.com/qkrwnstj306/LLaMA'>LLaMA Implementation</a>
 - <a href='https://arxiv.org/abs/2305.06983'>FLARE: Active Retrieval Augmented Generation</a>
   - <a href='./이론 pdf 파일/딥러닝 논문/FLARE/FLARE.md'>Paper Review</a>
+  - <a href='./PPT/FLARE.pdf'>FLARE PPT</a>
 
 
 ### Self-Supervised Learning

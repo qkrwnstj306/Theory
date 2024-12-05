@@ -166,7 +166,7 @@ $\textbf{Notations and Definitions}$
 
 - 이전에 검색된 documents는 버리고 오직 $t$에서 검색된 document만을 사용한다. 이는 LM의 input length limit에 도달하지 않기 위해서다.
 
-$\textbf{FLARE: Forward-Looking Active Retreival Augmented Generation}$
+$\textbf{FLARE: Forward-Looking Active Retrieval Augmented Generation}$
 
 - 본 논문의 직관은 다음과 같다.
   1. LM은 추가적인 지식이 필요할 때만 정보를 검색해야한다. 이를 통해 불필요하거나 부적절한 검색을 피할 수 있다.
