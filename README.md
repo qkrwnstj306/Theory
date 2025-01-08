@@ -458,6 +458,8 @@ $\textbf{Semantic Correspondence}$
   - <a href='/PPT/CAM.pptx'>Grad-CAM PPT</a>
 - <a href='https://arxiv.org/pdf/2105.13871.pdf'>DiffSVC: A Diffusion Probabilistic Model for Singing Voice Conversion</a>
   - <a href='./이론 pdf 파일/딥러닝 논문/DiffSVC/DiffSVC.md'>Paper Review</a>
+- <a href='https://link.springer.com/article/10.1186/s41747-023-00386-1'>Pulmonary abnormality screening on chest x-rays from different machine specifications: a generalized AI-based image manipulation pipeline</a>
+  - <a href='./이론 pdf 파일/딥러닝 논문/AXIR-CX/AXIR-CX.md'>Paper Review</a>
 
 
 # 7. Helpful Blog
