@@ -460,6 +460,8 @@ $\textbf{Semantic Correspondence}$
   - <a href='./이론 pdf 파일/딥러닝 논문/DiffSVC/DiffSVC.md'>Paper Review</a>
 - <a href='https://link.springer.com/article/10.1186/s41747-023-00386-1'>Pulmonary abnormality screening on chest x-rays from different machine specifications: a generalized AI-based image manipulation pipeline</a>
   - <a href='./이론 pdf 파일/딥러닝 논문/AXIR-CX/AXIR-CX.md'>Paper Review</a>
+- <a href='https://arxiv.org/pdf/2305.04533'>MPC: Prompted LLMs as Chatbot Moduels for Long Open-domain Conversation</a>
+  - <a href='./이론 pdf 파일/딥러닝 논문/MPC/MPC.md'>Paper Review</a>
 
 
 # 7. Helpful Blog
