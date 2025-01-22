@@ -90,7 +90,7 @@ $\textbf{Memory Processor}$
 - Clarifier의 출력 결과를 query로 사용 $\rightarrow$ DPR이 memory pool에서 상위 $k$개의 관련 memory를 검색 $\rightarrow$ memory processor는 하나의 정제된 memory로 압축
 
 - Few-shot & CoT
-  - DPR이 memory pool에서 관련되 memory를 memory processor에 전달하면, 다음과 같은 예제와 CoT를 보고 답할 것이다. 
+  - DPR이 memory pool에서 관련된 memory를 memory processor에 전달하면, 다음과 같은 예제와 CoT를 보고 답할 것이다. 
 
 <p align="center">
 <img src='./img4.png'>
