@@ -462,6 +462,7 @@ $\textbf{Semantic Correspondence}$
   - <a href='./이론 pdf 파일/딥러닝 논문/AXIR-CX/AXIR-CX.md'>Paper Review</a>
 - <a href='https://arxiv.org/pdf/2305.04533'>MPC: Prompted LLMs as Chatbot Moduels for Long Open-domain Conversation</a>
   - <a href='./이론 pdf 파일/딥러닝 논문/MPC/MPC.md'>Paper Review</a>
+  - <a href='./PPT/MPC.pdf'>MPC PDF</a>
 
 
 # 7. Helpful Blog
