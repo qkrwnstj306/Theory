@@ -340,3 +340,10 @@ $\textbf{Ablation Study}$
 <p align="center">
 <img src='./img17.png'>
 </p>
+
+- Straight Through Estimator (STE): quantization 중 round를 하면 미분가능하지 않다. 이를 극복하기 위해 STE로 우회한다. Identity로 취급하는 간단한 컨셉이다. 
+  - 여기서도 보면, $x$를 그대로 통과시키면서 (항등함수) output은 round된 결과값이다.
+
+<p align="center">
+<img src='./img18.png'>
+</p>
