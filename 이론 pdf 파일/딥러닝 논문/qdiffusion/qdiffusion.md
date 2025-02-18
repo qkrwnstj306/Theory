@@ -244,6 +244,7 @@ $\textbf{Ablation Study}$
 
 ### <strong>Conclusion</strong>
 
+- 코드를 보니, CFG는 고려하지 않고 quantization한 것 같다.
 
 ***
 
@@ -252,7 +253,83 @@ $\textbf{Ablation Study}$
 <a href='https://github.com/Xiuyu-Li/q-diffusion/tree/master'>Q-Diffusion Github</a>
 
 - `qdiff folder`에 있는 .py들이 주로 새롭게 추가된 부분이다.
-  - 현재까지 확인된 기존의 code에서 새롭게 추가된 부분은 `ldm > modules > diffusionmodules > openaimodel.py > ResBlock class > split` 인자이다.
+  - 현재까지 확인된 기존의 code에서 새롭게 추가된 부분은 split 인자이다.
+  - `UNetModel`, `TimestepEmbedSequential`, `TimestepBlock`, `ResBlock` 에 split 인자가 추가됐다. 즉, skip connection이 있는 layer or block.
+
+1. Stable Diffusion v1.4에 대해서 작성된 `scripts > txt2img.py` 를 먼저 살펴보자
+
+- 이 script는 diffusion model을 calibration하고 quantized model로 image generation까지한다.
+
+- 본 논문에서 split을 하니 diffusion model의 split 인자를 True로 만든다.
+
+``` setattr(sampler.model.model.diffusion_model, "split", True) ```
+
+- Weight quantization은 4-bit, channel-wise quantization, scale method는 mse이다.
+
+``` wq_params = {'n_bits': opt.weight_bit, 'channel_wise': True, 'scale_method': 'mse'} ```
+
+- Activation quantization은 8-bit, tensor quantization, scale_method는 mse, quant_act (activation quantization의 유무)는 True이다. 
+
+``` aq_params = {'n_bits': opt.act_bit, 'channel_wise': False, 'scale_method': 'mse', 'leaf_param':  opt.quant_act}  ```
+
+> Scale method: clipping range를 original weight or activation과 quantized value간의 loss function을 통해 결정한다.
+
+- 이후 UNet model을 덮어쓰기 위해, calibration 할 새로운 UNet model을 부른다.
+
+``` qnn = QuantModel(model=sampler.model.model.diffusion_model, weight_quant_params=wq_params, act_quant_params=aq_params, act_quant_mode="qdiff", sm_abit=opt.sm_abit) ```
+
+``` qnn.cuda(), qnn.eval() ```
+
+- `QuantModel`을 부르면 `self.quant_module_refactor` 와 `self.quant_block_refactor` 를 호출하게 되는데, 이는 layer `(Conv2d, Conv1d, linear)`와 block `(Resblock, BasicTransformerBlock)` 을 quantization에 적합한 module들로 바꿔준다. 
+  - `Conv2d, Conv1d, linear > QuantModule`
+  - Block Mapping 정보는 `qdiff > quant_block.py`에 나와있다.
+  - `ResBlock > QuantResBlock`
+  - `BasicTransformerBlock > QuantBasicTransformerBlock`
+  - `QKMatMul > QuantQKMatMul`
+  - `SMVMatMul > QuantSMVMatMul`
+
+- Model setting을 맞췄으면 이제 calibration dataset을 준비한다. 
+  - `cali_n: 128, cali_st: 25`
+  - $1000 // 25 = 40$ timestep을 건너뛰면서 (총 $25$ 번의 time step을 가진다), $128$ batch로 각 time step의 데이터 sample을 가져온다. (input, timestep, conditioning)
+  - 총 $3200$개의 sample을 가지고 온다. (논문에서는 $20$ step마다 건너뛰면서 총 $5,120$개의 sample을 가지고 왔다)
+
+``` sample_data = torch.load(opt.cali_data_path) ```
+
+```cali_data = get_train_samples(opt, sample_data, opt.ddim_steps) ```
+
+- 처음에는 weight quantization의 초기화를 진행한다. 
+  - 처음 8개의 data가 들어가는 순간, weight를 `self.weight_quantizer`에 넣어서 weight에 대한 quantization을 하고 layer `self.fwd_func` 에 통과시킨다.
+  - `self.weight_quantizer`는 `qdiff > quant_layer.py > UniformAffineQuantizer class`로써, 초기의 `self.inited`가 False이기에 forward에서 `self.init_quantization_scale(x, self.channel_wise)` 가 호출된다. 
+    - `self.weight_quantizer`: weight quant > dequant
+    - `self.fwd_func`: Conv2d/Conv1d/linear
+  - `self.init_quantization_scale`은 weight의 경우 channel-wise로, activation의 경우 tensro 단위로 clipping range를 계산한다. 
+    - Scale_method가 mse이기에, 초기 clipping range, zero point, scale factor는 이것으로 결정난다. 
+    - 초기에는 zero point, scale factor가 None이다. 초기화 시에 이를 사용할 수 있는 값으로 설정한다.
+    - 초기값을 설정하는 이유: 이후에 실제 calibration을 할 때에는 zero point, scale factor가 None이면 돌아갈 수 없는 loss function을 사용하기 때문이다.
+
+``` qnn.set_quant_state(True, False) # enable weight quantization, disable act quantization ```
+
+``` _ = qnn(cali_xs[:8].cuda(), cali_ts[:8].cuda(), cali_cs[:8].cuda()) ```
+
+- 초기값을 정했으면 본격적인 calibration에 들어간다. 주요 함수는 `scripts > txt2img.py > def recon_model(model)` 이다. 
+  - 행동은 크게 $2$ 가지로, `layer_reconstruction`과 `block_reconstruction`인데 이 둘 모두, clipping range를 결정하는 함수들이다. 다만, layer단위의 output을 가지고 scale factor를 loss로 조정할 건지, Block 단위의 output을 가지고 scale factor를 조정할 건지를 정하는 것이다. 
+  - 이는 block단위의 종속성을 고려한 방법이라고 한다. 
+  - Weight quantizer는 `AdaRoundQuantizer`로 덮어씌운다.
+  - `def save_inp_oup_data`: 해당 layer or block의 모든 original input, output을 가지고온다. 이때, `asym=True`로 들어가기 때문에, quantized input, original fp32 output을 반환한다.
+    - `def layer_reconstruction/block_reconstruction`: batch size $8$만큼, `GetLayerInpOut class`로 모든 데이터를 모은다.
+      - `GetLayerInpOut class`: 
+        - `model.set_quant_state(False,False)`로 재설정해서 quantization 없이 original model을 사용하게끔 설정
+        - 또한, `register_forward_hook`을 통해서 layer or block의 input, output을 가져온다.
+    - `cail_iter: 20000, batch_size: 32`: 양자화된 input을 양자화된 layer에 통과시켜서 (`self.layer.set_quant_state(True, self.act_quant)`) 양자화된 output을 얻고 loss에 적용시킨다. 무작위의 batch $32$개를 가지고 optimization하는 것을 $20000$번 반복
+
+- 지금까지 weight calibration을 진행했다면, 이번엔 activation도 같이 한다. 
+  - 해당 부분은 아직 공부가 덜 되서 나중에 작성...
+
+``` qnn.set_quant_state(True, True) ```
 
 
+- Calibration 작업이 모두 완료됐으면, 모든 zero point, scale factor를 parameter화 시켜주고 weight와 함께 같이 저장한다.
 
+<p align="center">
+<img src='./img17.png'>
+</p>
