@@ -326,6 +326,9 @@ $\textbf{Ablation Study}$
 
 - Asymmetric quantization으로 $[0, 255 or 15]$ clipping range를 가진다.
 
+``` x_quant = torch.clamp(x_int, 0, self.n_levels - 1) ```
+
+
 - 지금까지 weight calibration을 진행했다면, 이번엔 activation도 같이 한다. 
   - 해당 부분은 아직 공부가 덜 되서 나중에 작성...
 
