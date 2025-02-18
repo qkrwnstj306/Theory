@@ -369,7 +369,7 @@ $\textbf{Semantic Correspondence}$
 ### Quantization
 
 - <a href='https://arxiv.org/pdf/2302.04304.pdf'>Q-Diffusion: Quantizing Diffusion Models</a>
-  - <a href='./이론 pdf 파일/딥러닝 논문/Q-Diffusion/Q-Diffusion.md'>Paper Review</a>
+  - <a href='./이론 pdf 파일/딥러닝 논문/qdiffusion/qdiffusion.md'>Paper Review</a>
 
 # <strong>3. Machine Learning</strong>
 ## Basic Theory
