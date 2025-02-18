@@ -154,6 +154,7 @@ $\textbf{Post-Training Quantization of Diffusion Model}$
    - Model을 여러개의 reconstruction block으로 나누고 출력을 점진적으로 재구성하여 clipping range와 scaling factor를 조정한다. 이 과정에서는 adaptive rounding 기법을 활용하여 양자화된 출력과 full-precision 출력 간 MSE를 최소화한다. 
      - Resudual connections을 포함하는 Residual bottleneck block, Transformer block 등을 하나의 블록으로 정의하며, 이 조건을 만족하지 않은 나머지 부분은 layer 단위로 calibration한다. 
      - 이 방법은 레이어 간 종속성을 고려하고 일반화 성능을 향상시킨다. 
+     - **주의할 점은, 블록당 하나의 zero point & scale factor가 아니라, channel-wise나 tensor마다 존재하는데, optimization을 block단위로 진행한다는 얘기이다.**
    - 반면, activation 값은 추론 과정에서 지속적으로 변화하기 때문에, 가중치 양자화와 달리 adaptive rounding을 적용하는 것이 어렵다. 따라서 기존연구에 따라 activation quantizer의 step size만 조절한다.
      - 기존 연구: Learned step size quantization.
 
@@ -245,6 +246,7 @@ $\textbf{Ablation Study}$
 ### <strong>Conclusion</strong>
 
 - 코드를 보니, CFG는 고려하지 않고 quantization한 것 같다.
+  - 또한, 코드에서는 실제로 weight conversion을 진행하지 않아서 $6.8$ GB이다. (기존의 SDv1.4는 $5$ GB정도)
 
 ***
 
@@ -321,6 +323,8 @@ $\textbf{Ablation Study}$
         - `model.set_quant_state(False,False)`로 재설정해서 quantization 없이 original model을 사용하게끔 설정
         - 또한, `register_forward_hook`을 통해서 layer or block의 input, output을 가져온다.
     - `cail_iter: 20000, batch_size: 32`: 양자화된 input을 양자화된 layer에 통과시켜서 (`self.layer.set_quant_state(True, self.act_quant)`) 양자화된 output을 얻고 loss에 적용시킨다. 무작위의 batch $32$개를 가지고 optimization하는 것을 $20000$번 반복
+
+- Asymmetric quantization으로 $[0, 255 or 15]$ clipping range를 가진다.
 
 - 지금까지 weight calibration을 진행했다면, 이번엔 activation도 같이 한다. 
   - 해당 부분은 아직 공부가 덜 되서 나중에 작성...
