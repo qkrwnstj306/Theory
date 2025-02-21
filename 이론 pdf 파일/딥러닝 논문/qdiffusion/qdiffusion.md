@@ -245,7 +245,7 @@ $\textbf{Ablation Study}$
 
 ### <strong>Conclusion</strong>
 
-- 코드를 보니, CFG는 고려하지 않고 quantization한 것 같다.
+- 코드를 보니, CFG도 고려해서 quantization을 진행했다. 즉, uncondining에 대해서도 똑같은 sample을 stack해서 conditioning + unconditioning일 때의 clipping range를 구했다.
   - 또한, 코드에서는 실제로 weight conversion을 진행하지 않아서 $6.8$ GB이다. (기존의 SDv1.4는 $5$ GB정도)
 
 ***
@@ -292,12 +292,17 @@ $\textbf{Ablation Study}$
 
 - Model setting을 맞췄으면 이제 calibration dataset을 준비한다. 
   - `cali_n: 128, cali_st: 25`
-  - $1000 // 25 = 40$ timestep을 건너뛰면서 (총 $25$ 번의 time step을 가진다), $128$ batch로 각 time step의 데이터 sample을 가져온다. (input, timestep, conditioning)
-  - 총 $3200$개의 sample을 가지고 온다. (논문에서는 $20$ step마다 건너뛰면서 총 $5,120$개의 sample을 가지고 왔다)
+  - $50 // 2 = 2$ timestep을 건너뛰면서 (총 $25$ 번의 time step을 가진다), $128$ batch로 각 time step의 데이터 sample을 가져온다. (input, timestep, conditioning)
+  - 총 $3200$개의 sample을 가지고 오는데, 이때 conditioning이 들어가면 CFG를 사용하니 unconditioning을 위해서 똑같은 $3200$개를 stack한다. 즉 총합 $6400$개.
+  - 논문에서는 $20$ step마다 건너뛰면서 총 $5,120$개의 sample을 가지고 왔다
 
 ``` sample_data = torch.load(opt.cali_data_path) ```
 
 ```cali_data = get_train_samples(opt, sample_data, opt.ddim_steps) ```
+
+<p align="center">
+<img src='./img19.png'>
+</p>
 
 - 처음에는 weight quantization의 초기화를 진행한다. 
   - 처음 8개의 data가 들어가는 순간, weight를 `self.weight_quantizer`에 넣어서 weight에 대한 quantization을 하고 layer `self.fwd_func` 에 통과시킨다.
