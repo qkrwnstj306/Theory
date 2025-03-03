@@ -368,6 +368,9 @@ $\textbf{Semantic Correspondence}$
 
 ### Quantization
 
+- <a href='https://arxiv.org/pdf/2103.13630'>A Survey of Quantization Methods for Efficient Neural Network Inference</a>
+  - <a href='./이론 pdf 파일/딥러닝 논문/survey_quantization/survey_quantization.md'>Paper Review</a>
+
 - <a href='https://arxiv.org/pdf/2302.04304.pdf'>Q-Diffusion: Quantizing Diffusion Models</a>
   - <a href='./이론 pdf 파일/딥러닝 논문/qdiffusion/qdiffusion.md'>Paper Review</a>
 
