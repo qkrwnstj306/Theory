@@ -322,7 +322,8 @@ $\textbf{Ablation Study}$
   - 행동은 크게 $2$ 가지로, `layer_reconstruction`과 `block_reconstruction`인데 이 둘 모두, clipping range를 결정하는 함수들이다. 다만, layer단위의 output을 가지고 scale factor를 loss로 조정할 건지, Block 단위의 output을 가지고 scale factor를 조정할 건지를 정하는 것이다. 
   - 이는 block단위의 종속성을 고려한 방법이라고 한다. 
   - Weight quantizer는 `AdaRoundQuantizer`로 덮어씌운다.
-  - `def save_inp_oup_data`: 해당 layer or block의 모든 original input, output을 가지고온다. 이때, `asym=True`로 들어가기 때문에, quantized input, original fp32 output을 반환한다.
+  - `def save_inp_oup_data`: 해당 layer or block의 모든 original input, output을 가지고온다. 이때, `asym=True`로 들어가기 때문에, quantized input (이전 layer들에서 모두 `quant > dequant`를 거친), original fp32 output을 반환한다. 여기서의 `asym`은 AdaRound에서 언급하는 비대칭 재구성 **(asymmetric reconstruction)** 방식의 최적화 문제이다.
+    - AdaRound에서는 최적화 과정에서 quantized fp32 output (이전 layer들에서 모두 `quant > dequant`를 거친)와 original fp32 output을 비교한다. 이때, 아직 quantized fp32 output을 구하진 않았는데, quantized input이 있으니 `self.layer.set_quant_state(True, self.act_quant)`로 바꿔주고 layer에 통과시켜서 quantized output을 만든다.
     - `def layer_reconstruction/block_reconstruction`: batch size $8$만큼, `GetLayerInpOut class`로 모든 데이터를 모은다.
       - `GetLayerInpOut class`: 
         - `model.set_quant_state(False,False)`로 재설정해서 quantization 없이 original model을 사용하게끔 설정
