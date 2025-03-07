@@ -271,6 +271,7 @@ $\textbf{Ablation Study}$
 ``` wq_params = {'n_bits': opt.weight_bit, 'channel_wise': True, 'scale_method': 'mse'} ```
 
 - Activation quantization은 8-bit, tensor quantization, scale_method는 mse, quant_act (activation quantization의 유무)는 True이다. 
+  - Softmax activation quantization은 16-bit이다. `--sm_abit 16`
 
 ``` aq_params = {'n_bits': opt.act_bit, 'channel_wise': False, 'scale_method': 'mse', 'leaf_param':  opt.quant_act}  ```
 
@@ -335,8 +336,14 @@ $\textbf{Ablation Study}$
 ``` x_quant = torch.clamp(x_int, 0, self.n_levels - 1) ```
 
 
-- 지금까지 weight calibration을 진행했다면, 이번엔 activation도 같이 한다. 
-  - 해당 부분은 아직 공부가 덜 되서 나중에 작성...
+- 지금까지 weight calibration을 진행했다면, 이번엔 activation calibration을 한다.
+  - 중요한 점은 weight에 대한 calibration은 끝났다는 것이다. Weight & activation calibration을 동시에 하지는 않는다.
+  - `opt.running_stat`는 True이다. 이는 weight calibration을 초기에 다른 방법을 사용한 것처럼 activation의 초기값도 AdaRound가 아닌 다른 방법으로 수행한다는 의미이다. 이때의 batch_size는 $16$이다. 
+  - running_stat=True의 역할은 activation quantizer의 초기화를 진행한다는 얘기가 된다.
+    - Block 단위로는 actication quantizer의 weight, key, value, query가 True가 되고
+    - Module 단위로는 weight가 True가 된다. 
+    - `def act_momentum_update` 함수로 초기화가 된다.
+    - 이후 초기화를 다 했으면, 다시 `running_stat = False`로 만들고 AdaRound의 최적화를 하기 위해 `def recon_model`을 실행한다. 
 
 ``` qnn.set_quant_state(True, True) ```
 

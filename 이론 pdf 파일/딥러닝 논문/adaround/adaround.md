@@ -251,6 +251,7 @@ $\textbf{From Taylor Expansion to local loss}$
   - 깊은 신경망에서 양자화 오차가 누적되는 문제를 방지하고, activation function의 영향을 고려하기 위해 다음과 같은 비대칭 재구성 **(asymmetric reconstruction)** 방식의 최적화 문제를 사용한다. 
   - $\hat x$는 해당 층의 입력으로, 모든 이전 층이 양자화된 상태이며, $f_a$는 활성화 함수이다. 
   - 이 목적 함수가 최종 AdaRound이다.
+  - 특이한 건, 초기에 scaling factor와 zero-point를 다른 방식으로 초기화한 후에 $V$에 대해서만 다시 최적화를 하는 것이다.
 
 <p align="center">
 <img src='./img19.png'>
@@ -275,7 +276,7 @@ $\textbf{From Taylor Expansion to local loss}$
 
 $\textbf{Ablation Study}$
 
-- 이전에 AdaRound의 목적 함수전까지 다양한 근사와 가정을 했다. 
+- From task loss to local loss: 이전에 AdaRound의 목적 함수전까지 다양한 근사와 가정을 했다. 
   - (13)
     - Pre-trained model이 잘 학습되어 수렴한 상태여서 gradient matrix(or tensor)가 $0$이다.
     - Hessian matrix를 block diagonal로 가정: 다른 layer의 weight와의 상호작용은 고려하지 않는다. 계산 복잡도 문제가 해결됨 
@@ -285,10 +286,56 @@ $\textbf{Ablation Study}$
     - input data sample과 독립적인 상수값으로 가정하고 preactivation에 대한 task loss의 Hessian을 제거한다.
   - (13)은 rounding-to-nearest보다 성능 향상에 도움이 된다.
   - 마찬가지로 (13)에서 (20)으로 변형하는 것은 강한 가정이 필요하지만, 성능 저하는 일어나지 않는다. 
+  - (21) - AdaRound는 최적화 시간을 몇 시간에서 몇 분으로 단축시키는 동시에 성능을 약간 향상시킨다. 
 
 <p align="center">
 <img src='./img21.png'>
 </p>
+
+- Design choices for AdaRound: 
+  - 다른 논문에서 제안된 implicit regularization인 temperature(온도) annealing $T$와 기본적인 sigmoid와 비교한다.
+  - AdaRound의 명시적인 정규화항의 효과가 더 좋고 (분산 감소), Rectified Sigmoid가 일관되게 성능 향상을 제공한다.
+
+<p align="center">
+<img src='./img22.png'>
+</p>
+
+- 여기서의 asymmetric은 이전 레이어들이 모두 quantization된 상황을 얘기하는 asymmetric reconstruction이고, 거기에 + ReLU는 activation을 통과한 값을 최적화하는 것이다. 
+
+<p align="center">
+<img src='./img22.png'>
+</p>
+
+- Influence of quantization grid: 이번엔 scaling factor를 어떻게 정하고 (Quantization grid), 이후 학습을 뭐로했는지에 따른 결과이다. (Nearest vs AdaRound)
+  - Nearest는 quantization grid에 따른 성능 차이도 심한데다가 AdaRound보다 결과가 좋지 않다.
+  - Quantization grid와는 독립적으로 AdaRound는 rounding-to-nearest보다 성능이 일관적으로 향상된다.
+  - MSE 기반의 quantization grid 방법들은 Min-Max 보다는 좋지만 둘의 우열을 가릴 수 없기에, AdaRound는 첫 번째 MSE 방법을 사용한다.
+
+<p align="center">
+<img src='./img23.png'>
+</p>
+
+- Optimization robustness to data
+  - AdaRound가 좋은 성능을 달성하기 위해 필요한 최소한의 데이터 양을 조사했다. 
+  - 최적화에 필요한 이미지 수에 대해 강건함을 보여준다. 단 $256$개의 이미지만 사용해도 원본 FP32 정확도의 2% 이내로 모델을 최적화 할 수 있다. 
+  - 또한, 원본 학습 데이터에는 포함되지 않지만 유사한 도메인의 이미지를 사용할 경우에도 경쟁령 있는 성능을 유지한다. 
+
+<p align="center">
+<img src='./img24.png'>
+</p>
+
+- ImageNet 실험
+  - 여러 최신 post-training quantization 기법과 비교했다. 
+  - 실험 환경은 동일하나, AdaRound는 $2048$개의 이미지를 사용하여 $20,000$번의 iteration을 거친다. 
+  - ResNet18, ResNet50에 대한 4-bit 양자화에서 AdaRound는 FP32 정확도와 유사하다.
+  - 심지어 다른 경쟁 기법들은 channel-wise quantization (vs layer-wise in AdaRound) 방식을 사용하고 첫 번째 및 마지막 층을 양자화하지 않는 등의 유리한 조건을 가졌음에도 불구하고 AdaRound가 더 나은 성능을 보였다. 
+  - 또한, Inception, MobileNet과 같은 보다 어려운 네트워크에서도 우수한 결과를 얻었다. 
+  - Activation의 양자화를 포함한 결과도 보기 위해 8-bit로 양자화한 결과도 보고한다. 이 경우, activation의 scaling factor는 Min-Max를 사용했고 결과에 큰 영향을 미치지 않았다.
+
+<p align="center">
+<img src='./img25.png'>
+</p>
+
 
 ***
 
