@@ -148,7 +148,8 @@ $$ L(x, y, w+\Delta w) \approx L(x, y, w) +  L'(x,y,w)\Delta w + \frac{1}{2}L''(
 
 - 여기까지가 첫 번째 목적 함수인 $\mathbf{H}^{(w)}$ task loss이다.
   - 총 $2$개의 가정이 들어간다.
-  - 
+    - Pre-trained model이 잘 학습되어 수렴한 상태여서 gradient matrix(or tensor)가 $0$이다.
+    - Hessian matrix를 block diagonal로 가정: 다른 layer의 weight와의 상호작용은 고려하지 않는다. 계산 복잡도 문제가 해결됨 
 
 $\textbf{From Taylor Expansion to local loss}$
 
@@ -200,6 +201,7 @@ $\textbf{From Taylor Expansion to local loss}$
 - 식 (20)을 푸는 과정에서 $\mathbf{H}(w^{(l)})$와 관련된 복잡성 문제는 발생하지 않지만, 여전히 NP-hard한 discrete optimization problem (가중치의 올림, 내림)이다. 최적화 변수의 개수가 많아질수록 합리적인 계산 복잡도 내에서 좋은 (sub-optimal) 해를 찾는 것은 어려울 수 있다. 
   - 이를 해결하기 위해, 본 논문은 식 (20)을 연속적인 최적화 문제로 완화 (relax)하며, 이를 소프트 양자화 변수 (soft quantization variables)를 기반으로 다음과 같이 정의한다. (지금까지 다룬 내용은 잊어도 좋음)
   - 한 마디로, 이전에 다뤘던 목적 함수는 풀기 어려우니 목적 함수와 동일한 역할을 제공하면서 더 쉬운 새로운 목적 함수를 다시 설계한 것이다.
+    - 이전까지의 목적 함수는 loss간의 차이를 minimize하는 $\Delta w$를 찾는 것이니 사실상 $w + \Delta w$가 기존의 weight $w$와 비교해서 크게 벗어나도 된다. 하지만, AdaRound는 식이 간편해지는 대신 무조건 layer/block의 output activation이 같게끔 학습이 되니 크게 벗어나지 못할 것이다.
   - Convolutional layer의 경우, 행렬 곱셈 $Wx$는 합성곱 연산으로 대체된다. 
   - 또한, $V_{i,j}$는 우리가 최적화하는 연속적인 변수이며, $h(V_{i,j})$는 $0$과 $1$사이의 값을 가지는 미분 가능한 함수로 정의된다. I.e., $h(V_{i,j}) \in [0,1]$.
   - $V_{i,j}$ 와 $h(V_{i,j})$가 연속적이고 미분가능이니 gradient를 통해 학습이 가능하다.

@@ -372,8 +372,9 @@ $\textbf{Semantic Correspondence}$
   - <a href='./이론 pdf 파일/딥러닝 논문/survey_quantization/survey_quantization.md'>Paper Review</a>
   - <a href='./PPT/Survey_quantization.pdf'>PDF for Advanced Concepts</a>
 
-- <a href='https://proceedings.mlr.press/v119/nagel20a/nagel20a.pdf'>Up or Down? Adaptive Rounding for Post-Training Quantization</a>
+- <a href='https://proceedings.mlr.press/v119/nagel20a/nagel20a.pdf'>AdaRound: Up or Down? Adaptive Rounding for Post-Training Quantization</a>
   - <a href='./이론 pdf 파일/딥러닝 논문/adaround/adaround.md'>Paper Review</a>
+  - <a href='./PPT/AdaRound.pdf'>AdaRound PDF</a>
 
 - <a href='https://arxiv.org/pdf/2302.04304.pdf'>Q-Diffusion: Quantizing Diffusion Models</a>
   - <a href='./이론 pdf 파일/딥러닝 논문/qdiffusion/qdiffusion.md'>Paper Review</a>
