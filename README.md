@@ -201,6 +201,11 @@ Theory for ML.
   - <a href='./이론 pdf 파일/딥러닝 논문/common-diffusion/common-diffusion.md'>Paper Review</a>
 - <a href='./PPT/I2AM.pdf'>I2AM presentaion in IJCAI XAI workshop</a>
   - <a href='./PPT/I2AM_workshop.txt'>Presentation Script</a>
+- <a href='https://openreview.net/forum?id=bBNUiErs26'>I2AM accpeted by ICLR</a>
+  - <a href='./PPT/ICLR_PPT.pptx'>PPT</a>
+  - <a href='./PPT/ICLR_PPT_script_Eng.docx'>Script for presentation</a>
+  - <a href='./PPT/ICLR_Poster.pptx'>Poster PPT</a>
+  - <a href='./PPT/ICLR_Poster.pdf'>Poster PDF</a>
 - <a href='https://openaccess.thecvf.com/content/ICCV2023/papers/Peebles_Scalable_Diffusion_Models_with_Transformers_ICCV_2023_paper.pdf'>Scalable Diffusion Models with Transformers</a>
   - <a href='./이론 pdf 파일/딥러닝 논문/DiT/DiT.md'>Paper Review</a>
 - <a href='https://arxiv.org/pdf/2403.13298'>Rotary Position Embedding for Vision Transformer</a>
