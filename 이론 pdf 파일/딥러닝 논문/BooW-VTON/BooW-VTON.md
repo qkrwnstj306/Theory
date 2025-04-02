@@ -169,7 +169,7 @@ $\textbf{High-Quality Pseudo Data Prepare: (a)}$
   - 이를 해결하기 위해, 상대적으로 단순한 in-shop 시나리오에서 두 단계 추론(two-stage inference) 방식을 적용하여 고품질 의사 데이터를 생성한다.
     - 먼저, 보다 유연한 조정을 위한 coarse mask $M_{\text{coa}}$를 사용하여 중간 결과 $P_{\text{mid}}$를 생성한다. 
     - $P_{\text{mid}}$에서 의류 영역 $M_{mid}$를 추출하고, 기존 의류 영역 $M_p$와 합집합 (Union) 연산을 수행하여 보다 정교한 마스크 $M$을 생성한다. 
-    - 최종적으로 $M$과 { $P, G, P$ }를 사용하여 try-on을 수행하여 고품질의 unpaired dataset을 생성한다.
+    - 최종적으로 $M$과 { $D, G', P$ }를 사용하여 try-on을 수행하여 고품질의 unpaired dataset을 생성한다.
 
 $\textbf{In-the-Wild Data Augmentation: (b-i)}$
 
@@ -179,7 +179,7 @@ $\textbf{In-the-Wild Data Augmentation: (b-i)}$
       - 빈 배경을 prompt (e.g., "A woman {prepostion} {scene}" in Figure)를 사용하여 채워, 사람과 배경이 결합된 이미지를 얻는다.
       - 그 후, prompt templete을 "Nothing {preposition} {scene}"으로 수정하고 결합된 이미지에서 사람의 영역을 다시 채워 깨끗한 배경 이미지 $B$를 얻는다.
     - 전경 이미지 $F$는 GPT-40를 사용하여 개별 객체에 대한 일련의 프롬프트를 얻는다.
-      - 이 prompt들은 **LayerDiffusion에** 입력으로 들어가 투명한 배경을 가진 객체 이미지를 직접 생성한다. (SAM)
+      - 이 prompt들은 **LayerDiffusion에** 입력으로 들어가 투명한 배경을 가진 객체 이미지를 직접 생성한다.
     - 각 훈련에서 { $P', P$ }에 대해 $F, B$를 사용하여 실제 환경 데이터 증강을 적용한다.
       - 배경 - 사람 - 전경 순으로 stacking한다.
 

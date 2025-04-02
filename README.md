@@ -301,6 +301,7 @@ $\textbf{VITON}$
   - <a href='./PPT/FLDM-VTON.pdf'>FLDM-VTON PDF</a>
 - <a href='https://arxiv.org/pdf/2408.06047'>BooW-VTON: Boosting In-the-Wild Virtual Try-On via Mask-Free Pseudo Data Training</a>
   - <a href='./이론 pdf 파일/딥러닝 논문/BooW-VTON/BooW-VTON.md'>Paper Review</a>
+  - <a href='./PPT/BooW-VTON.pdf'>BooW-VTON PDF</a>
 - <a href='https://arxiv.org/pdf/2409.08258'>GarDiff: Improving Virtual Try-On with Garment-focused Diffusion Models</a>
   - <a href='./이론 pdf 파일/딥러닝 논문/GarDiff/GarDiff.md'>Paper Review</a>
 
