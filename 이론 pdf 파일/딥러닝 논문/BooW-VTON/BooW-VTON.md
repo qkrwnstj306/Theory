@@ -2,7 +2,7 @@
 
 
 ## BooW-VTON: Boosting In-the-Wild Virtual Try-On via Mask-Free Pseudo Data Training
-*arXiv(2024), 5 citation, TianjIn University * Alibab Group, Review Data: 2025.04.01*
+*arXiv(2024), 5 citation, Tianjin University * Alibaba Group, Review Data: 2025.04.01*
 
 [Intro](#intro)</br>
 [Related Work](#related-work)</br>
@@ -197,7 +197,15 @@ $\textbf{In-the-Wild Data Augmentation: (b-i)}$
 <img src='./img27.png'>
 </p>
 
-- LayerDiffusion: text prompt, noise, mask using SAM으로 생성
+- LayerDiffusion: inference에는 pure Gaussian noise와 text를 주면 배경이 없는 객체를 뽑을 수 있다.
+
+<p align="center">
+<img src='./img31.png'>
+</p>
+
+<p align="center">
+<img src='./img30.png'>
+</p>
 
 <p align="center">
 <img src='./img28.png'>
