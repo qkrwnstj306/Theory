@@ -41,6 +41,7 @@ $\textbf{이 주제의 문제점과 기존의 노력들}$
 </p>
 
 - 최근 일부 가상 착용 연구들은 이러한 문제를 완화하려는 시도를 해왔다. 예를 들어, **TPD**는 2단계 추론 프레임워크를 도입하여 보다 정확한 마스크를 먼저 예측한 후 이를 활용해 착용 과정을 수행합니다. 그러나 이 방식은 여전히 쇼핑몰 환경에 국한되며, 마스크 영역에서 인물 이미지 정보가 손실되는 문제를 해결하지 못한다.
+  - Coarse mask를 먼저 입력으로 주고 복잡한 환경이나 pose임에도 정확한 mask를 출력하도록 한다.
 
 <p align="center">
 <img src='./img13.png'>
@@ -50,10 +51,6 @@ $\textbf{이 주제의 문제점과 기존의 노력들}$
 
 - 본 논문은 non-try-on area content (inpainting mask외의 영역)를 보존하면서 human parsing feature의 의존성을 줄인다. 
 
-
-<p align="center">
-<img src='./img2.png'>
-</p>
 
 $\textbf{본 논문에서 해결하고자 하는 문제와 어떻게 해결하는지, 그 결과들}$
 
@@ -133,6 +130,10 @@ $\textbf{Mask-free Try-On Diffusion Model: (b-ii)}$
   - Attention layer에서는 model이 human body feature (U-Net input)와 garment featrue (IP-adapter and Reference U-Net)간의 상관관계에 기반하여 garment content를 수정한다.
   - 학습에서는 try-on U-Net만 학습한다.
 
+<p align="center">
+<img src='./img16.png'>
+</p>
+
 - SDXL
   - 이전 SD 보다 $3$ 배는 큰 UNet backbone: 더 많아진 Attention block 과 더 큰 cross-attention context (SDv1.5: $768 \rightarrow$ SDXL: $2048$)
   - 두 개의 text encoder 를 사용한다: text encoder의 마지막 전 단계 출력을 채널 축에 따라 연결한다.
@@ -157,12 +158,6 @@ $\textbf{Mask-free Try-On Diffusion Model: (b-ii)}$
 
 <p align="center">
 <img src='./img26.png'>
-</p>
-
-- Notation
-
-<p align="center">
-<img src='./img16.png'>
 </p>
 
 $\textbf{High-Quality Pseudo Data Prepare: (a)}$
