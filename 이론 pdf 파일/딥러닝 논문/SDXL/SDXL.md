@@ -27,7 +27,7 @@
   - 이전 SD 보다 $3$ 배는 큰 UNet backbone 을 사용한다. 
   - 더 많아진 Attention block 과 더 큰 cross-attention context (SDv1.5: $768 \rightarrow$ SDXL: $2048$) 가 paramter 수 증가에 큰 영향을 미쳤다. 
   - Multiple aspect ratio 를 학습했다. 
-  - 두 개의 text encoder 를 사용한다. 
+  - 두 개의 text encoder 를 사용한다: text encoder의 마지막 전 단계 출력을 채널 축에 따라 연결한다.
   - 또한, image-to-image 를 통해 visual fidelity 를 향상시키는 refinement model 도 제안한다. 
 - 본 논문에서 제안한 SDXL 이 user study 에서 이전의 SD version 들을 압도했다. 
   - 성능의 발전을 일으킨 요소는 다음과 같다. 

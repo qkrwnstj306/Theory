@@ -95,7 +95,7 @@ $\textbf{Word}$
   - 잘 알려진 ControlNet은 엣지나 분할 마스크와 같은 작업별 조건을 잘 지원하지만, 픽셀 단위의 제어에는 실패한다.
   - 두 네트워크의 특징 맵을 단순히 더하는 것은 픽셀 수준의 정밀한 정보를 전달하지 못할 수 있으며, 입력 저해상도(LQ) 이미지와 출력 고해상도(HQ) 이미지 간의 구조적 불일치를 초래할 수 있다. LQ 입력에 ControlNet을 단순 적용했을 때 출력 이미지에서 구조적 불일치가 명확하게 나타난다.
 
-- ANS
+$\textbf{ANS (Adjustable Noise Schedule)}$
 
 - 이전 연구에서 [1, 2] 언급됐듯이 Stable Diffusion에서 사용하는 noise schedule은 train-test discrepancy가 존재하기 때문이다. 이는 학습 단계에선, 최종 time step에서의 SNR (signal-to-noise)이 0이 되지 않아 잔여 신호가 남아있는 반면 inference에선 pure noise를 사용하기에 문제가 된다. 이 문제를 완화하기 위해 SeeSR [3]은 inference에서 LQ latent를 pure noise에 추가시킨다. 마찬가지로 PASD [4]도 LQ latent를 pure noise에 추가하여 불일치 문제를 해결하고자 했다. 따라서, SR task에서는 low-resolution signal을 제공하므로 early layers가 coarse feature에 크게 얽매이지 않는다. 
   - SeeSR과 PASD는 같은 저자가 있는데 PASD가 더 최근의 sampling방식을 사용했다.
@@ -123,8 +123,38 @@ $\textbf{Word}$
 
 ***
 
-### <strong>Experiment</strong>
+### <strong>Code Review</strong>
 
+- 실제로 코드에서는 Adjustable Noise Schedule (ANS)가 어떻게 구현됐는지 보자
+  - 결국 $T$에서의 latent를 보면된다.
+
+- `PASD > test_pasd.py`
+
+```
+parser.add_argument("--added_noise_level", type=int, default=900, help="additional noise level")
+```
+
+- `PASD > pasd > pipelines > pipeline_pasd.py > def prepare_latents`
+  - LQ image를 latent space로 보내서 $T$ 시점의 noise를 먼저 더한다.
+  - 이후, `args.added_noise_level = 900`에서의 noise를 더하면 완성이다.
+
+```
+init_latents = self.vae.encode(image*2.0-1.0).latent_dist.sample(generator)
+init_latents = self.vae.config.scaling_factor * init_latents
+self.scheduler.set_timesteps(args.num_inference_steps, device=device)
+timesteps = self.scheduler.timesteps[0:]
+latent_timestep = timesteps[:1].repeat(batch_size * 1) # 999 what if <999"?
+shape = init_latents.shape
+noise = randn_tensor(shape, generator=generator, device=device, dtype=dtype)
+init_latents = self.scheduler.add_noise(init_latents, noise, latent_timestep)
+
+added_latent_timestep = torch.LongTensor([args.added_noise_level]).repeat(batch_size * 1).to(self.device)
+added_noise = randn_tensor(shape, generator=generator, device=device, dtype=dtype)
+init_latents = self.scheduler.add_noise(init_latents, added_noise, added_latent_timestep)
+
+latents = init_latents
+
+```
 
 ***
 

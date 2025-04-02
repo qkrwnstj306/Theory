@@ -384,6 +384,9 @@ $\textbf{Semantic Correspondence}$
 - <a href='https://arxiv.org/pdf/2302.04304.pdf'>Q-Diffusion: Quantizing Diffusion Models</a>
   - <a href='./이론 pdf 파일/딥러닝 논문/qdiffusion/qdiffusion.md'>Paper Review</a>
 
+- <a href='https://openaccess.thecvf.com/content/CVPR2024/papers/Huang_TFMQ-DM_Temporal_Feature_Maintenance_Quantization_for_Diffusion_Models_CVPR_2024_paper.pdf'>TFMQ-DM: Temporal Featrue Maintenance Quantization for Diffusion Models</a>
+  - <a href='./이론 pdf 파일/딥러닝 논문/TFMQ-DM/TFMQ-DM.md'>Paper Review</a>
+
 # <strong>3. Machine Learning</strong>
 ## Basic Theory
 - <a href='./이론 pdf 파일/머신러닝 이론/Chapter 02~04 머신러닝 군집 & 분류 & 회귀 알고리즘_230122_161047.pdf'>머신러닝 군집 & 분류 & 회귀 알고리즘 </a>
