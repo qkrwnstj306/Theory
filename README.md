@@ -210,6 +210,8 @@ Theory for ML.
   - <a href='./이론 pdf 파일/딥러닝 논문/DiT/DiT.md'>Paper Review</a>
 - <a href='https://arxiv.org/pdf/2403.13298'>Rotary Position Embedding for Vision Transformer</a>
   - <a href='./이론 pdf 파일/딥러닝 논문/RoPEViT/RoPEViT.md'>Paper Review</a>
+- <a href='https://openreview.net/forum?id=OnD9zGAGT0k'>Diffusion Posterior Sampling for General Noisy Inverse Problems</a>
+  - <a href='./이론 pdf 파일/딥러닝 논문/DPS/DPS.md'>Paper Review</a>
 
 
 #### Image Editing
@@ -387,6 +389,9 @@ $\textbf{Semantic Correspondence}$
 
 - <a href='https://openaccess.thecvf.com/content/CVPR2024/papers/Huang_TFMQ-DM_Temporal_Feature_Maintenance_Quantization_for_Diffusion_Models_CVPR_2024_paper.pdf'>TFMQ-DM: Temporal Featrue Maintenance Quantization for Diffusion Models</a>
   - <a href='./이론 pdf 파일/딥러닝 논문/TFMQ-DM/TFMQ-DM.md'>Paper Review</a>
+
+- <a href='https://arxiv.org/pdf/2102.05426'>BRECQ: Pushing The Limit of Post-Training Quantization by Block Reconstruction</a>
+  - <a href='./이론 pdf 파일/딥러닝 논문/BRECQ/BRECQ.md'>
 
 # <strong>3. Machine Learning</strong>
 ## Basic Theory
