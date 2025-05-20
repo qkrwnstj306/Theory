@@ -165,7 +165,7 @@ Theory for ML.
 - <a href='./이론 pdf 파일/딥러닝 논문/Generative Adversarial Nets_230512_221610.pdf'>GAN : Generative Adversarial Nets</a>
   - <a href='./이론 pdf 파일/딥러닝 논문/GAN/GAN.md'>Paper Review</a>
 - <a href='./이론 pdf 파일/Diffusion/Latent Diffusion Model_230515_145957.pdf'>LDM(Latent Diffusion model) : High-Resolution Image Synthesis with Latent Diffusion Models</a>
-  - <a href='./이론 pdf 파일/딥러닝 논문/LDM/LDM.md'>Paper Reivew</a>
+  - <a href='./이론 pdf 파일/딥러닝 논문/LDM/LDM.md'>Paper Review</a>
   - <a href='https://github.com/qkrwnstj306/Diffusion'>SD code practice</a>
 - <a href='./이론 pdf 파일/딥러닝 논문/StyleBoost_230829_113315.pdf'>StyleBoost: A Study of Personalizing Text-to-Image Generation in Any Style using DreamBooth</a>
     - <a href='./이론 pdf 파일/딥러닝 논문/StyleBoost/StyleBoost.md'>Paper Review</a>
@@ -274,6 +274,10 @@ Theory for ML.
 - <a href='https://arxiv.org/pdf/2308.14469'>PASD: Pixel-Aware Stable Diffusion for Realistic Image Super-Resolution and Personalized Stylization</a>
   - <a href='./이론 pdf 파일/딥러닝 논문/PASD/PASD.md'>Paper Review</a>
 
+$\textbf{Inverse Problem}$
+
+- <a href='https://openreview.net/pdf?id=TtUh0TOlGX'>TReg: Regularization by Texts for Latent Diffusion Inverse Solvers</a>
+  - <a href='./이론 pdf 파일/딥러닝 논문/TReg/TReg.md'>Paper Review</a>
 
 $\textbf{VITON}$
 
