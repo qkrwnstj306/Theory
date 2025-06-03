@@ -273,6 +273,9 @@ Theory for ML.
   - <a href='./이론 pdf 파일/딥러닝 논문/DiffQRCoder/DiffQRCoder.md'>Paper Review</a>
 - <a href='https://arxiv.org/pdf/2308.14469'>PASD: Pixel-Aware Stable Diffusion for Realistic Image Super-Resolution and Personalized Stylization</a>
   - <a href='./이론 pdf 파일/딥러닝 논문/PASD/PASD.md'>Paper Review</a>
+- <a href='https://openaccess.thecvf.com/content/CVPR2024/papers/eng_Z_Zero-shot_Style_Transfer_via_Attention_Reweighting_CVPR_2024_paper.pdf'>Z*: Zero-shot Style Transfer via Attention Reweighting</a>
+  - <a href='./PPT/z*.pdf'>Paper Review</a>
+
 
 $\textbf{Inverse Problem}$
 
@@ -489,7 +492,6 @@ $\textbf{Semantic Correspondence}$
 - <a href='https://arxiv.org/pdf/2305.04533'>MPC: Prompted LLMs as Chatbot Moduels for Long Open-domain Conversation</a>
   - <a href='./이론 pdf 파일/딥러닝 논문/MPC/MPC.md'>Paper Review</a>
   - <a href='./PPT/MPC.pdf'>MPC PDF</a>
-
 
 # 7. Helpful Blog
 - <a href='https://github.com/teddylee777/machine-learning#%ED%86%B5%EA%B3%84-statistics'>Machine Learning Study</a>
