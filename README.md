@@ -278,6 +278,7 @@ Theory for ML.
 - <a href='https://openaccess.thecvf.com/content/ICCV2023/papers/Fernandez_The_Stable_Signature_Rooting_Watermarks_in_Latent_Diffusion_Models_ICCV_2023_paper.pdf'>The Stable Signature: Rooting Watermarks in Latent Diffusion Models</a>
   - <a href='https://openreview.net/forum?id=HexshmBu0P'>A Recipe for Watermarking Diffusion Models</a>
   - <a href='./이론 pdf 파일/딥러닝 논문/stable-signature/stable-signature.md'>Paper Review</a>
+  - <a href='./PPT/Stable-Signature.pdf'>The Stable Signature PDF</a>
 
 
 $\textbf{Inverse Problem}$
