@@ -514,8 +514,10 @@ $\textbf{Semantic Correspondence}$
 - <a href='https://scispace.com/'>SCISPACE: AI 를 이용한 논문 해석</a>
 - <a href='https://www.figma.com/'>피그마: 논문 Figure 예쁘게 꾸미기</a>
 - <a href='https://editor.codecogs.com/#google_vignette'>수학 수식 이미지로 변환</a>
+- <a href='https://latex2png.com/'>수학 수식 이미지로 변환2</a>
 - <a href='https://www.adobe.com/kr/acrobat/online/ppt-to-pdf.html'>PPT to PDF 깨짐없이</a>
 - <a href='https://wikidocs.net/181820'>Deep Learning Bible 한글판</a>
+- <a href='https://gulsarang.com/product/%ED%95%99%ED%9A%8C-%ED%8F%AC%EC%8A%A4%ED%84%B0-%EB%8C%80%ED%98%95-%EC%B6%9C%EB%A0%A5/29/category/49/display/1/?gad_source=1&gad_campaignid=21112188415&gbraid=0AAAAApEVg5i0kL6Aeg4jwrL1cHhk0VQ_S&gclid=Cj0KCQjw267GBhCSARIsAOjVJ4Ehf7p8je5uORswyKcZMCPevyjsRqER1dE2DOBU-GMiHZ6bQqZrC28aAt6OEALw_wcB'>포스터 출력 (글사랑닷컴)</a>
 
 # 8. Failed Project
 - <a href='https://github.com/qkrwnstj306/Style-Similarity'>Style Similarity</a>
