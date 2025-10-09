@@ -282,6 +282,7 @@ Theory for ML.
   - <a href='./PPT/Stable-Signature.pdf'>The Stable Signature PDF</a>
 - <a href='https://arxiv.org/pdf/2503.06287'>Your Large Vision-Language Model Only Needs A Few Attention Heads For Visual Grounding</a>
   - <a href='./이론 pdf 파일/딥러닝 논문/visualGrounding/visualGrounding.md'>Paper Review</a>
+  - <a href='./PPT/LVLM-visualGrounding.pptx'>PPT</a>
 
 $\textbf{Inverse Problem}$
 

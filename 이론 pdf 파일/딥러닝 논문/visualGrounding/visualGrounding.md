@@ -16,7 +16,7 @@
 
 > Core Idea
 <div align=center>
-<strong>"test1"</strong></br>
+<strong>"Propose training-free LMLM framework to perform visual grounding task using a few attention heads"</strong></br>
 </div>
 
 ***
@@ -319,7 +319,7 @@ $\textbf{Ablation studies}$
 </p>
 
 - Validation of Criteria and Selection methods for localization heads
-  - $2$ 가지 기준으로 헤드를 선정했었는데, 이에 대한 검증이다. 각 기준으로 heads를 filtering (criteria)하고 최종적으로 selection을 하는데, 이때 Greedy의 경우 training data $1,000$ 개에 대해서 frequency selection을 하지 않고 한 sample에 대해 filtering된 head를 바로 localization으로 사용하는 것이다. ㄴ
+  - $2$ 가지 기준으로 헤드를 선정했었는데, 이에 대한 검증이다. 각 기준으로 heads를 filtering (criteria)하고 최종적으로 selection을 하는데, 이때 Greedy의 경우 training data $1,000$ 개에 대해서 frequency selection을 하지 않고 한 sample에 대해 filtering된 head를 바로 localization으로 사용하는 것이다.
 
 <p align="center">
 <img src='./img27.png'>
