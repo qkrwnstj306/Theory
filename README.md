@@ -120,6 +120,7 @@ Theory for ML.
   - <a href='./PPT/NSCN4.3.pdf'>PDF: NCSN 4.3 - inference algorithm 분석</a>
 - <a href='./이론 pdf 파일/딥러닝 논문/paper-write/Generative-AI.md'>Generative AI</a>
 - <a href='./이론 pdf 파일/딥러닝 이론/VITON/VITON.md'>Virtual Try-On (VITON)</a>
+- <a href='./이론 pdf 파일/딥러닝 논문/FlowMatching/FlowMatching.md'>Flow Matching</a>
 
 
 ### 거쳐 간 관심 분야 이론 정리
