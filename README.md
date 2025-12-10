@@ -271,8 +271,6 @@ Theory for ML.
   - <a href='./이론 pdf 파일/딥러닝 논문/Asyrp/Asyrp.md'>Paper Review</a>
 - <a href='https://arxiv.org/pdf/2410.04932'>OmniBooth: Learning Latent Control For Image Synthesis with Multi-Modal Instruction</a>
   - <a href='./이론 pdf 파일/딥러닝 논문/omnibooth/omnibooth.md'>Paper Review</a>
-- <a href='http://www.arxiv.org/pdf/2409.06355'>DiffQRCoder: Diffusion-based Aesthetic QR Code Generation with Scanning Robustness Guided Iterative Refinement</a>
-  - <a href='./이론 pdf 파일/딥러닝 논문/DiffQRCoder/DiffQRCoder.md'>Paper Review</a>
 - <a href='https://arxiv.org/pdf/2308.14469'>PASD: Pixel-Aware Stable Diffusion for Realistic Image Super-Resolution and Personalized Stylization</a>
   - <a href='./이론 pdf 파일/딥러닝 논문/PASD/PASD.md'>Paper Review</a>
 - <a href='https://openaccess.thecvf.com/content/CVPR2024/papers/eng_Z_Zero-shot_Style_Transfer_via_Attention_Reweighting_CVPR_2024_paper.pdf'>Z*: Zero-shot Style Transfer via Attention Reweighting</a>
@@ -284,6 +282,16 @@ Theory for ML.
 - <a href='https://arxiv.org/pdf/2503.06287'>Your Large Vision-Language Model Only Needs A Few Attention Heads For Visual Grounding</a>
   - <a href='./이론 pdf 파일/딥러닝 논문/visualGrounding/visualGrounding.md'>Paper Review</a>
   - <a href='./PPT/LVLM-visualGrounding.pptx'>PPT</a>
+- <a href='https://arxiv.org/pdf/2411.07232'>Add-it: Training-Free Object Insertion in Images with Pretrained Diffusion Models</a>
+  - <a href='./이론 pdf 파일/딥러닝 논문/add-it/add-it.md'>Paper Review</a>
+
+
+$\textbf{Aesthetic QR Code Generation}$
+
+- <a href='http://www.arxiv.org/pdf/2409.06355'>DiffQRCoder: Diffusion-based Aesthetic QR Code Generation with Scanning Robustness Guided Iterative Refinement</a>
+  - <a href='./이론 pdf 파일/딥러닝 논문/DiffQRCoder/DiffQRCoder.md'>Paper Review</a>
+- <a href='https://arxiv.org/pdf/2403.06452'>Text2QR: Harmonizing Aesthetic Customization and Scanning Robustness for Text-Guided QR Code Genration</a>
+  - <a href='./이론 pdf 파일/딥러닝 논문/text2qr/text2qr.md'>Paper Review</a>
 
 $\textbf{Inverse Problem}$
 
