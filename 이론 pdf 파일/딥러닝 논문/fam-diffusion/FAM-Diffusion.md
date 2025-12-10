@@ -204,7 +204,7 @@ $$ \tau_w(t) = w \cdot c \cdot (1 - \rho(t)) $$
 
 $$ K(t) = \begin{cases}
     \rho(t),  \text{if } |x - x_c| < \frac{\tau_w(t)}{2} \\
-     \quad \text{\& } |y - y_c| < \frac{\tau_h(t)}{2} \quad , \\
+     \quad , |y - y_c| < \frac{\tau_h(t)}{2} \quad , \\
     1,  \text{otherwise}
 \end{cases} $$
 
