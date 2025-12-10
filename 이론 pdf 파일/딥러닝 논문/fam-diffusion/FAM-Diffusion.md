@@ -214,7 +214,7 @@ $\textbf{Attention Modulation (AM)}$
 - 이러한 문제를 고해상도 노이즈 제거 과정에서의 self-attention map이 정확하지 않기 때문이라고 저자들은 가정했다. 
 
 
-$$ \text{Att}(\mathbf{z}) = \operatorname{softmax}\left(\frac{Q \cdot K^T}{\sqrt{d}}\right) V = M \cdot V $$
+$$ \text{Att}(\mathbf{z}) = softmax\left(\frac{Q \cdot K^T}{\sqrt{d}}\right) V = M \cdot V $$
 
 
 $$ \bar{M}^m = \left( \lambda \cdot \mathcal{U}(M^n, s) + (1 - \lambda) \cdot M^m \right) $$
