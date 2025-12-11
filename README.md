@@ -286,6 +286,7 @@ Theory for ML.
   - <a href='./이론 pdf 파일/딥러닝 논문/add-it/add-it.md'>Paper Review</a>
 - <a href='https://openaccess.thecvf.com/content/CVPR2025/papers/Yang_FAM_Diffusion_Frequency_and_Attention_Modulation_for_High-Resolution_Image_Generation_CVPR_2025_paper.pdf'>FAM Diffusion: Frequency and Attention Modulation for High-Resolution Image Generation with Stable Diffusion</a>
   - <a href='./이론 pdf 파일/딥러닝 논문/fam-diffusion/FAM-Diffusion.md'>Paper Review</a>
+  - <a href='./PPT/FAMDiffusion.pptx'>FAM Diffusion PPT</a>
 
 $\textbf{Aesthetic QR Code Generation}$
 
