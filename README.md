@@ -290,6 +290,14 @@ Theory for ML.
 
 $\textbf{Aesthetic QR Code Generation}$
 
+- <a href='https://dl.acm.org/doi/pdf/10.1145/2508363.2508408'>Halftone QR codes</a>
+  - <a href='./이론 pdf 파일/딥러닝 논문/halftone/halftone.md'>Paper Review</a>
+- <a href='https://dl.acm.org/doi/pdf/10.1145/3418214'>ART-UP: A Novel Method for Generating Scanning-Robust Aesthetic QR Codes</a>
+  - <a href='./이론 pdf 파일/딥러닝 논문/art-up/review_example.md'>Paper Review</a>
+- <a href='https://openaccess.thecvf.com/content/CVPR2021/papers/Su_ArtCoder_An_End-to-End_Method_for_Generating_Scanning-Robust_Stylized_QR_Codes_CVPR_2021_paper.pdf'>ArtCoder: An End-to-end Method for Generating Scanning-robust Stylized QR Codes</a>
+- <a href='https://www.ijcai.org/proceedings/2024/0861.pdf'>GladCoder: Stylized QR Code Generation with Grayscale-Aware Denoising Process</a>
+  - <a href='./이론 pdf 파일/딥러닝 논문/gladcoder/gladcoder.md'>Paper Review</a>
+  - <a href='./이론 pdf 파일/딥러닝 논문/artcoder/artcoder.md'>Paper Review</a>
 - <a href='http://www.arxiv.org/pdf/2409.06355'>DiffQRCoder: Diffusion-based Aesthetic QR Code Generation with Scanning Robustness Guided Iterative Refinement</a>
   - <a href='./이론 pdf 파일/딥러닝 논문/DiffQRCoder/DiffQRCoder.md'>Paper Review</a>
 - <a href='https://arxiv.org/pdf/2403.06452'>Text2QR: Harmonizing Aesthetic Customization and Scanning Robustness for Text-Guided QR Code Genration</a>
