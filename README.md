@@ -144,7 +144,8 @@ Theory for ML.
 - <a href='https://arxiv.org/pdf/2405.08586'>XDomainMix: Cross-Domain Feature Augmentation for Domain Generalization</a>
   - <a href='./이론 pdf 파일/딥러닝 논문/xdomainmix/xdomainmix.md'>Paper Review</a>
   - <a href='./PPT/XDomainMix.pdf'>XDomainMix PPT</a>
-
+- <a href='https://openreview.net/pdf?id=9FqARW7dwB'>Hyper-Connections</a>
+  - <a href='./이론 pdf 파일/딥러닝 논문/hyper-connections/hyper-connections.md'>Paper Review</a>
 
 ### Optimization
 - <a href='./이론 pdf 파일/딥러닝 논문/LoRA_231007_193848.pdf'>LoRA : Low-Rank Adaptation of Large Language Models</a>
