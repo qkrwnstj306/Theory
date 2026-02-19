@@ -146,6 +146,9 @@ Theory for ML.
   - <a href='./PPT/XDomainMix.pdf'>XDomainMix PPT</a>
 - <a href='https://openreview.net/pdf?id=9FqARW7dwB'>Hyper-Connections</a>
   - <a href='./이론 pdf 파일/딥러닝 논문/hyper-connections/hyper-connections.md'>Paper Review</a>
+- <a href='https://arxiv.org/pdf/2512.24880'>mHC: Manifold-Constrained Hyper-Connections</a>
+  - <a href='./이론 pdf 파일/딥러닝 논문/mhc/mhc.md'>Paper Review</a>
+  - <a href='./PPT/mHC.pptx'>HC and mHC PPT</a>
 
 ### Optimization
 - <a href='./이론 pdf 파일/딥러닝 논문/LoRA_231007_193848.pdf'>LoRA : Low-Rank Adaptation of Large Language Models</a>
