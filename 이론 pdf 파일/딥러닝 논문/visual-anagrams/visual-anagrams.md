@@ -1,7 +1,7 @@
 <img src="https://capsule-render.vercel.app/api?type=waving&color=auto&height=80&section=header&text=Welcome%20Paper%20Review&fontSize=50" width="100%">
 
 
-## [paper]
+## Visual Anagrams: Generating Multi-View Optical Illusions with Diffusion Models
 *CVPR(2024), 38 citation, University of Michigan, Review Data: 2026.02.19*
 
 [Intro](#intro)</br>
@@ -64,13 +64,13 @@
     - 다른 연구들은 3차원 장면에서 여러 시점에서 객체를 위장하는 방법을 제안했다. 최근에는 인간 시각의 베이지안 모델을 미분 가능하게 구성하여 색 항상성, 크기 항상성, 얼굴 지각과 관련된 착시를 설계한 연구도 있다.
     - 본 논문 역시 착시 이미지를 생성하지만, 인간 지각에 대한 명시적 모델에 의존하지 않는다. 대신 데이터로부터 암묵적으로 학습된 확산 모델의 시각적 사전지식(visual priors)을 활용한다. 이는 생성 모델이 착시를 인간과 유사하게 처리하고 동일한 모호성을 예측한다는 관찰과도 일치한다. 이러한 관점에서 우리의 방법은 판별(discriminative) 모델이 아니라 생성(generative) 모델을 활용해 인간을 대상으로 한 적대적 예시(adversarial example)를 합성하는 것으로 볼 수 있다.
 
-- Oliva: 거리에 따른 착시 
+- Oliva (Hybrid images): 거리에 따른 착시 
 
 <p align="center">
 <img src='./img2.png'>
 </p>
 
-- Chu: 질감을 이용한 착시
+- Chu (Camouflage images): 질감을 이용한 착시
 
 <p align="center">
 <img src='./img3.png'>
@@ -269,6 +269,11 @@ $\textbf{Design Decisions}$
     - 기존 연구에서는 Stable Diffusion과 같은 latent diffusion model을 사용하여 multi-view denoising을 수행했다. 
     - 하지만 latent representation은 실제로는 픽셀 패치 단위 정보를 압축한 코드에 가깝다. 이 때문에 회전이나 뒤집기를 적용하면 다음과 같은 문제가 발생한다. 
         - Latent의 위치는 바뀌지만, 각 latent block이 담고 있는 content와 orientation (방향)은 바뀌지 않는다. 그 결과 회전된 이미지를 제대로 표현하지 못하고 artifact가 생긴다. 
+    
+- 우리가 원하는 관계
+    - 하지만 실제로는 encoder는 non-linear하기에 성립하지 않는다. 즉, 여기서의 flip이 좌표 재배열이 아니라 feature 재해석이 된다. 
+
+$$ E(v(x)) = AE(x) $$
 
 - 90도 회전 후 직선을 만들기 위해 모델이 초가지붕처럼 비스듬한 선 (thatched lines)를 생성하도록 강제되는 현상이 나타난다. 
     - 이 문제를 해결하기 위해 본 논문은 픽셀 공간에서 직접 동작하는 diffusio model인 DeepFloyd IF를 사용하여 방법을 구현했다. 
@@ -356,7 +361,7 @@ $\textbf{Design Decisions}$
 - 두 데이터셋 모두에 대해 baseline 방법들과의 비교
     - Vertical flip 변환을 사용했다. 이를 선택한 이유는 baseline과 ours 모두에서 지원되는 공통 변환이기 때문이다. 
     - 각 prompt마다 10개의 샘플을 생성했으며, CIFAR는 450개, Ours dataset은 총 500개 sample을 사용했다. 
-    - 최선의 경우 (best-case) 성능에도 관심이 있었기에 지표의 분위수 (quantile)도 함께 보고됐다. 예를 들어, $\mathcal{A}_{0.9}$는 90번째 분위수 (상위 10% 성능)을 의미한다. 
+    - 최선의 경우 (best-case) 성능에도 관심이 있었기에 지표의 분위수 (quantile)도 함께 보고됐다. 예를 들어, $\mathcal{A}_{0.9}$는 90번째 분위수 (상위 10% 성능)을 의미한다. (상위 10%의 값 하나)
     - alignment score와 concealment score 모두에서 baseline보다 일관되게 더 좋은 성능을 보였다.
 
 <p align="center">
@@ -438,7 +443,7 @@ $\textbf{Failures}$
     - 예시는 45도 bilinear 회전 사례이다. 
 
 <p align="center">
-<img src='./img28.png'>
+<img src='./img38.png'>
 </p>
 
 <p align="center">

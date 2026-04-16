@@ -307,6 +307,12 @@ $\textbf{Aesthetic QR Code Generation}$
 - <a href='https://arxiv.org/pdf/2403.06452'>Text2QR: Harmonizing Aesthetic Customization and Scanning Robustness for Text-Guided QR Code Genration</a>
   - <a href='./이론 pdf 파일/딥러닝 논문/text2qr/text2qr.md'>Paper Review</a>
 
+$\textbf{3D}$
+
+- <a href='https://arxiv.org/pdf/2003.08934'>NeRF: Representing Scenes as Neural Rediance Fields for View Synthesis</a>
+  - <a href='./이론 pdf 파일/딥러닝 논문/nerf/nerf.md'>Paper Review</a>
+
+
 $\textbf{Unlearning}$
 
 - <a href='https://arxiv.org/pdf/2503.12356'>Localized Concept Erasure for Text-to-Image Diffusion Models Using Training-Free Gated Low-Rank Adaptation
@@ -529,6 +535,7 @@ $\textbf{Semantic Correspondence}$
   - <a href='./PPT/MPC.pdf'>MPC PDF</a>
 - <a href='https://openaccess.thecvf.com/content/CVPR2024/papers/Geng_Visual_Anagrams_Generating_Multi-View_Optical_Illusions_with_Diffusion_Models_CVPR_2024_paper.pdf'>Visual Anagrams: Generating Multi-View Optical Illusions with Diffusion Models</a>
   - <a href='./이론 pdf 파일/딥러닝 논문/visual-anagrams/visual-anagrams.md'>Paper Review</a>
+  - <a href='./PPT/visual-anagrams.pptx'>Visual Anagrams PPT</a>
 
 
 # 7. Helpful Blog
