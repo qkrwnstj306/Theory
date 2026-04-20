@@ -311,6 +311,7 @@ $\textbf{3D}$
 
 - <a href='https://arxiv.org/pdf/2003.08934'>NeRF: Representing Scenes as Neural Rediance Fields for View Synthesis</a>
   - <a href='./이론 pdf 파일/딥러닝 논문/nerf/nerf.md'>Paper Review</a>
+  - <a href='./PPT/NeRF.pptx'>NeRF PPT</a>
 
 
 $\textbf{Unlearning}$

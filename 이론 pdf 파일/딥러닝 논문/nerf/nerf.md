@@ -1,7 +1,7 @@
 <img src="https://capsule-render.vercel.app/api?type=waving&color=auto&height=80&section=header&text=Welcome%20Paper%20Review&fontSize=50" width="100%">
 
 
-## NeRF: Representing Scenes as Neural Radiance Fields for View Synsthesis
+## NeRF: Representing Scenes as Neural Radiance Fields for View Synthesis
 *Communications of the ACM(2021), 18414 citation, UC Berkeley, Google Research, Review Data: 2026.04.14*
 
 [Intro](#intro)</br>
@@ -156,7 +156,6 @@ $\textbf{Neural Radiance Field의 최적화}$
 <img src='./img9.png'>
 </p>
 
-- 
 
 - Hierarchical sampling
     - 중요한 구간을 더 촘촘히 샘플링하게 함
