@@ -156,6 +156,11 @@ Theory for ML.
 - <a href='https://arxiv.org/pdf/1710.03740.pdf'>MP: Mixed Precision Training</a>
   - <a href='./이론 pdf 파일/딥러닝 논문/AMP/AMP.md'>Paper Review</a>
 
+### Robotics
+
+- <a href='https://arxiv.org/pdf/2412.00597'>Spline-FRIDA: Towards Diverse, Humanlike Robot Painting Styles with a Sample-Efficient, Differentiable Brush Stroke Model</a>
+  - <a href='./이론 pdf 파일/딥러닝 논문/spline-frida/spline-frida.md'>Paper Review</a>
+
 ### Generative AI about Image 
 - <a href='https://arxiv.org/abs/1503.03585'>Deep Unsupervised Learning using Nonequilibrium Thermodynamics</a>
   - <a href='./이론 pdf 파일/딥러닝 논문/2015-diffusion/2015-diffusion.md'>Paper Review</a>
@@ -319,11 +324,17 @@ $\textbf{Unlearning}$
 - <a href='https://arxiv.org/pdf/2503.12356'>Localized Concept Erasure for Text-to-Image Diffusion Models Using Training-Free Gated Low-Rank Adaptation
   - <a href='./이론 pdf 파일/딥러닝 논문/GLoCE/GLoCE.md'>Paper Review</a>
 
+$\textbf{Medical Image Processing}$
+
+- <a href='https://papers.miccai.org/miccai-2025/paper/0110_paper.pdf'>Structure-aware MRI Translation: Multi-Modal Latent Diffusion Model with Arbitrary Missing Modalities</a>
+  - <a href='./이론 pdf 파일/딥러닝 논문/misa-ldm/misa-ldm.md'>Paper Review</a>
 
 $\textbf{Inverse Problem}$
 
 - <a href='https://openreview.net/pdf?id=TtUh0TOlGX'>TReg: Regularization by Texts for Latent Diffusion Inverse Solvers</a>
   - <a href='./이론 pdf 파일/딥러닝 논문/TReg/TReg.md'>Paper Review</a>
+
+
 $\textbf{VITON}$
 
 - <a href='https://arxiv.org/pdf/2312.01725.pdf'>StableVITON: Learning Semantic Correspondence with Latent Diffusion Model for Virtual Try-On</a>
