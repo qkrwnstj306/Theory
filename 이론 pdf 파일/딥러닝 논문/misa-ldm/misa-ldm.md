@@ -64,6 +64,14 @@
 
 ### <strong>Method</strong>
 
+- 본 논문의 contribution을 먼저 정리해보자면 다음과 같다. 
+    - Diffusion model에 사용 가능한 modalities의 위치를 제공함으로써 유연한 입력을 가진다.
+    - SPM module을 통해서 상위 수준의 해부학적 구조 보존 + 미세한 질감 세부 정보를 diffusion model에 제공한다. 
+        - 구체적으로 FFMM module의 output인 $P_s'$은 모달리티 불변성을 가지는 근본적인 해부학적 특징으로 가정한다. 이를 위해 $L_{seg}$를 수행 
+        - 또한 $P_s'$을 각 style feature와 결합하여 decoding하여 reconstruction한다. 원래 우리가 기대하는 style feature가 모든 정보를 들고 있는 것이 아닌, 각 MRI 모달리티가 가지는 고유한 시각적 특징을 가지고 있게끔 유도하는 것이다. 
+            - 즉, $P_s'$은 모달리티 불변성의 해부학적 특징, style feature $s_i$는 특정 모달리티의 시각적 특징을 가지리라 기대하고 합쳐서 decoding 하는 것이다.
+        - 이후, 미세한 디테일을 위해 HFCM을 도입하여 고주파에 대한 정보를 추가적으로 제공한다. 
+
 - Overview: MISA-LDM은 두 가지 핵심 구성 요소로 이루어진다.
     - (a) 임의의 모달리티 조합 변환을 위해 설계된 다중 모달 잠재 확산 모델(multimodal latent diffusion model)
     - (b) 구조적 일관성을 보존하기 위한 구조 보존 모듈(Structure-Preserving Module, SPM) 이다.
@@ -139,7 +147,7 @@ $\textbf{Datasets and Implementation}$
 
 - 전처리 단계에서는 3D 볼륨을 $z$ 축 방향으로 2D 이미지들의 집합으로 슬라이싱하며, 이때 segmentation label도 함께 포함한다. 이후 각 이미지는 $256 \times 256$ 으로 resize된다. 
 
-$\textbf{Comparison with State of the Art Methods}
+$\textbf{Comparison with State of the Art Methods}$
 
 - 이 절에서는 제안한 MISA-LDM을 여러 다중 모달 MRI 합성 방법들과 비교한다. 비교 대상에는 MMGAN, ReMIC, MMT가 포함된다.
 

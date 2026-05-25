@@ -328,6 +328,7 @@ $\textbf{Medical Image Processing}$
 
 - <a href='https://papers.miccai.org/miccai-2025/paper/0110_paper.pdf'>Structure-aware MRI Translation: Multi-Modal Latent Diffusion Model with Arbitrary Missing Modalities</a>
   - <a href='./이론 pdf 파일/딥러닝 논문/misa-ldm/misa-ldm.md'>Paper Review</a>
+  - <a href='./PPT/misa-ldm.pptx'>MISA-LDM PPT</a>
 
 $\textbf{Inverse Problem}$
 
