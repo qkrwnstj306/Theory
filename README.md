@@ -318,6 +318,21 @@ $\textbf{3D}$
   - <a href='./이론 pdf 파일/딥러닝 논문/nerf/nerf.md'>Paper Review</a>
   - <a href='./PPT/NeRF.pptx'>NeRF PPT</a>
 
+$\textbf{Robotics}$
+
+- <a href='https://arxiv.org/pdf/2310.10639'>ZERO-SHOT ROBOTIC MANIPULATION WITH PRETRAINED IMAGE-EDITING DIFFUSION MODELS</a>
+  - <a href='./이론 pdf 파일/딥러닝 논문/susie/susie.md'>Paper Review</a>
+- <a href='https://arxiv.org/pdf/2603.17808'>Aligning Video Models with Executable Robot Actions via Inverse Dynamics Rewards</a>
+  - <a href='./이론 pdf 파일/딥러닝 논문/eva/eva.md'>Paper Review</a>
+- <a href='https://arxiv.org/pdf/2512.04221'>MoReGen: Multi-Agent Motion-Reasoning Engine for Code-based Text-to-Video Synthesis</a>
+  - <a href='./이론 pdf 파일/딥러닝 논문/moregen/moregen.md'>Paper Review</a>
+- <a href='https://arxiv.org/pdf/2409.18964'>PhysGen: Rigid-Body Physics-Grounded Image-to-Video Generation</a>
+  - <a href='./이론 pdf 파일/딥러닝 논문/physgen/physgen.md'>Paper Review</a>
+
+$\textbf{Video Generation}$
+
+- <a href='https://arxiv.org/pdf/2204.03458'>Video Diffusion Models</a>
+  - <a href='./이론 pdf 파일/딥러닝 논문/video-diffusion/video-diffusion.md'>Paper Review</a>
 
 $\textbf{Unlearning}$
 
