@@ -328,6 +328,11 @@ $\textbf{Robotics}$
   - <a href='./이론 pdf 파일/딥러닝 논문/moregen/moregen.md'>Paper Review</a>
 - <a href='https://arxiv.org/pdf/2409.18964'>PhysGen: Rigid-Body Physics-Grounded Image-to-Video Generation</a>
   - <a href='./이론 pdf 파일/딥러닝 논문/physgen/physgen.md'>Paper Review</a>
+- <a href='https://arxiv.org/pdf/2606.00188'>PaintBench: Deterministic Evaluation of Precise Visual Editing</a>
+  - <a href='./이론 pdf 파일/딥러닝 논문/paintbench/paintbench.md'>Paper Review</a>
+
+- <a href='https://arxiv.org/pdf/2209.07753'>Code as Policies: Language Model Programs for Embodied Control</a>
+  - <a href='./이론 pdf 파일/딥러닝 논문/code-as-policies/code-as-policies.md'>Paper Review</a>
 
 $\textbf{Video Generation}$
 

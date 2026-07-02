@@ -16,7 +16,7 @@
 
 > Core Idea
 <div align=center>
-<strong>"test1"</strong></br>
+<strong>"시공간을 나눠서 처리함으로써, 이미지 데이터로도 학습 가능"</strong></br>
 </div>
 
 ***
