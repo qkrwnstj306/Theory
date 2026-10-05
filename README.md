@@ -297,6 +297,15 @@ Theory for ML.
   - <a href='./이론 pdf 파일/딥러닝 논문/fam-diffusion/FAM-Diffusion.md'>Paper Review</a>
   - <a href='./PPT/FAMDiffusion.pptx'>FAM Diffusion PPT</a>
 
+- <a href='https://arxiv.org/pdf/2411.02395'>Training-free Regional Prompting for Diffusion Transformers</a>
+  - <a href='./이론 pdf 파일/딥러닝 논문/regional-prompting/regional-prompting.md'>Paper Review</a>
+
+- <a href="https://arxiv.org/pdf/2412.08629">FlowEdit: Inversion-Free Text-Based Editing Using Pre-Trained Flow Models</a>
+  - <a href='./이론 pdf 파일/딥러닝 논문/flowedit/flowedit.md'>Paper Review</a>
+
+- <a href='https://arxiv.org/pdf/2505.23145'>FlowAlign: Trajectory-Regularized, Inversion-Free Flow-based Image Editing</a>
+  - <a href='./이론 pdf 파일/딥러닝 논문/flowalign/flowalign.md'>Paper Review</a>
+
 $\textbf{Aesthetic QR Code Generation}$
 
 - <a href='https://dl.acm.org/doi/pdf/10.1145/2508363.2508408'>Halftone QR codes</a>
@@ -311,6 +320,9 @@ $\textbf{Aesthetic QR Code Generation}$
   - <a href='./이론 pdf 파일/딥러닝 논문/DiffQRCoder/DiffQRCoder.md'>Paper Review</a>
 - <a href='https://arxiv.org/pdf/2403.06452'>Text2QR: Harmonizing Aesthetic Customization and Scanning Robustness for Text-Guided QR Code Genration</a>
   - <a href='./이론 pdf 파일/딥러닝 논문/text2qr/text2qr.md'>Paper Review</a>
+
+- <a href='https://arxiv.org/pdf/2411.19246'>Face2QR: A Unified Framework for Aesthetic, Face-Preserving, and Scannable QR Code Generation</a>
+  - <a href='./이론 pdf 파일/딥러닝 논문/face2qr/face2qr.md'>Paper Review</a>
 
 $\textbf{3D}$
 
