@@ -482,13 +482,17 @@ def site_links(cat):
 def paper_meta(cat, p, page):
     """Chip bar placed on top of each review page in the site."""
     L = Linker(cat, 'site', page)
-    f = {x['id']: x for x in cat['fields']}[p['field']]
     chips = []
     venue = f'{p.get("venue", "")} {p.get("year", "")}'.strip()
     if venue:
         chips.append(f'<span class="pm-venue">{venue}</span>')
-    field_href = posixpath.relpath(f'papers/{f["id"]}', posixpath.dirname(page)) + '/'
-    chips.append(f'<a class="pm-chip pm-field" href="{field_href}">{f["name"]}</a>')
+    if p.get('field'):
+        f = {x['id']: x for x in cat['fields']}[p['field']]
+        section, name = f'papers/{f["id"]}', f['name']
+    else:                                    # an entry of `research:` (my own paper)
+        section, name = 'research', 'My Research'
+    href = posixpath.relpath(section, posixpath.dirname(page)) + '/'
+    chips.append(f'<a class="pm-chip pm-field" href="{href}">{name}</a>')
     if p.get('url'):
         chips.append(f'<a class="pm-chip" href="{p["url"]}">📄 Paper</a>')
     for n in p.get('notes', []):
@@ -534,7 +538,32 @@ def transform_md(cat, src, text):
             return m.group(1) + m.group(2) + fix(m.group(3), True) + m.group(2)
         return m.group(4) + fix(m.group(5), False) + m.group(6)
 
-    return github_alerts(separate_display_math(normalize_lists(LINK_RE.sub(sub, text))))
+    return lead_in_labels(summary_table(github_alerts(separate_display_math(normalize_lists(LINK_RE.sub(sub, text))))))
+
+
+def lead_in_labels(text):
+    """A paragraph that is only `**배경.**` becomes a styled label (attr_list class)."""
+    out, fenced = [], False
+    for line in text.split('\n'):
+        if line.strip().startswith('```'):
+            fenced = not fenced
+        if not fenced and re.match(r'^\*\*[^*]{1,30}\*\*\s*$', line):
+            line = line.rstrip() + '{ .lead-in }'
+        out.append(line)
+    return '\n'.join(out)
+
+
+def summary_table(text):
+    """Wrap the `| 흐름 | 내용 |` problem/idea/result table so CSS can render it as a card."""
+    lines = text.split('\n')
+    for i, line in enumerate(lines):
+        if re.match(r'^\|\s*흐름\s*\|\s*내용\s*\|\s*$', line):
+            j = i
+            while j < len(lines) and lines[j].startswith('|'):
+                j += 1
+            return '\n'.join(lines[:i] + ['<div class="summary-table" markdown>', ''] + lines[i:j]
+                             + ['', '</div>'] + lines[j:])
+    return text
 
 
 LIST_RE = re.compile(r'^(\s*)([-*+]|\d+\.)\s+')
@@ -586,15 +615,20 @@ def github_alerts(text):
         m = re.match(r'^(\s*)>\s*\[!(\w+)\]\s*$', lines[i])
         if m and m.group(2).upper() in ALERTS:
             indent, (kind, title) = m.group(1), ALERTS[m.group(2).upper()]
+            i += 1
+            body = []
+            while i < len(lines) and re.match(rf'^{indent}>', lines[i]):
+                body.append(re.sub(rf'^{indent}>\s?', '', lines[i]))
+                i += 1
+            # "> **한 줄 요약** — ..." : use the bold lead as the box title instead of "Tip"
+            lead = re.match(r'^\*\*(.+?)\*\*\s*[—–-]\s*', body[0]) if body else None
+            if lead:
+                title, body[0], kind = lead.group(1), body[0][lead.end():], 'summary'
             if out and out[-1].strip():
                 out.append('')
             out.append(f'{indent}!!! {kind} "{title}"')
             out.append('')
-            i += 1
-            while i < len(lines) and re.match(rf'^{indent}>', lines[i]):
-                body = re.sub(rf'^{indent}>\s?', '', lines[i])
-                out.append(f'{indent}    {body}' if body.strip() else '')
-                i += 1
+            out += [f'{indent}    {b}' if b.strip() else '' for b in body]
             out.append('')
             continue
         out.append(lines[i])
@@ -641,7 +675,7 @@ def separate_display_math(text):
 
 def stage(cat):
     shutil.rmtree(STAGE, ignore_errors=True)
-    reviews = {p['review']: p for p in cat['papers'] if p.get('review')}
+    reviews = {p['review']: p for p in cat['papers'] + cat['research'] if p.get('review')}
     for d in CONTENT_DIRS:
         for root, _, files in os.walk(d):
             for name in files:

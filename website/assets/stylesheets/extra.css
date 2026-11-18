@@ -267,3 +267,109 @@
     min-width: 11rem;
   }
 }
+
+/* ================================================================ review page polish */
+/* Title: solid weight, tighter spacing */
+.md-typeset h1 {
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+  font-size: 1.8rem;
+  line-height: 1.3;
+  letter-spacing: -0.015em;
+  color: var(--md-default-fg-color);
+}
+/* "*CVPR(2024), 441 citation, ...*" meta line right under the title -> small muted caption */
+.md-typeset h1 + p:has(> em:only-child) {
+  margin: 0 0 0.6rem;
+  font-size: 0.72rem;
+  color: var(--md-default-fg-color--light);
+}
+.md-typeset h1 + p:has(> em:only-child) em {
+  font-style: normal;
+}
+/* Numbered section headings: accent bar */
+.md-typeset h2 {
+  margin-top: 2.2rem;
+  padding-left: 0.65rem;
+  border-left: 4px solid var(--md-primary-fg-color);
+  font-weight: 700;
+  font-size: 1.25rem;
+  letter-spacing: -0.01em;
+}
+[data-md-color-scheme="slate"] .md-typeset h2 {
+  border-left-color: #818cf8;
+}
+.md-typeset h3 {
+  font-weight: 700;
+}
+/* Lead-in labels (**배경.** alone on a line -> class added by scripts/build.py) */
+.md-typeset p:has(> strong.lead-in) {
+  margin: 1.4em 0 0.4em;
+}
+.md-typeset strong.lead-in {
+  display: inline-block;
+  padding: 0.1rem 0.6rem;
+  border-radius: 0.4rem;
+  background: var(--th-chip-bg);
+  color: var(--th-chip-fg);
+  font-size: 0.75rem;
+}
+
+/* "한 줄 요약" box (custom admonition type `summary`) */
+:root {
+  --md-admonition-icon--summary: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11h3v2h-3zM1 11h3v2H1zM13 1v3h-2V1zM4.92 3.5l2.13 2.14-1.42 1.41L3.5 4.93zm12.03 2.13 2.12-2.13 1.43 1.43-2.13 2.12zM12 6a6 6 0 0 1 6 6c0 2.22-1.21 4.16-3 5.2V19a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1v-1.8c-1.79-1.04-3-2.98-3-5.2a6 6 0 0 1 6-6m2 15v1a1 1 0 0 1-1 1h-2a1 1 0 0 1-1-1v-1zm-3-3h2v-2.13c1.73-.44 3-2.01 3-3.87a4 4 0 0 0-4-4 4 4 0 0 0-4 4c0 1.86 1.27 3.43 3 3.87z"/></svg>');
+}
+.md-typeset .admonition.summary {
+  border-color: #6366f1;
+  font-size: 0.78rem;
+}
+.md-typeset .summary > .admonition-title {
+  background-color: rgba(99, 102, 241, 0.1);
+}
+.md-typeset .summary > .admonition-title::before {
+  background-color: #6366f1;
+  -webkit-mask-image: var(--md-admonition-icon--summary);
+  mask-image: var(--md-admonition-icon--summary);
+}
+
+/* 문제 / 아이디어 / 결과 summary table -> card with colored labels */
+.summary-table .md-typeset__table {
+  display: block;
+}
+.md-typeset .summary-table table:not([class]) {
+  display: table;
+  width: 100%;
+  font-size: 0.75rem;
+  border-radius: 0.6rem;
+}
+.md-typeset .summary-table thead {
+  display: none;
+}
+.md-typeset .summary-table td {
+  padding: 0.75em 1em;
+  vertical-align: top;
+}
+.md-typeset .summary-table td:first-child {
+  width: 6rem;
+  white-space: nowrap;
+}
+.md-typeset .summary-table td:first-child strong {
+  display: inline-block;
+  padding: 0.1rem 0.55rem;
+  border-radius: 0.4rem;
+  font-size: 0.68rem;
+}
+.md-typeset .summary-table tr:nth-child(1) td:first-child strong { background: rgba(244, 63, 94, 0.12); color: #e11d48; }
+.md-typeset .summary-table tr:nth-child(2) td:first-child strong { background: rgba(245, 158, 11, 0.15); color: #b45309; }
+.md-typeset .summary-table tr:nth-child(3) td:first-child strong { background: rgba(16, 185, 129, 0.14); color: #047857; }
+[data-md-color-scheme="slate"] .md-typeset .summary-table tr:nth-child(1) td:first-child strong { color: #fda4af; }
+[data-md-color-scheme="slate"] .md-typeset .summary-table tr:nth-child(2) td:first-child strong { color: #fcd34d; }
+[data-md-color-scheme="slate"] .md-typeset .summary-table tr:nth-child(3) td:first-child strong { color: #6ee7b7; }
+
+/* Figure captions */
+.md-typeset p[align="center"] sub {
+  display: inline-block;
+  margin-top: 0.3rem;
+  color: var(--md-default-fg-color--light);
+  font-size: 0.68rem;
+}
