@@ -1,0 +1,59 @@
+name: Deploy site
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      # The site only needs markdown, images and the build files. PDFs/PPTs (~1.5GB) are
+      # linked to GitHub instead of being copied, so a sparse checkout keeps CI fast.
+      - uses: actions/checkout@v4
+        with:
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            /catalog.yml
+            /mkdocs.yml
+            /requirements.txt
+            /scripts/
+            /website/
+            *.md
+            *.png
+            *.PNG
+            *.jpg
+            *.JPG
+            *.jpeg
+            *.gif
+            *.svg
+            *.webp
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - run: pip install -r requirements.txt
+      - run: python scripts/build.py site
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _build/site
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

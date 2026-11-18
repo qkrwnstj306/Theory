@@ -1,0 +1,267 @@
+/* ---------------------------------------------------------------- tokens */
+:root {
+  --th-grad-a: #4f46e5;
+  --th-grad-b: #06b6d4;
+  --th-card-bg: var(--md-default-bg-color);
+  --th-card-border: rgba(79, 70, 229, 0.14);
+  --th-card-shadow: 0 1px 2px rgba(15, 23, 42, 0.06), 0 4px 16px rgba(15, 23, 42, 0.04);
+  --th-chip-bg: rgba(79, 70, 229, 0.08);
+  --th-chip-fg: #4338ca;
+}
+[data-md-color-scheme="slate"] {
+  --th-card-bg: #1e2130;
+  --th-card-border: rgba(129, 140, 248, 0.18);
+  --th-card-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+  --th-chip-bg: rgba(129, 140, 248, 0.14);
+  --th-chip-fg: #c7d2fe;
+}
+
+/* ---------------------------------------------------------------- hero (home) */
+.hero {
+  margin: 0.4rem 0 2.2rem;
+  padding: 2.6rem 2rem 2.2rem;
+  border-radius: 1rem;
+  color: #fff;
+  background:
+    radial-gradient(1200px 400px at 10% -20%, rgba(255, 255, 255, 0.18), transparent 60%),
+    linear-gradient(120deg, var(--th-grad-a), var(--th-grad-b));
+  box-shadow: 0 10px 30px rgba(79, 70, 229, 0.25);
+}
+.md-typeset .hero-eyebrow {
+  margin: 0;
+  font-size: 0.7rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  opacity: 0.85;
+}
+.md-typeset .hero-title {
+  margin: 0.2rem 0 0.3rem;
+  font-size: 2.6rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: #fff;
+}
+.md-typeset .hero-sub {
+  margin: 0 0 1.4rem;
+  font-size: 0.95rem;
+  opacity: 0.95;
+}
+.hero-stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+  margin-bottom: 1.4rem;
+}
+.hero-stats > div {
+  min-width: 6.5rem;
+  padding: 0.6rem 0.9rem;
+  border-radius: 0.6rem;
+  background: rgba(255, 255, 255, 0.14);
+  backdrop-filter: blur(4px);
+}
+.hero-stats b {
+  display: block;
+  font-size: 1.4rem;
+  line-height: 1.2;
+}
+.hero-stats span {
+  font-size: 0.65rem;
+  opacity: 0.9;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+.md-typeset .hero .md-button {
+  margin: 0;
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.7);
+}
+.md-typeset .hero .md-button--primary {
+  background: #fff;
+  color: var(--th-grad-a);
+  border-color: #fff;
+}
+.md-typeset .hero .md-button:hover {
+  background: rgba(255, 255, 255, 0.92);
+  color: var(--th-grad-a);
+}
+
+/* ---------------------------------------------------------------- cards */
+.field-grid,
+.research-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
+  gap: 0.8rem;
+  margin: 1rem 0 2rem;
+}
+.md-typeset a.field-card,
+.md-typeset a.research-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  padding: 1rem 1.1rem;
+  border: 1px solid var(--th-card-border);
+  border-radius: 0.8rem;
+  background: var(--th-card-bg);
+  box-shadow: var(--th-card-shadow);
+  color: var(--md-default-fg-color);
+  transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
+}
+.md-typeset a.field-card:hover,
+.md-typeset a.research-card:hover {
+  transform: translateY(-2px);
+  border-color: var(--md-accent-fg-color);
+  box-shadow: 0 8px 24px rgba(79, 70, 229, 0.15);
+}
+.md-typeset .field-card .twemoji,
+.md-typeset .field-head .twemoji {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.2rem;
+  height: 2.2rem;
+  margin-bottom: 0.35rem;
+  border-radius: 0.6rem;
+  background: var(--th-chip-bg);
+}
+.md-typeset .field-card .twemoji svg,
+.md-typeset .field-head .twemoji svg {
+  width: 1.3rem;
+  height: 1.3rem;
+  max-height: none;
+  fill: var(--th-chip-fg);
+}
+.fc-name {
+  font-weight: 700;
+  font-size: 0.85rem;
+}
+.fc-desc {
+  font-size: 0.68rem;
+  color: var(--md-default-fg-color--light);
+  line-height: 1.4;
+}
+.fc-count {
+  position: absolute;
+  top: 0.9rem;
+  right: 1rem;
+  min-width: 1.6rem;
+  padding: 0.05rem 0.45rem;
+  border-radius: 1rem;
+  background: var(--th-chip-bg);
+  color: var(--th-chip-fg);
+  font-size: 0.65rem;
+  font-weight: 700;
+  text-align: center;
+}
+.rc-venue {
+  align-self: flex-start;
+  padding: 0.05rem 0.5rem;
+  border-radius: 1rem;
+  background: linear-gradient(120deg, var(--th-grad-a), var(--th-grad-b));
+  color: #fff;
+  font-size: 0.62rem;
+  font-weight: 700;
+}
+.rc-venue:empty {
+  display: none;
+}
+.rc-title {
+  font-weight: 700;
+  font-size: 0.85rem;
+  line-height: 1.35;
+}
+.rc-meta {
+  font-size: 0.65rem;
+  color: var(--md-default-fg-color--light);
+}
+
+/* ---------------------------------------------------------------- field page header */
+.field-head {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-bottom: -0.6rem;
+  color: var(--md-default-fg-color--light);
+  font-size: 0.7rem;
+}
+.md-typeset mjx-container[display="true"] {
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+/* ---------------------------------------------------------------- review pages */
+.paper-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.4rem;
+  margin: 0 0 1.2rem;
+  padding: 0.7rem 0.8rem;
+  border: 1px solid var(--th-card-border);
+  border-radius: 0.7rem;
+  background: var(--th-card-bg);
+}
+.md-typeset .paper-meta a.pm-chip,
+.paper-meta .pm-venue {
+  padding: 0.15rem 0.6rem;
+  border-radius: 1rem;
+  font-size: 0.68rem;
+  line-height: 1.6;
+  white-space: nowrap;
+}
+.paper-meta .pm-venue {
+  background: linear-gradient(120deg, var(--th-grad-a), var(--th-grad-b));
+  color: #fff;
+  font-weight: 700;
+}
+.md-typeset .paper-meta a.pm-chip {
+  background: var(--th-chip-bg);
+  color: var(--th-chip-fg);
+}
+.md-typeset .paper-meta a.pm-chip:hover {
+  background: var(--md-accent-fg-color);
+  color: #fff;
+}
+/* The GitHub-only "Welcome Paper Review" banner is replaced by the chip bar on the site. */
+.md-typeset img[src*="capsule-render.vercel.app"] {
+  display: none;
+}
+.md-typeset img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 0.3rem;
+}
+
+/* ---------------------------------------------------------------- tables */
+.md-typeset table:not([class]) {
+  font-size: 0.72rem;
+}
+.md-typeset table:not([class]) td:first-child {
+  min-width: 16rem;
+}
+.md-typeset table:not([class]) td:not(:first-child) {
+  white-space: nowrap;
+}
+.md-typeset table:not([class]) th[role="columnheader"] {
+  cursor: pointer;
+}
+.md-typeset table:not([class]) a {
+  text-decoration: none;
+}
+
+@media screen and (max-width: 44.9375em) {
+  .hero {
+    padding: 1.8rem 1.2rem;
+  }
+  .md-typeset .hero-title {
+    font-size: 2rem;
+  }
+  .md-typeset table:not([class]) td:first-child {
+    min-width: 11rem;
+  }
+}

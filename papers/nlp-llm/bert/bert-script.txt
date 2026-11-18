@@ -1,0 +1,66 @@
+Bert 발표 시작하겠습니다. 2019년도에 구글이 발표한 논문입니다 
+
+Bert는 bidirectional encoder representations from transformer로써
+이름에서부터 알 수 있듯이, transformer의 encoder를 활용했고 그 중에서 self-attention으로 양방향을 볼 수 있습니다.
+
+본 논문의 목적은 2가지입니다. 첫 번째로는 pre-trained language representation의 성능을 높이는 것이고
+두 번째는 down-stream task로의 fine-tuning을 쉽게 하는 것입니다.
+
+논문에서 GPT와의 비교를 많이 하기에, 추후에 conclusion으로 GPT와 함께 다시 언급하겠습니다.
+
+bert는 pre-training과 fine-tuning으로 이루어져 있습니다.
+여러 task의 fine-tuning이 있지만 발표에서는 QA task에서의 fine-tuning만 다루겠습니다.
+
+pre-training을 먼저 살펴보겠습니다.
+
+bert의 architecture는 다음과 같이 생겼고, 안의 파란 박스에는 transformer의 encoder가 존재합니다. 
+input으로는 special classification token이라는 이름의 CLS token이 맨 앞에 들어갑니다. 추후에 이 token은 classification 목적으로 사용됩니다. 
+CLS token 이후에는 문장 두 개가 들어가는데 문장을 나눠주기 위한 token인 seperate token이 중간에 있습니다.
+
+bert가 bidirection으로 볼 수 있는 이유는 transformer encoder에 있는 self-attention 때문입니다. 예시로 i am a student가 주어졌을 때, bert는 i 뿐만 아니라 a와 student를 같이 보고 am을 유추할 수 있습니다.
+
+모델의 구조를 좀 더 자세히 보면 다음과 같습니다. 맨 마지막 단에는 Fully connected layer가 달려서 vocab size만큼의 softmax를 거쳐 classification을 하는 걸 볼 수 있습니다.
+
+input으로 cls token 문장 2개 separate token이 들어간다고 말씀드렸는데 사실상 token embedding segment embedding position embedding 3가지의 embedding이 합쳐진 결과입니다. 
+token embedding은 token의 의미를 담고 있고, segment embedding은 첫 번쨰 문장에 속하는지 두 번째 문장에 속하는지에 대한 정보를 담고 있습니다. 마지막으로 position embedding은 위치정보를 담고있습니다.
+
+pre-training 단계에서 model이 배우는 능력은 2가지로 볼 수 있습니다. 
+다음 문장을 예측하는 next sentence prediction과 masking된 input이 어떤 token인지 예측하는 masked token prediction이 있습니다.
+
+next sentence prediction의 경우, cls token이 self-attention을 이용하여 sentence 1과 sentence2를 보고 서로 연결된 문장인지 classification을 합니다.
+
+masked sentence prediction의 경우, 마찬가지로 self-attentioin을 통해 masking된 token이 무엇인지 예측합니다. 
+
+이렇게 pre-training을 마치면, model은 next sentence prediction을 통해 문장 사이의 관계를 파악할 수 있게 되고, masked token prediction을 통해 문장내의 관계를 파악할 수 있는 능력을 가지게 됩니다. 
+
+이 pre-training을 통해 generalization 능력을 최대화한뒤 fine-tuning을 진행합니다. 
+앞서 말씀드린대로, QA task에 대한 fine-tuning을 살펴보겠습니다.
+
+QA task에서, bert는 sep token이후 즉, paragraph에서 start와 end span을 에측합니다. 
+
+예측을 하는 과정을 좀 더 살펴보겠습니다. start vector와 end vector를 도입하여 paragraph에서 나온 output들을 각각의 vector에 태워서 softmax를 취합니다. 각각의 vector에서 가장 높은 output을 가지는 것들을 조합하여 start와 end span을 예측합니다.
+
+직관적으로 살펴보면, bert는 다음과 같은 paragraph를 input의 일부로 받아서 시작과 끝을 예측할 수 있습니다.
+
+이렇게 fine-tuning을 한 bert를 squad dataset에 대해서 실험한 결과입니다. 
+squad dataset은 content와 question, answer이 주어져있고, question에 대한 답을 content내에서 찾는 task입니다. 
+
+대부분의 논문이 그렇듯, squad 1.1과 2.0에서 모두 다른 모델들을 제치고 sota 성능을 내는 걸 볼 수 있습니다. 
+
+마지막으로 GPT와 비교를 하고 끝내겠습니다. 
+
+BERT는 GPT1과 GPT3사이에서 발표됐습니다. 
+transformer의 decoder를 활용한 GPT와는 다르게 BERT는 encoder를 활용합니다. 여기서 각 model이 보는 관점이 달라집니다.
+
+GPT는 decoder를 활용했기에, unidirectional model이고 next token prediction만 진행합니다.
+
+이에 반해, bert는 bidirectional model이고 masked token prediction과 next sentence prediction을 합니다. 
+
+본 논문에서는 이러한 점들 때문에 bert가 성능이 더 좋다고 말을 하고 있습니다.
+
+즉, 이게 무슨 말이냐면, GPT는 pre-training 단계에서 오직 한 문장만 input으로 받아들이기 때문에, 문장과의 관계를 학습하지 못한다는 얘기입니다. 이건 추후에 QA같은 문맥이 중요한 task에 대해서 fine-tuning을 할때 pre-training의 성능이 떨어진다는 말과 동일합니다.
+
+BERT는 masked token 및 next sentence prediction을 통해 pre-training 단계에서 충분히 문장과 문장사의의 관계 및 문장내의 관계를 모두 학습했기에 down-stream task들에 대해서 좋은 성능을 낸다고 할 수 있습니다. 이는 모두 bert가 bidirectional의 특징을 가지기 때문이라고 얘기하고 있습니다. 
+
+
+lora paper, bert ppt
