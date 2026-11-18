@@ -280,10 +280,58 @@ def gh_readme(cat):
         out.append('')
     if cat.get('todo'):
         out += ['## ✅ To-do', ''] + [f'- [ ] {t}' for t in cat['todo']] + ['']
+    out += how_to_add(cat)
     out += ['---', '',
             '<sub>이 README 는 <code>catalog.yml</code> 에서 <code>python scripts/build.py</code> 로 자동 생성됩니다. '
-            '새 논문 추가 방법은 <code>catalog.yml</code> 상단 주석을 참고하세요.</sub>', '']
+            '직접 수정하지 말고 <code>catalog.yml</code> 을 고치세요.</sub>', '']
     return '\n'.join(out)
+
+
+def how_to_add(cat):
+    field_ids = ' · '.join(f'`{f["id"]}`' for f in cat['fields'])
+    return [
+        '## ✍️ 새 논문 리뷰 추가하기', '',
+        '<details>',
+        '<summary><b>펼쳐서 보기</b> — 폴더 만들기 → catalog.yml 등록 → 빌드 → push</summary>', '',
+        '예시: `diffusion` 분야에 **Rectified Flow** 리뷰를 추가하는 경우 (`<slug>` = `rectified-flow`)', '',
+        '**1. 리뷰 파일 만들기** — 템플릿을 새 폴더의 `README.md` 로 복사', '',
+        '```powershell',
+        'mkdir papers/diffusion/rectified-flow',
+        'copy templates/review.md papers/diffusion/rectified-flow/README.md',
+        '```', '',
+        '리뷰 맨 위 두 줄은 이 형식을 지켜주세요. 학회·연도·추가 날짜가 여기서 자동으로 추출됩니다.', '',
+        '```markdown',
+        '## Rectified Flow: Flow Straight and Fast',
+        '*ICLR(2023), 900 citation, UT Austin, Review Data: 2026.11.20*',
+        '```', '',
+        '- 이미지: 같은 폴더에 두고 `./img1.png` 로 참조',
+        '- 필기 PDF / 발표 자료: 같은 폴더에 `<slug>.pdf`, `<slug>-slides.pptx`', '',
+        '**2. `catalog.yml` 의 `papers:` 에 항목 추가** (위치 상관없음, 표는 연도순 자동 정렬)', '',
+        '```yaml',
+        "- title: 'Rectified Flow: Flow Straight and Fast'",
+        '  field: diffusion',
+        '  url: https://arxiv.org/abs/2209.03003',
+        '  dir: papers/diffusion/rectified-flow',
+        '  # ↓ 있을 때만',
+        '  notes: [papers/diffusion/rectified-flow/rectified-flow.pdf]',
+        '  slides: [papers/diffusion/rectified-flow/rectified-flow-slides.pptx]',
+        '  code: [https://github.com/qkrwnstj306/...]',
+        '  simple: true   # 짧은 리뷰(⚡)',
+        '```', '',
+        f'`field` 에 쓸 수 있는 값: {field_ids}', '',
+        '**3. README 재생성 (+ 사이트 미리보기)**', '',
+        '```powershell',
+        'python scripts/build.py          # README 재생성 + 누락 파일 검사',
+        'python scripts/build.py serve    # (선택) http://127.0.0.1:8000 미리보기',
+        '```', '',
+        '**4. push** — 1~2분 뒤 웹사이트에 자동 반영', '',
+        '```powershell',
+        'git add -A',
+        'git commit -m "Add Rectified Flow review"',
+        'git push',
+        '```', '',
+        '</details>', '',
+    ]
 
 
 def gh_field_readme(cat, f, mode='gh'):
