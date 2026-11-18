@@ -9,7 +9,7 @@
 | [**Inverse Problems & Restoration**](inverse-problems/README.md) | 5 | Inpainting, Super-resolution, Posterior sampling |
 | [**Virtual Try-On**](virtual-try-on/README.md) | 14 | 가상 피팅과 패션 이미지 생성 |
 | [**Aesthetic QR Code**](aesthetic-qr/README.md) | 7 | 스캔 가능한 미적 QR 코드 생성 |
-| [**Watermark, Safety & Privacy**](safety-watermark/README.md) | 4 | 워터마킹, 개념 삭제, 프라이버시 공격 |
+| [**Watermark, Safety & Privacy**](safety-watermark/README.md) | 5 | 워터마킹, 개념 삭제, 프라이버시 공격 |
 | [**Interpretability**](interpretability/README.md) | 4 | XAI, attention 분석, 표현 시각화 |
 | [**Semantic Correspondence**](semantic-correspondence/README.md) | 3 | 이미지 간 의미적 대응점 찾기 |
 | [**Video & 3D**](video-3d/README.md) | 4 | 비디오 생성, 물리 기반 생성, NeRF |
@@ -150,6 +150,7 @@
 | [Face2QR: A Unified Framework for Aesthetic, Face-Preserving, and Scannable QR Code Generation](https://arxiv.org/pdf/2411.19246) | [Aesthetic QR Code](aesthetic-qr/README.md) | NeurIPS 2024 | [📝](aesthetic-qr/face2qr/README.md "리뷰 읽기") |  |
 | [FLDM-VTON: Faithful Latent Diffusion Model for Virtual Try-on](https://arxiv.org/pdf/2404.14162) | [Virtual Try-On](virtual-try-on/README.md) | IJCAI 2024 | [📝](virtual-try-on/fldm-vton/README.md "리뷰 읽기") | [📊](virtual-try-on/fldm-vton/fldm-vton-slides.pdf "발표 자료") |
 | [GarDiff: Improving Virtual Try-On with Garment-focused Diffusion Models](https://arxiv.org/pdf/2409.08258) | [Virtual Try-On](virtual-try-on/README.md) | ECCV 2024 | [📝](virtual-try-on/gardiff/README.md "리뷰 읽기") |  |
+| [Gaussian Shading: Provable Performance-Lossless Image Watermarking for Diffusion Models](https://ieeexplore.ieee.org/stamp/stamp.jsp?arnumber=10657450) | [Watermark, Safety & Privacy](safety-watermark/README.md) | CVPR 2024 | [📝](safety-watermark/gaussian-shading/README.md "리뷰 읽기") |  |
 | [GladCoder: Stylized QR Code Generation with Grayscale-Aware Denoising Process](https://www.ijcai.org/proceedings/2024/0861.pdf) | [Aesthetic QR Code](aesthetic-qr/README.md) | IJCAI 2024 | [📝](aesthetic-qr/gladcoder/README.md "리뷰 읽기") |  |
 | [InstantID: Zero-shot Identity-Preserving Generation in Seconds](https://arxiv.org/pdf/2401.07519.pdf) | [Personalization & Style](personalization-style/README.md) | arXiv 2024 | [📝](personalization-style/instantid/README.md "리뷰 읽기") |  |
 | [OmniBooth: Learning Latent Control for Image Synthesis with Multi-Modal Instruction](https://arxiv.org/pdf/2410.04932) | [Image Editing & Control](image-editing/README.md) | arXiv 2024 | [📝](image-editing/omnibooth/README.md "리뷰 읽기") |  |
