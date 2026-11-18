@@ -1,27 +1,24 @@
-<img src="https://capsule-render.vercel.app/api?type=waving&color=auto&height=80&section=header&text=Welcome%20Paper%20Review&fontSize=50" width="100%">
+# GLoCE: Localized Concept Erasure for Text-to-Image Diffusion Models Using Training-Free Gated Low-Rank Adaptation
 
-
-## GLoCE: Localized Concept Erasure for Text-to-Image Diffusion Models Using Training-Free Gated Low-Rank Adaptation
 *CVPR(2025), 10 citation, Seoul National University, Review Data: 2026.02.19*
 
-[Intro](#intro)</br>
-[Related Work](#related-work)</br>
-[Method](#method)</br>
-[Experiment](#experiment)</br>
-[Conclusion](#conclusion)</br>
+> [!TIP]
+> **한 줄 요약** — 저랭크 행렬과 간단한 게이트로 구성된 경량 모듈을 학습 없이 몇 번의 생성만으로 결정해 이미지 임베딩에 적용함으로써, 이미지 안에서 목표 개념이 나타난 국소 영역만 지우고 나머지 개념은 보존하는 localized concept erasure를 한다.
+
+| 흐름 | 내용 |
+|:--|:--|
+| **문제** | 기존 fine-tuning 기반 concept erasing은 특정 위치에 나타난 목표 개념을 제거하려다 이미지의 다른 영역의 충실도까지 손상시켜, 목표 개념과 나머지 개념이 함께 있는 프롬프트에서 전체 생성 성능이 저하된다 |
+| **아이디어** | LEACE에서 영감을 받아, 목표 개념 임베딩을 부분공간에 사영해 주요 성분을 제거하고 의미적으로 멀지만 관련된 개념의 저랭크 공간으로 매핑하며, 목표 개념에서만 활성화되는 게이트로 제거를 국소화 (training-free) |
+| **결과** | 텍스트 프롬프트에 대한 충실도를 유지하고 나머지 개념 영역의 품질 저하를 최소화하면서, efficacy·specificity·robustness 측면에서 기존 방법들을 능가 |
 
 <p align="center">
-<img src='./img1.png'>
+  <img src="./img1.png" width="90%"><br>
+  <sub><b>Figure 1.</b> Localized Concept Erasure 개요</sub>
 </p>
 
-> Core Idea
-<div align=center>
-<strong>"test1"</strong></br>
-</div>
+---
 
-***
-
-### <strong>Intro</strong>
+## 1. 문제 정의 — 왜 이 논문이 필요한가
 
 - 대규모 텍스트-이미지(Text-to-Image, T2I) 확산 모델은 주어진 텍스트 프롬프트를 충실히 반영하는 정교한 이미지를 생성하는 데 있어 큰 성공을 거두었다. 그러나 이러한 성과에도 불구하고, 모델이 저작권이 있는 이미지, 공격적이거나 노골적인 콘텐츠 등 이른바 NSFW(Not Safe For Work) 이미지를 생성할 수 있다는 심각한 위험도 함께 제기되었다.
 
@@ -48,7 +45,6 @@ GLoCE (Gated Low-rank adaptation for Concept Erasure) 를 제안한다.
 
 - GLoCE는 저랭크(low-rank) 행렬들과 간단한 게이트(gate)로 구성되며, 별도의 학습 없이 몇 번의 생성 단계만으로 개념을 결정한다.
 
-
 - 또한 GLoCE를 이미지 임베딩에 직접 적용하고, 게이트가 목표 개념에서만 활성화되도록 설계함으로써, 하나의 이미지 안에 목표 개념과 다른 개념이 함께 존재하더라도 목표 개념이 포함된 영역만 선택적으로 제거할 수 있다.
 
 - GLoCE는 소수의 이미지 생성만으로 파라미터를 결정하기 때문에, 그림과 같이 하나의 이미지 안에 목표 개념과 관련된 다른 개념들이 함께 존재하더라도 목표 개념만을 효율적으로 탐지하고 제거할 수 있다.
@@ -58,10 +54,7 @@ GLoCE (Gated Low-rank adaptation for Concept Erasure) 를 제안한다.
 <img src='./img1.png'>
 </p>
 
-
-***
-
-### <strong>Related Work</strong>
+## 2. 사전 지식
 
 - Safe T2I image generation 
     - 최근 몇 년 동안 대규모 모델이 부적절한 콘텐츠를 생성할 수 있다는 위험성이 광범위하게 연구되었으며, 이러한 우려는 Stable Diffusion(SD)과 같은 텍스트-이미지(T2I) 확산 모델에도 동일하게 적용된다.
@@ -76,7 +69,7 @@ GLoCE (Gated Low-rank adaptation for Concept Erasure) 를 제안한다.
         - AblCon: 목표 개념을 지정된 매핑 개념으로 대체하도록 재학습
         - ESD: 목표 개념의 분포를 다른 개념 또는 “null” 문자열과 정렬
         - TIME: cross-attention 내부 key/value의 선형 사영을 조정
-    - 개념 제거의 핵심 목표는 목표 개념을 제거하는 것이지만, 동시에 나머지 개념을 보존하는 것 역시 매우 중요하다. 이를 위해 다음과 같은 연구들의 제안되었다. 
+    - 개념 제거의 핵심 목표는 목표 개념을 제거하는 것이지만, 동시에 나머지 개념을 보존하는 것 역시 매우 중요하다. 이를 위해 다음과 같은 연구들이 제안되었다. 
         - SA: continual learning에서 영감을 받은 정규화 손실을 도입하여 다른 개념의 망각(forgetting) 완화
         - UCE: 나머지 개념 보존을 위한 효율적인 closed-form 해 제시
         - SPM: PEFT(Parameter-Efficient Fine-Tuning) 기법을 활용해 멀리 떨어진 개념의 망각 방지
@@ -84,7 +77,6 @@ GLoCE (Gated Low-rank adaptation for Concept Erasure) 를 제안한다.
         - CPE: fine-tuning 과정에 비선형성을 도입하면 남은 개념의 특이성(specificity)이 향상됨을 입증
         - 한편, 최근의 red-teaming 도구들은 이러한 개념 제거 방식이 적대적 공격(adversarial attack) 에 취약할 수 있음을 보여주었다. 즉, 미세조정된 모델에서도 제거된 개념이 다시 생성될 수 있다는 것이다.
         - 이를 해결하기 위해 RECE, Receler, AdvUnlearn, CPE 등은 개념 제거 학습과 적대적 방어 학습을 번갈아 수행하여 강건성(robustness)을 강화하였다.
-
 
 - Parameter-Efficient Fine-Tuning (PEFT)
     - 최근 개념 제거를 위한 미세조정 전략들은 확산 모델의 특정 층에 LoRA(Low-Rank Adaptation) 를 적용하는 방식(예: MACE, SPM)을 활용하고 있다.
@@ -94,10 +86,7 @@ GLoCE (Gated Low-rank adaptation for Concept Erasure) 를 제안한다.
         - Adapter 기반 방법: 경량 어댑터를 삽입하여 잔차(residual) 값을 생성하고 기존 임베딩과 적응적으로 결합
         - 이러한 접근법들은 과적합 없이 새로운 작업을 효과적으로 학습할 수 있도록 해준다.
 
-
-***
-
-### <strong>Method</strong>
+## 3. 방법
 
 - 목표 개념의 임베딩을 해당 개념의 부분공간(subspace)에 사영(project)하여 주요 성분(principal components)을 제거하고,
 
@@ -105,7 +94,7 @@ GLoCE (Gated Low-rank adaptation for Concept Erasure) 를 제안한다.
 
 - 또한 목표 개념의 이미지 임베딩에서만 제거가 일어나도록, 목표 개념의 임베딩을 구별적으로 포착할 수 있는 저랭크 공간의 기저(basis)를 찾아 단순한 게이트 구조를 설계하였다.
 
-$\textbf{Localized Concept Erasure}$
+### Localized Concept Erasure
 
 - 텍스트 프롬프트에 목표 개념(target concept)과 나머지 개념(remaining concepts)이 함께 포함되어 있고, 목표 개념이 이미지의 국소적인 영역(local region) 에 나타나는 경우에도 나머지 개념의 이미지 충실도(fidelity)를 유지하기 위한 프레임워크를 제안한다.
 
@@ -141,24 +130,6 @@ LEACE는 모델의 각 층 출력에 새로운 선형 사영(linear projection)�
 <img src='./img2.png'>
 </p>
 
-***
+## 참고
 
-### <strong>Experiment</strong>
-
-
-***
-
-### <strong>Conclusion</strong>
-
-
-***
-
-### <strong>Question</strong>
-
-
-
-![](img_path)
-<a href="">link</a>
-
-
-> 인용구
+- [Paper](https://arxiv.org/pdf/2503.12356)

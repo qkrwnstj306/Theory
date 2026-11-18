@@ -1,27 +1,24 @@
-<img src="https://capsule-render.vercel.app/api?type=waving&color=auto&height=80&section=header&text=Welcome%20Paper%20Review&fontSize=50" width="100%">
+# Stable Flow: Vital Layers for Training-Free Image Editing
 
-
-## Stable Flow: Vital Layers for Training-Free Image Editing
 *CVPR(2025), 136 citation, Snap research, Review Data:*
 
-[Intro](#intro)</br>
-[Related Work](#related-work)</br>
-[Method](#method)</br>
-[Experiment](#experiment)</br>
-[Conclusion](#conclusion)</br>
+> [!TIP]
+> **한 줄 요약** — DiT(FLUX)에서 이미지 형성에 결정적인 vital layer를 자동으로 찾아 그 레이어에만 원본의 attention feature를 주입하고, latent nudging으로 실제 이미지 inversion까지 개선해 training-free로 안정적인 편집을 한다.
+
+| 흐름 | 내용 |
+|:--|:--|
+| **문제** | Parallel generation 기반 feature 주입 편집은 U-Net에서는 레이어 역할이 잘 알려져 있지만, DiT는 Fine-Coarse-Fine 구조가 없어 어떤 레이어를 조작해야 하는지 명확하지 않다 |
+| **아이디어** | 각 레이어를 residual connection으로 bypass했을 때의 DINOv2 perceptual similarity 변화로 vital layer를 탐지하고, 그 레이어에만 attention feature를 selective injection. 실제 이미지는 Inverse Euler ODE + OOD latent nudging으로 inversion |
+| **결과** | 텍스트 프롬프트가 지정한 부분만 바꾸고 나머지는 유지하는 stable edit을, flow model의 낮은 다양성을 역이용해 학습 없이 하나의 mechanism으로 수행 |
 
 <p align="center">
-<img src='./img1.png'>
+  <img src="./img1.png" width="90%"><br>
+  <sub><b>Figure 1.</b> Stable Flow 개요</sub>
 </p>
 
-> Core Idea
-<div align=center>
-<strong>"test1"</strong></br>
-</div>
+---
 
-***
-
-### <strong>Intro</strong>
+## 1. 문제 정의 — 왜 이 논문이 필요한가
 
 - 최근 diffusion model들은 전통적인 UNet architecture를 Diffusion Transformer (DiT)로 교체하고 있다. 또한, 향상된 학습과 sampling을 위해 flow-matching을 사용한다. 
 
@@ -31,12 +28,9 @@
 <img src='./img2.png'>
 </p>
 
-
 - 본 논문에서는 낮은 다양성을 활용하여 attention feature의 selective injection을 통해 일관성있는 consistent image edit을 수행한다. 
 
-
 - DiT, Diffusion Transformer: 최근 FLUX나 SD3 같은 최신 생성 모델에 쓰이는 아키텍처로, 기존의 UNet 구조를 대체하여 고품질 합성을 수행하지만, 레이어들의 역할이 직관적으로 파악되지 않는 특징이 있습니다.
-
 
 - 핵심 레이어 (Vital Layers): DiT 모델 내에서 이미지 형성에 결정적인 역할을 하는 레이어들을 자동으로 찾아낸 것입니다. 이 레이어들에만 소스(원본) 이미지의 어텐션(attention) 특징을 선택적으로 주입하면, 원본의 무관한 부분은 그대로 유지하면서 프롬프트가 요구하는 부분만 안정적으로 수정할 수 있습니다.
 
@@ -51,7 +45,7 @@
 
 - 따라서 특징 주입을 Vital Layer에만 제한하면 안정적인 이미지 편집(Stable Edit)이 가능해지는 경향이 있다. 여기서 안정적인 편집이란 텍스트 프롬프트에서 지정한 부분만 변경하고, 이미지의 나머지 부분은 그대로 유지하는 편집을 의미한다.
 
-- 실제 이미지를 편집하기 위해서는 일반적으로 먼저 해당 이미지를 역변환(Inversion)하는 과정이 필요하다. LUX 모델에서 실제 이미지의 Inversion을 수행하기 위해 Inverse Euler 상미분방정식(ODE) Solver를 사용한다.
+- 실제 이미지를 편집하기 위해서는 일반적으로 먼저 해당 이미지를 역변환(Inversion)하는 과정이 필요하다. FLUX 모델에서 실제 이미지의 Inversion을 수행하기 위해 Inverse Euler 상미분방정식(ODE) Solver를 사용한다.
     - 그러나 이 방법만으로는 입력 이미지를 만족스러운 수준으로 재구성하지 못한다.
     - 재구성 정확도를 개선하기 위해, OOD(Out-of-Distribution) Nudging 기법을 제안한다. 이 방법은 Inversion을 수행하기 전에 노이즈가 없는 잠재 표현(Clean Latent)에 작은 스칼라 교란(Scalar Perturbation)을 가하는 방식이다.
 
@@ -67,18 +61,11 @@
 
 ```
 
-***
-
-### <strong>Related Work</strong>
-
-
-***
-
-### <strong>Method</strong>
+## 2. 방법
 
 제안하는 방법은 다음과 같이 구성된다. 1) 레이어 제거가 생성 이미지에 미치는 perceptual impact를 분석하여 각 레이어가 갖는 중요도를 평가; 2) 가장 영향력이 큰 레이어들을 vital layer라고 정의, 해당 레이어에 attention feature를 주입하여 이미지 편집을 수행; 3) Euler Inverse ODE solver와 latent nudging을 활용하여 실제 이미지를 잠재 공간으로 역변환함으로써, 제안 방법을 실제 이미지 편집으로 확장한다. 
 
-$\textbf{Measuring the Importance of DiT Layers}$
+### Measuring the Importance of DiT Layers
 
 - UNet
     - 판별 작업(Discriminative Tasks)에서 초기 레이어는 에지(Edge)와 같은 단순한 특징을 감지하는 반면, 깊은 레이어는 보다 높은 수준의 의미적 개념(Semantic Concepts)을 포착한다.
@@ -100,25 +87,3 @@ $\textbf{Measuring the Importance of DiT Layers}$
 <p align="center">
 <img src='./img4.png'>
 </p>
-
-***
-
-### <strong>Experiment</strong>
-
-
-***
-
-### <strong>Conclusion</strong>
-
-
-***
-
-### <strong>Question</strong>
-
-
-
-![](img_path)
-<a href="">link</a>
-
-
-> 인용구

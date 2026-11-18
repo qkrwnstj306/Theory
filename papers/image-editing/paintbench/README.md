@@ -1,27 +1,26 @@
-<img src="https://capsule-render.vercel.app/api?type=waving&color=auto&height=80&section=header&text=Welcome%20Paper%20Review&fontSize=50" width="100%">
+# PaintBench: Deterministic Evaluation of Precise Visual Editing
 
+*arXiv(2026), 0 citation, New York University, Review Data: 2026.06.28*
 
-## PaintBench: Deterministic Evaluation of Precise Visual Editing
-*arXiv(2026), 0 citation, New York Univiersity, Review Data: 2026.06.28*
+> [!TIP]
+> **한 줄 요약** — 정답이 정확히 하나인 편집 문제를 rule-based 코드로 절차적으로 생성하고 pixel-level로 결정론적으로 채점하는 정밀 visual editing benchmark를 제안해, 최신 이미지 편집 모델들도 정밀 편집에 크게 실패함을 보인다.
 
-[Intro](#intro)</br>
-[Related Work](#related-work)</br>
-[Method](#method)</br>
-[Experiment](#experiment)</br>
-[Conclusion](#conclusion)</br>
+| 흐름 | 내용 |
+|:--|:--|
+| **문제** | 기존 image editing benchmark는 사람 판단이나 VLM·perceptual metric(SSIM, LPIPS, FID) 기반 평가에 의존하고 single correct answer가 없어, 평가가 정확한 검증보다 선호도에 가깝다 |
+| **아이디어** | Random seed + parameter configuration으로 (입력 이미지, 지시문, 유일한 정답 이미지)를 생성하는 4개 범주·20개 task·8개 시각적 조건(총 1,920 문제)의 benchmark와, LAB 색공간 허용 오차 $t$ 기반 CE/IE/CP/IP 픽셀 분류 및 mIoU 평가 |
+| **결과** | 11개 모델 중 최고인 NB-2도 mIoU 17.1%에 그쳤고, 기하학적 변환·색상 계산 작업과 과도한 편집(over-editing)이 공통 약점. 차트 편집 benchmark TinyGrafixBench 성능과 강한 선형 상관관계 |
+
+**Core Idea:** 한 개의 답만이 존재하는 결정론적 image editing benchmark 제안
 
 <p align="center">
-<img src='./img1.png'>
+  <img src="./img1.png" width="90%"><br>
+  <sub><b>Figure 1.</b> PaintBench 개요</sub>
 </p>
 
-> Core Idea
-<div align=center>
-<strong>"한 개의 답만이 존재하는 결정론적 image editing benchmark 제안"</strong></br>
-</div>
+---
 
-***
-
-### <strong>Intro</strong>
+## 1. 문제 정의 — 왜 이 논문이 필요한가
 
 - 최근 멀티모달 모델은 자유로운 형식의 시각적 편집에는 능숙하지만, 정밀하고 단일한 결과값을 요구하는 편집을 수행하는 것은 여전히 중요한 난제로 남아있다. 
     - 이러한 과제를 탐구하기 위해, 본 논문은 기하학적 변환, 구조적 조작, 색상 변경, 기호적 추론 등 4가지 범주에 걸쳐 20가지의 기본적인 정밀 시각 편집 작업을 다루는 동적 확장 가능 벤치마크인 PaintBench를 도입한다. 
@@ -38,14 +37,7 @@
 
 - PaintBench는 절차적 방식으로 문제를 생성한다: random seed + parameter configuration을 통해 input image, natural-language instruction, unique correct answer를 생성한다. 
 
-***
-
-### <strong>Related Work</strong>
-
-
-***
-
-### <strong>Method</strong>
+## 2. 방법
 
 - 각 문제는 seed를 기반으로 생성된 (입력 이미지, 지시문, 답 이미지)로 구성된다. 
     - Scene은 단색 또는 줄무늬 배경 위에 렌더링된 다양한 유형과 색상의 기하학적 도형으로 구성된다.
@@ -55,16 +47,16 @@
 <img src='./img2.png'>
 </p>
 
-$\textbf{Design Principles}$
+### Design Principles
 
-- 모든 문제는 정확히 하나의 정답 이미지를 가진다. 이 정답 이미지는 input image와 description에 대해 결정론적 변환을 통해 생성된다. 따라서, 평가는 모델의 출력을 정답 이미지 및 입력 이미지와 pixel-level로 직접 비교하는 방시긍로 수행된다.
+- 모든 문제는 정확히 하나의 정답 이미지를 가진다. 이 정답 이미지는 input image와 description에 대해 결정론적 변환을 통해 생성된다. 따라서, 평가는 모델의 출력을 정답 이미지 및 입력 이미지와 pixel-level로 직접 비교하는 방식으로 수행된다.
     - 별도의 평가 모델, perceptual metric 또는 평가의 모호성이 존재하지 않는다. 
 
 - 동적 생성: 문제는 무작위 시드를 기반으로 절차적으로 생성되므로, 새로운 문제 세트를 필요할 때마다 생성할 수 있다. 이를 통해 모델이 문제를 암기하거나 데이터 오염이 발생하는 것을 방지한다. 
 
 - 난이도 제어: 각 작업은 캔버스 크기, 객체 개수, 배경 텍스처, 색상 팔레트와 같은 명시적인 매개변수를 제공하며, 이를 조절하여 다양한 장면 조건을 구성할 수 있다. 
 
-$\textbf{Task Categories}$
+### Task Categories
 
 - 네 가지 범주로 구성된 총 20개의 task를 포함한다. 
     - 기하학적 변환: 이동, 회전, 반사, 크기 조절, 전단을 포함하며, 도형의 affine transformation 능력을 평가한다. 
@@ -76,7 +68,7 @@ $\textbf{Task Categories}$
 <img src='./img3.png'>
 </p>
 
-$\textbf{Visual Conditions}$
+### Visual Conditions
 
 - 모든 task는 8가지 시각적 조건에서 평가되며, 각 조건은 기준 조건에 비해 정확히 하나의 장면 매개변수만 변경한다. 
     - 기준 조건은 $1024 \times 1024$ 해상도, 도형 수는 $n=3$, 표준 색상 팔레트, 단색 배경으로 설정된다. 
@@ -95,10 +87,7 @@ $\textbf{Visual Conditions}$
 - PAINTBENCH의 Ground Truth는 생성 모델(Diffusion, GPT-Image 등)이 만든 것이 아니라, 규칙 기반(rule-based) 코드가 생성한 이미지이다. 
     - E.g., `Move the red circle 100 pixels right.` $\rightarrow$ `circle.x += 100`
 
-***
-
-### <strong>Experiment</strong>
-
+## 3. 실험
 
 - Input image와 GT 이미지 간의 XOR 연산을 해서 변경된 영역 및 보존 영역 표시
 
@@ -133,10 +122,9 @@ $\textbf{Visual Conditions}$
 - 11개의 모델을 PaintBench에 대해서 평가를 진행했고, 작업 유형별 난이도와 모델별 전문성, 공통적인 실패 유형, 장면(Scene) 변화에 대한 민감도, 대부분의 모델에서 나타나는 과도한 편집(Over-editing) 경향의 관점에서 결과를 분석한다.
     - 각 모델은 각 문제당 하나의 출력 이미지만 생성하여 평가했다. 
 
-
 - 총 1,920 개의 PaintBench 문제에서 각 모델의 mIoU를 task별로 나타낸 것이다.
     - 가장 높은 성능을 보인 모델은 NB-2였지만, mIoU는 17.1%에 불과했다. 
-    - 흥미르온 점은 80B 규모의 가장 큰 공개 모델인 HY-3조차 거의 모든 작업에서 0%에 가까운 성능을 보였다는 것이다. 
+    - 흥미로운 점은 80B 규모의 가장 큰 공개 모델인 HY-3조차 거의 모든 작업에서 0%에 가까운 성능을 보였다는 것이다. 
     - 즉, 단순히 모델 크기가 크다고 해서 정밀한 이미지 편집 능력이 뛰어난 것은 아니었다. 또한 단순 평균 성능만으로는 모델의 특성을 충분히 설명할 수 없으며, 작업별 성능을 살펴보면 작업 유형 난이도 차이와 모델별 전문성이 명확하게 드러난다. 
     - 기하학적 변환은 모든 모델에서 일관되게 어려운 작업이였다. 
     - 구조적 조작 역시 대부분 어려운 편이였는데 특히 gradient, blending, point operations와 같은 색상 변경 작업은 단일 색상을 채우는 작업과 달리 픽셀마다 서로 다른 색상을 계산해야 해서 모든 모델에서 매우 낮은 성능을 기록했다.
@@ -146,7 +134,6 @@ $\textbf{Visual Conditions}$
 <p align="center">
 <img src='./img10.png'>
 </p>
-
 
 - 네 가지 공통적인 실패 유형 
     - 단순한 mIoU가 아니라, 색상 허용 오차 $t$ 에 따른 성능 곡선을 분석하면 각 모델이 어떤 방식으로 실패하는지 살펴볼 수 있다. 
@@ -190,15 +177,14 @@ $\textbf{Visual Conditions}$
 <img src='./img13.png'>
 </p>
 
-
 - TinyGrafixBench
     - 도형을 합성하는 것을 넘어서 실제 시각 자료로의 일반화
-    - PaintBench를 만드는 방식을 그대로 데이터 시각화 편집에 적용한 벤츠마크이다. 
+    - PaintBench를 만드는 방식을 그대로 데이터 시각화 편집에 적용한 벤치마크이다. 
     - 이를 통해 PaintBench에서 평가하는 기본 편집 연산들이 실제 차트 편집 작업에도 일반화되는지 검증한다. 
     - 총 600개의 문제로 구성되며, 다음 5가지 차트 유형을 포함한다. 
         - 막대그래프, 산점도, 선 그래프, 히트맵, 네트워크 그래프 
         - 각 차트 유형마다 4개의 편집 작업을 포함한다. (Construction, Transformation, Removal, Recoloring)
-    - 모든 차트는 Matplolib를 이용하여 $1024 \times 768$ 해상도로 생성되며, 랜덤 시드를 이용한 결정론적 방식으로 렌더링 된다. 
+    - 모든 차트는 Matplotlib를 이용하여 $1024 \times 768$ 해상도로 생성되며, 랜덤 시드를 이용한 결정론적 방식으로 렌더링 된다. 
     - 평가는 동일하게 mIoU를 사용한다. 
 
 <p align="center">
@@ -218,19 +204,6 @@ $\textbf{Visual Conditions}$
 <img src='./img16.png'>
 </p>
 
-***
+## 참고
 
-### <strong>Conclusion</strong>
-
-
-***
-
-### <strong>Question</strong>
-
-
-
-![](img_path)
-<a href="">link</a>
-
-
-> 인용구
+- [Paper](https://arxiv.org/pdf/2606.00188)

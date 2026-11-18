@@ -241,10 +241,12 @@
 .md-typeset table:not([class]) {
   font-size: 0.72rem;
 }
-.md-typeset table:not([class]) td:first-child {
+/* Paper list tables (4+ columns): wide title column, no wrapping in the short columns.
+   Two-column tables inside reviews (e.g. the 문제/아이디어/결과 summary) wrap normally. */
+.md-typeset table:not([class]) td:first-child:nth-last-child(n + 4) {
   min-width: 16rem;
 }
-.md-typeset table:not([class]) td:not(:first-child) {
+.md-typeset table:not([class]) td:first-child:nth-last-child(n + 4) ~ td {
   white-space: nowrap;
 }
 .md-typeset table:not([class]) th[role="columnheader"] {
@@ -261,7 +263,7 @@
   .md-typeset .hero-title {
     font-size: 2rem;
   }
-  .md-typeset table:not([class]) td:first-child {
+  .md-typeset table:not([class]) td:first-child:nth-last-child(n + 4) {
     min-width: 11rem;
   }
 }

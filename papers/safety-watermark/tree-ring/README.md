@@ -1,66 +1,23 @@
-<img src="https://capsule-render.vercel.app/api?type=waving&color=auto&height=80&section=header&text=Welcome%20Paper%20Review&fontSize=50" width="100%">
+# Tree-Ring Watermarks: Fingerprints for Diffusion Images that are Invisible and Robust
 
+*NeurIPS(2023), 391 citation, University of Maryland, Review Data: 2026.11.18*
 
-## Tree-Ring Watermarks: Fingerprints for Diffusion Images that are Invisible and Robust
-*arXiv(2023), 391 citation, University of Maryland, Review Data: 2026.11.18*
+> [!TIP]
+> **한 줄 요약** — Diffusion sampling에 쓰이는 initial noise vector에 Fourier space에서 구조화된 패턴을 심고, 생성 후 diffusion inversion으로 noise를 복원해 그 패턴을 검출함으로써 보이지 않으면서도 robust한 watermark를 만든다.
 
-[Intro](#intro)</br>
-[Related Work](#related-work)</br>
-[Method](#method)</br>
-[Experiment](#experiment)</br>
-[Conclusion](#conclusion)</br>
+| 흐름 | 내용 |
+|:--|:--|
+| **문제** | 생성 이미지의 출처를 추적하기 위한 watermark는 이미지에 보이지 않아야 하면서도, 편집·변형 공격에 견딜 수 있어야 한다 |
+| **아이디어** | Initial noise의 Fourier space에 ring 형태의 key 패턴을 심어 convolution·crop·dilation·flip·rotation에 불변하도록 하고, 검출 시 DDIM inversion으로 복원한 noise에서 패턴을 확인 |
+| **결과** | Stable Diffusion 등 임의의 diffusion model에 plug-in으로 적용 가능하고 FID 손실이 거의 없으며, 기존에 배포된 watermark 방식보다 훨씬 robust |
 
 <p align="center">
-<img src='./img1.png'>
+  <img src="./img1.png" width="90%"><br>
+  <sub><b>Figure 1.</b> Tree-Ring Watermark 개요</sub>
 </p>
 
-> Core Idea
-<div align=center>
-<strong>"test1"</strong></br>
-</div>
+---
 
-***
+## 참고
 
-### <strong>Intro</strong>
-
-$\textbf{이 주제의 정의 및 요구사항과 중요한 이유}$
-
-$\textbf{이 주제의 문제점과 기존의 노력들}$
-
-$\textbf{최근 노력들과 여전히 남아있는 문제들}$
-
-$\textbf{본 논문에서 해결하고자 하는 문제와 어떻게 해결하는지, 그 결과들}$
-
-$\textbf{본 논문의 주요 기여점}$
-
-***
-
-### <strong>Related Work</strong>
-
-
-***
-
-### <strong>Method</strong>
-
-
-***
-
-### <strong>Experiment</strong>
-
-
-***
-
-### <strong>Conclusion</strong>
-
-
-***
-
-### <strong>Question</strong>
-
-
-
-![](img_path)
-<a href="">link</a>
-
-
-> 인용구
+- [Paper](https://arxiv.org/pdf/2305.20030) · 관련 리뷰: [Stable Signature](../stable-signature/README.md)

@@ -1,37 +1,27 @@
-<img src="https://capsule-render.vercel.app/api?type=waving&color=auto&height=80&section=header&text=Welcome%20Paper%20Review&fontSize=50" width="100%">
+# Classifier-Free Diffusion Guidance
 
+*NeurIPS Workshop(2021), 937 citation*
 
-## Classifier-Free Diffusion Guidance
-*arXiv(2022), 937 citation*
+> [!TIP]
+> **한 줄 요약** — Condition을 일정 확률로 null로 바꿔 하나의 모델이 conditional·unconditional score를 함께 학습하게 하고, 두 예측을 $w$로 조합해 별도의 classifier 없이 guidance를 준다.
+>
+> "Guidance without Additional Classifier"
 
-[Intro](#intro)</br>
-[Related Work](#related-work)</br>
-[Method](#method)</br>
-[Experiment](#experiment)</br>
-[Conclusion](#conclusion)</br>
+| 흐름 | 내용 |
+|:--|:--|
+| **문제** | Classifier guidance는 noisy image & time step을 입력으로 받는 별도의 classifier model을 추가로 학습해야 한다 |
+| **아이디어** | $\nabla_x \log{p(y|x_t)}$를 conditional/unconditional score의 차이로 대체해 $\tilde{\epsilon_\theta}(x_t, c) = (1+w)\epsilon_\theta(x_t, c) - w\epsilon_\theta(x_t)$로 sampling; 학습 시 $p_{uncond}$ 확률로 condition을 null로 바꿈 |
+| **결과** | 하나의 model로 conditional과 unconditional model을 동시에 학습하고, $w$로 FID와 IS 사이의 trade-off를 조절 |
 
 <p align="center">
-<img src='./img1.png'>
+  <img src="./img1.png" width="90%"><br>
+  <sub><b>Figure 1.</b> Classifier-free guidance 결과</sub>
 </p>
 
-> Core Idea
-<div align=center>
-<strong>"Guidance without Additional Classifier"</strong></br>
-</div>
+---
 
-***
+## 1. 방법
 
-### <strong>Intro</strong>
-
-
-***
-
-### <strong>Related Work</strong>
-
-
-***
-
-### <strong>Method</strong>
 - 다음의 식을 이용한다. <a href='../../../notes/topics/score-based-generative-models/README.md'>reference</a>
 
 $$ \nabla_x \log{p_{\sigma_i}(x)} \approx s_\theta^{*}(x_t,t\ or \ \sigma) = - \frac{1}{\sqrt{1-\bar\alpha_t}}\epsilon_\theta(x_t, t\ or \ \sigma) $$
@@ -47,7 +37,7 @@ $$ = \nabla_x \log{p(x_t)} + \nabla_x \log{p(y|x_t)} - \nabla_x \log{p(y)} $$
 $$ \nabla_x \log{p(x_t|y)} = \nabla_x \log{p(x_t)} + \nabla_x \log{p(y|x_t)} $$
 
 - $\nabla_x \log{p(x_t)}$ 을 좌항으로 넘기면, 다음과 같이 만들어진다.
-  
+
 $$ \nabla_x \log{p(x_t|y)} - \nabla_x \log{p(x_t)}  = \nabla_x \log{p(y|x_t)} $$
 
 - 위의 수식을 Classifier guidance 의 수식인 $\gamma\nabla_x \log{p(y|x_t)}$ 에 대입하게 되면, <a href='../classifier-guidance/README.md'> reference </a>
@@ -59,14 +49,17 @@ $$ \nabla_x \log{p(x_t|y)} = \nabla_x \log{p(x_t)} + \gamma(\nabla_x \log{p(x_t|
 $$ =  \gamma\nabla_x \log{p(x_t|y)} + (1-\gamma)\nabla_x \log{p(x_t)} $$
 
 - 우측 항에 존재하는 텀들은 모두 model(parameter) 로 근사하는 값이기에 $\theta^*$ 를 찾으면 식이 동일하게 된다. 
-  - 하지만, $\theta^*$ 는 찾기가 어려우므로 결국 우측 항에 있는 텀들은 좌측 항으로 넘길 수 없게 되고
-  - $1-\gamma = -w$ 로 치환하게 되면, $\gamma = 1+w$ 이므로, 
+    - 하지만, $\theta^*$ 는 찾기가 어려우므로 결국 우측 항에 있는 텀들은 좌측 항으로 넘길 수 없게 되고
+    - $1-\gamma = -w$ 로 치환하게 되면, $\gamma = 1+w$ 이므로, 
 
 $$ (1+w)\nabla_x \log{p(x_t|y)} + (-w)\nabla_x \log{p(x_t)} $$
 
 $$ = (1+w)\epsilon_\theta(x_t, c) - w\epsilon_\theta(x_t) $$
 
-$$ \therefore \tilde{\epsilon_\theta}(x_t, c) = (1+w)\epsilon_\theta(x_t, c) - w\epsilon_\theta(x_t) $$
+> [!IMPORTANT]
+> **Classifier-free guidance**
+>
+> $$ \therefore \tilde{\epsilon_\theta}(x_t, c) = (1+w)\epsilon_\theta(x_t, c) - w\epsilon_\theta(x_t) $$
 
 - 따라서, conditional score model 을 학습 시키되 $p_{uncond}$ 의 확률로 condition 에 $null$ 값을 주면서 학습시키면 $\epsilon_\theta(x_t, c), \epsilon_\theta(x_t)$ 을 동시에 구할 수 있게 된다.
 - $w$ 는 조절 가능한 가중치이다. 논문에서는 $w=0.1$ or $0.3$ 일때 best FID result 를 얻었다고 한다. 
@@ -94,25 +87,26 @@ $$ \therefore \tilde{\epsilon_\theta}(x_t, c) = (1+w)\epsilon_\theta(x_t, c) - w
 <img src='./img9.png'>
 </p>
 
-- 학습을 할때의 algorithm. DDPM 에서, condtion $c$ 를 넣는 것과 $p_uncond$ 의 확률로 condition $c$ 를 null 로만 바꿔주는 code 를 추가해주면 된다. 
+- 학습을 할때의 algorithm. DDPM 에서, condition $c$ 를 넣는 것과 $p_uncond$ 의 확률로 condition $c$ 를 null 로만 바꿔주는 code 를 추가해주면 된다. 
+
 <p align="center">
 <img src='./img10.png'>
 </p>
 
 - Sampling algorithm
+
 <p align="center">
 <img src='./img11.png'>
 </p>
 
 - Summarization 
     - 중요하게 봐야 될 건, Conditional 과 Unconditional 을 조합할 때, 같은 noisy input 을 입력으로 받아서 $\epsilon$ 을 prediction 했다는 것이다.
+
 <p align="center">
 <img src='./Algorithm.jpg'>
 </p>
 
-***
-
-### <strong>Experiment</strong>
+## 2. 실험
 
 <p align="center">
 <img src='./img6.png'>
@@ -126,12 +120,11 @@ $$ \therefore \tilde{\epsilon_\theta}(x_t, c) = (1+w)\epsilon_\theta(x_t, c) - w
 <img src='./img8.png'>
 </p>
 
-***
+## 3. 정리
 
-### <strong>Conclusion</strong>
-- 하나의 model 로 condtional model 과 unconditional model 을 동시에 학습시킬 수 있는 방법이다.
+- 하나의 model 로 conditional model 과 unconditional model 을 동시에 학습시킬 수 있는 방법이다.
 - 이 기법은 추후에 Latent Diffusion Model 에서도 사용된다. 
 
-***
+## 참고
 
-### <strong>Question</strong>
+- [Paper](https://arxiv.org/pdf/2207.12598.pdf) · [Code](https://github.com/qkrwnstj306/Diffusion) · 관련 리뷰: [Classifier Guidance](../classifier-guidance/README.md), [LDM](../ldm/README.md)

@@ -1,66 +1,95 @@
-<img src="https://capsule-render.vercel.app/api?type=waving&color=auto&height=80&section=header&text=Welcome%20Paper%20Review&fontSize=50" width="100%">
+# 논문 제목: 부제까지 전부
 
+*VENUE(YEAR), N citation, 소속, Review Data: YYYY.MM.DD*
 
-## [paper]
-*CVPR(2022), 441 citation, [Author], Review Data:*
+<!--
+  ↑ 위 두 줄은 형식을 유지하세요. 학회·연도·추가 날짜가 README/사이트에 자동으로 들어갑니다.
+  이 회색 주석들은 GitHub와 사이트에 보이지 않으니 지우지 않아도 됩니다.
+  쓸 내용이 없는 섹션은 비워두지 말고 통째로 지우세요.
+-->
 
-[Intro](#intro)</br>
-[Related Work](#related-work)</br>
-[Method](#method)</br>
-[Experiment](#experiment)</br>
-[Conclusion](#conclusion)</br>
+> [!TIP]
+> **한 줄 요약** — 이 논문이 무엇을 해냈는지 한 문장으로.
+
+| 흐름 | 내용 |
+|:--|:--|
+| **문제** | 기존 방법은 무엇을 못 하는가? |
+| **아이디어** | 이 논문은 그것을 어떻게 해결하는가? |
+| **결과** | 그래서 무엇이 좋아졌는가? |
 
 <p align="center">
-<img src='./img1.png'>
+  <img src="./img1.png" width="90%"><br>
+  <sub><b>Figure 1.</b> 전체 파이프라인 또는 대표 결과</sub>
 </p>
 
-> Core Idea
-<div align=center>
-<strong>"test1"</strong></br>
-</div>
+---
 
-***
+## 1. 문제 정의 — 왜 이 논문이 필요한가
 
-### <strong>Intro</strong>
+<!-- 처음 읽는 사람도 따라올 수 있게: 분야 → 문제 → 기존 한계 → 이 논문 순서로 -->
 
-$\textbf{이 주제의 정의 및 요구사항과 중요한 이유}$
+**배경.** 이 분야/태스크가 무엇이고 왜 중요한가.
 
-$\textbf{이 주제의 문제점과 기존의 노력들}$
+**기존 방법의 한계.** 지금까지 어떻게 풀었고, 무엇이 아직 안 되는가.
 
-$\textbf{최근 노력들과 여전히 남아있는 문제들}$
+**이 논문의 접근.** 한계를 어떤 관점으로 바라보고 해결하는가.
 
-$\textbf{본 논문에서 해결하고자 하는 문제와 어떻게 해결하는지, 그 결과들}$
+> [!NOTE]
+> **Contributions**
+> 1. 첫 번째 기여
+> 2. 두 번째 기여
 
-$\textbf{본 논문의 주요 기여점}$
+## 2. 사전 지식
 
-***
+<!-- Method를 이해하는 데 꼭 필요한 개념/선행 연구만. 이미 정리한 리뷰가 있으면 링크 -->
 
-### <strong>Related Work</strong>
+- **개념 이름** — 한두 줄 설명. (관련 리뷰: [DDIM](../../diffusion/ddim/README.md))
 
+## 3. 방법
 
-***
+### 3.1 전체 구조
 
-### <strong>Method</strong>
+<!-- 그림 한 장 + "입력 → 처리 → 출력" 흐름을 3~5줄로 -->
 
+### 3.2 핵심 구성 요소
 
-***
+<!-- 구성 요소마다: 무엇을 하는가 → 수식 → 직관(왜 이렇게 하는가) -->
 
-### <strong>Experiment</strong>
+> [!IMPORTANT]
+> **핵심 수식**
+>
+> $$\mathcal{L} = \mathbb{E}\left[\lVert \epsilon - \epsilon_\theta(x_t, t) \rVert^2\right]$$
+>
+> 각 항이 무엇을 의미하는지 한 줄씩
 
+## 4. 실험
 
-***
+### 4.1 설정
 
-### <strong>Conclusion</strong>
+| 항목 | 내용 |
+|:--|:--|
+| Dataset | |
+| Metric | |
+| Baseline | |
 
+### 4.2 주요 결과
 
-***
+<!-- 표/그림을 붙이고, 바로 아래에 "그래서 이 결과가 보여주는 것"을 한 줄로 -->
 
-### <strong>Question</strong>
+### 4.3 Ablation
 
+<!-- 어떤 구성 요소가 성능에 얼마나 기여하는가 -->
 
+## 5. 정리
 
-![](img_path)
-<a href="">link</a>
+- **한계** — 논문이 인정한 한계 / 내가 본 한계
+- **배운 점** — 이 논문에서 가져갈 아이디어
+- **연구 아이디어** — 내 연구에 적용해 볼 만한 것
 
+## 6. 질문 & 메모
 
-> 인용구
+- [ ] 아직 이해 못 한 부분, 확인해 볼 것
+
+## 참고
+
+- [Paper](https://arxiv.org/abs/xxxx.xxxxx) · [Code](https://github.com/...) · 관련 리뷰

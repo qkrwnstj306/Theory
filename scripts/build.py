@@ -534,7 +534,86 @@ def transform_md(cat, src, text):
             return m.group(1) + m.group(2) + fix(m.group(3), True) + m.group(2)
         return m.group(4) + fix(m.group(5), False) + m.group(6)
 
-    return separate_display_math(LINK_RE.sub(sub, text))
+    return github_alerts(separate_display_math(normalize_lists(LINK_RE.sub(sub, text))))
+
+
+LIST_RE = re.compile(r'^(\s*)([-*+]|\d+\.)\s+')
+
+
+def normalize_lists(text):
+    """GitHub accepts 2- or 4-space nested lists and lists glued to a paragraph;
+    Python-Markdown needs 4-space nesting and a blank line before a list."""
+    out, stack, fenced = [], [], False      # stack: original indents of open list items
+    for line in text.split('\n'):
+        s = line.strip()
+        if s.startswith('```'):
+            fenced = not fenced
+        if fenced or s.startswith('```'):
+            out.append(line)
+            continue
+        indent = len(line) - len(line.lstrip())
+        m = LIST_RE.match(line)
+        if m:
+            while stack and stack[-1] >= indent:
+                if stack[-1] == indent:
+                    stack.pop()
+                    break
+                stack.pop()
+            if not stack and out and out[-1].strip() and not LIST_RE.match(out[-1]) \
+                    and not out[-1].startswith(' '):
+                out.append('')               # list glued to a paragraph
+            out.append(' ' * (4 * len(stack)) + line.lstrip())
+            stack.append(indent)
+        elif not s:
+            out.append(line)
+        elif stack and indent > 0:           # continuation of the current item
+            out.append(' ' * (4 * len(stack)) + line.lstrip())
+        else:
+            if indent == 0 and out and not out[-1].strip():
+                stack = []                   # paragraph after a blank line ends the list
+            out.append(line)
+    return '\n'.join(out)
+
+
+ALERTS = {'NOTE': ('note', 'Note'), 'TIP': ('tip', 'Tip'), 'IMPORTANT': ('abstract', 'Important'),
+          'WARNING': ('warning', 'Warning'), 'CAUTION': ('danger', 'Caution')}
+
+
+def github_alerts(text):
+    """GitHub `> [!NOTE]` alert blocks -> Material admonitions."""
+    out, lines, i = [], text.split('\n'), 0
+    while i < len(lines):
+        m = re.match(r'^(\s*)>\s*\[!(\w+)\]\s*$', lines[i])
+        if m and m.group(2).upper() in ALERTS:
+            indent, (kind, title) = m.group(1), ALERTS[m.group(2).upper()]
+            if out and out[-1].strip():
+                out.append('')
+            out.append(f'{indent}!!! {kind} "{title}"')
+            out.append('')
+            i += 1
+            while i < len(lines) and re.match(rf'^{indent}>', lines[i]):
+                body = re.sub(rf'^{indent}>\s?', '', lines[i])
+                out.append(f'{indent}    {body}' if body.strip() else '')
+                i += 1
+            out.append('')
+            continue
+        out.append(lines[i])
+        i += 1
+    return '\n'.join(out)
+
+
+def insert_after_title(text, block):
+    """Put the chip bar under `# Title` + its `*venue*` line when the review has an H1."""
+    lines = text.split('\n')
+    for i, line in enumerate(lines[:10]):
+        if line.startswith('# '):
+            j = i + 1
+            while j < len(lines) and not lines[j].strip():
+                j += 1
+            if j < len(lines) and re.match(r'^\*.*\*\s*$', lines[j].strip()):
+                i = j
+            return '\n'.join(lines[:i + 1] + ['', block.rstrip('\n'), ''] + lines[i + 1:])
+    return block + text
 
 
 def separate_display_math(text):
@@ -549,8 +628,8 @@ def separate_display_math(text):
         if not fenced and s.startswith('$$') and out and out[-1].strip():
             # indent to the content column of the list item / paragraph it belongs to
             prev = out[-1]
-            m = re.match(r'^(\s*(?:[-*+]|\d+\.)\s+)', prev)
-            indent = len(m.group(1)) if m else len(prev) - len(prev.lstrip())
+            m = LIST_RE.match(prev)
+            indent = len(m.group(1)) + 4 if m else len(prev) - len(prev.lstrip())
             line = ' ' * indent + s
             out.append('')
         out.append(line)
@@ -574,7 +653,7 @@ def stage(cat):
                 elif name.endswith('.md'):
                     text = transform_md(cat, src, open(src, encoding='utf-8').read())
                     if src in reviews:
-                        text = paper_meta(cat, reviews[src], site_md(src)) + text
+                        text = insert_after_title(text, paper_meta(cat, reviews[src], site_md(src)))
                     dst = f'{STAGE}/{site_md(src)}'
                     os.makedirs(os.path.dirname(dst), exist_ok=True)
                     open(dst, 'w', encoding='utf-8').write(text)

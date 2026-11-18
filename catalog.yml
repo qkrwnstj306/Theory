@@ -141,6 +141,8 @@ research:
     path: research/i2am/i2am-symposium-2025-poster.pptx
 
 - title: 'StyleBoost: A Study of Personalizing Text-to-Image Generation in Any Style using DreamBooth'
+  venue: ICTC
+  year: 2023
   dir: research/styleboost
   review: research/styleboost/README.md
   files:
@@ -271,9 +273,9 @@ papers:
 
 - title: Rotary Position Embedding for Vision Transformer
   field: foundations
-  venue: arXiv
-  year: 2024
   url: https://arxiv.org/pdf/2403.13298
+  venue: ECCV
+  year: 2024
   dir: papers/foundations/rope-vit
   review: papers/foundations/rope-vit/README.md
   added: '2024-10-30'
@@ -333,9 +335,9 @@ papers:
 
 - title: Distilling the Knowledge in a Neural Network
   field: efficient-ml
-  venue: arXiv
-  year: 2015
   url: https://arxiv.org/pdf/1503.02531.pdf
+  venue: NeurIPS Workshop
+  year: 2014
   dir: papers/efficient-ml/distilling
   review: papers/efficient-ml/distilling/README.md
   simple: true
@@ -343,7 +345,7 @@ papers:
 
 - title: A Survey of Quantization Methods for Efficient Neural Network Inference
   field: efficient-ml
-  venue: Book chapter
+  venue: Low-Power Computer Vision (Book)
   year: 2022
   url: https://arxiv.org/pdf/2103.13630
   dir: papers/efficient-ml/survey-quantization
@@ -477,9 +479,9 @@ papers:
 
 - title: 'SDXL: Improving Latent Diffusion Models for High-Resolution Image Synthesis'
   field: diffusion
-  venue: arXiv
-  year: 2023
   url: https://arxiv.org/pdf/2307.01952.pdf
+  venue: ICLR
+  year: 2024
   dir: papers/diffusion/sdxl
   review: papers/diffusion/sdxl/README.md
   added: '2024-03-01'
@@ -523,9 +525,9 @@ papers:
 
 - title: Classifier-Free Diffusion Guidance
   field: diffusion
-  venue: arXiv
-  year: 2022
   url: https://arxiv.org/pdf/2207.12598.pdf
+  venue: NeurIPS Workshop
+  year: 2021
   dir: papers/diffusion/classifier-free-guidance
   review: papers/diffusion/classifier-free-guidance/README.md
   code:
@@ -670,9 +672,9 @@ papers:
 
 - title: 'NICE: Non-Linear Independent Components Estimation'
   field: generative-models
-  venue: arXiv
-  year: 2014
   url: https://arxiv.org/pdf/1410.8516
+  venue: ICLR Workshop
+  year: 2015
   dir: papers/generative-models/nice
   review: papers/generative-models/nice/README.md
   added: '2024-05-18'
@@ -944,9 +946,9 @@ papers:
 
 - title: 'StyleDiffusion: Prompt-Embedding Inversion for Text-Based Editing'
   field: image-editing
-  venue: arXiv
-  year: 2023
   url: https://arxiv.org/pdf/2303.15649
+  venue: Computational Visual Media
+  year: 2026
   dir: papers/image-editing/stylediffusion-prompt-inversion
   review: papers/image-editing/stylediffusion-prompt-inversion/README.md
   added: '2024-07-11'
@@ -1414,9 +1416,9 @@ papers:
 
 - title: 'OOTDiffusion: Outfitting Fusion based Latent Diffusion for Controllable Virtual Try-on'
   field: virtual-try-on
-  venue: arXiv
-  year: 2024
   url: https://arxiv.org/pdf/2403.01779.pdf
+  venue: AAAI
+  year: 2025
   dir: papers/virtual-try-on/ootdiffusion
   review: papers/virtual-try-on/ootdiffusion/README.md
   added: '2024-03-28'
@@ -1434,9 +1436,9 @@ papers:
 
 - title: 'BooW-VTON: Boosting In-the-Wild Virtual Try-On via Mask-Free Pseudo Data Training'
   field: virtual-try-on
-  venue: arXiv
-  year: 2024
   url: https://arxiv.org/pdf/2408.06047
+  venue: CVPR
+  year: 2025
   dir: papers/virtual-try-on/boow-vton
   review: papers/virtual-try-on/boow-vton/README.md
   slides:
@@ -1445,9 +1447,9 @@ papers:
 
 - title: 'GarDiff: Improving Virtual Try-On with Garment-focused Diffusion Models'
   field: virtual-try-on
-  venue: arXiv
-  year: 2024
   url: https://arxiv.org/pdf/2409.08258
+  venue: ECCV
+  year: 2024
   dir: papers/virtual-try-on/gardiff
   review: papers/virtual-try-on/gardiff/README.md
   added: '2024-10-03'
@@ -1670,6 +1672,8 @@ papers:
 
 - title: 'SimFLE: Simple Facial Landmark Encoding for Self-Supervised Facial Expression Recognition in the Wild'
   field: applications
+  venue: arXiv
+  year: 2023
   dir: papers/applications/simfle
   notes:
   - papers/applications/simfle/simfle.pdf

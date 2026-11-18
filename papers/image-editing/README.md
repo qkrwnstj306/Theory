@@ -22,7 +22,6 @@
 | [Prompt-to-Prompt Image Editing with Cross Attention Control](https://arxiv.org/abs/2208.01626) | ICLR 2023 |  | [📒](prompt-to-prompt/prompt-to-prompt.pdf "필기 PDF") [📊](prompt-to-prompt/prompt-to-prompt-slides.pptx "발표 자료") [💻](https://github.com/qkrwnstj306/Prompt-to-Prompt "코드") |
 | [Reference-based Image Composition with Sketch via Structure-aware Diffusion Model](https://arxiv.org/pdf/2304.09748) | CVPRW 2023 | [📝](ric/README.md "리뷰 읽기") |  |
 | [SmartBrush: Text and Shape Guided Object Inpainting with Diffusion Model](https://openaccess.thecvf.com/content/CVPR2023/papers/Xie_SmartBrush_Text_and_Shape_Guided_Object_Inpainting_With_Diffusion_Model_CVPR_2023_paper.pdf) | CVPR 2023 | [📝](smartbrush/README.md "리뷰 읽기") | [📊](smartbrush/smartbrush-slides.pptx "발표 자료") |
-| [StyleDiffusion: Prompt-Embedding Inversion for Text-Based Editing](https://arxiv.org/pdf/2303.15649) | arXiv 2023 | [📝](stylediffusion-prompt-inversion/README.md "리뷰 읽기") |  |
 | [DragDiffusion: Harnessing Diffusion Models for Interactive Point-based Image Editing](https://arxiv.org/pdf/2306.14435) | CVPR 2024 | [📝](dragdiffusion/README.md "리뷰 읽기") | [📊](dragdiffusion/dragdiffusion-slides.pdf "발표 자료") |
 | [OmniBooth: Learning Latent Control for Image Synthesis with Multi-Modal Instruction](https://arxiv.org/pdf/2410.04932) | arXiv 2024 | [📝](omnibooth/README.md "리뷰 읽기") |  |
 | [Training-free Regional Prompting for Diffusion Transformers](https://arxiv.org/pdf/2411.02395) | arXiv 2024 | [📝](regional-prompting/README.md "리뷰 읽기") |  |
@@ -31,3 +30,4 @@
 | Stable Flow: Vital Layers for Training-Free Image Editing | CVPR 2025 | [📝](stable-flow/README.md "리뷰 읽기") |  |
 | [FlowAlign: Trajectory-Regularized, Inversion-Free Flow-based Image Editing](https://arxiv.org/pdf/2505.23145) | ICLR 2026 | [📝](flowalign/README.md "리뷰 읽기") |  |
 | [PaintBench: Deterministic Evaluation of Precise Visual Editing](https://arxiv.org/pdf/2606.00188) | arXiv 2026 | [📝](paintbench/README.md "리뷰 읽기") |  |
+| [StyleDiffusion: Prompt-Embedding Inversion for Text-Based Editing](https://arxiv.org/pdf/2303.15649) | Computational Visual Media 2026 | [📝](stylediffusion-prompt-inversion/README.md "리뷰 읽기") |  |

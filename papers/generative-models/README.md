@@ -11,8 +11,8 @@
 |:--|:--:|:--:|:--|
 | [CGAN: Conditional Generative Adversarial Nets](https://arxiv.org/abs/1411.1784) | arXiv 2014 | [📝](cgan/README.md "리뷰 읽기") ⚡ |  |
 | [GAN: Generative Adversarial Nets](https://arxiv.org/abs/1406.2661) | NeurIPS 2014 | [📝](gan/README.md "리뷰 읽기") | [📒](gan/gan.pdf "필기 PDF") |
-| [NICE: Non-Linear Independent Components Estimation](https://arxiv.org/pdf/1410.8516) | arXiv 2014 | [📝](nice/README.md "리뷰 읽기") |  |
 | [VAE: Auto-Encoding Variational Bayes](https://arxiv.org/abs/1312.6114) | ICLR 2014 | [📝](vae/README.md "리뷰 읽기") | [📒](vae/vae.pdf "필기 PDF") [💻](https://github.com/qkrwnstj306/VAE "코드") |
+| [NICE: Non-Linear Independent Components Estimation](https://arxiv.org/pdf/1410.8516) | ICLR Workshop 2015 | [📝](nice/README.md "리뷰 읽기") |  |
 | [Pix2Pix: Image-to-Image Translation with Conditional Adversarial Networks](https://arxiv.org/abs/1611.07004) | CVPR 2017 |  | [💻](https://github.com/qkrwnstj306/Style-Similarity/blob/main/pix2pix-paper.ipynb "코드") |
 | [WGAN-GP: Improved Training of Wasserstein GANs](https://arxiv.org/abs/1704.00028) | NeurIPS 2017 |  | [📒](wgan-gp/wgan-gp.pdf "필기 PDF") |
 | [WGAN: Wasserstein GAN](https://arxiv.org/abs/1701.07875) | ICML 2017 |  | [📒](wgan/wgan.pdf "필기 PDF") |

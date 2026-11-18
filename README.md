@@ -17,7 +17,7 @@
 | Research | Venue | Materials |
 |:--|:--:|:--|
 | [**I2AM**](https://openreview.net/forum?id=bBNUiErs26) | ICLR | [ICLR 발표 슬라이드](research/i2am/i2am-iclr-slides.pptx) · [ICLR 발표 대본 (Eng)](research/i2am/i2am-iclr-script.docx) · [ICLR 포스터 (PDF)](research/i2am/i2am-iclr-poster.pdf) · [ICLR 포스터 (PPT)](research/i2am/i2am-iclr-poster.pptx) · [IJCAI XAI Workshop 발표](research/i2am/i2am-ijcai-workshop.pdf) · [Workshop 발표 대본](research/i2am/i2am-ijcai-workshop-script.txt) · [2025 AI대학원 심포지엄 포스터](research/i2am/i2am-symposium-2025-poster.pptx) |
-| **StyleBoost: A Study of Personalizing Text-to-Image Generation in Any Style using DreamBooth** |  | [📝 소개](research/styleboost/README.md) · [논문 PDF](research/styleboost/styleboost.pdf) · [학회 발표 슬라이드](research/styleboost/styleboost-slides.pptx) · [발표 대본](research/styleboost/styleboost-script.txt) |
+| **StyleBoost: A Study of Personalizing Text-to-Image Generation in Any Style using DreamBooth** | ICTC | [📝 소개](research/styleboost/README.md) · [논문 PDF](research/styleboost/styleboost.pdf) · [학회 발표 슬라이드](research/styleboost/styleboost-slides.pptx) · [발표 대본](research/styleboost/styleboost-script.txt) |
 | **졸업논문 Abstract** |  | [Abstract PDF](research/graduation-thesis/graduation-thesis-abstract.pdf) |
 
 ## 🆕 Recently Added
@@ -69,15 +69,15 @@
 |:--|:--:|:--:|:--|
 | [Deep Unsupervised Learning using Nonequilibrium Thermodynamics](https://arxiv.org/abs/1503.03585) | ICML 2015 | [📝](papers/diffusion/nonequilibrium-thermodynamics/README.md "리뷰 읽기") |  |
 | [DDPM: Denoising Diffusion Probabilistic Models](https://arxiv.org/abs/2006.11239) | NeurIPS 2020 |  | [📒](papers/diffusion/ddpm/ddpm.pdf "필기 PDF") [💻](https://github.com/qkrwnstj306/Diffusion "코드") |
+| [Classifier-Free Diffusion Guidance](https://arxiv.org/pdf/2207.12598.pdf) | NeurIPS Workshop 2021 | [📝](papers/diffusion/classifier-free-guidance/README.md "리뷰 읽기") ⚡ | [💻](https://github.com/qkrwnstj306/Diffusion "코드") |
 | [DDIM: Denoising Diffusion Implicit Models](https://arxiv.org/abs/2010.02502) | ICLR 2021 | [📝](papers/diffusion/ddim/README.md "리뷰 읽기") | [📒](papers/diffusion/ddim/ddim.pdf "필기 PDF") [💻](https://github.com/qkrwnstj306/Diffusion "코드") |
 | [Diffusion Models Beat GANs on Image Synthesis](https://arxiv.org/pdf/2105.05233.pdf) | NeurIPS 2021 | [📝](papers/diffusion/classifier-guidance/README.md "리뷰 읽기") ⚡ |  |
-| [Classifier-Free Diffusion Guidance](https://arxiv.org/pdf/2207.12598.pdf) | arXiv 2022 | [📝](papers/diffusion/classifier-free-guidance/README.md "리뷰 읽기") ⚡ | [💻](https://github.com/qkrwnstj306/Diffusion "코드") |
 | [LDM: High-Resolution Image Synthesis with Latent Diffusion Models](https://arxiv.org/abs/2112.10752) | CVPR 2022 | [📝](papers/diffusion/ldm/README.md "리뷰 읽기") | [📒](papers/diffusion/ldm/ldm.pdf "필기 PDF") [📒](papers/diffusion/ldm/ldm-2.pdf "필기 PDF") [💻](https://github.com/qkrwnstj306/Diffusion "코드") |
 | [Consistency Models](https://arxiv.org/abs/2303.01469) | ICML 2023 | [📝](papers/diffusion/consistency-models/README.md "리뷰 읽기") |  |
 | [DiT: Scalable Diffusion Models with Transformers](https://openaccess.thecvf.com/content/ICCV2023/papers/Peebles_Scalable_Diffusion_Models_with_Transformers_ICCV_2023_paper.pdf) | ICCV 2023 | [📝](papers/diffusion/dit/README.md "리뷰 읽기") |  |
 | [Kandinsky: an Improved Text-to-Image Synthesis with Image Prior and Latent Diffusion](https://arxiv.org/pdf/2310.03502.pdf) | EMNLP Demo 2023 | [📝](papers/diffusion/kandinsky/README.md "리뷰 읽기") |  |
-| [SDXL: Improving Latent Diffusion Models for High-Resolution Image Synthesis](https://arxiv.org/pdf/2307.01952.pdf) | arXiv 2023 | [📝](papers/diffusion/sdxl/README.md "리뷰 읽기") |  |
 | [Common Diffusion Noise Schedules and Sample Steps are Flawed](https://arxiv.org/pdf/2305.08891) | WACV 2024 | [📝](papers/diffusion/common-diffusion/README.md "리뷰 읽기") |  |
+| [SDXL: Improving Latent Diffusion Models for High-Resolution Image Synthesis](https://arxiv.org/pdf/2307.01952.pdf) | ICLR 2024 | [📝](papers/diffusion/sdxl/README.md "리뷰 읽기") |  |
 | [Visual Anagrams: Generating Multi-View Optical Illusions with Diffusion Models](https://openaccess.thecvf.com/content/CVPR2024/papers/Geng_Visual_Anagrams_Generating_Multi-View_Optical_Illusions_with_Diffusion_Models_CVPR_2024_paper.pdf) | CVPR 2024 | [📝](papers/diffusion/visual-anagrams/README.md "리뷰 읽기") ⚡ | [📊](papers/diffusion/visual-anagrams/visual-anagrams-slides.pptx "발표 자료") |
 | [FAM Diffusion: Frequency and Attention Modulation for High-Resolution Image Generation with Stable Diffusion](https://openaccess.thecvf.com/content/CVPR2025/papers/Yang_FAM_Diffusion_Frequency_and_Attention_Modulation_for_High-Resolution_Image_Generation_CVPR_2025_paper.pdf) | CVPR 2025 | [📝](papers/diffusion/fam-diffusion/README.md "리뷰 읽기") | [📊](papers/diffusion/fam-diffusion/fam-diffusion-slides.pptx "발표 자료") |
 
@@ -101,7 +101,6 @@
 | [Prompt-to-Prompt Image Editing with Cross Attention Control](https://arxiv.org/abs/2208.01626) | ICLR 2023 |  | [📒](papers/image-editing/prompt-to-prompt/prompt-to-prompt.pdf "필기 PDF") [📊](papers/image-editing/prompt-to-prompt/prompt-to-prompt-slides.pptx "발표 자료") [💻](https://github.com/qkrwnstj306/Prompt-to-Prompt "코드") |
 | [Reference-based Image Composition with Sketch via Structure-aware Diffusion Model](https://arxiv.org/pdf/2304.09748) | CVPRW 2023 | [📝](papers/image-editing/ric/README.md "리뷰 읽기") |  |
 | [SmartBrush: Text and Shape Guided Object Inpainting with Diffusion Model](https://openaccess.thecvf.com/content/CVPR2023/papers/Xie_SmartBrush_Text_and_Shape_Guided_Object_Inpainting_With_Diffusion_Model_CVPR_2023_paper.pdf) | CVPR 2023 | [📝](papers/image-editing/smartbrush/README.md "리뷰 읽기") | [📊](papers/image-editing/smartbrush/smartbrush-slides.pptx "발표 자료") |
-| [StyleDiffusion: Prompt-Embedding Inversion for Text-Based Editing](https://arxiv.org/pdf/2303.15649) | arXiv 2023 | [📝](papers/image-editing/stylediffusion-prompt-inversion/README.md "리뷰 읽기") |  |
 | [DragDiffusion: Harnessing Diffusion Models for Interactive Point-based Image Editing](https://arxiv.org/pdf/2306.14435) | CVPR 2024 | [📝](papers/image-editing/dragdiffusion/README.md "리뷰 읽기") | [📊](papers/image-editing/dragdiffusion/dragdiffusion-slides.pdf "발표 자료") |
 | [OmniBooth: Learning Latent Control for Image Synthesis with Multi-Modal Instruction](https://arxiv.org/pdf/2410.04932) | arXiv 2024 | [📝](papers/image-editing/omnibooth/README.md "리뷰 읽기") |  |
 | [Training-free Regional Prompting for Diffusion Transformers](https://arxiv.org/pdf/2411.02395) | arXiv 2024 | [📝](papers/image-editing/regional-prompting/README.md "리뷰 읽기") |  |
@@ -110,6 +109,7 @@
 | Stable Flow: Vital Layers for Training-Free Image Editing | CVPR 2025 | [📝](papers/image-editing/stable-flow/README.md "리뷰 읽기") |  |
 | [FlowAlign: Trajectory-Regularized, Inversion-Free Flow-based Image Editing](https://arxiv.org/pdf/2505.23145) | ICLR 2026 | [📝](papers/image-editing/flowalign/README.md "리뷰 읽기") |  |
 | [PaintBench: Deterministic Evaluation of Precise Visual Editing](https://arxiv.org/pdf/2606.00188) | arXiv 2026 | [📝](papers/image-editing/paintbench/README.md "리뷰 읽기") |  |
+| [StyleDiffusion: Prompt-Embedding Inversion for Text-Based Editing](https://arxiv.org/pdf/2303.15649) | Computational Visual Media 2026 | [📝](papers/image-editing/stylediffusion-prompt-inversion/README.md "리뷰 읽기") |  |
 
 </details>
 
@@ -158,12 +158,12 @@
 | [HR-VITON: High-Resolution Virtual Try-On with Misalignment and Occlusion-Handled Conditions](https://arxiv.org/pdf/2206.14180.pdf) | ECCV 2022 | [📝](papers/virtual-try-on/hr-viton/README.md "리뷰 읽기") |  |
 | [Multimodal Garment Designer: Human-Centric Latent Diffusion Models for Fashion Image Editing](https://arxiv.org/abs/2304.02051) | ICCV 2023 | [📝](papers/virtual-try-on/garment-designer/README.md "리뷰 읽기") | [📒](papers/virtual-try-on/garment-designer/garment-designer.pdf "필기 PDF") |
 | [TryOnDiffusion: A Tale of Two UNets](https://openaccess.thecvf.com/content/CVPR2023/papers/Zhu_TryOnDiffusion_A_Tale_of_Two_UNets_CVPR_2023_paper.pdf) | CVPR 2023 | [📝](papers/virtual-try-on/tryondiffusion/README.md "리뷰 읽기") |  |
-| [BooW-VTON: Boosting In-the-Wild Virtual Try-On via Mask-Free Pseudo Data Training](https://arxiv.org/pdf/2408.06047) | arXiv 2024 | [📝](papers/virtual-try-on/boow-vton/README.md "리뷰 읽기") | [📊](papers/virtual-try-on/boow-vton/boow-vton-slides.pdf "발표 자료") |
 | [Diffuse to Choose: Enriching Image Conditioned Inpainting in Latent Diffusion Models for Virtual Try-All](https://arxiv.org/pdf/2401.13795.pdf) | arXiv 2024 | [📝](papers/virtual-try-on/diffuse-to-choose/README.md "리뷰 읽기") |  |
 | [FLDM-VTON: Faithful Latent Diffusion Model for Virtual Try-on](https://arxiv.org/pdf/2404.14162) | IJCAI 2024 | [📝](papers/virtual-try-on/fldm-vton/README.md "리뷰 읽기") | [📊](papers/virtual-try-on/fldm-vton/fldm-vton-slides.pdf "발표 자료") |
-| [GarDiff: Improving Virtual Try-On with Garment-focused Diffusion Models](https://arxiv.org/pdf/2409.08258) | arXiv 2024 | [📝](papers/virtual-try-on/gardiff/README.md "리뷰 읽기") |  |
-| [OOTDiffusion: Outfitting Fusion based Latent Diffusion for Controllable Virtual Try-on](https://arxiv.org/pdf/2403.01779.pdf) | arXiv 2024 | [📝](papers/virtual-try-on/ootdiffusion/README.md "리뷰 읽기") |  |
+| [GarDiff: Improving Virtual Try-On with Garment-focused Diffusion Models](https://arxiv.org/pdf/2409.08258) | ECCV 2024 | [📝](papers/virtual-try-on/gardiff/README.md "리뷰 읽기") |  |
 | [StableVITON: Learning Semantic Correspondence with Latent Diffusion Model for Virtual Try-On](https://arxiv.org/pdf/2312.01725.pdf) | CVPR 2024 | [📝](papers/virtual-try-on/stableviton/README.md "리뷰 읽기") | [📎](papers/virtual-try-on/stableviton/atv-loss-analysis.pdf "ATV loss 분석") |
+| [BooW-VTON: Boosting In-the-Wild Virtual Try-On via Mask-Free Pseudo Data Training](https://arxiv.org/pdf/2408.06047) | CVPR 2025 | [📝](papers/virtual-try-on/boow-vton/README.md "리뷰 읽기") | [📊](papers/virtual-try-on/boow-vton/boow-vton-slides.pdf "발표 자료") |
+| [OOTDiffusion: Outfitting Fusion based Latent Diffusion for Controllable Virtual Try-on](https://arxiv.org/pdf/2403.01779.pdf) | AAAI 2025 | [📝](papers/virtual-try-on/ootdiffusion/README.md "리뷰 읽기") |  |
 
 </details>
 
@@ -248,8 +248,8 @@
 |:--|:--:|:--:|:--|
 | [CGAN: Conditional Generative Adversarial Nets](https://arxiv.org/abs/1411.1784) | arXiv 2014 | [📝](papers/generative-models/cgan/README.md "리뷰 읽기") ⚡ |  |
 | [GAN: Generative Adversarial Nets](https://arxiv.org/abs/1406.2661) | NeurIPS 2014 | [📝](papers/generative-models/gan/README.md "리뷰 읽기") | [📒](papers/generative-models/gan/gan.pdf "필기 PDF") |
-| [NICE: Non-Linear Independent Components Estimation](https://arxiv.org/pdf/1410.8516) | arXiv 2014 | [📝](papers/generative-models/nice/README.md "리뷰 읽기") |  |
 | [VAE: Auto-Encoding Variational Bayes](https://arxiv.org/abs/1312.6114) | ICLR 2014 | [📝](papers/generative-models/vae/README.md "리뷰 읽기") | [📒](papers/generative-models/vae/vae.pdf "필기 PDF") [💻](https://github.com/qkrwnstj306/VAE "코드") |
+| [NICE: Non-Linear Independent Components Estimation](https://arxiv.org/pdf/1410.8516) | ICLR Workshop 2015 | [📝](papers/generative-models/nice/README.md "리뷰 읽기") |  |
 | [Pix2Pix: Image-to-Image Translation with Conditional Adversarial Networks](https://arxiv.org/abs/1611.07004) | CVPR 2017 |  | [💻](https://github.com/qkrwnstj306/Style-Similarity/blob/main/pix2pix-paper.ipynb "코드") |
 | [WGAN-GP: Improved Training of Wasserstein GANs](https://arxiv.org/abs/1704.00028) | NeurIPS 2017 |  | [📒](papers/generative-models/wgan-gp/wgan-gp.pdf "필기 PDF") |
 | [WGAN: Wasserstein GAN](https://arxiv.org/abs/1701.07875) | ICML 2017 |  | [📒](papers/generative-models/wgan/wgan.pdf "필기 PDF") |
@@ -288,7 +288,7 @@
 | [Mixup: Beyond Empirical Risk Minimization](https://arxiv.org/pdf/1710.09412.pdf) | ICLR 2018 | [📝](papers/foundations/mixup/README.md "리뷰 읽기") ⚡ |  |
 | [ViT: An Image is Worth 16x16 Words: Transformers for Image Recognition at Scale](https://arxiv.org/abs/2010.11929) | ICLR 2021 |  | [📒](papers/foundations/vit/vit.pdf "필기 PDF") [📊](papers/foundations/vit/vit-slides.pptx "발표 자료") |
 | [The Forward-Forward Algorithm: Some Preliminary Investigations](https://arxiv.org/abs/2212.13345) | arXiv 2022 |  | [📒](papers/foundations/forward-forward/forward-forward.pdf "필기 PDF") [📊](papers/foundations/forward-forward/forward-forward-slides.pptx "발표 자료") [💻](https://github.com/qkrwnstj306/forward-forward-algorithm "코드") |
-| [Rotary Position Embedding for Vision Transformer](https://arxiv.org/pdf/2403.13298) | arXiv 2024 | [📝](papers/foundations/rope-vit/README.md "리뷰 읽기") |  |
+| [Rotary Position Embedding for Vision Transformer](https://arxiv.org/pdf/2403.13298) | ECCV 2024 | [📝](papers/foundations/rope-vit/README.md "리뷰 읽기") |  |
 | [XDomainMix: Cross-Domain Feature Augmentation for Domain Generalization](https://arxiv.org/pdf/2405.08586) | IJCAI 2024 | [📝](papers/foundations/xdomainmix/README.md "리뷰 읽기") | [📊](papers/foundations/xdomainmix/xdomainmix-slides.pdf "발표 자료") |
 | [Hyper-Connections](https://openreview.net/pdf?id=9FqARW7dwB) | ICLR 2025 | [📝](papers/foundations/hyper-connections/README.md "리뷰 읽기") |  |
 | [mHC: Manifold-Constrained Hyper-Connections](https://arxiv.org/pdf/2512.24880) | arXiv 2026 | [📝](papers/foundations/mhc/README.md "리뷰 읽기") | [📊](papers/foundations/mhc/mhc-slides.pptx "발표 자료") |
@@ -321,11 +321,11 @@
 
 | Paper | Venue | Review | Materials |
 |:--|:--:|:--:|:--|
-| [Distilling the Knowledge in a Neural Network](https://arxiv.org/pdf/1503.02531.pdf) | arXiv 2015 | [📝](papers/efficient-ml/distilling/README.md "리뷰 읽기") ⚡ |  |
+| [Distilling the Knowledge in a Neural Network](https://arxiv.org/pdf/1503.02531.pdf) | NeurIPS Workshop 2014 | [📝](papers/efficient-ml/distilling/README.md "리뷰 읽기") ⚡ |  |
 | [Mixed Precision Training](https://arxiv.org/pdf/1710.03740.pdf) | ICLR 2018 | [📝](papers/efficient-ml/mixed-precision/README.md "리뷰 읽기") |  |
 | [AdaRound: Up or Down? Adaptive Rounding for Post-Training Quantization](https://proceedings.mlr.press/v119/nagel20a/nagel20a.pdf) | ICML 2020 | [📝](papers/efficient-ml/adaround/README.md "리뷰 읽기") | [📊](papers/efficient-ml/adaround/adaround-slides.pdf "발표 자료") |
 | [BRECQ: Pushing the Limit of Post-Training Quantization by Block Reconstruction](https://arxiv.org/pdf/2102.05426) | ICLR 2021 | [📝](papers/efficient-ml/brecq/README.md "리뷰 읽기") |  |
-| [A Survey of Quantization Methods for Efficient Neural Network Inference](https://arxiv.org/pdf/2103.13630) | Book chapter 2022 | [📝](papers/efficient-ml/survey-quantization/README.md "리뷰 읽기") | [📎](papers/efficient-ml/survey-quantization/survey-quantization-advanced.pdf "Advanced Concepts PDF") |
+| [A Survey of Quantization Methods for Efficient Neural Network Inference](https://arxiv.org/pdf/2103.13630) | Low-Power Computer Vision (Book) 2022 | [📝](papers/efficient-ml/survey-quantization/README.md "리뷰 읽기") | [📎](papers/efficient-ml/survey-quantization/survey-quantization-advanced.pdf "Advanced Concepts PDF") |
 | [LoRA: Low-Rank Adaptation of Large Language Models](https://arxiv.org/abs/2106.09685) | ICLR 2022 |  | [📒](papers/efficient-ml/lora/lora.pdf "필기 PDF") |
 | [Q-Diffusion: Quantizing Diffusion Models](https://arxiv.org/pdf/2302.04304.pdf) | ICCV 2023 | [📝](papers/efficient-ml/q-diffusion/README.md "리뷰 읽기") |  |
 | [TFMQ-DM: Temporal Feature Maintenance Quantization for Diffusion Models](https://openaccess.thecvf.com/content/CVPR2024/papers/Huang_TFMQ-DM_Temporal_Feature_Maintenance_Quantization_for_Diffusion_Models_CVPR_2024_paper.pdf) | CVPR 2024 | [📝](papers/efficient-ml/tfmq-dm/README.md "리뷰 읽기") |  |
@@ -350,7 +350,7 @@
 | [Faster R-CNN: Towards Real-Time Object Detection with Region Proposal Networks](https://arxiv.org/abs/1506.01497) | NeurIPS 2015 |  | [📒](papers/applications/faster-rcnn/faster-rcnn.pdf "필기 PDF") |
 | [YOLOv1: You Only Look Once: Unified, Real-Time Object Detection](https://arxiv.org/abs/1506.02640) | CVPR 2016 |  | [📒](papers/applications/yolov1/yolov1.pdf "필기 PDF") [📊](papers/applications/yolov1/yolov1-slides.odp "발표 자료") [📊](papers/applications/yolov1/yolov1-slides-2.odp "발표 자료") [💻](https://github.com/qkrwnstj306/YOLO "코드") [🔗](https://www.notion.so/YOLO-74f8f744dcaf43188bd00e5269f50ed8?pvs=4 "YOLO 코드 확장 (Notion)") |
 | Time-Series Anomaly Detection Service at Microsoft | KDD 2019 |  | [📒](papers/applications/ts-anomaly-microsoft/ts-anomaly-microsoft.pdf "필기 PDF") [📊](papers/applications/ts-anomaly-microsoft/ts-anomaly-microsoft-slides.pptx "발표 자료") |
-| SimFLE: Simple Facial Landmark Encoding for Self-Supervised Facial Expression Recognition in the Wild |  |  | [📒](papers/applications/simfle/simfle.pdf "필기 PDF") |
+| SimFLE: Simple Facial Landmark Encoding for Self-Supervised Facial Expression Recognition in the Wild | arXiv 2023 |  | [📒](papers/applications/simfle/simfle.pdf "필기 PDF") |
 
 </details>
 

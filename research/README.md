@@ -15,6 +15,8 @@
 
 ## StyleBoost: A Study of Personalizing Text-to-Image Generation in Any Style using DreamBooth
 
+**ICTC**
+
 - [📝 소개 / 리뷰](styleboost/README.md)
 - [논문 PDF](styleboost/styleboost.pdf) `PDF`
 - [학회 발표 슬라이드](styleboost/styleboost-slides.pptx) `PPTX`

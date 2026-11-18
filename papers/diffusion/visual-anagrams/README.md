@@ -1,27 +1,26 @@
-<img src="https://capsule-render.vercel.app/api?type=waving&color=auto&height=80&section=header&text=Welcome%20Paper%20Review&fontSize=50" width="100%">
+# Visual Anagrams: Generating Multi-View Optical Illusions with Diffusion Models
 
-
-## Visual Anagrams: Generating Multi-View Optical Illusions with Diffusion Models
 *CVPR(2024), 38 citation, University of Michigan, Review Data: 2026.02.19*
 
-[Intro](#intro)</br>
-[Related Work](#related-work)</br>
-[Method](#method)</br>
-[Experiment](#experiment)</br>
-[Conclusion](#conclusion)</br>
+> [!TIP]
+> **한 줄 요약** — 사전 학습된 pixel diffusion model로 여러 view(뒤집기·회전·픽셀 순열 등)에서 노이즈를 각각 추정해 평균하는 zero-shot 방법으로, 변환에 따라 다른 의미로 보이는 multi-view 착시 이미지를 생성한다.
+>
+> "하나의 이미지가 변환(회전·뒤집기 등)에 따라 다른 의미를 갖도록 생성하는 방법을 제안한 논문."
+
+| 흐름 | 내용 |
+|:--|:--|
+| **문제** | 기존 계산적 착시 생성은 명시적인 인간 지각 모델이 필요했고, diffusion 기반 시도(SDS, latent diffusion)는 품질이 낮거나 느리고 artifact가 생긴다 |
+| **아이디어** | 각 view $v_i$로 변환한 noisy image에서 prompt $y_i$로 노이즈를 추정하고 역변환해 평균; view는 선형이면서 노이즈 통계를 보존하는 직교 변환(픽셀 순열, 색 반전 등)이어야 하며, DeepFloyd IF로 픽셀 공간에서 동작 |
+| **결과** | Alignment·concealment score 모두에서 baseline보다 일관되게 우수하고, 3~4 view 착시와 polymorphic jigsaw 같은 새로운 visual anagram까지 생성 |
 
 <p align="center">
-<img src='./img1.png'>
+  <img src="./img1.png" width="90%"><br>
+  <sub><b>Figure 1.</b> Visual anagram 예시</sub>
 </p>
 
-> Core Idea
-<div align=center>
-<strong>"하나의 이미지가 변환(회전·뒤집기 등)에 따라 다른 의미를 갖도록 생성하는 방법을 제안한 논문."</strong></br>
-</div>
+---
 
-***
-
-### <strong>Intro</strong>
+## 1. 문제 정의 — 왜 이 논문이 필요한가
 
 - Visual Anagram (Multi-view optical illusion)
     - 이미지를 뒤집으면 다른 객체가 보이고, 회전하면 또 다른 의미가 나타나는 다중 해석 가능한 이미지 생성을 목표로 한다.
@@ -29,7 +28,6 @@
 - 다중 시점(optical illusion) 착시 이미지를 합성하는 문제, 즉 뒤집기(flip)나 회전(rotation)과 같은 변환이 가해질 때 서로 다른 모습으로 보이는 이미지를 생성하는 문제를 다룬다.
 
 - 이를 위해, 기존에 학습된(text-to-image) 확산 모델을 추가 학습 없이 그대로 활용하여 이러한 착시 이미지를 생성할 수 있는 간단한 zero-shot 방법을 제안한다.
-
 
 - 역확산(reverse diffusion) 과정에서 하나의 노이즈 이미지에 대해 서로 다른 시점(view)에서의 노이즈를 각각 추정하고, 이 노이즈 추정값들을 결합한 뒤 이미지를 복원(denoise)한다.
 
@@ -48,9 +46,7 @@
 - 하나의 이미지를 여러 시점에서 동시에 복원(denoise)하도록 diffusion 모델을 사용하여, 서로 다른 노이즈 추정값들을 얻는 방식으로 동작한다. 이후 이 노이즈 추정값들을 결합하여 단일 노이즈 추정값을 만들고, 이를 역확산(reverse diffusion) 과정의 한 단계에 사용한다.
     - 다만 이러한 시점들을 선택할 때는 주의가 필요하다. 변환은 노이즈의 통계적 성질을 유지해야 하는데, 이는 diffusion 모델이 i.i.d. 가우시안 노이즈 가정 하에서 학습되었기 때문이다. 이러한 조건을 분석하고, 어떤 변환들이 지원 가능한지에 대한 정확한 범주를 제시한다.
 
-***
-
-### <strong>Related Work</strong>
+## 2. 사전 지식
 
 - Diffusion Models.
     - 확산 모델(diffusion models)은 노이즈 분포에서 샘플을 시작해 이를 반복적으로 변환하여 데이터 분포의 샘플로 바꾸는 강력한 생성 모델 계열이다. 이러한 모델은 노이즈가 섞인 샘플에서 노이즈를 추정하고, DDPM이나 DDIM과 같은 업데이트 규칙에 따라 그 노이즈를 제거하는 방식으로 동작한다. 확산 모델의 대표적인 응용은 텍스트 조건 기반 이미지 생성으로, 이 경우 모델은 노이즈 이미지와 시간 단계(timestep)뿐 아니라 텍스트 프롬프트를 언어 모델 임베딩 형태로 함께 입력받아 조건(conditioning)으로 사용한다.
@@ -84,7 +80,6 @@
 <img src='./img4.png'>
 </p>
 
-
 - Illusions with Diffusion Models.
     - 최근 예술가와 연구자들은 확산 모델을 활용해 착시를 생성할 수 있는 가능성을 보여주기 시작했다. 
     - 예를 들어, MrUgleh라는 가명을 사용하는 한 예술가는 QR 코드 생성을 위해 미세조정된 모델을 재활용하여, 전체 구조가 특정 템플릿 이미지와 미묘하게 일치하는 이미지를 만들었다. 
@@ -92,13 +87,11 @@
     - Burgert 등은 Score Distillation Sampling(SDS)을 사용해 서로 다른 시점에서 서로 다른 프롬프트에 맞는 이미지를 생성했지만, SDS 기반 방법은 결과 품질이 낮고 명시적인 최적화가 필요해 샘플링 시간이 길다는 단점이 있다. 
         - 본 방법은 Tancik의 개념 증명(proof-of-concept)과 가장 유사한데, 그는 잠재 확산 모델에서 서로 다른 시점과 프롬프트 사이를 번갈아가며 노이즈 추정을 수행해 회전 착시를 생성했다. 그러나 단순히 회전 착시에 그치지 않고 다양한 유형의 다중 시점 착시를 실험적으로 평가하고, 어떤 변환이 가능한지(또는 불가능한지)에 대한 이론적 분석을 제공한다. 또한 잠재 확산에서 발생하는 아티팩트의 원인을 규명하고 임의의 개수의 시점을 지원하도록 하는 등 여러 개선을 통해 정성적·정량적으로 더 우수한 착시 결과를 얻었다.
 
-***
-
-### <strong>Method</strong>
+## 3. 방법
 
 - 목표는 사전 학습된 확산 모델을 이용해 다중 시점 (optical illusion) 이미지를 생성하는 것이다. 즉, 뒤집기나 회전과 같은 변환이 적용될 때 이미지의 외형이나 정체성이 달라 보이도록 하는 이미지를 합성하고자 한다. 
 
-$\textbf{Text-conditioned Diffusion Models}$
+### Text-conditioned Diffusion Models
 
 - 확산 모델은 i.i.d Gaussian noise $x_T$에서 시작하여 이를 반복적으로 제거함으로써 데이터 분포에서의 샘플 $x_0$를 생성한다. 
 - 추정된 노이즈는 DDPM or DDIM 과 같은 update rule에 사용되어 $x_t$로부터 $x_{t-1}$을 계산한다. 
@@ -109,8 +102,7 @@ $\textbf{Text-conditioned Diffusion Models}$
 <img src='./img11.png'>
 </p>
 
-
-$\textbf{Parallel Denoising}$
+### Parallel Denoising
 
 - 우리는 하나의 이미지를 여러 시점에서 동시에 복원(denoise)하도록 확산 모델을 사용하여 다중 시점 착시를 생성한다.
 
@@ -119,7 +111,6 @@ $\textbf{Parallel Denoising}$
     - 즉, 각 view $v_i$를 사용해 noisy image $x_t$를 변환한 뒤, 변환된 이미지에서 노이즈를 추정하고, 그 추정값에 역변환 $v_i^{-1}$를 적용하여 다시 원래 좌표계로 되돌린다. 
     - 이렇게 얻은 노이즈 추정값들을 평균하면 하나의 결합된 노이즈 추정값이 만들어지며, 이를 선택한 diffusion sampler에서 사용할 수 있다.
     - 이처럼 여러 노이즈 추정값을 결합하는 방식은, 여러 조건을 조합하는 compositionality 연구들과 유사한 접근이다. 또한 classifier-free guidance를 적용하기 위해서는 $\epsilon_{\theta}(v_i(x_t), y_i, t)$ 대신 classifier-free 추정값 $\epsilon_t^{CFG}$을 사용하면 된다.
-
 
 <p align="center">
 <img src='./img5.png'>
@@ -135,11 +126,10 @@ $\textbf{Parallel Denoising}$
 <img src='./img8.png'>
 </p>
 
-$\textbf{Conditions on Views}$
+### Conditions on Views
 
 - View $v_i$에 대한 가장 기본적인 조건은 가역적 (invertible)이어야 한다는 것이다.
 - 추가로 확산 모델은 암묵적으로 view에 대해 추가적인 조건들도 요구한다. 이 조건들이 만족되지 않으면, denoising 과정의 결과가 매우 나빠지는 것을 확인했다. 
-
 
 1. 선형성 (linearity): forward 과정에서 $x_t$를 만들 때, 원래 이미지와 noise의 선형 결합으로 만든다. 따라서 view $v_i$는 $x_t$를 변환한 결과 $v_i(x_t)$ 역시 같은 가중치를 가진 신호와 노이즈의 선형 결합이 되도록 만들어야 한다. 
     - 이를 만족하려면 $v_i$는 다음과 같은 선형 변환 (linear transformation)이어야 한다. $v_i(x_t) = A_i x_t$ 
@@ -170,8 +160,6 @@ $\textbf{Conditions on Views}$
     - 반례로, view가 비선형이라 $v(x) = x^2$ 라면
         - $v(x_t) = (w_s x_0 + w_n\epsilon)^2 = w_s^2 x_0^2 + w_n^2\epsilon^2 + 2 w_sw_n x_0 \epsilon$ 이 되면서 더 이상 $x_t$의 분포로 표현할 수가 없다. 
 
-
-
 - 다음은 통계적 일관성을 이해해보자 
     - 일반적인 diffusion model이 학습한 noise 분포는 $\mathcal{N}(0,I)$ 이다. 
     - 그리고 view를 적용해 변환된 noise는 $\epsilon' = A\epsilon$ 이고 그 분포는 $\epsilon' \sim \mathcal{N}(0, AA^T)$ 이다. 
@@ -179,7 +167,7 @@ $\textbf{Conditions on Views}$
     - 반례로, $A=2I$ 라면 $\epsilon' = \mathcal{N}(0, 4I)$ 가 된다. 
     - Orthogonal matrix는 row와 column 모두 정확히 하나의 $1$이 있는 경우만을 orthogonal matrix라고 한다. 
 
-$\textbf{Views Considered}$
+### Views Considered
 
 - 이미지에 적용할 수 있는 직교 변환 (orthogonal transformation)의 대부분은 직관적인 이미지 변환으로 해석되기 어렵다. 
     - 그러나 그중 일부는 실제로 의미 있는 시각적 변환에 해당한다. 
@@ -205,7 +193,6 @@ $\textbf{Views Considered}$
 
 - Rotation
 
-
 <p align="center">
 <img src='./img13.png'>
 </p>
@@ -215,8 +202,6 @@ $\textbf{Views Considered}$
 <p align="center">
 <img src='./img14.png'>
 </p>
-
-
 
 3. General Permutations (일반적인 순열)
     - 앞서 회전, 반사, skew와 같은 특수한 경우를 살펴보았지만, 그 외의 순열도 적용할 수 있다. 
@@ -230,7 +215,6 @@ $\textbf{Views Considered}$
 <img src='./img9.png'>
 </p>
 
-
 4. Color Inversion (색 반전)
     - 부호 반전 (negation)은 직교 변환이다. 
     - 이는 직관적으로 고차원 공간에서의 180도 회전에 해당한다. 
@@ -242,7 +226,7 @@ $\textbf{Views Considered}$
 <img src='./img15.png'>
 </p>
 
-5. Arbitraty Orthogonal Transformations (임의의 직교 변환)
+5. Arbitrary Orthogonal Transformations (임의의 직교 변환)
     - 픽셀 공간에서의 임의 회전은 인간에게는 해석 불가능한 경우가 많다. 
     - 그럼에도 불구하고 본 방법론은 이러한 변환에서도 정상적으로 작동함을 보였다.
     - 이러한 착시는 사람 눈에는 의미가 없지만, 본 방법론이 어떤 직교 변환에도 적용 가능함을 확인하는 실험적 증거이다. 
@@ -253,7 +237,6 @@ $\textbf{Views Considered}$
 <img src='./img10.png'>
 </p>
 
-
 - Orthogonal transformation 
     - 픽셀 값을 섞지 않는다. (interpolation x)
     - 단순 재배열 또는 부호 변환 
@@ -261,7 +244,7 @@ $\textbf{Views Considered}$
 
 $$ A^TA = I $$
 
-$\textbf{Design Decisions}$
+### Design Decisions
 
 - 핵심 방법 외에도, 착시 (illusion)의 품질을 최대화하기 위한 여러 설계 선택 사항들을 함께 고려한다. 
 
@@ -276,7 +259,7 @@ $\textbf{Design Decisions}$
 $$ E(v(x)) = AE(x) $$
 
 - 90도 회전 후 직선을 만들기 위해 모델이 초가지붕처럼 비스듬한 선 (thatched lines)를 생성하도록 강제되는 현상이 나타난다. 
-    - 이 문제를 해결하기 위해 본 논문은 픽셀 공간에서 직접 동작하는 diffusio model인 DeepFloyd IF를 사용하여 방법을 구현했다. 
+    - 이 문제를 해결하기 위해 본 논문은 픽셀 공간에서 직접 동작하는 diffusion model인 DeepFloyd IF를 사용하여 방법을 구현했다. 
     - DeepFloyd는 latent가 아니라 실제 픽셀을 직접 denoise하기에 latent block의 방향성 문제를 자연스럽게 회피할 수 있다. 
 
 <p align="center">
@@ -291,8 +274,8 @@ $$ E(v(x)) = AE(x) $$
 <img src='./img18.png'>
 </p>
 
-- Combinding Noise Estimates
-    - 여러 view 에서 얻은 노이즈 추정값을 단순 평균하는 방법 외에도 timestep마다 번갈아 사용하는 방식도 실험헀다. 
+- Combining Noise Estimates
+    - 여러 view 에서 얻은 노이즈 추정값을 단순 평균하는 방법 외에도 timestep마다 번갈아 사용하는 방식도 실험했다. 
     - 그러나 이후 ablation study 결과 평균을 취하는 게 성능이 더 좋았다. 
 
 <p align="center">
@@ -305,9 +288,7 @@ $$ E(v(x)) = AE(x) $$
     - 즉, 각 view가 다른 view의 내용을 숨기도록 유도한다. 
     - 결과는 안하는 게 더 좋았다. 
 
-***
-
-### <strong>Experiment</strong>
+## 4. 실험
 
 - Model: DeepFloyd IF
     - pixel based의 두 단계만 사용한다. 64로 이미지 생성 후, 256으로 up-scaling 
@@ -323,7 +304,7 @@ $$ E(v(x)) = AE(x) $$
         - min diag $(S)$로 CLIP score matrix에서 주 대각선만 뽑은 것이다. 이때, 주 대각선은 view $i$가 대응되는 prompt $i$와 얼마나 잘 맞는지에 대한 점수이다. 
         - 즉, 모든 view가 최소한 어느 정도는 제대로 보이는가에 대한 지표
     - Concealment score $\mathcal{C}$
-        - Alignement score는 view $j$에서 다른 prompt $i$가 보이는 경우를 잡지 못한다. 이를 정량화하기 위해 $C$ 를 정의한다. 
+        - Alignment score는 view $j$에서 다른 prompt $i$가 보이는 경우를 잡지 못한다. 이를 정량화하기 위해 $C$ 를 정의한다. 
 
 <p align="center">
 <img src='./img19.png'>
@@ -357,7 +338,6 @@ $$ E(v(x)) = AE(x) $$
     - Burgert et al.
     - Tancik
 
-
 - 두 데이터셋 모두에 대해 baseline 방법들과의 비교
     - Vertical flip 변환을 사용했다. 이를 선택한 이유는 baseline과 ours 모두에서 지원되는 공통 변환이기 때문이다. 
     - 각 prompt마다 10개의 샘플을 생성했으며, CIFAR는 450개, Ours dataset은 총 500개 sample을 사용했다. 
@@ -388,7 +368,6 @@ $$ E(v(x)) = AE(x) $$
     - Guidance scale (CFG): 10이 좋음
         - 더 높은 scale 값이 대체로 더 좋은 성능을 보였다. 이는 scale이 커질수록 sampling 분포가 더 날카로워져 조건에 더 강하게 맞는 이미지를 생성하기 때문으로 해석된다. 
 
-
 <p align="center">
 <img src='./img23.png'>
 </p>
@@ -399,8 +378,7 @@ $$ E(v(x)) = AE(x) $$
 <img src='./img24.png'>
 </p>
 
-
-$\textbf{Qualitative Results}$
+### Qualitative Results
 
 - 다양한 view에서 매우 높은 품질의 착시 이미지를 생성할 수 있음을 확인 
     - 흥미롭게도, 종종 한 view의 요소를 다른 view에서도 재활용하는 창의적인 구조를 스스로 찾아낸다. 
@@ -417,24 +395,24 @@ $\textbf{Qualitative Results}$
 <img src='./img26.png'>
 </p>
 
-- 지금까지는 잘 생성된 sample을 보여준거고 이번엔 ramdom sample을 가지고 보여준다. 
+- 지금까지는 잘 생성된 sample을 보여준거고 이번엔 random sample을 가지고 보여준다. 
 
 <p align="center">
 <img src='./img27.png'>
 </p>
 
-$\textbf{Failures}$
+### Failures
 
 - Independent Synthesis (first row)
     - 두 prompt를 결합하지 않고 각 prompt를 독립적으로 생성
     - 즉, 착시를 만들지 않고 두 개의 이미지를 따로 만든것처럼 보이는 결과가 나온다. 
     - 하지만 경험적으로 이러한 현상은 예상보다 드물게 발생한다. 
-    - 이는 diffusion model이 contents를 이미지 중심에 배치하려는 경향 (bias)가 있기 떄문이라고 추정한다. 
+    - 이는 diffusion model이 contents를 이미지 중심에 배치하려는 경향 (bias)가 있기 때문이라고 추정한다. 
 
 - Noise Shift (second row)
     - 본 방법론이 성공하려면 noise statistics를 보존하는 view를 사용하는 것이 중요하다. 
     - 예를 들어, 유명한 드레스 착시 (파란색/검정색 vs 흰색/금색)을 재현하려고 시도했다. 
-    - 이를 위해 간단한 white balancing view, 즉 픽셀 값을 일정 비율로 스케일하는 변환을 사용했다. 이 변환은 linear이긴 하지만 Guassian noise의 통계를 보존하지 않는다. 그 결과 이미지에 spot 형태의 artifact가 나타났다. 
+    - 이를 위해 간단한 white balancing view, 즉 픽셀 값을 일정 비율로 스케일하는 변환을 사용했다. 이 변환은 linear이긴 하지만 Gaussian noise의 통계를 보존하지 않는다. 그 결과 이미지에 spot 형태의 artifact가 나타났다. 
     - 이는 모델이 스케일된 Gaussian noise를 signal로 잘못 해석하여 그 노이즈의 peak를 적극적으로 제거하려 하기 때문이라고 추정한다. 
 
 - Correlated Noise 
@@ -450,19 +428,6 @@ $\textbf{Failures}$
 <img src='./img39.png'>
 </p>
 
-***
+## 참고
 
-### <strong>Conclusion</strong>
-
-
-***
-
-### <strong>Question</strong>
-
-
-
-![](img_path)
-<a href="">link</a>
-
-
-> 인용구
+- [Paper](https://openaccess.thecvf.com/content/CVPR2024/papers/Geng_Visual_Anagrams_Generating_Multi-View_Optical_Illusions_with_Diffusion_Models_CVPR_2024_paper.pdf)
