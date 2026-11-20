@@ -14,3 +14,4 @@
 | [Tree-Ring Watermarks: Fingerprints for Diffusion Images that are Invisible and Robust](https://arxiv.org/pdf/2305.20030) | NeurIPS 2023 | [📝](tree-ring/README.md "리뷰 읽기") |  |
 | [Gaussian Shading: Provable Performance-Lossless Image Watermarking for Diffusion Models](https://ieeexplore.ieee.org/stamp/stamp.jsp?arnumber=10657450) | CVPR 2024 | [📝](gaussian-shading/README.md "리뷰 읽기") |  |
 | [GLoCE: Localized Concept Erasure for Text-to-Image Diffusion Models Using Training-Free Gated Low-Rank Adaptation](https://arxiv.org/pdf/2503.12356) | CVPR 2025 | [📝](gloce/README.md "리뷰 읽기") |  |
+| [PRC Watermark: An Undetectable Watermark for Generative Image Models ](https://proceedings.iclr.cc/paper_files/paper/2025/file/1331202ea3bb0a53ae897af0bb16e309-Paper-Conference.pdf) | ICLR 2025 | [📝](prc-watermark/README.md "리뷰 읽기") |  |

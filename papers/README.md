@@ -9,7 +9,7 @@
 | [**Inverse Problems & Restoration**](inverse-problems/README.md) | 5 | Inpainting, Super-resolution, Posterior sampling |
 | [**Virtual Try-On**](virtual-try-on/README.md) | 14 | 가상 피팅과 패션 이미지 생성 |
 | [**Aesthetic QR Code**](aesthetic-qr/README.md) | 7 | 스캔 가능한 미적 QR 코드 생성 |
-| [**Watermark, Safety & Privacy**](safety-watermark/README.md) | 5 | 워터마킹, 개념 삭제, 프라이버시 공격 |
+| [**Watermark, Safety & Privacy**](safety-watermark/README.md) | 6 | 워터마킹, 개념 삭제, 프라이버시 공격 |
 | [**Interpretability**](interpretability/README.md) | 4 | XAI, attention 분석, 표현 시각화 |
 | [**Semantic Correspondence**](semantic-correspondence/README.md) | 3 | 이미지 간 의미적 대응점 찾기 |
 | [**Video & 3D**](video-3d/README.md) | 4 | 비디오 생성, 물리 기반 생성, NeRF |
@@ -175,6 +175,7 @@
 | [GLoCE: Localized Concept Erasure for Text-to-Image Diffusion Models Using Training-Free Gated Low-Rank Adaptation](https://arxiv.org/pdf/2503.12356) | [Watermark, Safety & Privacy](safety-watermark/README.md) | CVPR 2025 | [📝](safety-watermark/gloce/README.md "리뷰 읽기") |  |
 | [Hyper-Connections](https://openreview.net/pdf?id=9FqARW7dwB) | [Architectures & Training](foundations/README.md) | ICLR 2025 | [📝](foundations/hyper-connections/README.md "리뷰 읽기") |  |
 | [OOTDiffusion: Outfitting Fusion based Latent Diffusion for Controllable Virtual Try-on](https://arxiv.org/pdf/2403.01779.pdf) | [Virtual Try-On](virtual-try-on/README.md) | AAAI 2025 | [📝](virtual-try-on/ootdiffusion/README.md "리뷰 읽기") |  |
+| [PRC Watermark: An Undetectable Watermark for Generative Image Models ](https://proceedings.iclr.cc/paper_files/paper/2025/file/1331202ea3bb0a53ae897af0bb16e309-Paper-Conference.pdf) | [Watermark, Safety & Privacy](safety-watermark/README.md) | ICLR 2025 | [📝](safety-watermark/prc-watermark/README.md "리뷰 읽기") |  |
 | [Spline-FRIDA: Towards Diverse, Humanlike Robot Painting Styles with a Sample-Efficient, Differentiable Brush Stroke Model](https://arxiv.org/pdf/2412.00597) | [Robotics & Embodied AI](robotics/README.md) | RA-L 2025 | [📝](robotics/spline-frida/README.md "리뷰 읽기") |  |
 | Stable Flow: Vital Layers for Training-Free Image Editing | [Image Editing & Control](image-editing/README.md) | CVPR 2025 | [📝](image-editing/stable-flow/README.md "리뷰 읽기") |  |
 | [Structure-aware MRI Translation: Multi-Modal Latent Diffusion Model with Arbitrary Missing Modalities](https://papers.miccai.org/miccai-2025/paper/0110_paper.pdf) | [Medical Imaging](medical/README.md) | MICCAI 2025 | [📝](medical/misa-ldm/README.md "리뷰 읽기") | [📊](medical/misa-ldm/misa-ldm-slides.pptx "발표 자료") |

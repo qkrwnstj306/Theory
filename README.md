@@ -5,7 +5,7 @@
 
 [![Website](https://img.shields.io/badge/Website-Theory-4f46e5?style=for-the-badge&logo=materialformkdocs&logoColor=white)](https://qkrwnstj306.github.io/Theory/) [![Portfolio](https://img.shields.io/badge/Portfolio-qkrwnstj306-06b6d4?style=for-the-badge&logo=githubpages&logoColor=white)](https://qkrwnstj306.github.io/)
 
-![papers](https://img.shields.io/badge/papers-157-6366f1?style=flat-square) ![reviews](https://img.shields.io/badge/reviews-115-8b5cf6?style=flat-square) ![fields](https://img.shields.io/badge/fields-20-0ea5e9?style=flat-square) ![notes](https://img.shields.io/badge/notes-113-14b8a6?style=flat-square)
+![papers](https://img.shields.io/badge/papers-158-6366f1?style=flat-square) ![reviews](https://img.shields.io/badge/reviews-116-8b5cf6?style=flat-square) ![fields](https://img.shields.io/badge/fields-20-0ea5e9?style=flat-square) ![notes](https://img.shields.io/badge/notes-113-14b8a6?style=flat-square)
 
 읽은 논문의 리뷰, 이론 정리, 강의 노트를 연구 분야별로 모아둔 공간입니다.<br>
 수식 렌더링과 검색이 되는 **[웹사이트](https://qkrwnstj306.github.io/Theory/)** 에서 보는 것을 추천합니다.
@@ -24,6 +24,7 @@
 
 | Date | Paper | Field |
 |:--|:--|:--|
+| 2026-11-20 | [PRC Watermark: An Undetectable Watermark for Generative Image Models ](papers/safety-watermark/prc-watermark/README.md) | [Watermark, Safety & Privacy](papers/safety-watermark/README.md) |
 | 2026-11-18 | [Stable Flow: Vital Layers for Training-Free Image Editing](papers/image-editing/stable-flow/README.md) | [Image Editing & Control](papers/image-editing/README.md) |
 | 2026-11-18 | [Tree-Ring Watermarks: Fingerprints for Diffusion Images that are Invisible and Robust](papers/safety-watermark/tree-ring/README.md) | [Watermark, Safety & Privacy](papers/safety-watermark/README.md) |
 | 2026-11-18 | [Gaussian Shading: Provable Performance-Lossless Image Watermarking for Diffusion Models](papers/safety-watermark/gaussian-shading/README.md) | [Watermark, Safety & Privacy](papers/safety-watermark/README.md) |
@@ -31,7 +32,6 @@
 | 2026-08-26 | [FlowEdit: Inversion-Free Text-Based Editing Using Pre-Trained Flow Models](papers/image-editing/flowedit/README.md) | [Image Editing & Control](papers/image-editing/README.md) |
 | 2026-07-26 | [Training-free Regional Prompting for Diffusion Transformers](papers/image-editing/regional-prompting/README.md) | [Image Editing & Control](papers/image-editing/README.md) |
 | 2026-07-15 | [Face2QR: A Unified Framework for Aesthetic, Face-Preserving, and Scannable QR Code Generation](papers/aesthetic-qr/face2qr/README.md) | [Aesthetic QR Code](papers/aesthetic-qr/README.md) |
-| 2026-07-01 | [Code as Policies: Language Model Programs for Embodied Control](papers/robotics/code-as-policies/README.md) | [Robotics & Embodied AI](papers/robotics/README.md) |
 
 ## 🗺️ Research Fields
 
@@ -43,7 +43,7 @@
 | [**Inverse Problems & Restoration**](papers/inverse-problems/README.md) | 5 | Inpainting, Super-resolution, Posterior sampling |
 | [**Virtual Try-On**](papers/virtual-try-on/README.md) | 14 | 가상 피팅과 패션 이미지 생성 |
 | [**Aesthetic QR Code**](papers/aesthetic-qr/README.md) | 7 | 스캔 가능한 미적 QR 코드 생성 |
-| [**Watermark, Safety & Privacy**](papers/safety-watermark/README.md) | 5 | 워터마킹, 개념 삭제, 프라이버시 공격 |
+| [**Watermark, Safety & Privacy**](papers/safety-watermark/README.md) | 6 | 워터마킹, 개념 삭제, 프라이버시 공격 |
 | [**Interpretability**](papers/interpretability/README.md) | 4 | XAI, attention 분석, 표현 시각화 |
 | [**Semantic Correspondence**](papers/semantic-correspondence/README.md) | 3 | 이미지 간 의미적 대응점 찾기 |
 | [**Video & 3D**](papers/video-3d/README.md) | 4 | 비디오 생성, 물리 기반 생성, NeRF |
@@ -183,7 +183,7 @@
 </details>
 
 <details>
-<summary><b>Watermark, Safety & Privacy</b> · 5편 — 워터마킹, 개념 삭제, 프라이버시 공격</summary>
+<summary><b>Watermark, Safety & Privacy</b> · 6편 — 워터마킹, 개념 삭제, 프라이버시 공격</summary>
 
 | Paper | Venue | Review | Materials |
 |:--|:--:|:--:|:--|
@@ -192,6 +192,7 @@
 | [Tree-Ring Watermarks: Fingerprints for Diffusion Images that are Invisible and Robust](https://arxiv.org/pdf/2305.20030) | NeurIPS 2023 | [📝](papers/safety-watermark/tree-ring/README.md "리뷰 읽기") |  |
 | [Gaussian Shading: Provable Performance-Lossless Image Watermarking for Diffusion Models](https://ieeexplore.ieee.org/stamp/stamp.jsp?arnumber=10657450) | CVPR 2024 | [📝](papers/safety-watermark/gaussian-shading/README.md "리뷰 읽기") |  |
 | [GLoCE: Localized Concept Erasure for Text-to-Image Diffusion Models Using Training-Free Gated Low-Rank Adaptation](https://arxiv.org/pdf/2503.12356) | CVPR 2025 | [📝](papers/safety-watermark/gloce/README.md "리뷰 읽기") |  |
+| [PRC Watermark: An Undetectable Watermark for Generative Image Models ](https://proceedings.iclr.cc/paper_files/paper/2025/file/1331202ea3bb0a53ae897af0bb16e309-Paper-Conference.pdf) | ICLR 2025 | [📝](papers/safety-watermark/prc-watermark/README.md "리뷰 읽기") |  |
 
 </details>
 

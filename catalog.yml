@@ -1104,6 +1104,12 @@ papers:
   url: https://ieeexplore.ieee.org/stamp/stamp.jsp?arnumber=10657450
   dir: papers/safety-watermark/gaussian-shading
 
+- title: 'PRC Watermark: An Undetectable Watermark for Generative Image Models '
+  field: safety-watermark
+  url: https://proceedings.iclr.cc/paper_files/paper/2025/file/1331202ea3bb0a53ae897af0bb16e309-Paper-Conference.pdf
+  dir: papers/safety-watermark/prc-watermark
+
+
 - title: 'GLoCE: Localized Concept Erasure for Text-to-Image Diffusion Models Using Training-Free Gated Low-Rank Adaptation'
   field: safety-watermark
   venue: CVPR
